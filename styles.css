@@ -48,6 +48,29 @@
     box-sizing: border-box;
 }
 
+/* Ripple Effect Animation */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Button styles for ripple effect */
+.contact-link, .submit-btn, .cta-button, .download-btn {
+    position: relative;
+    overflow: hidden;
+}
+
 body {
     font-family: var(--font-primary);
     line-height: 1.6;
