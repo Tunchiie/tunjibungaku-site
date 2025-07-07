@@ -1,1 +1,535 @@
-<h1>Hello World</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Data Analyst | Aspiring Data Scientist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+            font-weight: bold;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #555;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .skill-category h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #764ba2;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-card h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 15px;
+        }
+
+        .tech-tag {
+            background: #e9ecef;
+            color: #495057;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+        }
+
+        .experience-item {
+            border-left: 3px solid #667eea;
+            padding-left: 20px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #667eea;
+        }
+
+        .experience-date {
+            color: #7f8c8d;
+            font-weight: 500;
+            font-size: 0.9em;
+        }
+
+        .cta-section {
+            text-align: center;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 15px;
+            padding: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        .learning-goals {
+            background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .learning-goals h3 {
+            color: #2d3436;
+            margin-bottom: 15px;
+        }
+
+        .goal-list {
+            list-style: none;
+        }
+
+        .goal-list li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .goal-list li::before {
+            content: '🎯';
+            position: absolute;
+            left: 0;
+        }
+
+        @media (max-width: 768px) {
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <div class="profile-img">YN</div>
+            <h1>Your Name</h1>
+            <p class="subtitle">Data Analyst | Aspiring Data Scientist</p>
+            <p>Passionate about transforming data into actionable insights and pursuing advanced analytics to drive business decisions</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>📧</span>
+                    <span>your.email@example.com</span>
+                </div>
+                <div class="contact-item">
+                    <span>💼</span>
+                    <span>linkedin.com/in/yourprofile</span>
+                </div>
+                <div class="contact-item">
+                    <span>🐙</span>
+                    <span>github.com/yourusername</span>
+                </div>
+                <div class="contact-item">
+                    <span>📍</span>
+                    <span>Your City, Country</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- About Section -->
+        <section class="section">
+            <h2>About Me</h2>
+            <p>I'm a dedicated data analyst with a strong foundation in statistical analysis, data visualization, and business intelligence. Currently seeking opportunities in data analysis while actively developing my skills toward becoming a data scientist. I'm passionate about uncovering patterns in data and translating complex findings into clear, actionable business recommendations.</p>
+            
+            <div class="learning-goals">
+                <h3>Current Learning Goals</h3>
+                <ul class="goal-list">
+                    <li>Advanced Machine Learning algorithms and model deployment</li>
+                    <li>Deep Learning frameworks (TensorFlow, PyTorch)</li>
+                    <li>MLOps and production-ready ML systems</li>
+                    <li>Advanced statistical modeling and experimental design</li>
+                    <li>Big Data technologies (Spark, Hadoop)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="section">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">R</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Java</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Data Analysis & Visualization</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">Matplotlib</span>
+                        <span class="skill-tag">Seaborn</span>
+                        <span class="skill-tag">Plotly</span>
+                        <span class="skill-tag">Tableau</span>
+                        <span class="skill-tag">Power BI</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Machine Learning (Learning)</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Scikit-learn</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">Keras</span>
+                        <span class="skill-tag">XGBoost</span>
+                        <span class="skill-tag">Feature Engineering</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Databases & Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Excel</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Jupyter</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Statistical Analysis</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Hypothesis Testing</span>
+                        <span class="skill-tag">Regression Analysis</span>
+                        <span class="skill-tag">Time Series</span>
+                        <span class="skill-tag">A/B Testing</span>
+                        <span class="skill-tag">Descriptive Statistics</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Business Intelligence</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">KPI Development</span>
+                        <span class="skill-tag">Dashboard Design</span>
+                        <span class="skill-tag">Data Storytelling</span>
+                        <span class="skill-tag">Business Metrics</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="section">
+            <h2>Featured Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>Sales Performance Dashboard</h3>
+                    <p>Built an interactive dashboard analyzing quarterly sales data, identifying key trends and performance metrics that led to a 15% improvement in team productivity.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">Plotly</span>
+                        <span class="tech-tag">SQL</span>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Customer Segmentation Analysis</h3>
+                    <p>Performed RFM analysis on customer data to identify distinct customer segments, enabling targeted marketing strategies and improving customer retention.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">R</span>
+                        <span class="tech-tag">K-means</span>
+                        <span class="tech-tag">ggplot2</span>
+                        <span class="tech-tag">Tableau</span>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Financial Data ETL Pipeline</h3>
+                    <p>Designed and implemented an automated data pipeline for processing financial market data, including data validation and transformation processes.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Apache Airflow</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Docker</span>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Predictive Model for Stock Prices (Learning Project)</h3>
+                    <p>Currently developing a machine learning model to predict stock price movements using technical indicators and sentiment analysis from news data.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Scikit-learn</span>
+                        <span class="tech-tag">LSTM</span>
+                        <span class="tech-tag">NLP</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="section">
+            <h2>Experience & Education</h2>
+            
+            <div class="experience-item">
+                <h3>Junior Data Analyst</h3>
+                <p><strong>Company Name</strong> | <span class="experience-date">2023 - Present</span></p>
+                <p>• Analyzed customer behavior data to identify trends and patterns<br>
+                • Created automated reports reducing manual reporting time by 60%<br>
+                • Collaborated with cross-functional teams to support data-driven decisions</p>
+            </div>
+            
+            <div class="experience-item">
+                <h3>Data Analysis Intern</h3>
+                <p><strong>Previous Company</strong> | <span class="experience-date">2022 - 2023</span></p>
+                <p>• Performed statistical analysis on survey data with 10,000+ responses<br>
+                • Developed visualizations for executive presentations<br>
+                • Supported A/B testing initiatives for product improvements</p>
+            </div>
+            
+            <div class="experience-item">
+                <h3>Bachelor's Degree in [Your Field]</h3>
+                <p><strong>University Name</strong> | <span class="experience-date">2019 - 2023</span></p>
+                <p>• Relevant coursework: Statistics, Data Mining, Database Systems<br>
+                • Capstone project: Predictive analytics for student success rates</p>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section class="section">
+            <h2>Certifications & Learning</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Completed Certifications</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>✅ Google Data Analytics Certificate</li>
+                        <li>✅ Microsoft Excel Expert</li>
+                        <li>✅ SQL for Data Science (Coursera)</li>
+                        <li>✅ Python for Data Analysis</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Currently Pursuing</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>📚 Machine Learning Specialization (Coursera)</li>
+                        <li>📚 AWS Certified Data Engineer</li>
+                        <li>📚 Deep Learning Specialization</li>
+                        <li>📚 Tableau Desktop Specialist</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="cta-section">
+            <h2>Ready to Contribute as a Data Analyst</h2>
+            <p>I'm actively seeking data analyst positions where I can apply my analytical skills while continuing to grow toward my data science goals. Let's discuss how I can add value to your team!</p>
+            
+            <div>
+                <a href="mailto:your.email@example.com" class="cta-button">Contact Me</a>
+                <a href="#" class="cta-button">Download Resume</a>
+                <a href="#" class="cta-button">View Portfolio</a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Simple scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply animation to all sections
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.section, header');
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
+            });
+        });
+
+        // Add click effect to project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', () => {
+                card.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    card.style.transform = '';
+                }, 150);
+            });
+        });
+    </script>
+</body>
+</html>
