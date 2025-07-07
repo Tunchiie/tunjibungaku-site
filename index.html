@@ -3,8 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Adetunji Fasiku - Data Analyst with bioinformatics background. Expert in Python, SQL, machine learning, and data visualization. View my portfolio of data science projects.">
+    <meta name="keywords" content="Data Analyst, Data Science, Machine Learning, Python, SQL, Bioinformatics, Portfolio, Adetunji Fasiku">
+    <meta name="author" content="Adetunji Fasiku">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tunchiie.github.io/">
+    <meta property="og:title" content="Adetunji Fasiku - Data Analyst | Aspiring Data Scientist">
+    <meta property="og:description" content="Data Analyst with bioinformatics background. Expert in Python, SQL, machine learning, and data visualization.">
+    <meta property="og:image" content="https://tunchiie.github.io/assets/profile-preview.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://tunchiie.github.io/">
+    <meta property="twitter:title" content="Adetunji Fasiku - Data Analyst | Aspiring Data Scientist">
+    <meta property="twitter:description" content="Data Analyst with bioinformatics background. Expert in Python, SQL, machine learning, and data visualization.">
+    <meta property="twitter:image" content="https://tunchiie.github.io/assets/profile-preview.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔬</text></svg>">
+    
     <title>Adetunji Fasiku - Data Analyst | Aspiring Data Scientist</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="analytics.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&display=swap" rel="stylesheet">
@@ -14,12 +37,22 @@
     <div class="scroll-progress" id="scrollProgress"></div>
     
     <div class="container">
+        <!-- Theme Toggle -->
+        <div class="theme-toggle" onclick="toggleTheme()">
+            <span class="theme-icon">🌙</span>
+        </div>
+        
+        <!-- Back to Top Button -->
+        <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+            <span>↑</span>
+        </button>
+        
         <!-- Navigation Menu -->
         <nav class="nav-menu">
-            <a href="/" class="nav-item active">Home</a>
-            <a href="projects.html" class="nav-item">Projects</a>
-            <a href="resume.html" class="nav-item">Resume</a>
-            <a href="contact.html" class="nav-item">Contact</a>
+            <a href="./" class="nav-item active">Home</a>
+            <a href="./projects/" class="nav-item">Projects</a>
+            <a href="./resume/" class="nav-item">Resume</a>
+            <a href="./contact/" class="nav-item">Contact</a>
         </nav>
 
         <!-- Header Section -->
@@ -385,9 +418,9 @@
             <p>I'm actively seeking data analyst positions where I can apply my analytical skills while continuing to grow toward my data science goals. Let's discuss how I can add value to your team!</p>
             
             <div>
-                <a href="mailto:tunchiiefashh@gmail.com" class="cta-button">Contact Me</a>
-                <a href="#" class="cta-button">Download Resume</a>
-                <a href="#" class="cta-button">View Portfolio</a>
+                <a href="./contact/" class="cta-button">Contact Me</a>
+                <a href="./resume/" class="cta-button">Download Resume</a>
+                <a href="./projects/" class="cta-button">View Portfolio</a>
             </div>
         </section>
     </div>
@@ -558,6 +591,110 @@
             }
         `;
         document.head.appendChild(style);
+
+        // Theme toggle functionality
+        function toggleTheme() {
+            const body = document.body;
+            body.classList.toggle('dark-theme');
+            
+            const themeIcon = document.querySelector('.theme-icon');
+            if (body.classList.contains('dark-theme')) {
+                themeIcon.textContent = '☀️';
+            } else {
+                themeIcon.textContent = '🌙';
+            }
+        }
+
+        // Back to top functionality
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Show/hide back to top button based on scroll position
+        window.addEventListener('scroll', () => {
+            const backToTopButton = document.getElementById('backToTop');
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        // Theme toggle functionality
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.querySelector('.theme-icon');
+            
+            body.classList.toggle('dark-theme');
+            
+            if (body.classList.contains('dark-theme')) {
+                themeIcon.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Load saved theme
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const themeIcon = document.querySelector('.theme-icon');
+            
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+                themeIcon.textContent = '☀️';
+            }
+        });
+
+        // Enhanced fade-in animations with intersection observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add structured data for SEO
+        const structuredData = {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Adetunji Fasiku",
+            "jobTitle": "Data Analyst",
+            "description": "Data Analyst with bioinformatics background and expertise in machine learning, Python, and SQL",
+            "url": "https://tunchiie.github.io",
+            "sameAs": [
+                "https://www.linkedin.com/in/adetunji-fasiku/",
+                "https://github.com/Tunchiie"
+            ],
+            "knowsAbout": [
+                "Data Analysis",
+                "Machine Learning",
+                "Python Programming",
+                "SQL",
+                "Bioinformatics",
+                "Statistical Analysis"
+            ]
+        };
+
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.textContent = JSON.stringify(structuredData);
+        document.head.appendChild(script);
     </script>
 </body>
 </html>
