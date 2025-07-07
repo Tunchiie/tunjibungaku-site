@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Adetunji Fasiku - Data Analyst with bioinformatics background. Expert in Python, SQL, machine learning, and data visualization. View my portfolio of data science projects.">
-    <meta name="keywords" content="Data Analyst, Data Science, Machine Learning, Python, SQL, Bioinformatics, Portfolio, Adetunji Fasiku">
+    <meta name="description" content="Adetunji Fasiku - Data Analyst with expertise in machine learning, risk modeling, and statistical analysis. Expert in Python, SQL, SHAP, and data visualization. View my portfolio of data science projects.">
+    <meta name="keywords" content="Data Analyst, Data Science, Machine Learning, Python, SQL, Risk Modeling, Statistical Analysis, SHAP, Portfolio, Adetunji Fasiku">
     <meta name="author" content="Adetunji Fasiku">
     <meta name="robots" content="index, follow">
     
@@ -12,14 +12,14 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://tunchiie.github.io/">
     <meta property="og:title" content="Adetunji Fasiku - Data Analyst | Aspiring Data Scientist">
-    <meta property="og:description" content="Data Analyst with bioinformatics background. Expert in Python, SQL, machine learning, and data visualization.">
+    <meta property="og:description" content="Data Analyst with expertise in machine learning, risk modeling, and statistical analysis. Expert in Python, SQL, SHAP, and data visualization.">
     <meta property="og:image" content="https://tunchiie.github.io/assets/profile-preview.jpg">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://tunchiie.github.io/">
     <meta property="twitter:title" content="Adetunji Fasiku - Data Analyst | Aspiring Data Scientist">
-    <meta property="twitter:description" content="Data Analyst with bioinformatics background. Expert in Python, SQL, machine learning, and data visualization.">
+    <meta property="twitter:description" content="Data Analyst with expertise in machine learning, risk modeling, and statistical analysis. Expert in Python, SQL, SHAP, and data visualization.">
     <meta property="twitter:image" content="https://tunchiie.github.io/assets/profile-preview.jpg">
     
     <!-- Favicon -->
@@ -68,11 +68,7 @@
                     <span>tunchiiefashh@gmail.com</span>
                 </div>
                 <div class="contact-item">
-                    <span>📞</span>
-                    <span>(443) 522-3147</span>
-                </div>
-                <div class="contact-item">
-                    <span>💼</span>
+                    <span></span>
                     <span>https://www.linkedin.com/in/adetunji-fasiku/</span>
                 </div>
                 <div class="contact-item">
@@ -313,6 +309,17 @@
             <h2>Featured Projects</h2>
             <div class="project-grid">
                 <div class="project-card">
+                    <h3>CandleThrob Trading Bot</h3>
+                    <p>Oracle DB-powered algorithmic trading system with complete data lifecycle: ingests from Polygon.io/FRED APIs, processes through 113+ TA-Lib indicators, stores transformed data in Oracle, and supports ML model development for trading strategies.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Oracle DB</span>
+                        <span class="tech-tag">TA-Lib</span>
+                        <span class="tech-tag">Cloud APIs</span>
+                    </div>
+                </div>
+                
+                <div class="project-card">
                     <h3>Customer Purchase Predictor</h3>
                     <p>Analyzed 3.9M+ behavioral events to detect purchase-triggering patterns. Built logistic classifier with threshold tuning and deployed insights via Streamlit app. Used SHAP for explainability and CRM integration.</p>
                     <div class="project-tech">
@@ -391,22 +398,19 @@
             <h2>Certifications & Learning</h2>
             <div class="skills-grid">
                 <div class="skill-category">
-                    <h3>Completed Certifications</h3>
+                    <h3>Current Certification</h3>
                     <ul style="list-style: none; padding: 0;">
-                        <li>✅ Google Data Analytics Certificate</li>
-                        <li>✅ Microsoft Excel Expert</li>
-                        <li>✅ SQL for Data Science (Coursera)</li>
-                        <li>✅ Python for Data Analysis</li>
+                        <li><span class="emoji-fallback icon-graduation">🎓</span> Correlation One Amazon Data Analytics Program (January 2025 - July 2025)</li>
                     </ul>
                 </div>
                 
                 <div class="skill-category">
                     <h3>Currently Pursuing</h3>
                     <ul style="list-style: none; padding: 0;">
-                        <li>📚 Machine Learning Specialization (Coursera)</li>
-                        <li>📚 AWS Certified Data Engineer</li>
-                        <li>📚 Deep Learning Specialization</li>
-                        <li>📚 Tableau Desktop Specialist</li>
+                        <li><span class="emoji-fallback icon-book">📚</span> Machine Learning Specialization (Coursera)</li>
+                        <li><span class="emoji-fallback icon-book">📚</span> OCI Data Science Professional</li>
+                        <li><span class="emoji-fallback icon-book">📚</span> Deep Learning Specialization</li>
+                        <li><span class="emoji-fallback icon-book">📚</span> Tableau Desktop Specialist</li>
                     </ul>
                 </div>
             </div>
@@ -623,7 +627,7 @@
             }
         });
 
-        // Theme toggle functionality
+        // Theme toggle functionality with persistence
         function toggleTheme() {
             const body = document.body;
             const themeIcon = document.querySelector('.theme-icon');
@@ -639,62 +643,65 @@
             }
         }
 
-        // Load saved theme
+        // Load saved theme on page load
         document.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme');
+            const savedTheme = localStorage.getItem('theme') || 'light';
             const themeIcon = document.querySelector('.theme-icon');
             
             if (savedTheme === 'dark') {
                 document.body.classList.add('dark-theme');
-                themeIcon.textContent = '☀️';
+                if (themeIcon) themeIcon.textContent = '☀️';
+            } else {
+                document.body.classList.remove('dark-theme');
+                if (themeIcon) themeIcon.textContent = '🌙';
             }
-        });
 
-        // Enhanced fade-in animations with intersection observer
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+            // Enhanced fade-in animations with intersection observer
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all fade-in elements
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
             });
-        }, observerOptions);
 
-        // Observe all fade-in elements
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
+            // Add structured data for SEO
+            const structuredData = {
+                "@context": "https://schema.org",
+                "@type": "Person",
+                "name": "Adetunji Fasiku",
+                "jobTitle": "Data Analyst",
+                "description": "Data Analyst with expertise in machine learning, risk modeling, and statistical analysis. Expert in Python, SQL, SHAP, and data visualization",
+                "url": "https://tunchiie.github.io",
+                "sameAs": [
+                    "https://www.linkedin.com/in/adetunji-fasiku/",
+                    "https://github.com/Tunchiie"
+                ],
+                "knowsAbout": [
+                    "Data Analysis",
+                    "Machine Learning",
+                    "Python Programming",
+                    "SQL",
+                    "Bioinformatics",
+                    "Statistical Analysis"
+                ]
+            };
+
+            const script = document.createElement('script');
+            script.type = 'application/ld+json';
+            script.textContent = JSON.stringify(structuredData);
+            document.head.appendChild(script);
         });
-
-        // Add structured data for SEO
-        const structuredData = {
-            "@context": "https://schema.org",
-            "@type": "Person",
-            "name": "Adetunji Fasiku",
-            "jobTitle": "Data Analyst",
-            "description": "Data Analyst with bioinformatics background and expertise in machine learning, Python, and SQL",
-            "url": "https://tunchiie.github.io",
-            "sameAs": [
-                "https://www.linkedin.com/in/adetunji-fasiku/",
-                "https://github.com/Tunchiie"
-            ],
-            "knowsAbout": [
-                "Data Analysis",
-                "Machine Learning",
-                "Python Programming",
-                "SQL",
-                "Bioinformatics",
-                "Statistical Analysis"
-            ]
-        };
-
-        const script = document.createElement('script');
-        script.type = 'application/ld+json';
-        script.textContent = JSON.stringify(structuredData);
-        document.head.appendChild(script);
     </script>
 </body>
 </html>
