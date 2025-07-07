@@ -13,20 +13,25 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            color: #333;
         }
         
         .contact-hero {
             text-align: center;
             margin-bottom: 3rem;
             padding: 2rem;
-            background: linear-gradient(135deg, rgba(147, 112, 219, 0.03), rgba(238, 130, 238, 0.02));
+            background: white;
             border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(147, 112, 219, 0.1);
+            box-shadow: 0 5px 15px rgba(147, 112, 219, 0.1);
+            color: #333;
         }
         
         .contact-methods {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
             margin-bottom: 3rem;
         }
@@ -38,12 +43,14 @@
         }
         
         .contact-card {
-            background: rgba(255, 255, 255, 0.02);
+            background: white;
             padding: 2rem;
             border-radius: 12px;
             border-left: 3px solid var(--accent-gold);
             text-align: center;
             transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            color: #333;
         }
         
         .contact-card:hover {
@@ -87,10 +94,12 @@
         }
         
         .contact-form {
-            background: rgba(255, 255, 255, 0.02);
+            background: white;
             padding: 2rem;
             border-radius: 15px;
             border: 1px solid rgba(147, 112, 219, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            color: #333;
         }
         
         .form-group {
@@ -183,6 +192,50 @@
             transform: translateY(-3px) rotate(5deg);
             box-shadow: 0 10px 20px rgba(147, 112, 219, 0.4);
         }
+        
+        /* Force dark text on white backgrounds */
+        .contact-container,
+        .contact-container *,
+        .contact-hero,
+        .contact-hero *,
+        .contact-card,
+        .contact-card *,
+        .contact-form,
+        .contact-form *,
+        .contact-container h1,
+        .contact-container h2,
+        .contact-container h3,
+        .contact-container p,
+        .contact-container span,
+        .contact-container div,
+        .contact-container label,
+        .contact-title,
+        .contact-info,
+        .subtitle {
+            color: #333 !important;
+        }
+        
+        /* Override any theme-based color changes */
+        body.dark-theme .contact-container,
+        body.dark-theme .contact-container *,
+        body.dark-theme .contact-hero,
+        body.dark-theme .contact-hero *,
+        body.dark-theme .contact-card,
+        body.dark-theme .contact-card *,
+        body.dark-theme .contact-form,
+        body.dark-theme .contact-form *,
+        body.dark-theme .contact-container h1,
+        body.dark-theme .contact-container h2,
+        body.dark-theme .contact-container h3,
+        body.dark-theme .contact-container p,
+        body.dark-theme .contact-container span,
+        body.dark-theme .contact-container div,
+        body.dark-theme .contact-container label,
+        body.dark-theme .contact-title,
+        body.dark-theme .contact-info,
+        body.dark-theme .subtitle {
+            color: #333 !important;
+        }
     </style>
 </head>
 <body>
@@ -190,6 +243,11 @@
     <div class="scroll-progress" id="scrollProgress"></div>
     
     <div class="container">
+        <!-- Theme Toggle -->
+        <div class="theme-toggle emoji-fallback" onclick="toggleTheme()">
+            <span class="theme-icon">🌙</span>
+        </div>
+        
         <!-- Navigation Menu -->
         <nav class="nav-menu">
             <a href="../" class="nav-item">Home</a>
@@ -209,28 +267,21 @@
             <!-- Contact Methods -->
             <div class="contact-methods">
                 <div class="contact-card">
-                    <span class="contact-icon">📧</span>
+                    <span class="contact-icon emoji-fallback">📧</span>
                     <div class="contact-title">Email</div>
                     <div class="contact-info">Quick response within 24 hours</div>
                     <a href="mailto:tunchiiefashh@gmail.com" class="contact-link">Send Email</a>
                 </div>
 
                 <div class="contact-card">
-                    <span class="contact-icon">�</span>
-                    <div class="contact-title">Phone</div>
-                    <div class="contact-info">Direct line for urgent matters</div>
-                    <a href="tel:4435223147" class="contact-link">Call Now</a>
-                </div>
-
-                <div class="contact-card">
-                    <span class="contact-icon">�💼</span>
+                    <span class="contact-icon emoji-fallback">💼</span>
                     <div class="contact-title">LinkedIn</div>
                     <div class="contact-info">Professional networking</div>
                     <a href="https://www.linkedin.com/in/adetunji-fasiku/" target="_blank" class="contact-link">Connect</a>
                 </div>
 
                 <div class="contact-card">
-                    <span class="contact-icon">🐙</span>
+                    <span class="contact-icon emoji-fallback">🐙</span>
                     <div class="contact-title">GitHub</div>
                     <div class="contact-info">View my code and projects</div>
                     <a href="https://github.com/Tunchiie" target="_blank" class="contact-link">Follow</a>
@@ -281,14 +332,6 @@
                         </div>
                     </div>
                     
-                    <div class="form-group checkbox-group">
-                        <label>
-                            <input type="checkbox" id="newsletter" name="newsletter">
-                            <span class="checkmark"></span>
-                            Subscribe to my newsletter for data science insights and project updates
-                        </label>
-                    </div>
-                    
                     <button type="submit" class="submit-btn" id="submitBtn">
                         <span class="btn-text">Send Message</span>
                         <span class="btn-loader" style="display: none;">Sending...</span>
@@ -310,7 +353,6 @@
                 <a href="https://www.linkedin.com/in/adetunji-fasiku/" target="_blank" class="social-link" title="LinkedIn">💼</a>
                 <a href="https://github.com/Tunchiie" target="_blank" class="social-link" title="GitHub">🐙</a>
                 <a href="mailto:tunchiiefashh@gmail.com" class="social-link" title="Email">📧</a>
-                <a href="tel:4435223147" class="social-link" title="Phone">📞</a>
             </div>
         </div>
     </div>
@@ -418,7 +460,6 @@
             const company = formData.get('company') || 'Not specified';
             const subject = formData.get('subject');
             const message = formData.get('message');
-            const newsletter = formData.get('newsletter') ? 'Yes' : 'No';
 
             // Simulate form submission (replace with actual endpoint)
             setTimeout(() => {
@@ -428,7 +469,6 @@
 Email: ${email}
 Company: ${company}
 Subject: ${subject}
-Newsletter Subscription: ${newsletter}
 
 Message:
 ${message}
@@ -523,6 +563,56 @@ Sent from Adetunji Fasiku's Portfolio Contact Form`;
                 }, 600);
             });
         });
+
+        // Theme toggle functionality with persistence
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.querySelector('.theme-icon');
+            
+            body.classList.toggle('dark-theme');
+            
+            if (body.classList.contains('dark-theme')) {
+                themeIcon.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Load saved theme on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const themeIcon = document.querySelector('.theme-icon');
+            
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+                if (themeIcon) themeIcon.textContent = '☀️';
+            } else {
+                document.body.classList.remove('dark-theme');
+                if (themeIcon) themeIcon.textContent = '🌙';
+            }
+            
+            // Force text color application
+            applyTextColors();
+        });
+        
+        // Function to apply text colors based on theme
+        function applyTextColors() {
+            // Always use dark text since we have white containers
+            const textElements = document.querySelectorAll('.contact-container, .contact-container *, .contact-hero, .contact-hero *, .contact-card, .contact-card *, .contact-form, .contact-form *, h1, h2, h3, p, span, div, label, .contact-title, .contact-info, .subtitle');
+            
+            textElements.forEach(element => {
+                element.style.color = '#333';
+            });
+        }
+        
+        // Override the theme toggle to include color application
+        const originalToggleTheme = toggleTheme;
+        toggleTheme = function() {
+            originalToggleTheme();
+            setTimeout(applyTextColors, 10);
+        };
     </script>
 </body>
 </html>
