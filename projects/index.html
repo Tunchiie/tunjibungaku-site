@@ -16,6 +16,11 @@
     <div class="scroll-progress" id="scrollProgress"></div>
     
     <div class="container">
+        <!-- Theme Toggle -->
+        <div class="theme-toggle emoji-fallback" onclick="toggleTheme()">
+            <span class="theme-icon">🌙</span>
+        </div>
+        
         <!-- Navigation Menu -->
         <nav class="nav-menu">
             <a href="../" class="nav-item">Home</a>
@@ -27,7 +32,7 @@
         <!-- Page Header -->
         <header class="fade-in">
             <h1>My Data Science Journey</h1>
-            <p class="subtitle">From Bioinformatics to Data Analysis: Statistical Testing, Risk Modeling & ML Explainability</p>
+            <p class="subtitle">Statistical Testing, Risk Modeling & ML Explainability in Action</p>
             <p>A comprehensive collection showcasing my progression from foundational projects to advanced statistical analysis and business impact</p>
         </header>
 
@@ -69,7 +74,7 @@
         <section class="section fade-in">
             <h2>🔥 Current Project</h2>
             
-            <div class="featured-project" data-category="trading algorithmic-trading machine-learning">
+            <div class="featured-project" data-category="all trading machine-learning">
                 <div class="project-header">
                     <div class="project-icon">📈🤖</div>
                     <div class="project-title">
@@ -83,16 +88,16 @@
                 </div>
 
                 <div class="project-description">
-                    A sophisticated algorithmic trading system featuring a comprehensive financial data pipeline that processes real-time market data from Polygon.io and macroeconomic indicators from FRED. The system calculates 113+ technical indicators using TA-Lib, implements advanced pattern recognition, and maintains enterprise-grade Oracle database integration with incremental loading and bulk operations for high-performance financial analysis.
+                    A sophisticated algorithmic trading system with Oracle DB-centric architecture: ingests daily market data from Polygon.io and FRED APIs after market close, stores raw data in Oracle, runs transformation pipeline to calculate 113+ TA-Lib indicators, and saves enriched datasets back to Oracle. This complete data lifecycle supports pattern recognition analysis and machine learning model development for trading strategies.
                 </div>
 
                 <div class="project-highlights">
                     <h4>🎯 Technical Achievements</h4>
                     <ul class="highlight-list">
-                        <li>Built comprehensive data ingestion pipeline with Polygon.io and FRED API integration</li>
+                        <li>Built comprehensive data ingestion pipeline with daily market data collection after market close</li>
                         <li>Implemented 113+ technical indicators including momentum, volatility, and pattern recognition</li>
                         <li>Designed Oracle database architecture with incremental loading and bulk operations</li>
-                        <li>Created robust transformation pipeline with TA-Lib integration and fallback mechanisms</li>
+                        <li>Created robust transformation pipeline that reads from Oracle DB, applies TA-Lib processing, and stores enriched data back to Oracle with fallback mechanisms</li>
                         <li>Developed complete test suite with database validation and API integration testing</li>
                         <li>Engineered 54 candlestick pattern recognition algorithms for signal generation</li>
                     </ul>
@@ -118,8 +123,8 @@
                             <span class="insight-label">Enterprise DB</span>
                         </div>
                         <div class="insight-card">
-                            <span class="insight-number">Real-time</span>
-                            <span class="insight-label">Data Processing</span>
+                            <span class="insight-number">Daily</span>
+                            <span class="insight-label">Data Updates</span>
                         </div>
                         <div class="insight-card">
                             <span class="insight-number">118+</span>
@@ -193,7 +198,7 @@
                     </div>
                     <div class="algorithm-card">
                         <div class="algorithm-name">⚡ Transformation Pipeline</div>
-                        <div class="algorithm-purpose">Cloud-native processing with TA-Lib integration and fallback mechanisms for robust operation</div>
+                        <div class="algorithm-purpose">Oracle DB-powered processing that reads raw data from Oracle, applies TA-Lib transformations, and stores results back to Oracle with fallback mechanisms</div>
                     </div>
                     <div class="algorithm-card">
                         <div class="algorithm-name">🧪 Testing Framework</div>
@@ -217,7 +222,7 @@
                     </div>
                     <div class="timeline-item completed">
                         <div class="timeline-phase">Phase 4</div>
-                        <div class="timeline-description">Data transformation pipeline with cloud storage integration</div>
+                        <div class="timeline-description">Oracle DB-based transformation pipeline: read raw data, apply TA-Lib processing, store enriched results</div>
                     </div>
                     <div class="timeline-item current">
                         <div class="timeline-phase">Phase 5</div>
@@ -250,7 +255,7 @@
         <section class="section fade-in">
             <h2>🌟 Featured Project</h2>
             
-            <div class="featured-project" data-category="data-science machine-learning">
+            <div class="featured-project" data-category="all analysis machine-learning data-science">
                 <div class="project-header">
                     <div class="project-icon">🎵📚</div>
                     <div class="project-title">
@@ -264,7 +269,7 @@
                 </div>
 
                 <div class="project-description">
-                    A groundbreaking data science project that explores the fascinating correlation between Spotify audio features and Billboard chart performance. The project's ultimate vision is to discover how musical genres relate to literary genres, enabling sophisticated recommendation algorithms using clustering, NLP, and advanced machine learning techniques.
+                    A groundbreaking data science project that explores the fascinating correlation between Spotify audio features and Billboard chart performance. The project's ultimate vision is to discover how musical genres relate to literary genres, enabling sophisticated recommendation algorithms using clustering, NLP, and advanced machine learning techniques. Currently addressing genre classification accuracy challenges to improve cross-domain pattern recognition.
                 </div>
 
                 <div class="project-highlights">
@@ -273,6 +278,7 @@
                         <li>Analyze correlation between Spotify audio features and Billboard chart success</li>
                         <li>Develop cross-domain pattern recognition between music and literature</li>
                         <li>Implement advanced clustering algorithms for genre classification</li>
+                        <li>Overcome genre accuracy challenges in cross-domain classification</li>
                         <li>Create NLP-powered recommendation systems</li>
                         <li>Build multi-modal data integration and visualization tools</li>
                         <li>Establish genre similarity metrics across different media types</li>
@@ -432,7 +438,7 @@
             <h2>Additional Projects</h2>
             
             <!-- Customer Purchase Predictor - Featured -->
-            <div class="featured-project" data-category="data-science machine-learning" style="margin-bottom: 40px;">
+            <div class="featured-project" data-category="all data-science machine-learning" style="margin-bottom: 40px;">
                 <div class="project-header">
                     <div class="project-icon">🛒💡</div>
                     <div class="project-title">
@@ -446,7 +452,7 @@
                 </div>
 
                 <div class="project-description">
-                    A comprehensive machine learning project that processes and analyzes over 4 million rows of customer data to build a robust predictive model. The system accurately predicts customer purchase behavior, enabling businesses to optimize marketing strategies, improve customer targeting, and increase conversion rates through data-driven insights.
+                    A comprehensive machine learning project that processes and analyzes over 4 million rows of customer data to build a robust predictive model using logistic regression. The system accurately predicts customer purchase behavior, enabling businesses to optimize marketing strategies, improve customer targeting, and increase conversion rates through data-driven insights. Future enhancements planned include Random Forest, XGBoost, and parallel processing implementations.
                 </div>
 
                 <div class="project-highlights">
@@ -454,10 +460,11 @@
                     <ul class="highlight-list">
                         <li>Successfully cleaned and processed 4+ million customer records</li>
                         <li>Implemented advanced data preprocessing and feature engineering</li>
-                        <li>Built predictive models with high accuracy for purchase prediction</li>
+                        <li>Built predictive models with high accuracy using logistic regression</li>
                         <li>Designed scalable data pipeline for real-time predictions</li>
                         <li>Created comprehensive model evaluation and validation framework</li>
                         <li>Developed business insights and actionable recommendations</li>
+                        <li>Planned future improvements: Random Forest, XGBoost, and parallel processing</li>
                     </ul>
                 </div>
 
@@ -508,10 +515,20 @@
                             <h5>Machine Learning</h5>
                             <div class="tech-items">
                                 <span class="tech-item">Scikit-learn</span>
-                                <span class="tech-item">XGBoost</span>
-                                <span class="tech-item">Random Forest</span>
                                 <span class="tech-item">Logistic Regression</span>
                                 <span class="tech-item">Feature Engineering</span>
+                                <span class="tech-item">Model Evaluation</span>
+                                <span class="tech-item">Cross-Validation</span>
+                            </div>
+                        </div>
+                        <div class="tech-category">
+                            <h5>Future Enhancements</h5>
+                            <div class="tech-items">
+                                <span class="tech-item">XGBoost</span>
+                                <span class="tech-item">Random Forest</span>
+                                <span class="tech-item">Parallel Processing</span>
+                                <span class="tech-item">Ensemble Methods</span>
+                                <span class="tech-item">Performance Optimization</span>
                             </div>
                         </div>
                         <div class="tech-category">
@@ -547,12 +564,12 @@
                         <div class="algorithm-purpose">Advanced feature creation including behavioral indicators, temporal patterns, and customer segmentation variables</div>
                     </div>
                     <div class="algorithm-card">
-                        <div class="algorithm-name">🌳 Random Forest Classifier</div>
-                        <div class="algorithm-purpose">Ensemble learning method for robust purchase prediction with excellent performance on large datasets</div>
+                        <div class="algorithm-name">📊 Logistic Regression</div>
+                        <div class="algorithm-purpose">Primary classification algorithm for robust purchase prediction with excellent interpretability and performance on large datasets</div>
                     </div>
                     <div class="algorithm-card">
-                        <div class="algorithm-name">🚀 XGBoost</div>
-                        <div class="algorithm-purpose">Gradient boosting algorithm optimized for high performance and accuracy in customer behavior prediction</div>
+                        <div class="algorithm-name">🚀 Future Enhancements</div>
+                        <div class="algorithm-purpose">Planned improvements including XGBoost, Random Forest ensemble methods, and parallel processing for enhanced accuracy and performance</div>
                     </div>
                     <div class="algorithm-card">
                         <div class="algorithm-name">📊 Cross-Validation</div>
@@ -609,7 +626,7 @@
             </div>
 
             <!-- Breast Cancer Predictor - Educational Project -->
-            <div class="featured-project" data-category="machine-learning" style="margin-top: 40px; margin-bottom: 40px;">
+            <div class="featured-project" data-category="all machine-learning data-science" style="margin-top: 40px; margin-bottom: 40px;">
                 <div class="project-header">
                     <div class="project-icon">🩺🧠</div>
                     <div class="project-title">
@@ -782,7 +799,7 @@
             </div>
 
             <!-- Lending Club Loan Predictor - Risk Modeling Project -->
-            <div class="featured-project" data-category="machine-learning data-science" style="margin-top: 40px; margin-bottom: 40px;">
+            <div class="featured-project" data-category="all machine-learning data-science" style="margin-top: 40px; margin-bottom: 40px;">
                 <div class="project-header">
                     <div class="project-icon">🏦📊</div>
                     <div class="project-title">
@@ -960,10 +977,10 @@
             
             <div class="project-grid">
                 <!-- CandleThrob Trading Bot -->
-                <div class="project-card" data-category="trading algorithmic-trading machine-learning">
+                <div class="project-card" data-category="all trading machine-learning">
                     <div class="project-category-badge">Algorithmic Trading</div>
                     <h3>CandleThrob Trading Bot</h3>
-                    <p>Advanced trading system with comprehensive data pipeline, 113+ technical indicators, Oracle DB integration, and pattern recognition. Currently developing ML models and trading strategies.</p>
+                    <p>Advanced trading system with Oracle DB-driven transformation pipeline: ingests daily market data after market close, processes through 113+ TA-Lib indicators, stores enriched datasets for ML model development and trading strategies.</p>
                     <div class="project-tech">
                         <span class="tech-tag">Python</span>
                         <span class="tech-tag">Oracle DB</span>
@@ -973,7 +990,7 @@
                 </div>
                 
                 <!-- Lending Club Loan Predictor -->
-                <div class="project-card" data-category="machine-learning data-science">
+                <div class="project-card" data-category="all machine-learning data-science">
                     <div class="project-category-badge">Risk Modeling</div>
                     <h3>Lending Club Loan Predictor</h3>
                     <p>Processed 2.2M+ borrower records with XGBoost classifier (77% accuracy) vs logistic baseline (66%). Applied SHAP for risk factor explanation and business decisions.</p>
@@ -986,7 +1003,7 @@
                 </div>
                 
                 <!-- Breast Cancer Predictor -->
-                <div class="project-card" data-category="machine-learning">
+                <div class="project-card" data-category="all machine-learning data-science">
                     <div class="project-category-badge">Machine Learning</div>
                     <h3>Breast Cancer Classifier</h3>
                     <p>Coded logistic regression from scratch achieving 95% test accuracy. Implemented without ML libraries to demonstrate deep understanding of mathematical foundations.</p>
@@ -999,10 +1016,10 @@
                 </div>
                 
                 <!-- Customer Purchase Predictor -->
-                <div class="project-card" data-category="data-science machine-learning">
+                <div class="project-card" data-category="all data-science machine-learning">
                     <div class="project-category-badge">Predictive Analytics</div>
                     <h3>Customer Purchase Predictor</h3>
-                    <p>Analyzed 3.9M+ behavioral events to detect purchase-triggering patterns. Built logistic classifier with threshold tuning and deployed via Streamlit. Used SHAP for explainability.</p>
+                    <p>Analyzed 3.9M+ behavioral events to detect purchase-triggering patterns. Built logistic regression classifier with threshold tuning and deployed via Streamlit. Future enhancements include XGBoost, Random Forest, and parallel processing.</p>
                     <div class="project-tech">
                         <span class="tech-tag">Python</span>
                         <span class="tech-tag">SHAP</span>
@@ -1012,10 +1029,10 @@
                 </div>
                 
                 <!-- Bungaku Hit Song Analyzer -->
-                <div class="project-card" data-category="analysis data-science">
+                <div class="project-card" data-category="all analysis machine-learning data-science">
                     <div class="project-category-badge">Statistical Analysis</div>
                     <h3>Bungaku – Hit Song Pattern Analyzer</h3>
-                    <p>Analyzed 130K+ Billboard tracks with ANOVA, Tukey HSD, and t-tests. Discovered seasonal patterns in chart success and built visualizations for music industry insights.</p>
+                    <p>Analyzed 130K+ Billboard tracks with ANOVA, Tukey HSD, and t-tests. Discovered seasonal patterns in chart success and built visualizations for music industry insights. Addressing genre classification accuracy challenges for improved cross-domain analysis.</p>
                     <div class="project-tech">
                         <span class="tech-tag">Python</span>
                         <span class="tech-tag">ANOVA</span>
@@ -1046,6 +1063,18 @@
     <script>
         // Enhanced project filtering and interactions
         document.addEventListener('DOMContentLoaded', () => {
+            // FIRST: Force all fade-in sections to be visible immediately
+            document.querySelectorAll('.fade-in').forEach((section, index) => {
+                // Add visible class immediately for sections that should be shown
+                section.classList.add('visible');
+                
+                // Optional: Add stagger effect
+                setTimeout(() => {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }, index * 150);
+            });
+            
             // Scroll progress indicator
             const scrollProgress = document.getElementById('scrollProgress');
             
@@ -1061,27 +1090,58 @@
             const allCards = document.querySelectorAll('.project-card, .featured-project');
 
             function filterProjects(category) {
-                allCards.forEach((card, index) => {
+                const allCardsInFunction = document.querySelectorAll('.project-card, .featured-project');
+                
+                allCardsInFunction.forEach((card, index) => {
                     const cardCategories = card.getAttribute('data-category') || '';
+                    const categoryList = cardCategories.toLowerCase().split(' ').filter(cat => cat.trim() !== '');
                     
-                    if (category === 'all' || cardCategories.includes(category)) {
+                    // Reset styles first
+                    card.style.transition = 'all 0.4s ease';
+                    card.style.display = 'block';
+                    card.style.visibility = 'visible';
+                    
+                    let shouldShow = false;
+                    
+                    // Explicit filtering logic based on requirements
+                    if (category === 'all') {
+                        // Show all projects - they all have "all" category
+                        shouldShow = categoryList.includes('all');
+                    } else if (category === 'trading') {
+                        // Only show CandleThrob (projects with "trading" category)
+                        shouldShow = categoryList.includes('trading');
+                    } else if (category === 'analysis') {
+                        // Only show Bungaku (projects with "analysis" category)
+                        shouldShow = categoryList.includes('analysis');
+                    } else if (category === 'machine-learning') {
+                        // Show all projects (they all have "machine-learning" category)
+                        shouldShow = categoryList.includes('machine-learning');
+                    } else if (category === 'data-science') {
+                        // Show all except purely trading (projects with "data-science" category)
+                        shouldShow = categoryList.includes('data-science');
+                    } else {
+                        // Fallback: check if the card's categories include the selected filter
+                        shouldShow = categoryList.includes(category.toLowerCase());
+                    }
+                    
+                    if (shouldShow) {
+                        // Show the card with animation
                         card.style.display = 'block';
                         card.style.opacity = '0';
                         card.style.transform = 'translateY(20px)';
                         
                         setTimeout(() => {
-                            card.style.transition = 'all 0.5s ease';
                             card.style.opacity = '1';
                             card.style.transform = 'translateY(0)';
-                        }, index * 100);
+                        }, index * 50);
                     } else {
-                        card.style.transition = 'all 0.3s ease';
+                        // Hide the card with animation
                         card.style.opacity = '0';
                         card.style.transform = 'translateY(-20px)';
                         
                         setTimeout(() => {
                             card.style.display = 'none';
-                        }, 300);
+                        }, 400);
                     }
                 });
             }
@@ -1101,12 +1161,51 @@
             });
 
             // Initialize with all projects visible
-            filterProjects('all');
+            document.addEventListener('DOMContentLoaded', () => {
+                // Ensure all cards are found
+                const allCardsCheck = document.querySelectorAll('.project-card, .featured-project');
+                
+                // Force all cards to be visible initially with proper setup
+                allCardsCheck.forEach((card, index) => {
+                    // Remove any hidden classes or inline styles that might interfere
+                    card.classList.remove('hidden');
+                    card.style.display = 'block';
+                    card.style.visibility = 'visible';
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    card.style.transition = 'all 0.4s ease';
+                    
+                    // Add stagger animation on page load
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, index * 100);
+                });
+                
+                // Also ensure all sections with fade-in class are visible
+                document.querySelectorAll('.fade-in').forEach(section => {
+                    section.classList.add('visible');
+                });
+                
+                // Set the "All" filter as active and ensure it's working
+                const allButton = document.querySelector('.filter-btn[data-filter="all"]');
+                if (allButton) {
+                    // Remove active from all buttons first
+                    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                    // Add active to "All" button
+                    allButton.classList.add('active');
+                }
+                
+                // Double-check: Force filter to "all" after a delay to ensure everything shows
+                setTimeout(() => {
+                    filterProjects('all');
+                }, 1500);
+            });
 
             // Fade-in animations with Intersection Observer
             const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
+                threshold: 0.05, // Lower threshold to trigger earlier
+                rootMargin: '50px 0px -25px 0px' // More generous margins
             };
 
             const observer = new IntersectionObserver((entries) => {
@@ -1119,6 +1218,12 @@
 
             document.querySelectorAll('.fade-in').forEach(section => {
                 observer.observe(section);
+                // Force visibility for sections that might be immediately visible
+                setTimeout(() => {
+                    if (section.getBoundingClientRect().top < window.innerHeight) {
+                        section.classList.add('visible');
+                    }
+                }, 100);
             });
 
             // Enhanced project card interactions
@@ -1177,6 +1282,36 @@
                     }
                 }, 50);
             });
+        });
+
+        // Theme toggle functionality with persistence
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.querySelector('.theme-icon');
+            
+            body.classList.toggle('dark-theme');
+            
+            if (body.classList.contains('dark-theme')) {
+                themeIcon.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Load saved theme on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const themeIcon = document.querySelector('.theme-icon');
+            
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+                if (themeIcon) themeIcon.textContent = '☀️';
+            } else {
+                document.body.classList.remove('dark-theme');
+                if (themeIcon) themeIcon.textContent = '🌙';
+            }
         });
     </script>
 </body>
