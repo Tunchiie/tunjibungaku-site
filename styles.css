@@ -712,3 +712,489 @@ h1 {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--royal-purple);
 }
+
+/* ================================
+   ENHANCED PROJECT SHOWCASE STYLES
+   ================================ */
+
+/* GitHub Integration Styles */
+.github-stats {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 30px 0;
+}
+
+.github-stat-card {
+    background: var(--light-gray);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    border-left: 4px solid var(--royal-purple);
+    transition: all 0.3s ease;
+    min-width: 150px;
+}
+
+.github-stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--medium-shadow);
+    background: var(--royal-purple);
+    color: var(--pure-white);
+}
+
+.github-stat-number {
+    font-size: 2em;
+    font-weight: bold;
+    color: var(--royal-purple);
+    display: block;
+}
+
+.github-stat-card:hover .github-stat-number {
+    color: var(--gold-accent);
+}
+
+.github-stat-label {
+    font-size: 0.9em;
+    color: var(--medium-gray);
+    margin-top: 5px;
+}
+
+.github-stat-card:hover .github-stat-label {
+    color: var(--pure-white);
+}
+
+/* Featured Project Styles */
+.featured-project {
+    background: var(--light-gray);
+    border-radius: 20px;
+    padding: 40px;
+    margin: 30px 0;
+    border: 2px solid var(--purple-accent);
+    position: relative;
+    overflow: hidden;
+}
+
+.featured-project::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: var(--royal-gradient);
+}
+
+.featured-project::after {
+    content: '⭐ FEATURED';
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--gold-accent);
+    color: var(--deep-purple);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.project-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.project-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--purple-gradient);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    flex-shrink: 0;
+}
+
+.project-title {
+    flex: 1;
+    min-width: 250px;
+}
+
+.project-title h3 {
+    color: var(--deep-purple);
+    font-size: 1.8em;
+    margin-bottom: 8px;
+    font-family: var(--font-heading);
+}
+
+.project-subtitle {
+    color: var(--royal-purple);
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+.project-description {
+    color: var(--dark-gray);
+    line-height: 1.8;
+    margin-bottom: 25px;
+    font-size: 1.05em;
+}
+
+.project-highlights {
+    background: rgba(106, 76, 147, 0.05);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px 0;
+    border-left: 4px solid var(--purple-accent);
+}
+
+.project-highlights h4 {
+    color: var(--deep-purple);
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.highlight-list {
+    list-style: none;
+    padding: 0;
+}
+
+.highlight-list li {
+    padding: 8px 0;
+    position: relative;
+    padding-left: 25px;
+    color: var(--dark-gray);
+}
+
+.highlight-list li::before {
+    content: '🔬';
+    position: absolute;
+    left: 0;
+}
+
+.project-links {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+.project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--royal-purple);
+    color: var(--pure-white);
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid var(--royal-purple);
+}
+
+.project-link:hover {
+    background: var(--pure-white);
+    color: var(--royal-purple);
+    transform: translateY(-2px);
+    box-shadow: var(--medium-shadow);
+}
+
+.project-link.secondary {
+    background: var(--pure-white);
+    color: var(--royal-purple);
+    border: 2px solid var(--royal-purple);
+}
+
+.project-link.secondary:hover {
+    background: var(--royal-purple);
+    color: var(--pure-white);
+}
+
+/* Technology Stack Display */
+.tech-stack {
+    margin: 25px 0;
+}
+
+.tech-stack h4 {
+    color: var(--deep-purple);
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+.tech-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.tech-category {
+    background: var(--soft-white);
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 3px solid var(--purple-accent);
+}
+
+.tech-category h5 {
+    color: var(--royal-purple);
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.tech-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.tech-item {
+    background: var(--light-gray);
+    color: var(--dark-gray);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    border: 1px solid rgba(106, 76, 147, 0.1);
+}
+
+/* Project Status Indicators */
+.project-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--light-gray);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: 500;
+    margin: 10px 0;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.status-active .status-dot {
+    background: #28a745;
+    animation: pulse-green 2s infinite;
+}
+
+.status-planning .status-dot {
+    background: var(--gold-accent);
+}
+
+.status-completed .status-dot {
+    background: var(--royal-purple);
+}
+
+@keyframes pulse-green {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Project Timeline */
+.project-timeline {
+    margin: 25px 0;
+}
+
+.timeline-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 0;
+    border-left: 2px solid var(--light-gray);
+    padding-left: 20px;
+    position: relative;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--purple-accent);
+}
+
+.timeline-item.completed::before {
+    background: var(--royal-purple);
+}
+
+.timeline-item.current::before {
+    background: var(--gold-accent);
+    animation: pulse 2s infinite;
+}
+
+.timeline-phase {
+    font-weight: 600;
+    color: var(--deep-purple);
+    min-width: 120px;
+}
+
+.timeline-description {
+    color: var(--medium-gray);
+    flex: 1;
+}
+
+/* Data Science Project Specific Styles */
+.data-insights {
+    background: linear-gradient(135deg, rgba(106, 76, 147, 0.05), rgba(244, 208, 63, 0.05));
+    border-radius: 15px;
+    padding: 25px;
+    margin: 25px 0;
+    border: 1px solid rgba(106, 76, 147, 0.1);
+}
+
+.data-insights h4 {
+    color: var(--deep-purple);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.data-insights h4::before {
+    content: '📊';
+    font-size: 1.2em;
+}
+
+.insight-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.insight-card {
+    background: var(--pure-white);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid rgba(106, 76, 147, 0.1);
+}
+
+.insight-number {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--royal-purple);
+    display: block;
+}
+
+.insight-label {
+    font-size: 0.9em;
+    color: var(--medium-gray);
+    margin-top: 5px;
+}
+
+/* Algorithm Showcase */
+.algorithm-showcase {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 25px 0;
+}
+
+.algorithm-card {
+    background: var(--soft-white);
+    padding: 20px;
+    border-radius: 15px;
+    border-top: 4px solid var(--purple-accent);
+    transition: all 0.3s ease;
+}
+
+.algorithm-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--medium-shadow);
+}
+
+.algorithm-name {
+    color: var(--deep-purple);
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.algorithm-purpose {
+    color: var(--medium-gray);
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+/* Project Gallery for Multiple Projects */
+.project-filter {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: var(--light-gray);
+    color: var(--royal-purple);
+    border: 2px solid var(--royal-purple);
+    padding: 8px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--royal-purple);
+    color: var(--pure-white);
+}
+
+.project-category-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: var(--royal-purple);
+    color: var(--pure-white);
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+/* Responsive Enhancements for Projects */
+@media (max-width: 768px) {
+    .featured-project {
+        padding: 25px 20px;
+    }
+    
+    .project-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .project-icon {
+        margin: 0 auto;
+    }
+    
+    .project-links {
+        justify-content: center;
+    }
+    
+    .tech-categories {
+        grid-template-columns: 1fr;
+    }
+    
+    .github-stats {
+        justify-content: center;
+    }
+    
+    .algorithm-showcase {
+        grid-template-columns: 1fr;
+    }
+}
