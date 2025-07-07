@@ -1,0 +1,55 @@
+# GitHub Pages configuration for clean URLs
+plugins:
+  - jekyll-optional-front-matter
+  - jekyll-readme-index
+  - jekyll-default-layout
+  - jekyll-titles-from-headings
+
+# Clean URLs - remove .html extension
+permalink: pretty
+
+# Site settings
+title: "Adetunji Fasiku - Data Analyst Portfolio"
+description: "Data Analyst with bioinformatics background. Expert in Python, SQL, machine learning, and data visualization."
+author: "Adetunji Fasiku"
+url: "https://tunchiie.github.io"
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+# Include/Exclude files
+include:
+  - _pages
+  - .htaccess
+
+exclude:
+  - README.md
+  - LICENSE
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .sass-cache
+  - .jekyll-cache
+  - .jekyll-metadata
+
+# Default layouts
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+
+# SEO settings
+lang: en
+locale: en_US
+
+# Social media
+social:
+  name: Adetunji Fasiku
+  links:
+    - https://github.com/Tunchiie
+    - https://linkedin.com/in/adetunji-fasiku
