@@ -1056,7 +1056,54 @@
                 scrollProgress.style.width = scrollPercent + '%';
             });
 
-            // Fade-in animations
+            // Project filtering functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const allCards = document.querySelectorAll('.project-card, .featured-project');
+
+            function filterProjects(category) {
+                allCards.forEach((card, index) => {
+                    const cardCategories = card.getAttribute('data-category') || '';
+                    
+                    if (category === 'all' || cardCategories.includes(category)) {
+                        card.style.display = 'block';
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        
+                        setTimeout(() => {
+                            card.style.transition = 'all 0.5s ease';
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, index * 100);
+                    } else {
+                        card.style.transition = 'all 0.3s ease';
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(-20px)';
+                        
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            }
+
+            // Filter button event listeners
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    // Filter projects
+                    const category = button.getAttribute('data-filter');
+                    filterProjects(category);
+                });
+            });
+
+            // Initialize with all projects visible
+            filterProjects('all');
+
+            // Fade-in animations with Intersection Observer
             const observerOptions = {
                 threshold: 0.1,
                 rootMargin: '0px 0px -50px 0px'
@@ -1074,57 +1121,8 @@
                 observer.observe(section);
             });
 
-            // Project filtering
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            const projectCards = document.querySelectorAll('.project-card');
-            const featuredProject = document.querySelector('.featured-project');
-
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const filter = btn.getAttribute('data-filter');
-                    
-                    // Update active button
-                    filterBtns.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    
-                    // Filter projects
-                    projectCards.forEach(card => {
-                        const categories = card.getAttribute('data-category') || '';
-                        
-                        if (filter === 'all' || categories.includes(filter)) {
-                            card.style.display = 'block';
-                            card.style.opacity = '0';
-                            card.style.transform = 'translateY(20px)';
-                            
-                            setTimeout(() => {
-                                card.style.opacity = '1';
-                                card.style.transform = 'translateY(0)';
-                            }, 100);
-                        } else {
-                            card.style.opacity = '0';
-                            card.style.transform = 'translateY(20px)';
-                            
-                            setTimeout(() => {
-                                card.style.display = 'none';
-                            }, 300);
-                        }
-                    });
-
-                    // Handle featured project
-                    if (featuredProject) {
-                        const featuredCategories = featuredProject.getAttribute('data-category') || '';
-                        
-                        if (filter === 'all' || featuredCategories.includes(filter)) {
-                            featuredProject.style.display = 'block';
-                        } else {
-                            featuredProject.style.display = 'none';
-                        }
-                    }
-                });
-            });
-
             // Enhanced project card interactions
-            document.querySelectorAll('.project-card, .featured-project').forEach(card => {
+            allCards.forEach(card => {
                 card.addEventListener('mouseenter', function() {
                     this.style.transform = 'translateY(-10px) scale(1.02)';
                 });
@@ -1161,11 +1159,11 @@
             // GitHub stats animation
             document.querySelectorAll('.github-stat-number').forEach(stat => {
                 const finalValue = stat.textContent;
-                if (finalValue !== '∞' && !finalValue.includes('+')) return;
+                if (!finalValue.includes('+') && !finalValue.includes('K')) return;
                 
                 stat.textContent = '0';
                 let current = 0;
-                const increment = finalValue.includes('K') ? 50 : 1;
+                const increment = finalValue.includes('K') ? 50 : finalValue.includes('M') ? 100 : 1;
                 const target = parseInt(finalValue.replace(/[^\d]/g, ''));
                 
                 const timer = setInterval(() => {
@@ -1174,7 +1172,8 @@
                         stat.textContent = finalValue;
                         clearInterval(timer);
                     } else {
-                        stat.textContent = current + (finalValue.includes('K') ? '' : '');
+                        const suffix = finalValue.includes('K') ? 'K' : finalValue.includes('M') ? 'M' : '';
+                        stat.textContent = current + suffix + (finalValue.includes('+') ? '+' : '');
                     }
                 }, 50);
             });
