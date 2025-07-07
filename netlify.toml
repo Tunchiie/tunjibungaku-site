@@ -1,0 +1,86 @@
+# Netlify configuration for clean URLs and optimization
+[build]
+  # Build command (not needed for static sites, but useful for future enhancements)
+  # command = "npm run build"
+  
+  # Publish directory
+  publish = "."
+
+# Redirect rules for clean URLs
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/projects.html"
+  to = "/projects/"
+  status = 301
+
+[[redirects]]
+  from = "/resume.html"
+  to = "/resume/"
+  status = 301
+
+[[redirects]]
+  from = "/contact.html"
+  to = "/contact/"
+  status = 301
+
+# Pretty URLs - serve index.html for directory requests
+[[redirects]]
+  from = "/projects"
+  to = "/projects/"
+  status = 301
+
+[[redirects]]
+  from = "/resume"
+  to = "/resume/"
+  status = 301
+
+[[redirects]]
+  from = "/contact"
+  to = "/contact/"
+  status = 301
+
+# Fallback for SPA-like behavior (optional)
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
+
+# Headers for security and performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "/*.woff2"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+# Form handling (for contact forms)
+[form]
+  name = "contact"
+
+# Environment variables (optional)
+[context.production.environment]
+  NODE_ENV = "production"
+
+[context.deploy-preview.environment]
+  NODE_ENV = "development"
