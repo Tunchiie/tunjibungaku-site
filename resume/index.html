@@ -16,9 +16,10 @@
             max-width: 900px;
             margin: 0 auto;
             padding: 2rem;
-            background: linear-gradient(135deg, rgba(147, 112, 219, 0.03), rgba(238, 130, 238, 0.02));
+            background: white;
             border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(147, 112, 219, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            color: #333;
         }
         
         .resume-header {
@@ -31,9 +32,11 @@
         .resume-section {
             margin-bottom: 2.5rem;
             padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.02);
+            background: white;
             border-radius: 10px;
             border-left: 3px solid var(--accent-gold);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            color: #333;
         }
         
         .resume-section h2 {
@@ -47,9 +50,11 @@
         .experience-item, .education-item, .project-item {
             margin-bottom: 1.5rem;
             padding: 1rem;
-            background: rgba(255, 255, 255, 0.01);
+            background: white;
             border-radius: 8px;
             border-left: 2px solid var(--accent-blue);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            color: #333;
         }
         
         .item-title {
@@ -83,10 +88,12 @@
         }
         
         .skill-category {
-            background: rgba(147, 112, 219, 0.02);
+            background: white;
             padding: 1rem;
             border-radius: 8px;
             border: 1px solid rgba(147, 112, 219, 0.2);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            color: #333;
         }
         
         .skill-category h4 {
@@ -154,6 +161,52 @@
             transform: translateY(-2px);
         }
         
+        /* Force dark text on white backgrounds */
+        .resume-container,
+        .resume-container *,
+        .resume-header,
+        .resume-header *,
+        .resume-section,
+        .resume-section *,
+        .resume-container h1,
+        .resume-container h2,
+        .resume-container h3,
+        .resume-container p,
+        .resume-container span,
+        .resume-container div,
+        .resume-container li,
+        .item-title,
+        .item-company,
+        .item-date,
+        .item-description,
+        .subtitle,
+        .contact-info {
+            color: #333 !important;
+        }
+        
+        /* Override any theme-based color changes */
+        body.dark-theme .resume-container,
+        body.dark-theme .resume-container *,
+        body.dark-theme .resume-header,
+        body.dark-theme .resume-header *,
+        body.dark-theme .resume-section,
+        body.dark-theme .resume-section *,
+        body.dark-theme .resume-container h1,
+        body.dark-theme .resume-container h2,
+        body.dark-theme .resume-container h3,
+        body.dark-theme .resume-container p,
+        body.dark-theme .resume-container span,
+        body.dark-theme .resume-container div,
+        body.dark-theme .resume-container li,
+        body.dark-theme .item-title,
+        body.dark-theme .item-company,
+        body.dark-theme .item-date,
+        body.dark-theme .item-description,
+        body.dark-theme .subtitle,
+        body.dark-theme .contact-info {
+            color: #333 !important;
+        }
+        
         @media print {
             body {
                 background: white !important;
@@ -174,6 +227,11 @@
     <div class="scroll-progress" id="scrollProgress"></div>
     
     <div class="container">
+        <!-- Theme Toggle -->
+        <div class="theme-toggle emoji-fallback" onclick="toggleTheme()">
+            <span class="theme-icon">🌙</span>
+        </div>
+        
         <!-- Navigation Menu -->
         <nav class="nav-menu">
             <a href="../" class="nav-item">Home</a>
@@ -188,18 +246,17 @@
                 <h1>Adetunji Fasiku</h1>
                 <p class="subtitle">Data Analyst</p>
                 <div class="contact-info">
-                    <span>� Parkville, MD</span> | 
-                    <span>�📧 tunchiiefashh@gmail.com</span> | 
-                    <span>� (443) 522-3147</span> | 
-                    <span>� linkedin.com/in/adetunji-fasiku</span> | 
-                    <span>� github.com/Tunchiie</span>
+                    <span>📍 Parkville, MD</span> | 
+                    <span>📧 tunchiiefashh@gmail.com</span> | 
+                    <span> linkedin.com/in/adetunji-fasiku</span> | 
+                    <span>🐙 github.com/Tunchiie</span>
                 </div>
             </div>
 
             <!-- Professional Summary -->
             <div class="resume-section">
                 <h2>Professional Summary</h2>
-                <p>Data Analyst with a Bioinformatics background and hands-on experience in data modeling, risk analysis, and ML explainability. Skilled in Python, SQL, SHAP, and dashboarding. Demonstrated ability to solve business problems using analytical tools and communicate insights across teams. Experience working with cloud-based data environments and relational databases. Passionate team player with curiosity and strong communication skills.</p>
+                <p>Data Analyst with hands-on experience in data modeling, risk analysis, and ML explainability. Skilled in Python, SQL, SHAP, and statistical testing with proven ability to solve business problems using analytical tools and communicate insights across teams. Experience working with cloud-based data environments and relational databases. Currently completing Correlation One Amazon Data Analytics Program. Passionate team player with curiosity and strong communication skills.</p>
             </div>
 
             <!-- Technical Skills -->
@@ -312,23 +369,23 @@
                 <h2>Certifications & Learning</h2>
                 
                 <div class="education-item">
-                    <div class="item-title">Machine Learning Course</div>
-                    <div class="item-company">Andrew Ng - Stanford University (Coursera)</div>
-                    <div class="item-date">2024</div>
+                    <div class="item-title">Correlation One Amazon Data Analytics Program</div>
+                    <div class="item-company">Correlation One</div>
+                    <div class="item-date">January 2025 - July 2025</div>
                     <div class="item-description">
-                        Completed comprehensive ML course covering supervised/unsupervised learning, neural networks, and practical implementation. Applied knowledge in from-scratch logistic regression project.
+                        Intensive data analytics training program focused on real-world business applications. Built SQL queries, Python models, and Tableau/Looker dashboards for supply chain, HR, and finance domains.
                     </div>
                 </div>
 
                 <div class="education-item">
-                    <div class="item-title">Additional Coursework</div>
+                    <div class="item-title">Currently Pursuing</div>
                     <div class="item-company">Various Platforms</div>
                     <div class="item-date">Ongoing</div>
                     <div class="item-description">
-                        • Data Science Specializations<br>
-                        • Advanced Python Programming<br>
-                        • Statistical Analysis and Modeling<br>
-                        • Financial Markets and Trading
+                        • Machine Learning Specialization (Coursera)<br>
+                        • OCI Data Science Professional<br>
+                        • Deep Learning Specialization<br>
+                        • Tableau Desktop Specialist
                     </div>
                 </div>
             </div>
@@ -391,7 +448,7 @@
             });
         });
 
-        // Download PDF function with jsPDF
+        // Download PDF function with jsPDF - Optimized for single page
         function downloadPDF() {
             const { jsPDF } = window.jspdf;
             const pdf = new jsPDF();
@@ -401,155 +458,215 @@
             const primaryColor = [88, 28, 135]; // Purple color
             const textColor = [51, 51, 51]; // Dark gray
             
-            let yPosition = 20;
-            const leftMargin = 20;
-            const rightMargin = 190;
-            const lineHeight = 6;
+            let yPosition = 15;
+            const leftMargin = 15;
+            const rightMargin = 195;
+            const lineHeight = 4.5; // Reduced line height
+            const sectionSpacing = 6; // Reduced section spacing
             
             // Header - Name
-            pdf.setFontSize(24);
+            pdf.setFontSize(20); // Reduced from 24
             pdf.setTextColor(...primaryColor);
             pdf.text('Adetunji Fasiku', leftMargin, yPosition);
-            yPosition += 8;
+            yPosition += 6; // Reduced from 8
             
             // Title
-            pdf.setFontSize(14);
+            pdf.setFontSize(12); // Reduced from 14
             pdf.setTextColor(...textColor);
-            pdf.text('Data Analyst | Bioinformatics Specialist', leftMargin, yPosition);
-            yPosition += 15;
+            pdf.text('Data Analyst | Machine Learning & Risk Modeling Specialist', leftMargin, yPosition);
+            yPosition += 8; // Reduced from 15
             
-            // Contact Information
-            pdf.setFontSize(10);
-            pdf.text('Email: adetunji.fasiku@gmail.com | Phone: +1 (314) 374-4399', leftMargin, yPosition);
-            yPosition += 5;
-            pdf.text('Location: St. Louis, MO | LinkedIn: linkedin.com/in/adesiyan-fasiku', leftMargin, yPosition);
-            yPosition += 5;
-            pdf.text('GitHub: github.com/Adesiyan14', leftMargin, yPosition);
-            yPosition += 12;
+            // Contact Information - Compact format
+            pdf.setFontSize(9); // Reduced from 10
+            pdf.text('Email: tunchiiefashh@gmail.com | LinkedIn: linkedin.com/in/adetunji-fasiku | GitHub: github.com/Tunchiie', leftMargin, yPosition);
+            yPosition += 8; // Reduced from 12
             
             // Professional Summary
-            pdf.setFontSize(12);
+            pdf.setFontSize(11); // Reduced from 12
             pdf.setTextColor(...primaryColor);
             pdf.text('PROFESSIONAL SUMMARY', leftMargin, yPosition);
-            yPosition += 8;
+            yPosition += 5; // Reduced from 8
             
-            pdf.setFontSize(10);
+            pdf.setFontSize(9); // Reduced from 10
             pdf.setTextColor(...textColor);
-            const summaryText = 'Data Analyst with a strong background in bioinformatics, machine learning, and statistical analysis. Experienced in developing predictive models, data visualization, and automated trading systems. Proficient in Python, R, SQL, and various data science libraries. Proven track record of delivering actionable insights through data-driven approaches.';
+            const summaryText = 'Data Analyst with expertise in machine learning, statistical analysis, and risk modeling. Proven experience developing predictive models for credit risk, customer behavior, and market analysis. Proficient in Python, SQL, statistical testing (ANOVA, t-tests), and model explainability (SHAP). Currently completing Correlation One Amazon Data Analytics Program with focus on business impact and data-driven decision making. Strong background in feature engineering, exploratory data analysis, and dashboard development.';
             const summaryLines = pdf.splitTextToSize(summaryText, rightMargin - leftMargin);
             pdf.text(summaryLines, leftMargin, yPosition);
-            yPosition += summaryLines.length * lineHeight + 8;
+            yPosition += summaryLines.length * lineHeight + sectionSpacing;
             
-            // Technical Skills
-            pdf.setFontSize(12);
+            // Technical Skills - Condensed
+            pdf.setFontSize(11);
             pdf.setTextColor(...primaryColor);
             pdf.text('TECHNICAL SKILLS', leftMargin, yPosition);
-            yPosition += 8;
+            yPosition += 5;
             
-            pdf.setFontSize(10);
+            pdf.setFontSize(9);
             pdf.setTextColor(...textColor);
             const skills = [
-                'Programming Languages: Python, R, SQL, JavaScript, HTML/CSS',
-                'Data Science & ML: Pandas, NumPy, Scikit-learn, TensorFlow, Keras',
-                'Visualization: Matplotlib, Seaborn, Plotly, Tableau, Power BI',
-                'Bioinformatics: Biopython, BLAST, Gene Ontology, Pathway Analysis',
-                'Databases: MySQL, PostgreSQL, MongoDB',
-                'Tools: Git, Docker, Jupyter, VS Code, Excel'
+                'Programming: Python (Advanced), SQL (Advanced), R (Intermediate), JavaScript (Basic)',
+                'Data Science & ML: Pandas, NumPy, Scikit-learn, XGBoost, SHAP, Statistical Testing (ANOVA, T-Tests)',
+                'Visualization: Seaborn, Matplotlib, Tableau, Plotly, Looker | Analysis: Logistic Regression, Feature Engineering',
+                'Databases: Oracle (Advanced), MySQL, Relational Database Design | Cloud: GCS, Oracle Cloud Infrastructure',
+                'Tools: Git, Jupyter, VS Code, Streamlit, Excel, TA-Lib (Technical Analysis), SQLAlchemy ORM'
             ];
             
             skills.forEach(skill => {
                 pdf.text('• ' + skill, leftMargin, yPosition);
                 yPosition += lineHeight;
             });
-            yPosition += 8;
+            yPosition += sectionSpacing;
             
-            // Education
-            pdf.setFontSize(12);
+            // Two-column layout for Education and Experience
+            const columnWidth = (rightMargin - leftMargin) / 2 - 5;
+            const rightColumnStart = leftMargin + columnWidth + 10;
+            
+            // Education (Left Column)
+            pdf.setFontSize(11);
             pdf.setTextColor(...primaryColor);
             pdf.text('EDUCATION', leftMargin, yPosition);
-            yPosition += 8;
+            const educationStartY = yPosition + 5;
             
-            pdf.setFontSize(10);
+            pdf.setFontSize(9);
             pdf.setTextColor(...textColor);
             pdf.setFont('Times', 'bold');
-            pdf.text('Bachelor of Science in Biochemistry', leftMargin, yPosition);
-            yPosition += 6;
+            pdf.text('Bachelor of Science', leftMargin, educationStartY);
             pdf.setFont('Times', 'normal');
-            pdf.text('University of Ilorin, Nigeria (2013-2018)', leftMargin, yPosition);
-            yPosition += 6;
-            pdf.text('Relevant Coursework: Biostatistics, Research Methods, Data Analysis', leftMargin, yPosition);
-            yPosition += 12;
+            pdf.text('University of Maryland Baltimore County', leftMargin, educationStartY + lineHeight);
+            pdf.text('2019-2022 | GPA: Strong Academic Performance', leftMargin, educationStartY + lineHeight * 2);
+            pdf.text('Coursework: Statistics, Data Mining, Database', leftMargin, educationStartY + lineHeight * 3);
+            pdf.text('Systems, Python Programming, ML, AI', leftMargin, educationStartY + lineHeight * 4);
             
-            // Experience
-            pdf.setFontSize(12);
+            // Experience (Right Column) - Expanded
+            pdf.setFontSize(11);
             pdf.setTextColor(...primaryColor);
-            pdf.text('PROFESSIONAL EXPERIENCE', leftMargin, yPosition);
-            yPosition += 8;
+            pdf.text('PROFESSIONAL EXPERIENCE', rightColumnStart, yPosition);
+            let expY = yPosition + 5;
             
-            pdf.setFontSize(10);
+            pdf.setFontSize(9);
             pdf.setTextColor(...textColor);
             pdf.setFont('Times', 'bold');
-            pdf.text('Data Analyst & ML Engineer', leftMargin, yPosition);
-            pdf.text('2021 - Present', rightMargin - 30, yPosition);
-            yPosition += 6;
+            pdf.text('Data Analytics Trainee', rightColumnStart, expY);
+            expY += lineHeight;
             pdf.setFont('Times', 'normal');
-            pdf.text('Freelance & Personal Projects', leftMargin, yPosition);
-            yPosition += 6;
+            pdf.text('Correlation One (Jan 2025 - Jul 2025)', rightColumnStart, expY);
+            expY += lineHeight;
+            pdf.text('• Built SQL queries, Python models, dashboards', rightColumnStart, expY);
+            expY += lineHeight;
+            pdf.text('• Applied statistical testing for business insights', rightColumnStart, expY);
+            expY += lineHeight;
+            pdf.text('• Capstone: 130K+ track analysis (ANOVA/t-tests)', rightColumnStart, expY);
+            expY += lineHeight + 2;
             
-            const expPoints = [
-                'Developed machine learning models for financial prediction and medical diagnosis',
-                'Created automated trading systems with risk management protocols',
-                'Built interactive dashboards and data visualizations for stakeholder reporting',
-                'Implemented data pipelines for real-time market data processing'
-            ];
+            pdf.setFont('Times', 'bold');
+            pdf.text('Process Guide (Fulfillment Associate)', rightColumnStart, expY);
+            expY += lineHeight;
+            pdf.setFont('Times', 'normal');
+            pdf.text('Amazon (May 2023 - Feb 2025)', rightColumnStart, expY);
+            expY += lineHeight;
+            pdf.text('• Led operations for 25+ associates', rightColumnStart, expY);
+            expY += lineHeight;
+            pdf.text('• Performance insights via internal dashboards', rightColumnStart, expY);
+            expY += lineHeight;
+            pdf.text('• Cross-team collaboration (IT, Facilities)', rightColumnStart, expY);
             
-            expPoints.forEach(point => {
-                pdf.text('• ' + point, leftMargin + 5, yPosition);
-                yPosition += lineHeight;
-            });
-            yPosition += 8;
+            yPosition = Math.max(educationStartY + lineHeight * 5, expY) + sectionSpacing;
             
-            // Add new page if needed
-            if (yPosition > 250) {
-                pdf.addPage();
-                yPosition = 20;
-            }
-            
-            // Key Projects
-            pdf.setFontSize(12);
+            // Certifications - Expanded
+            pdf.setFontSize(11);
             pdf.setTextColor(...primaryColor);
-            pdf.text('KEY PROJECTS', leftMargin, yPosition);
-            yPosition += 8;
+            pdf.text('CERTIFICATIONS & LEARNING', leftMargin, yPosition);
+            yPosition += 5;
+            
+            pdf.setFontSize(9);
+            pdf.setTextColor(...textColor);
+            pdf.setFont('Times', 'bold');
+            pdf.text('Current Program:', leftMargin, yPosition);
+            pdf.setFont('Times', 'normal');
+            yPosition += lineHeight;
+            pdf.text('• Correlation One Amazon Data Analytics Program (Jan 2025 - Jul 2025)', leftMargin, yPosition);
+            yPosition += lineHeight;
+            pdf.text('  Intensive program covering SQL, Python, Tableau, Looker, statistical analysis', leftMargin, yPosition);
+            yPosition += lineHeight + 1;
+            
+            pdf.setFont('Times', 'bold');
+            pdf.text('Currently Pursuing:', leftMargin, yPosition);
+            pdf.setFont('Times', 'normal');
+            yPosition += lineHeight;
+            pdf.text('• Machine Learning Specialization (Coursera) - Andrew Ng', leftMargin, yPosition);
+            yPosition += lineHeight;
+            pdf.text('• OCI Data Science Professional Certification', leftMargin, yPosition);
+            yPosition += lineHeight;
+            pdf.text('• Deep Learning Specialization & Tableau Desktop Specialist', leftMargin, yPosition);
+            yPosition += sectionSpacing;
+            
+            // Key Projects - More detailed
+            pdf.setFontSize(11);
+            pdf.setTextColor(...primaryColor);
+            pdf.text('KEY PROJECTS & ACHIEVEMENTS', leftMargin, yPosition);
+            yPosition += 5;
             
             const projects = [
                 {
-                    name: 'CandleThrob Trading Bot',
-                    desc: 'Python-based automated trading system with technical analysis and risk management'
-                },
-                {
-                    name: 'Lending Club Loan Predictor',
-                    desc: 'Machine learning model to predict loan default risk using ensemble methods'
-                },
-                {
-                    name: 'Breast Cancer Classifier',
-                    desc: 'Deep learning model for medical diagnosis with 95%+ accuracy'
+                    name: 'Bungaku - Hit Song Pattern Analyzer',
+                    desc: 'Analyzed 130K+ Billboard tracks using ANOVA, Tukey HSD, t-tests to discover seasonal patterns in chart success',
+                    tech: 'Python, SciPy, Seaborn, Statistical Testing'
                 },
                 {
                     name: 'Customer Purchase Predictor',
-                    desc: 'Predictive analytics model for e-commerce customer behavior'
+                    desc: 'Built logistic classifier on 3.9M+ behavioral events with SHAP explainability and Streamlit deployment',
+                    tech: 'Python, SHAP, Streamlit, Feature Engineering'
+                },
+                {
+                    name: 'Loan Default Predictor - Lending Club',
+                    desc: 'XGBoost model (77% vs 66% baseline) on 2.2M+ records with SHAP for risk factor explanation',
+                    tech: 'XGBoost, SHAP, Scikit-learn, Risk Modeling'
+                },
+                {
+                    name: 'CandleThrob Trading Bot',
+                    desc: 'Oracle DB pipeline processing market data through 113+ TA-Lib indicators for ML modeling',
+                    tech: 'Oracle DB, TA-Lib, Python, Cloud APIs'
+                },
+                {
+                    name: 'Breast Cancer Classifier',
+                    desc: 'Logistic regression coded from scratch achieving 95% test accuracy without ML libraries',
+                    tech: 'NumPy, Mathematical Implementation'
                 }
             ];
             
-            pdf.setFontSize(10);
+            pdf.setFontSize(9);
             pdf.setTextColor(...textColor);
             
             projects.forEach(project => {
                 pdf.setFont('Times', 'bold');
                 pdf.text('• ' + project.name, leftMargin, yPosition);
-                yPosition += 6;
+                yPosition += lineHeight;
                 pdf.setFont('Times', 'normal');
                 pdf.text('  ' + project.desc, leftMargin, yPosition);
-                yPosition += lineHeight + 2;
+                yPosition += lineHeight;
+                pdf.setFont('Times', 'italic');
+                pdf.text('  Technologies: ' + project.tech, leftMargin, yPosition);
+                pdf.setFont('Times', 'normal');
+                yPosition += lineHeight + 1;
+            });
+            
+            // Additional section - Achievements/Impact
+            pdf.setFontSize(11);
+            pdf.setTextColor(...primaryColor);
+            pdf.text('IMPACT & ACHIEVEMENTS', leftMargin, yPosition);
+            yPosition += 5;
+            
+            pdf.setFontSize(9);
+            pdf.setTextColor(...textColor);
+            const achievements = [
+                'Processed 7M+ data points across multiple projects with consistent accuracy and performance',
+                'Improved model performance: 77% vs 66% baseline accuracy in credit risk prediction',
+                'Built end-to-end ML pipelines from data ingestion to deployment and explainability',
+                'Demonstrated proficiency in both supervised learning and statistical hypothesis testing'
+            ];
+            
+            achievements.forEach(achievement => {
+                pdf.text('• ' + achievement, leftMargin, yPosition);
+                yPosition += lineHeight;
             });
             
             // Save the PDF
@@ -568,6 +685,56 @@
                 this.style.boxShadow = 'none';
             });
         });
+
+        // Theme toggle functionality with persistence
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.querySelector('.theme-icon');
+            
+            body.classList.toggle('dark-theme');
+            
+            if (body.classList.contains('dark-theme')) {
+                themeIcon.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Load saved theme on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const themeIcon = document.querySelector('.theme-icon');
+            
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+                if (themeIcon) themeIcon.textContent = '☀️';
+            } else {
+                document.body.classList.remove('dark-theme');
+                if (themeIcon) themeIcon.textContent = '🌙';
+            }
+            
+            // Force text color application
+            applyTextColors();
+        });
+        
+        // Function to apply text colors based on theme
+        function applyTextColors() {
+            // Always use dark text since we have white containers
+            const textElements = document.querySelectorAll('.resume-container, .resume-container *, .resume-header, .resume-header *, .resume-section, .resume-section *, h1, h2, h3, p, span, div, li, .item-title, .item-company, .item-date, .item-description, .subtitle, .contact-info');
+            
+            textElements.forEach(element => {
+                element.style.color = '#333';
+            });
+        }
+        
+        // Override the theme toggle to include color application
+        const originalToggleTheme = toggleTheme;
+        toggleTheme = function() {
+            originalToggleTheme();
+            setTimeout(applyTextColors, 10);
+        };
     </script>
 </body>
 </html>
