@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - Adetunji Fasiku</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .resume-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(147, 112, 219, 0.1), rgba(238, 130, 238, 0.05));
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(147, 112, 219, 0.3);
+        }
+        
+        .resume-header {
+            text-align: center;
+            border-bottom: 3px solid var(--primary-purple);
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .resume-section {
+            margin-bottom: 2.5rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-gold);
+        }
+        
+        .resume-section h2 {
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--accent-gold);
+            padding-bottom: 0.5rem;
+        }
+        
+        .experience-item, .education-item, .project-item {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-blue);
+        }
+        
+        .item-title {
+            font-weight: bold;
+            color: var(--primary-purple);
+            font-size: 1.2rem;
+        }
+        
+        .item-company {
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin: 0.5rem 0;
+        }
+        
+        .item-date {
+            color: var(--text-light);
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+        
+        .item-description {
+            margin-top: 0.5rem;
+            line-height: 1.6;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .skill-category {
+            background: rgba(147, 112, 219, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--primary-purple);
+        }
+        
+        .skill-category h4 {
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+        
+        .skill-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .skill-list li {
+            padding: 0.2rem 0;
+            border-bottom: 1px solid rgba(147, 112, 219, 0.2);
+        }
+        
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .download-resume {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-purple), var(--accent-gold));
+            border-radius: 10px;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--primary-purple);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .print-resume {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        
+        .print-btn {
+            padding: 0.8rem 1.5rem;
+            background: var(--accent-blue);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .print-btn:hover {
+            background: var(--primary-purple);
+            transform: translateY(-2px);
+        }
+        
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            .nav-menu, .download-resume, .print-resume {
+                display: none !important;
+            }
+            .resume-container {
+                box-shadow: none !important;
+                background: white !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+    
+    <div class="container">
+        <!-- Navigation Menu -->
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-item">Home</a>
+            <a href="projects.html" class="nav-item">Projects</a>
+            <a href="resume.html" class="nav-item active">Resume</a>
+            <a href="contact.html" class="nav-item">Contact</a>
+        </nav>
+
+        <div class="resume-container fade-in">
+            <!-- Resume Header -->
+            <div class="resume-header">
+                <h1>Adetunji Fasiku</h1>
+                <p class="subtitle">Data Analyst</p>
+                <div class="contact-info">
+                    <span>� Parkville, MD</span> | 
+                    <span>�📧 tunchiiefashh@gmail.com</span> | 
+                    <span>� (443) 522-3147</span> | 
+                    <span>� linkedin.com/in/adetunji-fasiku</span> | 
+                    <span>� github.com/Tunchiie</span>
+                </div>
+            </div>
+
+            <!-- Professional Summary -->
+            <div class="resume-section">
+                <h2>Professional Summary</h2>
+                <p>Data Analyst with a Bioinformatics background and hands-on experience in data modeling, risk analysis, and ML explainability. Skilled in Python, SQL, SHAP, and dashboarding. Demonstrated ability to solve business problems using analytical tools and communicate insights across teams. Experience working with cloud-based data environments and relational databases. Passionate team player with curiosity and strong communication skills.</p>
+            </div>
+
+            <!-- Technical Skills -->
+            <div class="resume-section">
+                <h2>Technical Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>Languages & Tools</h4>
+                        <ul class="skill-list">
+                            <li>Python</li>
+                            <li>SQL</li>
+                            <li>Tableau</li>
+                            <li>Streamlit</li>
+                            <li>Excel</li>
+                            <li>Pandas</li>
+                            <li>NumPy</li>
+                            <li>SHAP</li>
+                            <li>XGBoost</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Core Strengths</h4>
+                        <ul class="skill-list">
+                            <li>Supervised ML</li>
+                            <li>Model Explainability</li>
+                            <li>Credit Risk Analysis</li>
+                            <li>Feature Engineering</li>
+                            <li>Exploratory Data Analysis</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Platforms</h4>
+                        <ul class="skill-list">
+                            <li>AWS (Basic Exposure)</li>
+                            <li>Relational Databases</li>
+                            <li>SQL</li>
+                            <li>MySQL</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Projects -->
+            <div class="resume-section">
+                <h2>Key Projects</h2>
+                
+                <div class="project-item">
+                    <div class="item-title">Bungaku – Hit Song Pattern Analyzer</div>
+                    <div class="item-date">June 2025</div>
+                    <div class="item-description">
+                        • Analyzed over 130K Billboard Hot 100 entries cross-referenced with Exportify to discover patterns in chart-topping audio features<br>
+                        • Applied statistical tests (ANOVA, Tukey HSD, t-tests) and mutual information to isolate key drivers of hit probability<br>
+                        • Uncovered seasonal and decade-based feature shifts: e.g., winter tracks trend quieter; modern hits skew louder and less acoustic<br>
+                        • Built data visualizations (heatmaps, violin plots, pairplots) to present insights for music producers and playlist engineers<br>
+                        • <strong>Technologies:</strong> Python, Seaborn, SciPy, Exportify API, Pandas, ANOVA, T-Test
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="item-title">Customer Purchase Predictor</div>
+                    <div class="item-date">January 2025</div>
+                    <div class="item-description">
+                        • Performed exploratory data analysis on 3.9M+ behavioral events; discovered time-based sales patterns (6 AM–12 AM concentration)<br>
+                        • Engineered behavioral features including clumpiness, buyer segmentation, and time-between-events to improve model precision<br>
+                        • Built a logistic regression classifier to predict purchase-triggering actions; optimized threshold (0.67) for real-world decision cost balance<br>
+                        • Visualized model explainability using SHAP to support data-driven CRM strategy and user segmentation<br>
+                        • <strong>Technologies:</strong> Python, SHAP, Streamlit
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="item-title">Loan Default Predictor – Lending Club</div>
+                    <div class="item-date">September 2024</div>
+                    <div class="item-description">
+                        • Processed 2.2M+ borrower records and engineered custom features (e.g. avg. days between payments, payment count) to improve model signal<br>
+                        • Built and benchmarked classification models to predict default risk: logistic regression baseline (66% accuracy) vs. tuned XGBoost model (77% accuracy, 0.76 F1-score)<br>
+                        • Visualized precision-recall tradeoffs and optimized classification threshold (0.87) to reduce false approvals<br>
+                        • Applied SHAP to explain top risk factors (e.g., loan grade, annual income) and support risk-based lending decisions<br>
+                        • Designed for use in PD segmentation, credit approval workflows, and adverse action reasoning<br>
+                        • <strong>Technologies:</strong> Python, XGBoost, Logistic Regression, SHAP, Scikit-learn, Pandas
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="item-title">Breast Cancer Classifier – Logistic Regression</div>
+                    <div class="item-date">April 2024</div>
+                    <div class="item-description">
+                        • Coded logistic regression from scratch; achieved 95% test accuracy and visualized learning convergence<br>
+                        • <strong>Technologies:</strong> Python (NumPy, Matplotlib)
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div class="resume-section">
+                <h2>Education</h2>
+                
+                <div class="education-item">
+                    <div class="item-title">Bachelor of Science</div>
+                    <div class="item-company">University of Maryland Baltimore County</div>
+                    <div class="item-date">2019 - 2022</div>
+                    <div class="item-description">
+                        Coursework in Python programming, machine learning, statistical inference, AI, and data visualization.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certifications -->
+            <div class="resume-section">
+                <h2>Certifications & Learning</h2>
+                
+                <div class="education-item">
+                    <div class="item-title">Machine Learning Course</div>
+                    <div class="item-company">Andrew Ng - Stanford University (Coursera)</div>
+                    <div class="item-date">2024</div>
+                    <div class="item-description">
+                        Completed comprehensive ML course covering supervised/unsupervised learning, neural networks, and practical implementation. Applied knowledge in from-scratch logistic regression project.
+                    </div>
+                </div>
+
+                <div class="education-item">
+                    <div class="item-title">Additional Coursework</div>
+                    <div class="item-company">Various Platforms</div>
+                    <div class="item-date">Ongoing</div>
+                    <div class="item-description">
+                        • Data Science Specializations<br>
+                        • Advanced Python Programming<br>
+                        • Statistical Analysis and Modeling<br>
+                        • Financial Markets and Trading
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience -->
+            <div class="resume-section">
+                <h2>Professional Experience</h2>
+                
+                <div class="experience-item">
+                    <div class="item-title">Data Analytics Trainee</div>
+                    <div class="item-company">Correlation One</div>
+                    <div class="item-date">January 2025 - July 2025</div>
+                    <div class="item-description">
+                        • Built SQL queries, Python models, and Tableau/Looker dashboards to solve problems in supply chain, HR, and finance domains using real-world datasets<br>
+                        • Used statistical testing and visual storytelling to deliver actionable insights in capstone projects<br>
+                        • Final project (Bungaku): identified audio traits in hit songs using statistical analysis of 130K+ tracks
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="item-title">Process Guide (Fulfillment Associate)</div>
+                    <div class="item-company">Amazon</div>
+                    <div class="item-date">May 2023 - February 2025</div>
+                    <div class="item-description">
+                        • Led floor operations for 25+ associates, identifying performance bottlenecks and coaching underperformers to meet daily quotas<br>
+                        • Delivered performance insights at shift leadership huddles using internal rate dashboards and floor-level metrics<br>
+                        • Collaborated with IT, Amnesty, and Facilities teams to resolve hardware, jam, and flowline issues, reducing downtime across critical lanes
+                    </div>
+                </div>
+            </div>
+
+            <!-- Download/Print Options -->
+            <div class="download-resume">
+                <h3>Download Resume</h3>
+                <a href="#" class="download-btn" onclick="downloadPDF()">📄 Download PDF</a>
+            </div>
+
+            <div class="print-resume">
+                <button class="print-btn" onclick="window.print()">🖨️ Print Resume</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Scroll progress indicator
+        window.addEventListener('scroll', () => {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progress = (scrollTop / scrollHeight) * 100;
+            scrollProgress.style.width = progress + '%';
+        });
+
+        // Fade in animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(element => {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Download PDF function (basic implementation)
+        function downloadPDF() {
+            // This is a basic implementation - you can enhance this with a proper PDF generation library
+            alert('PDF download functionality can be implemented using libraries like jsPDF or by converting HTML to PDF server-side. For now, you can use the print function and save as PDF.');
+            window.print();
+        }
+
+        // Add some interactive effects
+        document.querySelectorAll('.resume-section').forEach(section => {
+            section.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+                this.style.boxShadow = '0 10px 30px rgba(147, 112, 219, 0.2)';
+            });
+            
+            section.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
