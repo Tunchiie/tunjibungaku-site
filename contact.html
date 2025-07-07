@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Adetunji Fasiku</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .contact-hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(147, 112, 219, 0.1), rgba(238, 130, 238, 0.05));
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(147, 112, 219, 0.3);
+        }
+        
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .contact-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-gold);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(147, 112, 219, 0.3);
+            border-left-color: var(--primary-purple);
+        }
+        
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .contact-title {
+            color: var(--primary-purple);
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-info {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-link {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary-purple), var(--accent-gold));
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(147, 112, 219, 0.4);
+        }
+        
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid var(--primary-purple);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            color: var(--primary-purple);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid rgba(147, 112, 219, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-color);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-purple);
+            box-shadow: 0 0 10px rgba(147, 112, 219, 0.3);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary-purple), var(--accent-gold));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 25px rgba(147, 112, 219, 0.4);
+        }
+        
+        .availability {
+            background: linear-gradient(135deg, var(--accent-blue), var(--primary-purple));
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 2rem;
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .social-link {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-purple);
+            color: white;
+            text-decoration: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: var(--accent-gold);
+            transform: translateY(-3px) rotate(5deg);
+            box-shadow: 0 10px 20px rgba(147, 112, 219, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+    
+    <div class="container">
+        <!-- Navigation Menu -->
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-item">Home</a>
+            <a href="projects.html" class="nav-item">Projects</a>
+            <a href="resume.html" class="nav-item">Resume</a>
+            <a href="contact.html" class="nav-item active">Contact</a>
+        </nav>
+
+        <div class="contact-container fade-in">
+            <!-- Contact Hero -->
+            <div class="contact-hero">
+                <h1>Let's Connect</h1>
+                <p class="subtitle">I'm always interested in discussing data science opportunities, collaborations, and new projects</p>
+            </div>
+
+            <!-- Contact Methods -->
+            <div class="contact-methods">
+                <div class="contact-card">
+                    <span class="contact-icon">📧</span>
+                    <div class="contact-title">Email</div>
+                    <div class="contact-info">Quick response within 24 hours</div>
+                    <a href="mailto:tunchiiefashh@gmail.com" class="contact-link">Send Email</a>
+                </div>
+
+                <div class="contact-card">
+                    <span class="contact-icon">💼</span>
+                    <div class="contact-title">LinkedIn</div>
+                    <div class="contact-info">Professional networking</div>
+                    <a href="https://www.linkedin.com/in/adetunji-fasiku/" target="_blank" class="contact-link">Connect</a>
+                </div>
+
+                <div class="contact-card">
+                    <span class="contact-icon">🐙</span>
+                    <div class="contact-title">GitHub</div>
+                    <div class="contact-info">View my code and projects</div>
+                    <a href="https://github.com/Tunchiie" target="_blank" class="contact-link">Follow</a>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h2 style="color: var(--primary-purple); margin-bottom: 1.5rem; text-align: center;">Send Me a Message</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Tell me about your project, opportunity, or just say hello!" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+
+            <!-- Availability Status -->
+            <div class="availability">
+                <h3>Current Availability</h3>
+                <p>🟢 Available for new opportunities and collaborations</p>
+                <p>Open to: Full-time positions • Freelance projects • Research collaborations • Mentoring</p>
+            </div>
+
+            <!-- Social Links -->
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/adetunji-fasiku/" target="_blank" class="social-link" title="LinkedIn">💼</a>
+                <a href="https://github.com/Tunchiie" target="_blank" class="social-link" title="GitHub">🐙</a>
+                <a href="mailto:tunchiiefashh@gmail.com" class="social-link" title="Email">📧</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Scroll progress indicator
+        window.addEventListener('scroll', () => {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progress = (scrollTop / scrollHeight) * 100;
+            scrollProgress.style.width = progress + '%';
+        });
+
+        // Fade in animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(element => {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const subject = formData.get('subject');
+            const message = formData.get('message');
+            
+            // Create mailto link
+            const mailtoLink = `mailto:tunchiiefashh@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${name} (${email})\n\n${message}`)}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Show confirmation
+            alert('Your email client should open with the message pre-filled. If it doesn\'t open automatically, please email me directly at tunchiiefashh@gmail.com');
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Add hover effects
+        document.querySelectorAll('.contact-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.borderLeftColor = 'var(--primary-purple)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.borderLeftColor = 'var(--accent-gold)';
+            });
+        });
+
+        // Add ripple effect to buttons
+        document.querySelectorAll('.contact-link, .submit-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.classList.add('ripple');
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+    </script>
+</body>
+</html>
