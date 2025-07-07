@@ -8,19 +8,22 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- jsPDF Library for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         .resume-container {
             max-width: 900px;
             margin: 0 auto;
             padding: 2rem;
-            background: linear-gradient(135deg, rgba(147, 112, 219, 0.1), rgba(238, 130, 238, 0.05));
+            background: linear-gradient(135deg, rgba(147, 112, 219, 0.03), rgba(238, 130, 238, 0.02));
             border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(147, 112, 219, 0.3);
+            box-shadow: 0 10px 25px rgba(147, 112, 219, 0.1);
         }
         
         .resume-header {
             text-align: center;
-            border-bottom: 3px solid var(--primary-purple);
+            border-bottom: 2px solid rgba(147, 112, 219, 0.3);
             padding-bottom: 2rem;
             margin-bottom: 2rem;
         }
@@ -28,25 +31,25 @@
         .resume-section {
             margin-bottom: 2.5rem;
             padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.02);
             border-radius: 10px;
-            border-left: 4px solid var(--accent-gold);
+            border-left: 3px solid var(--accent-gold);
         }
         
         .resume-section h2 {
             color: var(--primary-purple);
             margin-bottom: 1rem;
             font-size: 1.8rem;
-            border-bottom: 2px solid var(--accent-gold);
+            border-bottom: 1px solid rgba(244, 208, 63, 0.3);
             padding-bottom: 0.5rem;
         }
         
         .experience-item, .education-item, .project-item {
             margin-bottom: 1.5rem;
             padding: 1rem;
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.01);
             border-radius: 8px;
-            border-left: 3px solid var(--accent-blue);
+            border-left: 2px solid var(--accent-blue);
         }
         
         .item-title {
@@ -80,10 +83,10 @@
         }
         
         .skill-category {
-            background: rgba(147, 112, 219, 0.1);
+            background: rgba(147, 112, 219, 0.02);
             padding: 1rem;
             border-radius: 8px;
-            border: 1px solid var(--primary-purple);
+            border: 1px solid rgba(147, 112, 219, 0.2);
         }
         
         .skill-category h4 {
@@ -98,7 +101,7 @@
         
         .skill-list li {
             padding: 0.2rem 0;
-            border-bottom: 1px solid rgba(147, 112, 219, 0.2);
+            border-bottom: 1px solid rgba(147, 112, 219, 0.1);
         }
         
         .skill-list li:last-child {
@@ -388,11 +391,169 @@
             });
         });
 
-        // Download PDF function (basic implementation)
+        // Download PDF function with jsPDF
         function downloadPDF() {
-            // This is a basic implementation - you can enhance this with a proper PDF generation library
-            alert('PDF download functionality can be implemented using libraries like jsPDF or by converting HTML to PDF server-side. For now, you can use the print function and save as PDF.');
-            window.print();
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF();
+            
+            // Set up fonts and colors
+            pdf.setFont('Times', 'normal');
+            const primaryColor = [88, 28, 135]; // Purple color
+            const textColor = [51, 51, 51]; // Dark gray
+            
+            let yPosition = 20;
+            const leftMargin = 20;
+            const rightMargin = 190;
+            const lineHeight = 6;
+            
+            // Header - Name
+            pdf.setFontSize(24);
+            pdf.setTextColor(...primaryColor);
+            pdf.text('Adetunji Fasiku', leftMargin, yPosition);
+            yPosition += 8;
+            
+            // Title
+            pdf.setFontSize(14);
+            pdf.setTextColor(...textColor);
+            pdf.text('Data Analyst | Bioinformatics Specialist', leftMargin, yPosition);
+            yPosition += 15;
+            
+            // Contact Information
+            pdf.setFontSize(10);
+            pdf.text('Email: adetunji.fasiku@gmail.com | Phone: +1 (314) 374-4399', leftMargin, yPosition);
+            yPosition += 5;
+            pdf.text('Location: St. Louis, MO | LinkedIn: linkedin.com/in/adesiyan-fasiku', leftMargin, yPosition);
+            yPosition += 5;
+            pdf.text('GitHub: github.com/Adesiyan14', leftMargin, yPosition);
+            yPosition += 12;
+            
+            // Professional Summary
+            pdf.setFontSize(12);
+            pdf.setTextColor(...primaryColor);
+            pdf.text('PROFESSIONAL SUMMARY', leftMargin, yPosition);
+            yPosition += 8;
+            
+            pdf.setFontSize(10);
+            pdf.setTextColor(...textColor);
+            const summaryText = 'Data Analyst with a strong background in bioinformatics, machine learning, and statistical analysis. Experienced in developing predictive models, data visualization, and automated trading systems. Proficient in Python, R, SQL, and various data science libraries. Proven track record of delivering actionable insights through data-driven approaches.';
+            const summaryLines = pdf.splitTextToSize(summaryText, rightMargin - leftMargin);
+            pdf.text(summaryLines, leftMargin, yPosition);
+            yPosition += summaryLines.length * lineHeight + 8;
+            
+            // Technical Skills
+            pdf.setFontSize(12);
+            pdf.setTextColor(...primaryColor);
+            pdf.text('TECHNICAL SKILLS', leftMargin, yPosition);
+            yPosition += 8;
+            
+            pdf.setFontSize(10);
+            pdf.setTextColor(...textColor);
+            const skills = [
+                'Programming Languages: Python, R, SQL, JavaScript, HTML/CSS',
+                'Data Science & ML: Pandas, NumPy, Scikit-learn, TensorFlow, Keras',
+                'Visualization: Matplotlib, Seaborn, Plotly, Tableau, Power BI',
+                'Bioinformatics: Biopython, BLAST, Gene Ontology, Pathway Analysis',
+                'Databases: MySQL, PostgreSQL, MongoDB',
+                'Tools: Git, Docker, Jupyter, VS Code, Excel'
+            ];
+            
+            skills.forEach(skill => {
+                pdf.text('• ' + skill, leftMargin, yPosition);
+                yPosition += lineHeight;
+            });
+            yPosition += 8;
+            
+            // Education
+            pdf.setFontSize(12);
+            pdf.setTextColor(...primaryColor);
+            pdf.text('EDUCATION', leftMargin, yPosition);
+            yPosition += 8;
+            
+            pdf.setFontSize(10);
+            pdf.setTextColor(...textColor);
+            pdf.setFont('Times', 'bold');
+            pdf.text('Bachelor of Science in Biochemistry', leftMargin, yPosition);
+            yPosition += 6;
+            pdf.setFont('Times', 'normal');
+            pdf.text('University of Ilorin, Nigeria (2013-2018)', leftMargin, yPosition);
+            yPosition += 6;
+            pdf.text('Relevant Coursework: Biostatistics, Research Methods, Data Analysis', leftMargin, yPosition);
+            yPosition += 12;
+            
+            // Experience
+            pdf.setFontSize(12);
+            pdf.setTextColor(...primaryColor);
+            pdf.text('PROFESSIONAL EXPERIENCE', leftMargin, yPosition);
+            yPosition += 8;
+            
+            pdf.setFontSize(10);
+            pdf.setTextColor(...textColor);
+            pdf.setFont('Times', 'bold');
+            pdf.text('Data Analyst & ML Engineer', leftMargin, yPosition);
+            pdf.text('2021 - Present', rightMargin - 30, yPosition);
+            yPosition += 6;
+            pdf.setFont('Times', 'normal');
+            pdf.text('Freelance & Personal Projects', leftMargin, yPosition);
+            yPosition += 6;
+            
+            const expPoints = [
+                'Developed machine learning models for financial prediction and medical diagnosis',
+                'Created automated trading systems with risk management protocols',
+                'Built interactive dashboards and data visualizations for stakeholder reporting',
+                'Implemented data pipelines for real-time market data processing'
+            ];
+            
+            expPoints.forEach(point => {
+                pdf.text('• ' + point, leftMargin + 5, yPosition);
+                yPosition += lineHeight;
+            });
+            yPosition += 8;
+            
+            // Add new page if needed
+            if (yPosition > 250) {
+                pdf.addPage();
+                yPosition = 20;
+            }
+            
+            // Key Projects
+            pdf.setFontSize(12);
+            pdf.setTextColor(...primaryColor);
+            pdf.text('KEY PROJECTS', leftMargin, yPosition);
+            yPosition += 8;
+            
+            const projects = [
+                {
+                    name: 'CandleThrob Trading Bot',
+                    desc: 'Python-based automated trading system with technical analysis and risk management'
+                },
+                {
+                    name: 'Lending Club Loan Predictor',
+                    desc: 'Machine learning model to predict loan default risk using ensemble methods'
+                },
+                {
+                    name: 'Breast Cancer Classifier',
+                    desc: 'Deep learning model for medical diagnosis with 95%+ accuracy'
+                },
+                {
+                    name: 'Customer Purchase Predictor',
+                    desc: 'Predictive analytics model for e-commerce customer behavior'
+                }
+            ];
+            
+            pdf.setFontSize(10);
+            pdf.setTextColor(...textColor);
+            
+            projects.forEach(project => {
+                pdf.setFont('Times', 'bold');
+                pdf.text('• ' + project.name, leftMargin, yPosition);
+                yPosition += 6;
+                pdf.setFont('Times', 'normal');
+                pdf.text('  ' + project.desc, leftMargin, yPosition);
+                yPosition += lineHeight + 2;
+            });
+            
+            // Save the PDF
+            pdf.save('Adetunji_Fasiku_Resume.pdf');
         }
 
         // Add some interactive effects
