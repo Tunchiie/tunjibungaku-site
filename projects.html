@@ -1077,7 +1077,7 @@
             // Project filtering
             const filterBtns = document.querySelectorAll('.filter-btn');
             const projectCards = document.querySelectorAll('.project-card');
-            const featuredProject = document.querySelector('.featured-project');
+            const featuredProjects = document.querySelectorAll('.featured-project');
 
             filterBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
@@ -1087,7 +1087,7 @@
                     filterBtns.forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
                     
-                    // Filter projects
+                    // Filter project cards
                     projectCards.forEach(card => {
                         const categories = card.getAttribute('data-category') || '';
                         
@@ -1110,16 +1110,28 @@
                         }
                     });
 
-                    // Handle featured project
-                    if (featuredProject) {
+                    // Handle all featured projects
+                    featuredProjects.forEach(featuredProject => {
                         const featuredCategories = featuredProject.getAttribute('data-category') || '';
                         
                         if (filter === 'all' || featuredCategories.includes(filter)) {
                             featuredProject.style.display = 'block';
+                            featuredProject.style.opacity = '0';
+                            featuredProject.style.transform = 'translateY(20px)';
+                            
+                            setTimeout(() => {
+                                featuredProject.style.opacity = '1';
+                                featuredProject.style.transform = 'translateY(0)';
+                            }, 100);
                         } else {
-                            featuredProject.style.display = 'none';
+                            featuredProject.style.opacity = '0';
+                            featuredProject.style.transform = 'translateY(20px)';
+                            
+                            setTimeout(() => {
+                                featuredProject.style.display = 'none';
+                            }, 300);
                         }
-                    }
+                    });
                 });
             });
 
