@@ -24,9 +24,19 @@ class ProfessionalPortfolio {
 
     // Enhanced accessibility features
     setupAccessibility() {
+        // Add skip links
         this.addSkipLinks();
+        
+        // Enhanced keyboard navigation
         this.setupKeyboardNavigation();
+        
+        // Screen reader announcements
         this.setupScreenReaderAnnouncements();
+        
+        // Color contrast validation
+        this.validateColorContrast();
+        
+        // Focus management
         this.setupFocusManagement();
     }
 
@@ -42,15 +52,18 @@ class ProfessionalPortfolio {
     }
 
     setupKeyboardNavigation() {
+        // Enhanced keyboard navigation for filter buttons
         document.addEventListener('keydown', (e) => {
             if (e.target.classList.contains('filter-btn')) {
                 this.handleFilterKeyboard(e);
             }
             
+            // Theme toggle keyboard support
             if (e.target.classList.contains('theme-toggle') && e.key === 'Enter') {
                 this.toggleTheme();
             }
             
+            // ESC key to close modals or reset filters
             if (e.key === 'Escape') {
                 this.handleEscapeKey();
             }
@@ -74,10 +87,19 @@ class ProfessionalPortfolio {
                 const nextIndex = currentIndex < filterButtons.length - 1 ? currentIndex + 1 : 0;
                 filterButtons[nextIndex].focus();
                 break;
+            case 'Home':
+                e.preventDefault();
+                filterButtons[0].focus();
+                break;
+            case 'End':
+                e.preventDefault();
+                filterButtons[filterButtons.length - 1].focus();
+                break;
         }
     }
 
     setupScreenReaderAnnouncements() {
+        // Create live region for announcements
         if (!document.getElementById('sr-announcements')) {
             const liveRegion = document.createElement('div');
             liveRegion.id = 'sr-announcements';
@@ -103,13 +125,23 @@ class ProfessionalPortfolio {
     setupThemeManagement() {
         this.loadSavedTheme();
         this.setupThemeToggle();
+        this.setupSystemThemeDetection();
     }
 
     loadSavedTheme() {
         const savedTheme = localStorage.getItem('portfolio-theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+        
         this.applyTheme(theme);
+    }
+
+    setupSystemThemeDetection() {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('portfolio-theme')) {
+                this.applyTheme(e.matches ? 'dark' : 'light');
+            }
+        });
     }
 
     setupThemeToggle() {
@@ -117,6 +149,7 @@ class ProfessionalPortfolio {
         if (themeToggle) {
             themeToggle.addEventListener('click', () => this.toggleTheme());
             themeToggle.setAttribute('aria-label', 'Toggle theme');
+            themeToggle.setAttribute('role', 'button');
         }
     }
 
@@ -125,7 +158,12 @@ class ProfessionalPortfolio {
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
         this.applyTheme(newTheme);
         localStorage.setItem('portfolio-theme', newTheme);
+        
+        // Announce theme change
         this.announceToScreenReader(`Switched to ${newTheme} theme`);
+        
+        // Track interaction
+        this.trackInteraction('theme_toggle', { from: currentTheme, to: newTheme });
     }
 
     applyTheme(theme) {
@@ -139,12 +177,28 @@ class ProfessionalPortfolio {
             body.classList.remove('dark-theme');
             if (themeIcon) themeIcon.textContent = '🌙';
         }
+        
+        // Update meta theme-color for mobile browsers
+        this.updateThemeColor(theme);
+    }
+
+    updateThemeColor(theme) {
+        let metaThemeColor = document.querySelector('meta[name="theme-color"]');
+        if (!metaThemeColor) {
+            metaThemeColor = document.createElement('meta');
+            metaThemeColor.name = 'theme-color';
+            document.head.appendChild(metaThemeColor);
+        }
+        
+        metaThemeColor.content = theme === 'dark' ? '#3a3153' : '#5f43b2';
     }
 
     // Enhanced scroll management
     setupScrollManagement() {
         this.setupScrollProgress();
         this.setupBackToTop();
+        this.setupSmoothScrolling();
+        this.setupScrollSpy();
     }
 
     setupScrollProgress() {
@@ -152,10 +206,18 @@ class ProfessionalPortfolio {
                            document.querySelector('.scroll-progress');
         
         if (progressBar) {
+            let isScrolling = false;
+            
             window.addEventListener('scroll', () => {
-                const scrollPercent = (window.pageYOffset / 
-                    (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-                progressBar.style.width = `${Math.min(scrollPercent, 100)}%`;
+                if (!isScrolling) {
+                    requestAnimationFrame(() => {
+                        const scrollPercent = (window.pageYOffset / 
+                            (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+                        progressBar.style.width = `${Math.min(scrollPercent, 100)}%`;
+                        isScrolling = false;
+                    });
+                    isScrolling = true;
+                }
             }, { passive: true });
         }
     }
@@ -165,26 +227,40 @@ class ProfessionalPortfolio {
                          document.querySelector('.back-to-top');
         
         if (backToTop) {
+            let isScrolling = false;
+            
             window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 300) {
-                    backToTop.classList.add('visible');
-                } else {
-                    backToTop.classList.remove('visible');
+                if (!isScrolling) {
+                    requestAnimationFrame(() => {
+                        if (window.pageYOffset > 300) {
+                            backToTop.classList.add('visible');
+                        } else {
+                            backToTop.classList.remove('visible');
+                        }
+                        isScrolling = false;
+                    });
+                    isScrolling = true;
                 }
             }, { passive: true });
             
             backToTop.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                this.trackInteraction('back_to_top', { scrollPosition: window.pageYOffset });
             });
         }
     }
 
-    // Enhanced project filtering
+    // Enhanced project filtering with better UX
     setupProjectFiltering() {
         const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card, .featured-project');
         
         if (filterButtons.length === 0) return;
         
+        // Initialize filter state
         this.currentFilter = 'all';
         
         filterButtons.forEach(button => {
@@ -194,11 +270,13 @@ class ProfessionalPortfolio {
                 this.applyFilter(filter, button);
             });
             
+            // Add ARIA attributes
+            button.setAttribute('role', 'button');
             button.setAttribute('aria-pressed', button.classList.contains('active'));
         });
         
+        // Ensure all projects are visible on load
         this.initializeProjects();
-        this.initializeProjectFilters();
     }
 
     initializeProjects() {
@@ -209,6 +287,7 @@ class ProfessionalPortfolio {
             card.style.opacity = '0';
             card.style.transform = 'translateY(20px)';
             
+            // Stagger animation
             setTimeout(() => {
                 card.style.opacity = '1';
                 card.style.transform = 'translateY(0)';
@@ -222,6 +301,7 @@ class ProfessionalPortfolio {
         const filterButtons = document.querySelectorAll('.filter-btn');
         const projectCards = document.querySelectorAll('.project-card, .featured-project');
         
+        // Update button states
         filterButtons.forEach(btn => {
             btn.classList.remove('active');
             btn.setAttribute('aria-pressed', 'false');
@@ -230,6 +310,7 @@ class ProfessionalPortfolio {
         activeButton.classList.add('active');
         activeButton.setAttribute('aria-pressed', 'true');
         
+        // Filter projects with animation
         let visibleCount = 0;
         
         projectCards.forEach((card, index) => {
@@ -239,106 +320,37 @@ class ProfessionalPortfolio {
             if (shouldShow) {
                 visibleCount++;
                 card.style.display = 'block';
+                
+                // Animate in
                 setTimeout(() => {
                     card.style.opacity = '1';
                     card.style.transform = 'translateY(0)';
                 }, index * 50);
             } else {
+                // Animate out
                 card.style.opacity = '0';
                 card.style.transform = 'translateY(-20px)';
+                
                 setTimeout(() => {
                     card.style.display = 'none';
                 }, 300);
             }
         });
         
+        // Announce filter change
         this.announceToScreenReader(`Showing ${visibleCount} projects for ${filter} category`);
+        
+        // Track filter usage
+        this.trackInteraction('project_filter', { 
+            filter, 
+            visibleCount,
+            previousFilter: this.currentFilter 
+        });
+        
         this.currentFilter = filter;
     }
 
-    // Project filtering functionality
-    initializeProjectFilters() {
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const projectCards = document.querySelectorAll('.project-card');
-        const featuredProjects = document.querySelectorAll('.featured-project');
-
-        if (filterBtns.length === 0) return; // No filters on this page
-
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const filter = btn.getAttribute('data-filter');
-                
-                // Update active button and ARIA states
-                filterBtns.forEach(b => {
-                    b.classList.remove('active');
-                    b.setAttribute('aria-pressed', 'false');
-                });
-                btn.classList.add('active');
-                btn.setAttribute('aria-pressed', 'true');
-                
-                // Filter project cards
-                projectCards.forEach(card => {
-                    const categories = card.getAttribute('data-category') || '';
-                    
-                    if (filter === 'all' || categories.includes(filter)) {
-                        card.style.display = 'block';
-                        card.style.opacity = '0';
-                        card.style.transform = 'translateY(20px)';
-                        
-                        setTimeout(() => {
-                            card.style.opacity = '1';
-                            card.style.transform = 'translateY(0)';
-                        }, 100);
-                    } else {
-                        card.style.opacity = '0';
-                        card.style.transform = 'translateY(20px)';
-                        
-                        setTimeout(() => {
-                            card.style.display = 'none';
-                        }, 300);
-                    }
-                });
-
-                // Handle featured projects
-                featuredProjects.forEach(featuredProject => {
-                    const featuredCategories = featuredProject.getAttribute('data-category') || '';
-                    
-                    if (filter === 'all' || featuredCategories.includes(filter)) {
-                        featuredProject.style.display = 'block';
-                        featuredProject.style.opacity = '0';
-                        featuredProject.style.transform = 'translateY(20px)';
-                        
-                        setTimeout(() => {
-                            featuredProject.style.opacity = '1';
-                            featuredProject.style.transform = 'translateY(0)';
-                        }, 100);
-                    } else {
-                        featuredProject.style.opacity = '0';
-                        featuredProject.style.transform = 'translateY(20px)';
-                        
-                        setTimeout(() => {
-                            featuredProject.style.display = 'none';
-                        }, 300);
-                    }
-                });
-
-                // Analytics tracking
-                if (typeof trackEvent === 'function') {
-                    trackEvent('project_filter', 'click', filter);
-                }
-            });
-
-            // Add keyboard support
-            btn.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    btn.click();
-                }
-            });
-        });
-    }
-
-    // Animation setup
+    // Enhanced animations with intersection observer
     setupAnimations() {
         const observerOptions = {
             threshold: 0.1,
@@ -349,10 +361,19 @@ class ProfessionalPortfolio {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
+                    
+                    // Stagger child animations
+                    const children = entry.target.querySelectorAll('.animate-stagger');
+                    children.forEach((child, index) => {
+                        setTimeout(() => {
+                            child.classList.add('visible');
+                        }, index * 100);
+                    });
                 }
             });
         }, observerOptions);
 
+        // Observe fade-in elements
         document.querySelectorAll('.fade-in').forEach(el => {
             observer.observe(el);
         });
@@ -360,68 +381,176 @@ class ProfessionalPortfolio {
         this.observers.set('intersection', observer);
     }
 
-    // Performance tracking
+    // Performance tracking and optimization
     setupPerformanceTracking() {
         if ('performance' in window) {
-            window.addEventListener('load', () => {
-                setTimeout(() => {
-                    const perfData = performance.getEntriesByType('navigation')[0];
-                    if (perfData) {
-                        console.log('Page Performance:', {
-                            loadTime: Math.round(perfData.loadEventEnd - perfData.fetchStart),
-                            domContentLoaded: Math.round(perfData.domContentLoadedEventEnd - perfData.fetchStart)
-                        });
-                    }
-                }, 100);
-            });
+            this.trackPageLoad();
+            this.trackLargestContentfulPaint();
+            this.trackCumulativeLayoutShift();
         }
     }
 
-    // Error handling
+    trackPageLoad() {
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const perfData = performance.getEntriesByType('navigation')[0];
+                if (perfData) {
+                    this.performance = {
+                        loadTime: Math.round(perfData.loadEventEnd - perfData.fetchStart),
+                        domContentLoaded: Math.round(perfData.domContentLoadedEventEnd - perfData.fetchStart),
+                        firstPaint: this.getFirstPaint(),
+                        pageSize: this.getPageSize()
+                    };
+                    
+                    this.logEvent('performance', this.performance);
+                }
+            }, 100);
+        });
+    }
+
+    getFirstPaint() {
+        const paintEntries = performance.getEntriesByType('paint');
+        const firstPaint = paintEntries.find(entry => entry.name === 'first-paint');
+        return firstPaint ? Math.round(firstPaint.startTime) : null;
+    }
+
+    getPageSize() {
+        const resources = performance.getEntriesByType('resource');
+        const totalSize = resources.reduce((size, resource) => {
+            return size + (resource.transferSize || 0);
+        }, 0);
+        return Math.round(totalSize / 1024); // KB
+    }
+
+    // Error handling and logging
     setupErrorHandling() {
         window.addEventListener('error', (e) => {
-            console.error('Portfolio Error:', {
+            this.logError('JavaScript Error', {
                 message: e.message,
                 filename: e.filename,
-                lineno: e.lineno
+                lineno: e.lineno,
+                colno: e.colno,
+                stack: e.error ? e.error.stack : null
+            });
+        });
+
+        window.addEventListener('unhandledrejection', (e) => {
+            this.logError('Unhandled Promise Rejection', {
+                reason: e.reason
             });
         });
     }
 
-    // Analytics
+    logError(type, details) {
+        console.error(`Portfolio Error [${type}]:`, details);
+        
+        // Track error for analytics
+        this.trackInteraction('error', {
+            type,
+            details,
+            timestamp: Date.now(),
+            userAgent: navigator.userAgent,
+            url: window.location.href
+        });
+    }
+
+    // Analytics and interaction tracking
     trackAnalytics() {
         this.trackPageView();
         this.setupInteractionTracking();
     }
 
     trackPageView() {
-        console.log('Page View:', {
+        const pageData = {
             url: window.location.href,
             title: document.title,
-            timestamp: Date.now()
-        });
+            timestamp: Date.now(),
+            referrer: document.referrer,
+            userAgent: navigator.userAgent,
+            viewport: {
+                width: window.innerWidth,
+                height: window.innerHeight
+            },
+            theme: document.body.classList.contains('dark-theme') ? 'dark' : 'light'
+        };
+        
+        this.pageViews.push(pageData);
+        this.logEvent('page_view', pageData);
     }
 
     setupInteractionTracking() {
+        // Track clicks on important elements
         document.addEventListener('click', (e) => {
             const target = e.target.closest('a, button, .project-card, .nav-item, .filter-btn');
             if (target) {
-                console.log('Interaction:', {
+                this.trackInteraction('click', {
                     element: target.tagName.toLowerCase(),
                     text: target.textContent?.trim().substring(0, 50),
-                    className: target.className
+                    href: target.href || null,
+                    className: target.className,
+                    timestamp: Date.now()
                 });
             }
+        });
+
+        // Track form interactions
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', (e) => {
+                this.trackInteraction('form_submit', {
+                    formId: form.id,
+                    timestamp: Date.now()
+                });
+            });
+        });
+    }
+
+    trackInteraction(type, data) {
+        this.interactions.push({
+            type,
+            data,
+            timestamp: Date.now()
+        });
+        
+        this.logEvent('interaction', { type, data });
+    }
+
+    logEvent(eventType, eventData) {
+        if (console && console.log) {
+            console.log(`Portfolio Analytics [${eventType}]:`, eventData);
+        }
+    }
+
+    // Utility methods
+    validateColorContrast() {
+        // Basic color contrast validation (simplified)
+        const contrastElements = document.querySelectorAll('[data-contrast-check]');
+        contrastElements.forEach(element => {
+            const styles = window.getComputedStyle(element);
+            const bgColor = styles.backgroundColor;
+            const textColor = styles.color;
+            
+            // Log contrast information for manual review
+            console.log('Contrast check:', {
+                element: element.tagName,
+                background: bgColor,
+                text: textColor
+            });
         });
     }
 
     setupFocusManagement() {
+        // Enhanced focus management for better keyboard navigation
         let focusedElement = null;
         
         document.addEventListener('focusin', (e) => {
             focusedElement = e.target;
         });
         
+        document.addEventListener('focusout', (e) => {
+            focusedElement = null;
+        });
+        
+        // Return focus to last focused element when needed
         this.returnFocus = () => {
             if (focusedElement && typeof focusedElement.focus === 'function') {
                 focusedElement.focus();
@@ -430,13 +559,23 @@ class ProfessionalPortfolio {
     }
 
     handleEscapeKey() {
+        // Handle escape key for better UX
+        const activeModal = document.querySelector('[role="dialog"][aria-hidden="false"]');
+        if (activeModal) {
+            // Close modal logic would go here
+            return;
+        }
+        
+        // Reset filters to "all"
         const allButton = document.querySelector('.filter-btn[data-filter="all"]');
         if (allButton && !allButton.classList.contains('active')) {
             allButton.click();
         }
     }
 
+    // Cleanup method
     destroy() {
+        // Clean up observers and event listeners
         this.observers.forEach(observer => {
             if (observer && typeof observer.disconnect === 'function') {
                 observer.disconnect();
@@ -446,11 +585,279 @@ class ProfessionalPortfolio {
     }
 }
 
-// Initialize when DOM is ready
+// Initialize the professional portfolio when DOM is ready
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         window.portfolioManager = new ProfessionalPortfolio();
     });
 } else {
     window.portfolioManager = new ProfessionalPortfolio();
+}
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('.download-btn')) {
+                this.trackInteraction('download', {
+                    type: 'resume_pdf',
+                    timestamp: Date.now()
+                });
+            }
+        });
+    }
+
+    // Track scroll depth
+    trackScrollDepth() {
+        let maxScroll = 0;
+        const milestones = [25, 50, 75, 90, 100];
+        const reached = new Set();
+
+        window.addEventListener('scroll', () => {
+            const scrollPercent = Math.round(
+                (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+            );
+            
+            maxScroll = Math.max(maxScroll, scrollPercent);
+            
+            milestones.forEach(milestone => {
+                if (scrollPercent >= milestone && !reached.has(milestone)) {
+                    reached.add(milestone);
+                    this.trackInteraction('scroll_depth', {
+                        percentage: milestone,
+                        timestamp: Date.now()
+                    });
+                }
+            });
+        });
+    }
+
+    // Track time on page
+    trackTimeOnPage() {
+        let isActive = true;
+        let timeSpent = 0;
+        let lastActiveTime = Date.now();
+
+        // Track when user becomes inactive
+        const events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'];
+        events.forEach(event => {
+            document.addEventListener(event, () => {
+                if (!isActive) {
+                    lastActiveTime = Date.now();
+                    isActive = true;
+                }
+            });
+        });
+
+        // Check for inactivity
+        setInterval(() => {
+            if (isActive && Date.now() - lastActiveTime > 30000) { // 30 seconds
+                isActive = false;
+                timeSpent += 30;
+            } else if (isActive) {
+                timeSpent += 5;
+            }
+        }, 5000);
+
+        // Send time data before leaving
+        window.addEventListener('beforeunload', () => {
+            this.trackInteraction('time_on_page', {
+                totalSeconds: Math.round((Date.now() - this.sessionStart) / 1000),
+                activeSeconds: timeSpent,
+                timestamp: Date.now()
+            });
+        });
+    }
+
+    // Track specific interactions
+    trackInteraction(type, data) {
+        const interaction = {
+            type,
+            data,
+            timestamp: Date.now(),
+            page: window.location.pathname
+        };
+        
+        this.interactions.push(interaction);
+        this.logEvent('interaction', interaction);
+    }
+
+    // Log events (can be extended to send to analytics service)
+    logEvent(eventType, eventData) {
+        // For development - log to console
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            console.log(`[Analytics] ${eventType}:`, eventData);
+        }
+
+        // Store in localStorage for review
+        const storageKey = 'portfolio_analytics';
+        const stored = JSON.parse(localStorage.getItem(storageKey) || '[]');
+        stored.push({ type: eventType, data: eventData, timestamp: Date.now() });
+        
+        // Keep only last 100 events
+        if (stored.length > 100) {
+            stored.splice(0, stored.length - 100);
+        }
+        
+        localStorage.setItem(storageKey, JSON.stringify(stored));
+
+        // Here you could send to Google Analytics, Mixpanel, etc.
+        // Example for Google Analytics:
+        // if (typeof gtag !== 'undefined') {
+        //     gtag('event', eventType, eventData);
+        // }
+    }
+
+    // Get analytics summary
+    getAnalyticsSummary() {
+        return {
+            session: {
+                duration: Date.now() - this.sessionStart,
+                pageViews: this.pageViews.length,
+                interactions: this.interactions.length
+            },
+            performance: this.performance,
+            topInteractions: this.getTopInteractions(),
+            deviceInfo: this.getDeviceInfo()
+        };
+    }
+
+    // Get top interactions
+    getTopInteractions() {
+        const counts = {};
+        this.interactions.forEach(interaction => {
+            const key = interaction.type;
+            counts[key] = (counts[key] || 0) + 1;
+        });
+        
+        return Object.entries(counts)
+            .sort(([,a], [,b]) => b - a)
+            .slice(0, 5);
+    }
+
+    // Get device information
+    getDeviceInfo() {
+        return {
+            userAgent: navigator.userAgent,
+            platform: navigator.platform,
+            language: navigator.language,
+            cookieEnabled: navigator.cookieEnabled,
+            onLine: navigator.onLine,
+            viewport: {
+                width: window.innerWidth,
+                height: window.innerHeight
+            },
+            screen: {
+                width: screen.width,
+                height: screen.height,
+                colorDepth: screen.colorDepth
+            }
+        };
+    }
+}
+
+// Initialize analytics when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    window.portfolioAnalytics = new PortfolioAnalytics();
+    
+    // Add analytics summary to console for development
+    setTimeout(() => {
+        console.log('[Portfolio Analytics] Session Summary:', window.portfolioAnalytics.getAnalyticsSummary());
+    }, 10000);
+});
+
+// Performance monitoring
+class PerformanceMonitor {
+    constructor() {
+        this.init();
+    }
+
+    init() {
+        this.monitorLargestContentfulPaint();
+        this.monitorFirstInputDelay();
+        this.monitorCumulativeLayoutShift();
+        this.monitorResourceLoading();
+    }
+
+    // Monitor Largest Contentful Paint (LCP)
+    monitorLargestContentfulPaint() {
+        new PerformanceObserver((entryList) => {
+            const entries = entryList.getEntries();
+            const lastEntry = entries[entries.length - 1];
+            
+            console.log('[Performance] LCP:', Math.round(lastEntry.startTime), 'ms');
+            
+            // Good: < 2.5s, Needs Improvement: 2.5s - 4s, Poor: > 4s
+            const score = lastEntry.startTime < 2500 ? 'good' : 
+                         lastEntry.startTime < 4000 ? 'needs-improvement' : 'poor';
+            
+            window.portfolioAnalytics?.logEvent('lcp', {
+                value: Math.round(lastEntry.startTime),
+                score: score
+            });
+        }).observe({ type: 'largest-contentful-paint', buffered: true });
+    }
+
+    // Monitor First Input Delay (FID)
+    monitorFirstInputDelay() {
+        new PerformanceObserver((entryList) => {
+            const firstEntry = entryList.getEntries()[0];
+            
+            console.log('[Performance] FID:', Math.round(firstEntry.processingStart - firstEntry.startTime), 'ms');
+            
+            const delay = firstEntry.processingStart - firstEntry.startTime;
+            const score = delay < 100 ? 'good' : delay < 300 ? 'needs-improvement' : 'poor';
+            
+            window.portfolioAnalytics?.logEvent('fid', {
+                value: Math.round(delay),
+                score: score
+            });
+        }).observe({ type: 'first-input', buffered: true });
+    }
+
+    // Monitor Cumulative Layout Shift (CLS)
+    monitorCumulativeLayoutShift() {
+        let clsValue = 0;
+        
+        new PerformanceObserver((entryList) => {
+            for (const entry of entryList.getEntries()) {
+                if (!entry.hadRecentInput) {
+                    clsValue += entry.value;
+                }
+            }
+            
+            console.log('[Performance] CLS:', clsValue.toFixed(3));
+            
+            const score = clsValue < 0.1 ? 'good' : clsValue < 0.25 ? 'needs-improvement' : 'poor';
+            
+            window.portfolioAnalytics?.logEvent('cls', {
+                value: parseFloat(clsValue.toFixed(3)),
+                score: score
+            });
+        }).observe({ type: 'layout-shift', buffered: true });
+    }
+
+    // Monitor resource loading
+    monitorResourceLoading() {
+        window.addEventListener('load', () => {
+            const resources = performance.getEntriesByType('resource');
+            const slowResources = resources.filter(resource => resource.duration > 1000);
+            
+            if (slowResources.length > 0) {
+                console.warn('[Performance] Slow resources detected:', slowResources);
+                
+                window.portfolioAnalytics?.logEvent('slow_resources', {
+                    count: slowResources.length,
+                    resources: slowResources.map(r => ({
+                        name: r.name,
+                        duration: Math.round(r.duration),
+                        size: Math.round(r.transferSize / 1024) // KB
+                    }))
+                });
+            }
+        });
+    }
+}
+
+// Initialize performance monitoring
+if ('PerformanceObserver' in window) {
+    document.addEventListener('DOMContentLoaded', () => {
+        new PerformanceMonitor();
+    });
 }

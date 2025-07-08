@@ -3,189 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - Adetunji Fasiku</title>
-    <meta name="description" content="Get in touch with Adetunji Fasiku for data science collaboration, consulting, or career opportunities.">
-    <script>
-        const theme = localStorage.getItem("theme") || "light";
-        document.documentElement.setAttribute("data-theme", theme);
-    </script>
-
+    <title>Page Not Found - Adetunji Fasiku</title>
+    <meta name="description" content="Page not found on Adetunji Fasiku's data science portfolio website.">
     <link rel="stylesheet" href="styles.css">
     <script src="enhanced-portfolio.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        .contact-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        
-        .contact-hero {
-            text-align: center;
-            margin-bottom: 3rem;
-            padding: 2rem;
-            background: linear-gradient(135deg, rgba(147, 112, 219, 0.03), rgba(238, 130, 238, 0.02));
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(147, 112, 219, 0.1);
-        }
-        
-        .contact-methods {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-        
-        @media (max-width: 768px) {
-            .contact-methods {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .contact-card {
-            background: rgba(255, 255, 255, 0.02);
-            padding: 2rem;
-            border-radius: 12px;
-            border-left: 3px solid var(--accent-gold);
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        
-        .contact-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-        
-        .contact-icon svg,
-        .contact-card svg.contact-icon {
-            width: 48px !important;
-            height: 48px !important;
-            margin: 0 auto 1rem auto !important;
-            display: block !important;
-        }
-        
-        .contact-title {
-            color: var(--primary-purple);
-            font-size: 1.3rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-        
-        .contact-info {
-            color: var(--text-light);
-            margin-bottom: 1rem;
-        }
-        
-        .contact-link {
-            display: inline-block;
-            padding: 0.8rem 1.5rem;
-            background: linear-gradient(135deg, var(--primary-purple), var(--accent-gold));
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-        
-        .contact-form {
-            background: rgba(255, 255, 255, 0.02);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid rgba(147, 112, 219, 0.2);
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            color: var(--primary-purple);
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-        
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid rgba(147, 112, 219, 0.3);
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-color);
-            font-family: inherit;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-purple);
-            box-shadow: 0 0 10px rgba(147, 112, 219, 0.3);
-        }
-        
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-        
-        .submit-btn {
-            width: 100%;
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, var(--primary-purple), var(--accent-gold));
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 25px rgba(147, 112, 219, 0.4);
-        }
-        
-        .availability {
-            background: linear-gradient(135deg, var(--accent-blue), var(--primary-purple));
-            padding: 1.5rem;
-            border-radius: 10px;
-            text-align: center;
-            margin-top: 2rem;
-            color: white;
-        }
-        
-        .social-links {
+        .error-container {
             display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-        
-        .social-link {
-            display: inline-block;
-            width: 50px;
-            height: 50px;
-            background: var(--primary-purple);
-            color: white;
-            text-decoration: none;
-            border-radius: 50%;
-            display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
+            min-height: 100vh;
+            text-align: center;
+            padding: 2rem;
         }
         
-        .social-link:hover {
-            background: var(--accent-gold);
-            transform: translateY(-3px) rotate(5deg);
-            box-shadow: 0 10px 20px rgba(147, 112, 219, 0.4);
+        .error-code {
+            font-size: 8rem;
+            font-weight: bold;
+            color: var(--royal-purple);
+            margin: 0;
+            text-shadow: 0 4px 8px rgba(106, 76, 147, 0.2);
+        }
+        
+        .error-message {
+            font-size: 1.5rem;
+            color: var(--dark-gray);
+            margin: 1rem 0 2rem 0;
+        }
+        
+        .error-description {
+            font-size: 1.1rem;
+            color: var(--medium-gray);
+            margin-bottom: 3rem;
+            max-width: 600px;
+        }
+        
+        .error-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .error-btn {
+            display: inline-block;
+            background: var(--royal-purple);
+            color: var(--pure-white);
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--royal-purple);
+        }
+        
+        .error-btn.secondary {
+            background: var(--lavender);
+            color: var(--royal-purple);
+            border: 2px solid var(--royal-purple);
+        }
+        
+        .error-animation {
+            animation: float 3s ease-in-out infinite;
         }
     </style>
 </head>
@@ -193,142 +73,24 @@
     <!-- Skip Link for Accessibility -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
     
-    <!-- Scroll Progress Indicator -->
-    <div class="scroll-progress" id="scrollProgress"></div>
-    
     <div class="container">
-        <!-- Navigation Menu -->
-        <nav class="nav-menu" role="navigation" aria-label="Main navigation">
-            <a href="index.html" class="nav-item">Home</a>
-            <a href="projects.html" class="nav-item">Projects</a>
-            <a href="resume.html" class="nav-item">Resume</a>
-            <a href="contact.html" class="nav-item active" aria-current="page">Contact</a>
-        </nav>
-
         <main id="main-content">
-            <div class="contact-container fade-in">
-            <!-- Contact Hero -->
-            <div class="contact-hero">
-                <h1>Let's Connect</h1>
-                <p class="subtitle">Data Analyst with expertise in risk modeling, ML explainability, and statistical analysis</p>
-                <p>Always interested in discussing data science opportunities, collaborations, and new projects</p>
-            </div>
-
-            <!-- Contact Methods -->
-            <div class="contact-methods">
-                <div class="contact-card">
-                    <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                    </svg>
-                    <div class="contact-title">Email</div>
-                    <div class="contact-info">Quick response within 24 hours</div>
-                    <a href="mailto:tunchiiefashh@gmail.com" class="contact-link">Send Email</a>
+            <div class="error-container">
+                <div class="error-code error-animation">404</div>
+                <h1 class="error-message">Oops! Page Not Found</h1>
+                <p class="error-description">
+                    The page you're looking for seems to have wandered off into the data void. 
+                    Don't worry though – let's get you back on track to explore my portfolio!
+                </p>
+                
+                <div class="error-actions">
+                    <a href="index.html" class="error-btn">Go Home</a>
+                    <a href="projects.html" class="error-btn secondary">View Projects</a>
+                    <a href="contact.html" class="error-btn secondary">Contact Me</a>
                 </div>
-
-                <div class="contact-card">
-                    <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                    </svg>
-                    <div class="contact-title">GitHub</div>
-                    <div class="contact-info">View my code and projects</div>
-                    <a href="https://github.com/Tunchiie" target="_blank" class="contact-link">Follow</a>
-                </div>
-
-                <div class="contact-card">
-                    <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                    </svg>
-                    <div class="contact-title">LinkedIn</div>
-                    <div class="contact-info">Professional networking</div>
-                    <a href="https://www.linkedin.com/in/adetunji-fasiku/" target="_blank" class="contact-link">Connect</a>
-                </div>
-            </div>
-
-            <!-- Contact Form -->
-            <div class="contact-form">
-                <h2 style="color: var(--primary-purple); margin-bottom: 1.5rem; text-align: center;">Send Me a Message</h2>
-                <form id="contactForm" netlify>
-                    <div class="form-group">
-                        <label for="name">Your Name *</label>
-                        <input type="text" id="name" name="name" required>
-                        <span class="form-error" id="nameError"></span>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Your Email *</label>
-                        <input type="email" id="email" name="email" required>
-                        <span class="form-error" id="emailError"></span>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="company">Company/Organization</label>
-                        <input type="text" id="company" name="company">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="subject">Subject *</label>
-                        <select id="subject" name="subject" required>
-                            <option value="">Select a topic...</option>
-                            <option value="job-opportunity">Job Opportunity</option>
-                            <option value="freelance-project">Freelance Project</option>
-                            <option value="collaboration">Research Collaboration</option>
-                            <option value="mentoring">Mentoring Request</option>
-                            <option value="general">General Inquiry</option>
-                            <option value="other">Other</option>
-                        </select>
-                        <span class="form-error" id="subjectError"></span>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Message *</label>
-                        <textarea id="message" name="message" placeholder="Tell me about your project, opportunity, or just say hello! Please include relevant details like timeline, budget range (for freelance), or specific requirements." required minlength="10"></textarea>
-                        <span class="form-error" id="messageError"></span>
-                        <div class="character-count">
-                            <span id="charCount">0</span>/500 characters
-                        </div>
-                    </div>
-                    
-                    <div class="form-group checkbox-group">
-                        <label>
-                            <input type="checkbox" id="newsletter" name="newsletter">
-                            <span class="checkmark"></span>
-                            Subscribe to my newsletter for data science insights and project updates
-                        </label>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn" id="submitBtn">
-                        <span class="btn-text">Send Message</span>
-                        <span class="btn-loader" style="display: none;">Sending...</span>
-                    </button>
-                    
-                    <div class="form-status" id="formStatus"></div>
-                </form>
-            </div>
-
-            <!-- Availability Status -->
-            <div class="availability">
-                <h3>Current Availability</h3>
-                <p>🟢 Available for new opportunities and collaborations</p>
-                <p>Open to: Full-time positions • Freelance projects • Research collaborations • Mentoring</p>
-            </div>
-
-            <!-- Social Links -->
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/adetunji-fasiku/" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                    </svg>
-                </a>
-                <a href="https://github.com/Tunchiie" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                    </svg>
-                </a>
-                <a href="mailto:tunchiiefashh@gmail.com" class="social-link" title="Email">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                    </svg>
-                </a>
+            
+            <div style="margin-top: 3rem; font-size: 0.9rem; color: var(--medium-gray);">
+                <p>If you believe this is an error, please <a href="contact.html" style="color: var(--royal-purple);">let me know</a>!</p>
             </div>
             </div>
         </main>
@@ -344,213 +106,17 @@
     <button id="back-to-top" class="back-to-top" aria-label="Back to top">
         <span>↑</span>
     </button>
-
+    
     <script>
-        // Scroll progress indicator
-        window.addEventListener('scroll', () => {
-            const scrollProgress = document.getElementById('scrollProgress');
-            const scrollTop = document.documentElement.scrollTop;
-            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const progress = (scrollTop / scrollHeight) * 100;
-            scrollProgress.style.width = progress + '%';
-        });
-
-        // Fade in animation
+        // Add some interactivity
         document.addEventListener('DOMContentLoaded', function() {
-            const fadeElements = document.querySelectorAll('.fade-in');
-            fadeElements.forEach(element => {
-                element.style.opacity = '1';
-                element.style.transform = 'translateY(0)';
-            });
-        });
-
-        // Contact form handling with validation
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+            const errorCode = document.querySelector('.error-code');
             
-            if (validateForm()) {
-                submitForm();
-            }
-        });
-
-        // Form validation
-        function validateForm() {
-            let isValid = true;
-            const errors = {};
-
-            // Name validation
-            const name = document.getElementById('name').value.trim();
-            if (name.length < 2) {
-                errors.name = 'Name must be at least 2 characters long';
-                isValid = false;
-            }
-
-            // Email validation
-            const email = document.getElementById('email').value.trim();
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                errors.email = 'Please enter a valid email address';
-                isValid = false;
-            }
-
-            // Subject validation
-            const subject = document.getElementById('subject').value;
-            if (!subject) {
-                errors.subject = 'Please select a subject';
-                isValid = false;
-            }
-
-            // Message validation
-            const message = document.getElementById('message').value.trim();
-            if (message.length < 10) {
-                errors.message = 'Message must be at least 10 characters long';
-                isValid = false;
-            }
-
-            // Display errors
-            Object.keys(errors).forEach(field => {
-                const errorElement = document.getElementById(field + 'Error');
-                if (errorElement) {
-                    errorElement.textContent = errors[field];
-                    errorElement.style.display = 'block';
-                }
-            });
-
-            // Clear errors for valid fields
-            ['name', 'email', 'subject', 'message'].forEach(field => {
-                if (!errors[field]) {
-                    const errorElement = document.getElementById(field + 'Error');
-                    if (errorElement) {
-                        errorElement.style.display = 'none';
-                    }
-                }
-            });
-
-            return isValid;
-        }
-
-        // Submit form
-        function submitForm() {
-            const submitBtn = document.getElementById('submitBtn');
-            const btnText = submitBtn.querySelector('.btn-text');
-            const btnLoader = submitBtn.querySelector('.btn-loader');
-            const formStatus = document.getElementById('formStatus');
-
-            // Show loading state
-            btnText.style.display = 'none';
-            btnLoader.style.display = 'inline';
-            submitBtn.disabled = true;
-
-            // Get form data
-            const formData = new FormData(document.getElementById('contactForm'));
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const company = formData.get('company') || 'Not specified';
-            const subject = formData.get('subject');
-            const message = formData.get('message');
-            const newsletter = formData.get('newsletter') ? 'Yes' : 'No';
-
-            // Simulate form submission (replace with actual endpoint)
-            setTimeout(() => {
-                // Create mailto link as fallback
-                const subjectLine = `${subject.charAt(0).toUpperCase() + subject.slice(1).replace('-', ' ')}: ${name}`;
-                const emailBody = `Name: ${name}
-Email: ${email}
-Company: ${company}
-Subject: ${subject}
-Newsletter Subscription: ${newsletter}
-
-Message:
-${message}
-
----
-Sent from Adetunji Fasiku's Portfolio Contact Form`;
-
-                const mailtoLink = `mailto:tunchiiefashh@gmail.com?subject=${encodeURIComponent(subjectLine)}&body=${encodeURIComponent(emailBody)}`;
-                
-                // Reset button state
-                btnText.style.display = 'inline';
-                btnLoader.style.display = 'none';
-                submitBtn.disabled = false;
-
-                // Show success message
-                formStatus.innerHTML = `
-                    <div class="success-message">
-                        <h4>✅ Message Ready!</h4>
-                        <p>Your email client should open with the message pre-filled. If it doesn't open automatically, please copy the details and email me directly at <strong>tunchiiefashh@gmail.com</strong></p>
-                        <p>I typically respond within 24-48 hours!</p>
-                    </div>
-                `;
-
-                // Open email client
-                window.location.href = mailtoLink;
-
-                // Reset form after short delay
+            errorCode.addEventListener('click', function() {
+                this.style.transform = 'scale(1.1) rotate(5deg)';
                 setTimeout(() => {
-                    document.getElementById('contactForm').reset();
-                    updateCharCount();
-                    formStatus.innerHTML = '';
-                }, 3000);
-
-            }, 1500);
-        }
-
-        // Character count for message
-        function updateCharCount() {
-            const message = document.getElementById('message');
-            const charCount = document.getElementById('charCount');
-            
-            if (message && charCount) {
-                const count = message.value.length;
-                charCount.textContent = count;
-                
-                // Change color based on length
-                if (count > 450) {
-                    charCount.style.color = '#e74c3c';
-                } else if (count > 300) {
-                    charCount.style.color = '#f39c12';
-                } else {
-                    charCount.style.color = '#27ae60';
-                }
-            }
-        }
-
-        // Add character count listener
-        document.getElementById('message').addEventListener('input', updateCharCount);
-
-        // Initialize character count
-        document.addEventListener('DOMContentLoaded', updateCharCount);
-
-        // Add hover effects
-        document.querySelectorAll('.contact-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.borderLeftColor = 'var(--primary-purple)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.borderLeftColor = 'var(--accent-gold)';
-            });
-        });
-
-        // Add ripple effect to buttons
-        document.querySelectorAll('.contact-link, .submit-btn').forEach(button => {
-            button.addEventListener('click', function(e) {
-                const ripple = document.createElement('span');
-                const rect = this.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                const x = e.clientX - rect.left - size / 2;
-                const y = e.clientY - rect.top - size / 2;
-                
-                ripple.style.width = ripple.style.height = size + 'px';
-                ripple.style.left = x + 'px';
-                ripple.style.top = y + 'px';
-                ripple.classList.add('ripple');
-                
-                this.appendChild(ripple);
-                
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
+                    this.style.transform = 'scale(1) rotate(0deg)';
+                }, 300);
             });
         });
     </script>
