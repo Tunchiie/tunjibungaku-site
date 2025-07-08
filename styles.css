@@ -211,11 +211,11 @@ h1 {
 }
 
 .contact-item:hover {
-    color: var(--pure-white);
-    background: linear-gradient(135deg, var(--gold-accent) 0%, var(--warm-gold) 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(114, 92, 173, 0.5);
-    border: 1px solid rgba(114, 92, 173, 0.6);
+    color: var(--pure-white) !important;
+    background: linear-gradient(135deg, var(--gold-accent) 0%, var(--warm-gold) 100%) !important;
+    transform: none;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.5);
+    border: 1px solid var(--gold-accent);
 }
 
 /* ================================
@@ -286,9 +286,15 @@ h1 {
 }
 
 .skill-category:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(114, 92, 173, 0.15);
+    background: var(--gold-accent) !important;
+    color: var(--deep-purple) !important;
+    transform: none;
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
     border-left-color: var(--gold-accent);
+}
+
+.skill-category:hover h3 {
+    color: var(--deep-purple) !important;
 }
 
 .skill-category h3 {
@@ -345,9 +351,11 @@ h1 {
 }
 
 .skill-tag:hover {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 4px 15px rgba(114, 92, 173, 0.2);
-    border-color: var(--gold-accent);
+    background: var(--gold-accent) !important;
+    color: var(--deep-purple) !important;
+    border-color: var(--gold-accent) !important;
+    transform: none;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
 }
 
 /* Dark mode skill tag styles */
@@ -359,9 +367,11 @@ body.dark-theme .skill-tag {
 }
 
 body.dark-theme .skill-tag:hover {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3) !important;
+    background: var(--gold-accent) !important;
+    color: var(--deep-purple) !important;
     border: 1px solid var(--gold-accent) !important;
+    transform: none;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3) !important;
 }
 
 /* Dark mode tech tag styles */
@@ -373,6 +383,8 @@ body.dark-theme .tech-tag {
 }
 
 body.dark-theme .project-card:hover .tech-tag {
+    background: var(--gold-accent) !important;
+    color: var(--deep-purple) !important;
     border-color: var(--gold-accent) !important;
     box-shadow: 0 3px 10px rgba(212, 175, 55, 0.3) !important;
 }
@@ -415,9 +427,15 @@ body.dark-theme .project-card:hover .tech-tag {
 }
 
 .project-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(114, 92, 173, 0.15);
+    background: var(--light-purple) !important;
+    color: var(--pure-white) !important;
+    transform: none;
+    box-shadow: 0 8px 25px rgba(114, 92, 173, 0.25);
     border-left-color: var(--gold-accent);
+}
+
+.project-card:hover h3 {
+    color: var(--pure-white) !important;
 }
 
 .project-card h3 {
@@ -453,8 +471,10 @@ body.dark-theme .project-card:hover .tech-tag {
 }
 
 .project-card:hover .tech-tag {
-    border-color: var(--gold-accent);
-    box-shadow: 0 3px 10px rgba(114, 92, 173, 0.2);
+    background: var(--gold-accent) !important;
+    color: var(--deep-purple) !important;
+    border-color: var(--gold-accent) !important;
+    box-shadow: 0 3px 10px rgba(212, 175, 55, 0.3);
 }
 
 /* ================================
@@ -602,10 +622,11 @@ body:not(.dark-theme) .learning-goals .goal-list li {
 }
 
 .cta-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(114, 92, 173, 0.2);
-    background: var(--gold-accent);
-    color: var(--deep-purple);
+    transform: none;
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+    background: var(--gold-accent) !important;
+    color: var(--deep-purple) !important;
+    border: 2px solid var(--gold-accent);
 }
 
 /* ================================
@@ -682,24 +703,20 @@ body:not(.dark-theme) .learning-goals .goal-list li {
 
 /* Filter Button Hover State */
 .filter-btn:hover {
-    background: rgba(114, 92, 173, 0.08);
-    border-color: var(--lavender);
-    transform: translateY(-2px);
-    box-shadow: 
-        0 8px 24px rgba(114, 92, 173, 0.15),
-        0 3px 8px rgba(0, 0, 0, 0.1);
-    color: var(--lavender);
+    background: var(--gold-accent) !important;
+    color: var(--deep-purple) !important;
+    border-color: var(--gold-accent) !important;
+    transform: none;
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.25);
 }
 
 /* Active Filter Button */
 .filter-btn.active {
-    background: var(--lavender);
-    color: var(--pure-white);
-    border-color: var(--lavender);
-    transform: translateY(-1px);
-    box-shadow: 
-        0 6px 20px rgba(114, 92, 173, 0.25),
-        0 2px 6px rgba(0, 0, 0, 0.15);
+    background: var(--lavender) !important;
+    color: var(--pure-white) !important;
+    border-color: var(--lavender) !important;
+    transform: none;
+    box-shadow: 0 4px 16px rgba(114, 92, 173, 0.3);
 }
 
 /* Filter Button Focus State (Accessibility) */
@@ -837,7 +854,7 @@ body.dark-theme .contact-item {
 body.dark-theme .contact-item:hover {
     background: linear-gradient(135deg, var(--gold-accent), var(--warm-gold)) !important;
     color: var(--pure-white) !important;
-    transform: translateY(-2px);
+    transform: none;
     box-shadow: 0 4px 12px rgba(212, 175, 55, 0.5) !important;
     border: 1px solid var(--gold-accent) !important;
 }
@@ -1239,11 +1256,11 @@ body.dark-theme .form-progress-bar {
 }
 
 .submit-btn:hover {
-    background: linear-gradient(135deg, var(--gold-accent), var(--warm-gold));
-    color: var(--deep-purple);
-    transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 10px 24px rgba(212, 175, 55, 0.45), 0 5px 10px rgba(212, 175, 55, 0.25);
-    border-color: var(--gold-accent);
+    background: linear-gradient(135deg, var(--gold-accent), var(--warm-gold)) !important;
+    color: var(--deep-purple) !important;
+    transform: none;
+    box-shadow: 0 10px 24px rgba(212, 175, 55, 0.45);
+    border-color: var(--gold-accent) !important;
 }
 
 /* Download Button Enhanced Hover Effects */
@@ -1262,11 +1279,11 @@ body.dark-theme .form-progress-bar {
 }
 
 .download-btn:hover {
-    background: linear-gradient(135deg, var(--gold-accent), var(--warm-gold));
-    color: var(--deep-purple);
-    transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 10px 24px rgba(212, 175, 55, 0.45), 0 5px 10px rgba(212, 175, 55, 0.25);
-    border-color: var(--gold-accent);
+    background: linear-gradient(135deg, var(--gold-accent), var(--warm-gold)) !important;
+    color: var(--deep-purple) !important;
+    transform: none;
+    box-shadow: 0 10px 24px rgba(212, 175, 55, 0.45);
+    border-color: var(--gold-accent) !important;
 }
 
 /* Contact Link Enhanced Hover Effects */
@@ -1285,11 +1302,11 @@ body.dark-theme .form-progress-bar {
 }
 
 .contact-link:hover {
-    background: linear-gradient(135deg, var(--gold-accent), var(--warm-gold));
-    color: var(--deep-purple);
-    transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 10px 24px rgba(212, 175, 55, 0.45), 0 5px 10px rgba(212, 175, 55, 0.25);
-    border-color: var(--gold-accent);
+    background: linear-gradient(135deg, var(--gold-accent), var(--warm-gold)) !important;
+    color: var(--deep-purple) !important;
+    transform: none;
+    box-shadow: 0 10px 24px rgba(212, 175, 55, 0.45);
+    border-color: var(--gold-accent) !important;
 }
 
 /* ================================
@@ -2273,7 +2290,7 @@ body.dark-theme .highlight-list li,
 body.dark-theme .feature-list li,
 body.dark-theme .achievement-list li {
     color: rgba(255, 255, 255, 0.9) !important;
-    border-bottom-color: rgba(255, 255, 255, 0.1);
+    border-bottom-color: rgba(255, 255, 255, 255, 0.1);
 }
 
 body.dark-theme .highlight-list li::before,
