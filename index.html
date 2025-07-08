@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en", theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,7 @@
     <meta name="keywords" content="Data Analyst, Data Science, Machine Learning, Python, SQL, Risk Modeling, Statistical Analysis, SHAP, Portfolio, Adetunji Fasiku">
     <meta name="author" content="Adetunji Fasiku">
     <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#5f43b2">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -27,60 +28,50 @@
     
     <title>Adetunji Fasiku - Data Analyst | Aspiring Data Scientist</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="analytics.js"></script>
+    <script src="enhanced-portfolio.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <!-- Scroll Progress Indicator -->
     <div class="scroll-progress" id="scrollProgress"></div>
     
     <div class="container">
-        <!-- Theme Toggle -->
-        <button class="theme-toggle" onclick="toggleTheme()" 
-                tabindex="0" 
-                role="button" 
-                aria-label="Toggle dark/light theme"
-                title="Toggle dark/light theme">
-            <span class="theme-icon">🌙</span>
-        </button>
-        
-        <!-- Back to Top Button -->
-        <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
-            <span>↑</span>
-        </button>
-        
         <!-- Navigation Menu -->
-        <nav class="nav-menu">
-            <a href="./" class="nav-item active">Home</a>
-            <a href="./projects/" class="nav-item">Projects</a>
-            <a href="./resume/" class="nav-item">Resume</a>
-            <a href="./contact/" class="nav-item">Contact</a>
+        <nav class="nav-menu" role="navigation" aria-label="Main navigation">
+            <a href="index.html" class="nav-item active" aria-current="page">Home</a>
+            <a href="projects.html" class="nav-item">Projects</a>
+            <a href="resume.html" class="nav-item">Resume</a>
+            <a href="contact.html" class="nav-item">Contact</a>
         </nav>
 
+        <main id="main-content">
         <!-- Header Section -->
         <header class="fade-in">
-            <div class="profile-img floating">AF</div>
+            <div class="profile-img floating" aria-hidden="true">AF</div>
             <h1>Adetunji Fasiku</h1>
-            <p class="subtitle">Data Analyst</p>
+            <p class="subtitle">Data Analyst | Aspiring Data Scientist</p>
             <p>Data Analyst with a Bioinformatics background and hands-on experience in data modeling, risk analysis, and ML explainability. Passionate team player with curiosity and strong communication skills.</p>
             
             <div class="contact-info">
                 <div class="contact-item">
-                    <span>📧</span>
+                    <span>Email:</span>
                     <span>tunchiiefashh@gmail.com</span>
                 </div>
                 <div class="contact-item">
-                    <span></span>
+                    <span>LinkedIn:</span>
                     <span>https://www.linkedin.com/in/adetunji-fasiku/</span>
                 </div>
                 <div class="contact-item">
-                    <span>🐙</span>
+                    <span>GitHub:</span>
                     <span>https://github.com/Tunchiie</span>
                 </div>
                 <div class="contact-item">
-                    <span>📍</span>
+                    <span>Location:</span>
                     <span>Parkville, Maryland</span>
                 </div>
             </div>
@@ -170,7 +161,7 @@
             
             <div class="featured-project">
                 <div class="project-header">
-                    <div class="project-icon">🎵📚</div>
+                    <div class="project-icon">Music+Lit</div>
                     <div class="project-title">
                         <h3>Bungaku</h3>
                         <p class="project-subtitle">Music-Literary Correlation Analysis Platform</p>
@@ -315,13 +306,13 @@
 
                 <div class="project-links">
                     <a href="https://github.com/Tunchiie/Bungaku" class="project-link" target="_blank">
-                        🐙 View on GitHub
+                        <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                        </svg>
+                        View on GitHub
                     </a>
                     <a href="#" class="project-link secondary">
-                        📊 Live Demo (Coming Soon)
-                    </a>
-                    <a href="#" class="project-link secondary">
-                        📋 Research Paper
+                        Live Demo (Coming Soon)
                     </a>
                 </div>
             </div>
@@ -450,7 +441,19 @@
                 <a href="./projects/" class="cta-button">View Portfolio</a>
             </div>
         </section>
+        </main>
     </div>
+
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light theme">
+        <span class="theme-toggle-sun">☀️</span>
+        <span class="theme-toggle-moon">🌙</span>
+    </button>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+        <span>↑</span>
+    </button>
 
     <script>
         // Enhanced scroll animations and interactions
@@ -619,112 +622,32 @@
         `;
         document.head.appendChild(style);
 
-        // Theme toggle functionality
-        function toggleTheme() {
-            const body = document.body;
-            body.classList.toggle('dark-theme');
-            
-            const themeIcon = document.querySelector('.theme-icon');
-            if (body.classList.contains('dark-theme')) {
-                themeIcon.textContent = '☀️';
-            } else {
-                themeIcon.textContent = '🌙';
-            }
-        }
+        // Add structured data for SEO
+        const structuredData = {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Adetunji Fasiku",
+            "jobTitle": "Data Analyst",
+            "description": "Data Analyst with expertise in machine learning, risk modeling, and statistical analysis. Expert in Python, SQL, SHAP, and data visualization",
+            "url": "https://tunchiie.github.io",
+            "sameAs": [
+                "https://www.linkedin.com/in/adetunji-fasiku/",
+                "https://github.com/Tunchiie"
+            ],
+            "knowsAbout": [
+                "Data Analysis",
+                "Machine Learning", 
+                "Python Programming",
+                "SQL",
+                "Bioinformatics",
+                "Statistical Analysis"
+            ]
+        };
 
-        // Back to top functionality
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-
-        // Show/hide back to top button based on scroll position
-        window.addEventListener('scroll', () => {
-            const backToTopButton = document.getElementById('backToTop');
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.add('visible');
-            } else {
-                backToTopButton.classList.remove('visible');
-            }
-        });
-
-        // Theme toggle functionality with persistence
-        function toggleTheme() {
-            const body = document.body;
-            const themeIcon = document.querySelector('.theme-icon');
-            
-            body.classList.toggle('dark-theme');
-            
-            if (body.classList.contains('dark-theme')) {
-                themeIcon.textContent = '☀️';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                themeIcon.textContent = '🌙';
-                localStorage.setItem('theme', 'light');
-            }
-        }
-
-        // Load saved theme on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            const themeIcon = document.querySelector('.theme-icon');
-            
-            if (savedTheme === 'dark') {
-                document.body.classList.add('dark-theme');
-                if (themeIcon) themeIcon.textContent = '☀️';
-            } else {
-                document.body.classList.remove('dark-theme');
-                if (themeIcon) themeIcon.textContent = '🌙';
-            }
-
-            // Enhanced fade-in animations with intersection observer
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, observerOptions);
-
-            // Observe all fade-in elements
-            document.querySelectorAll('.fade-in').forEach(el => {
-                observer.observe(el);
-            });
-
-            // Add structured data for SEO
-            const structuredData = {
-                "@context": "https://schema.org",
-                "@type": "Person",
-                "name": "Adetunji Fasiku",
-                "jobTitle": "Data Analyst",
-                "description": "Data Analyst with expertise in machine learning, risk modeling, and statistical analysis. Expert in Python, SQL, SHAP, and data visualization",
-                "url": "https://tunchiie.github.io",
-                "sameAs": [
-                    "https://www.linkedin.com/in/adetunji-fasiku/",
-                    "https://github.com/Tunchiie"
-                ],
-                "knowsAbout": [
-                    "Data Analysis",
-                    "Machine Learning",
-                    "Python Programming",
-                    "SQL",
-                    "Bioinformatics",
-                    "Statistical Analysis"
-                ]
-            };
-
-            const script = document.createElement('script');
-            script.type = 'application/ld+json';
-            script.textContent = JSON.stringify(structuredData);
-            document.head.appendChild(script);
-        });
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.textContent = JSON.stringify(structuredData);
+        document.head.appendChild(script);
     </script>
 </body>
 </html>

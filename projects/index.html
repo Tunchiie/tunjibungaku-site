@@ -6,40 +6,34 @@
     <title>Projects - Adetunji Fasiku | Data Science Portfolio</title>
     <meta name="description" content="Explore Adetunji Fasiku's data science projects including machine learning models, trading algorithms, and bioinformatics analyses.">
     <link rel="stylesheet" href="../styles.css">
-    <script src="../analytics.js"></script>
+    <script src="../enhanced-portfolio.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <!-- Scroll Progress Indicator -->
     <div class="scroll-progress" id="scrollProgress"></div>
     
     <div class="container">
-        <!-- Theme Toggle -->
-        <!-- Theme Toggle -->
-        <button class="theme-toggle emoji-fallback" onclick="toggleTheme()" 
-                tabindex="0" 
-                role="button" 
-                aria-label="Toggle dark/light theme"
-                title="Toggle dark/light theme">
-            <span class="theme-icon">🌙</span>
-        </button>
-        
         <!-- Navigation Menu -->
-        <nav class="nav-menu">
-            <a href="../" class="nav-item">Home</a>
-            <a href="./" class="nav-item active">Projects</a>
-            <a href="../resume/" class="nav-item">Resume</a>
-            <a href="../contact/" class="nav-item">Contact</a>
+        <nav class="nav-menu" role="navigation" aria-label="Main navigation">
+            <a href="../index.html" class="nav-item">Home</a>
+            <a href="../projects.html" class="nav-item active" aria-current="page">Projects</a>
+            <a href="../resume.html" class="nav-item">Resume</a>
+            <a href="../contact.html" class="nav-item">Contact</a>
         </nav>
 
-        <!-- Page Header -->
-        <header class="fade-in">
-            <h1>My Data Science Journey</h1>
-            <p class="subtitle">Statistical Testing, Risk Modeling & ML Explainability in Action</p>
-            <p>A comprehensive collection showcasing my progression from foundational projects to advanced statistical analysis and business impact</p>
-        </header>
+        <main id="main-content">
+            <!-- Page Header -->
+            <header class="fade-in">
+                <h1>My Data Science Journey</h1>
+                <p class="subtitle">Statistical Testing, Risk Modeling & ML Explainability in Action</p>
+                <p>A comprehensive collection showcasing my progression from foundational projects to advanced statistical analysis and business impact</p>
+            </header>
 
         <!-- GitHub Stats Section -->
         <section class="section fade-in">
@@ -241,7 +235,10 @@
 
                 <div class="project-links">
                     <a href="https://github.com/Tunchiie/CandleThrob" class="project-link" target="_blank">
-                        🐙 View on GitHub
+                        <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                        </svg>
+                        View on GitHub
                     </a>
                     <a href="#" class="project-link secondary">
                         📊 Technical Analysis
@@ -423,16 +420,16 @@
 
                 <div class="project-links">
                     <a href="https://github.com/Tunchiie/Bungaku" class="project-link" target="_blank">
-                        🐙 View on GitHub
+                        <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                        </svg>
+                        View on GitHub
                     </a>
                     <a href="#" class="project-link secondary">
                         📊 Live Demo (Coming Soon)
                     </a>
                     <a href="#" class="project-link secondary">
-                        📋 Research Paper
-                    </a>
-                    <a href="#" class="project-link secondary">
-                        📈 Project Insights
+                         Project Insights
                     </a>
                 </div>
             </div>
@@ -616,16 +613,16 @@
 
                 <div class="project-links">
                     <a href="https://github.com/Tunchiie/Customer-Purchase-Predictor" class="project-link" target="_blank">
-                        🐙 View on GitHub
+                        <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                        </svg>
+                        View on GitHub
                     </a>
                     <a href="#" class="project-link secondary">
                         📊 Model Performance
                     </a>
                     <a href="#" class="project-link secondary">
                         📋 Technical Report
-                    </a>
-                    <a href="#" class="project-link secondary">
-                        💼 Business Case Study
                     </a>
                 </div>
             </div>
@@ -789,7 +786,10 @@
 
                 <div class="project-links">
                     <a href="https://github.com/Tunchiie/Breast-Cancer-Predictor" class="project-link" target="_blank">
-                        🐙 View on GitHub
+                        <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                        </svg>
+                        View on GitHub
                     </a>
                     <a href="#" class="project-link secondary">
                         📚 Learning Notes
@@ -966,7 +966,10 @@
 
                 <div class="project-links">
                     <a href="https://github.com/Tunchiie/Lending-Club-Loan-Predictor" class="project-link" target="_blank">
-                        🐙 View on GitHub
+                        <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                        </svg>
+                        View on GitHub
                     </a>
                     <a href="#" class="project-link secondary">
                         📊 Model Performance
@@ -1051,7 +1054,12 @@
 
         <!-- GitHub Integration -->
         <section class="section fade-in">
-            <h2>🐙 GitHub Activity</h2>
+            <h2>
+                <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 0.5rem;">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+                GitHub Activity
+            </h2>
             <p class="text-center">Explore my complete development journey on GitHub</p>
             
             <div class="cta-section" style="margin-top: 30px;">

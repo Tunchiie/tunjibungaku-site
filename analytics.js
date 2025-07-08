@@ -1,368 +1,456 @@
-// Portfolio Analytics and Performance Tracking
-class PortfolioAnalytics {
+// Enhanced Portfolio Analytics and Professional UI Management
+class ProfessionalPortfolio {
     constructor() {
         this.sessionStart = Date.now();
         this.pageViews = [];
         this.interactions = [];
         this.performance = {};
+        this.filters = new Map();
+        this.observers = new Map();
         
         this.init();
     }
 
     init() {
-        this.trackPageView();
-        this.trackPerformance();
-        this.setupInteractionTracking();
-        this.trackScrollDepth();
-        this.trackTimeOnPage();
+        this.setupAccessibility();
+        this.setupThemeManagement();
+        this.setupScrollManagement();
+        this.setupProjectFiltering();
+        this.setupAnimations();
+        this.setupPerformanceTracking();
+        this.setupErrorHandling();
+        this.trackAnalytics();
     }
 
-    // Track page views
-    trackPageView() {
-        const pageData = {
-            url: window.location.href,
-            title: document.title,
-            timestamp: Date.now(),
-            referrer: document.referrer,
-            userAgent: navigator.userAgent,
-            viewport: {
-                width: window.innerWidth,
-                height: window.innerHeight
+    // Enhanced accessibility features
+    setupAccessibility() {
+        this.addSkipLinks();
+        this.setupKeyboardNavigation();
+        this.setupScreenReaderAnnouncements();
+        this.setupFocusManagement();
+    }
+
+    addSkipLinks() {
+        if (!document.querySelector('.skip-to-content')) {
+            const skipLink = document.createElement('a');
+            skipLink.href = '#main-content';
+            skipLink.className = 'skip-to-content';
+            skipLink.textContent = 'Skip to main content';
+            skipLink.setAttribute('aria-label', 'Skip to main content');
+            document.body.insertBefore(skipLink, document.body.firstChild);
+        }
+    }
+
+    setupKeyboardNavigation() {
+        document.addEventListener('keydown', (e) => {
+            if (e.target.classList.contains('filter-btn')) {
+                this.handleFilterKeyboard(e);
             }
-        };
-        
-        this.pageViews.push(pageData);
-        this.logEvent('page_view', pageData);
+            
+            if (e.target.classList.contains('theme-toggle') && e.key === 'Enter') {
+                this.toggleTheme();
+            }
+            
+            if (e.key === 'Escape') {
+                this.handleEscapeKey();
+            }
+        });
     }
 
-    // Track page performance
-    trackPerformance() {
+    handleFilterKeyboard(e) {
+        const filterButtons = Array.from(document.querySelectorAll('.filter-btn'));
+        const currentIndex = filterButtons.indexOf(e.target);
+        
+        switch (e.key) {
+            case 'ArrowLeft':
+            case 'ArrowUp':
+                e.preventDefault();
+                const prevIndex = currentIndex > 0 ? currentIndex - 1 : filterButtons.length - 1;
+                filterButtons[prevIndex].focus();
+                break;
+            case 'ArrowRight':
+            case 'ArrowDown':
+                e.preventDefault();
+                const nextIndex = currentIndex < filterButtons.length - 1 ? currentIndex + 1 : 0;
+                filterButtons[nextIndex].focus();
+                break;
+        }
+    }
+
+    setupScreenReaderAnnouncements() {
+        if (!document.getElementById('sr-announcements')) {
+            const liveRegion = document.createElement('div');
+            liveRegion.id = 'sr-announcements';
+            liveRegion.setAttribute('aria-live', 'polite');
+            liveRegion.setAttribute('aria-atomic', 'true');
+            liveRegion.style.position = 'absolute';
+            liveRegion.style.left = '-10000px';
+            liveRegion.style.width = '1px';
+            liveRegion.style.height = '1px';
+            liveRegion.style.overflow = 'hidden';
+            document.body.appendChild(liveRegion);
+        }
+    }
+
+    announceToScreenReader(message) {
+        const liveRegion = document.getElementById('sr-announcements');
+        if (liveRegion) {
+            liveRegion.textContent = message;
+        }
+    }
+
+    // Professional theme management
+    setupThemeManagement() {
+        this.loadSavedTheme();
+        this.setupThemeToggle();
+    }
+
+    loadSavedTheme() {
+        const savedTheme = localStorage.getItem('portfolio-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+        this.applyTheme(theme);
+    }
+
+    setupThemeToggle() {
+        const themeToggle = document.querySelector('.theme-toggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => this.toggleTheme());
+            themeToggle.setAttribute('aria-label', 'Toggle theme');
+        }
+    }
+
+    toggleTheme() {
+        const currentTheme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        this.applyTheme(newTheme);
+        localStorage.setItem('portfolio-theme', newTheme);
+        this.announceToScreenReader(`Switched to ${newTheme} theme`);
+    }
+
+    applyTheme(theme) {
+        const body = document.body;
+        const themeIcon = document.querySelector('.theme-icon');
+        
+        if (theme === 'dark') {
+            body.classList.add('dark-theme');
+            if (themeIcon) themeIcon.textContent = '☀️';
+        } else {
+            body.classList.remove('dark-theme');
+            if (themeIcon) themeIcon.textContent = '🌙';
+        }
+    }
+
+    // Enhanced scroll management
+    setupScrollManagement() {
+        this.setupScrollProgress();
+        this.setupBackToTop();
+    }
+
+    setupScrollProgress() {
+        const progressBar = document.getElementById('scrollProgress') || 
+                           document.querySelector('.scroll-progress');
+        
+        if (progressBar) {
+            window.addEventListener('scroll', () => {
+                const scrollPercent = (window.pageYOffset / 
+                    (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+                progressBar.style.width = `${Math.min(scrollPercent, 100)}%`;
+            }, { passive: true });
+        }
+    }
+
+    setupBackToTop() {
+        const backToTop = document.getElementById('backToTop') || 
+                         document.querySelector('.back-to-top');
+        
+        if (backToTop) {
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            }, { passive: true });
+            
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    }
+
+    // Enhanced project filtering
+    setupProjectFiltering() {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        
+        if (filterButtons.length === 0) return;
+        
+        this.currentFilter = 'all';
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const filter = button.getAttribute('data-filter');
+                this.applyFilter(filter, button);
+            });
+            
+            button.setAttribute('aria-pressed', button.classList.contains('active'));
+        });
+        
+        this.initializeProjects();
+        this.initializeProjectFilters();
+    }
+
+    initializeProjects() {
+        const projectCards = document.querySelectorAll('.project-card, .featured-project');
+        
+        projectCards.forEach((card, index) => {
+            card.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 100);
+        });
+    }
+
+    applyFilter(filter, activeButton) {
+        if (this.currentFilter === filter) return;
+        
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card, .featured-project');
+        
+        filterButtons.forEach(btn => {
+            btn.classList.remove('active');
+            btn.setAttribute('aria-pressed', 'false');
+        });
+        
+        activeButton.classList.add('active');
+        activeButton.setAttribute('aria-pressed', 'true');
+        
+        let visibleCount = 0;
+        
+        projectCards.forEach((card, index) => {
+            const categories = (card.getAttribute('data-category') || '').toLowerCase().split(' ');
+            const shouldShow = filter === 'all' || categories.includes(filter.toLowerCase());
+            
+            if (shouldShow) {
+                visibleCount++;
+                card.style.display = 'block';
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 50);
+            } else {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(-20px)';
+                setTimeout(() => {
+                    card.style.display = 'none';
+                }, 300);
+            }
+        });
+        
+        this.announceToScreenReader(`Showing ${visibleCount} projects for ${filter} category`);
+        this.currentFilter = filter;
+    }
+
+    // Project filtering functionality
+    initializeProjectFilters() {
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+        const featuredProjects = document.querySelectorAll('.featured-project');
+
+        if (filterBtns.length === 0) return; // No filters on this page
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.getAttribute('data-filter');
+                
+                // Update active button and ARIA states
+                filterBtns.forEach(b => {
+                    b.classList.remove('active');
+                    b.setAttribute('aria-pressed', 'false');
+                });
+                btn.classList.add('active');
+                btn.setAttribute('aria-pressed', 'true');
+                
+                // Filter project cards
+                projectCards.forEach(card => {
+                    const categories = card.getAttribute('data-category') || '';
+                    
+                    if (filter === 'all' || categories.includes(filter)) {
+                        card.style.display = 'block';
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 100);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+
+                // Handle featured projects
+                featuredProjects.forEach(featuredProject => {
+                    const featuredCategories = featuredProject.getAttribute('data-category') || '';
+                    
+                    if (filter === 'all' || featuredCategories.includes(filter)) {
+                        featuredProject.style.display = 'block';
+                        featuredProject.style.opacity = '0';
+                        featuredProject.style.transform = 'translateY(20px)';
+                        
+                        setTimeout(() => {
+                            featuredProject.style.opacity = '1';
+                            featuredProject.style.transform = 'translateY(0)';
+                        }, 100);
+                    } else {
+                        featuredProject.style.opacity = '0';
+                        featuredProject.style.transform = 'translateY(20px)';
+                        
+                        setTimeout(() => {
+                            featuredProject.style.display = 'none';
+                        }, 300);
+                    }
+                });
+
+                // Analytics tracking
+                if (typeof trackEvent === 'function') {
+                    trackEvent('project_filter', 'click', filter);
+                }
+            });
+
+            // Add keyboard support
+            btn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    btn.click();
+                }
+            });
+        });
+    }
+
+    // Animation setup
+    setupAnimations() {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+        
+        this.observers.set('intersection', observer);
+    }
+
+    // Performance tracking
+    setupPerformanceTracking() {
         if ('performance' in window) {
             window.addEventListener('load', () => {
                 setTimeout(() => {
                     const perfData = performance.getEntriesByType('navigation')[0];
-                    this.performance = {
-                        loadTime: Math.round(perfData.loadEventEnd - perfData.fetchStart),
-                        domContentLoaded: Math.round(perfData.domContentLoadedEventEnd - perfData.fetchStart),
-                        firstPaint: this.getFirstPaint(),
-                        pageSize: this.getPageSize()
-                    };
-                    
-                    this.logEvent('performance', this.performance);
+                    if (perfData) {
+                        console.log('Page Performance:', {
+                            loadTime: Math.round(perfData.loadEventEnd - perfData.fetchStart),
+                            domContentLoaded: Math.round(perfData.domContentLoadedEventEnd - perfData.fetchStart)
+                        });
+                    }
                 }, 100);
             });
         }
     }
 
-    // Get First Paint timing
-    getFirstPaint() {
-        const paintEntries = performance.getEntriesByType('paint');
-        const firstPaint = paintEntries.find(entry => entry.name === 'first-paint');
-        return firstPaint ? Math.round(firstPaint.startTime) : null;
+    // Error handling
+    setupErrorHandling() {
+        window.addEventListener('error', (e) => {
+            console.error('Portfolio Error:', {
+                message: e.message,
+                filename: e.filename,
+                lineno: e.lineno
+            });
+        });
     }
 
-    // Estimate page size
-    getPageSize() {
-        const resources = performance.getEntriesByType('resource');
-        const totalSize = resources.reduce((size, resource) => {
-            return size + (resource.transferSize || 0);
-        }, 0);
-        return Math.round(totalSize / 1024); // KB
+    // Analytics
+    trackAnalytics() {
+        this.trackPageView();
+        this.setupInteractionTracking();
     }
 
-    // Setup interaction tracking
+    trackPageView() {
+        console.log('Page View:', {
+            url: window.location.href,
+            title: document.title,
+            timestamp: Date.now()
+        });
+    }
+
     setupInteractionTracking() {
-        // Track clicks on important elements
         document.addEventListener('click', (e) => {
-            const target = e.target.closest('a, button, .project-card, .skill-tag, .nav-item');
+            const target = e.target.closest('a, button, .project-card, .nav-item, .filter-btn');
             if (target) {
-                this.trackInteraction('click', {
+                console.log('Interaction:', {
                     element: target.tagName.toLowerCase(),
                     text: target.textContent?.trim().substring(0, 50),
-                    href: target.href || null,
-                    className: target.className,
-                    timestamp: Date.now()
-                });
-            }
-        });
-
-        // Track form interactions
-        const forms = document.querySelectorAll('form');
-        forms.forEach(form => {
-            form.addEventListener('submit', (e) => {
-                this.trackInteraction('form_submit', {
-                    formId: form.id,
-                    timestamp: Date.now()
-                });
-            });
-        });
-
-        // Track downloads
-        document.addEventListener('click', (e) => {
-            if (e.target.closest('.download-btn')) {
-                this.trackInteraction('download', {
-                    type: 'resume_pdf',
-                    timestamp: Date.now()
+                    className: target.className
                 });
             }
         });
     }
 
-    // Track scroll depth
-    trackScrollDepth() {
-        let maxScroll = 0;
-        const milestones = [25, 50, 75, 90, 100];
-        const reached = new Set();
-
-        window.addEventListener('scroll', () => {
-            const scrollPercent = Math.round(
-                (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
-            );
-            
-            maxScroll = Math.max(maxScroll, scrollPercent);
-            
-            milestones.forEach(milestone => {
-                if (scrollPercent >= milestone && !reached.has(milestone)) {
-                    reached.add(milestone);
-                    this.trackInteraction('scroll_depth', {
-                        percentage: milestone,
-                        timestamp: Date.now()
-                    });
-                }
-            });
-        });
-    }
-
-    // Track time on page
-    trackTimeOnPage() {
-        let isActive = true;
-        let timeSpent = 0;
-        let lastActiveTime = Date.now();
-
-        // Track when user becomes inactive
-        const events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'];
-        events.forEach(event => {
-            document.addEventListener(event, () => {
-                if (!isActive) {
-                    lastActiveTime = Date.now();
-                    isActive = true;
-                }
-            });
-        });
-
-        // Check for inactivity
-        setInterval(() => {
-            if (isActive && Date.now() - lastActiveTime > 30000) { // 30 seconds
-                isActive = false;
-                timeSpent += 30;
-            } else if (isActive) {
-                timeSpent += 5;
-            }
-        }, 5000);
-
-        // Send time data before leaving
-        window.addEventListener('beforeunload', () => {
-            this.trackInteraction('time_on_page', {
-                totalSeconds: Math.round((Date.now() - this.sessionStart) / 1000),
-                activeSeconds: timeSpent,
-                timestamp: Date.now()
-            });
-        });
-    }
-
-    // Track specific interactions
-    trackInteraction(type, data) {
-        const interaction = {
-            type,
-            data,
-            timestamp: Date.now(),
-            page: window.location.pathname
-        };
+    setupFocusManagement() {
+        let focusedElement = null;
         
-        this.interactions.push(interaction);
-        this.logEvent('interaction', interaction);
+        document.addEventListener('focusin', (e) => {
+            focusedElement = e.target;
+        });
+        
+        this.returnFocus = () => {
+            if (focusedElement && typeof focusedElement.focus === 'function') {
+                focusedElement.focus();
+            }
+        };
     }
 
-    // Log events (can be extended to send to analytics service)
-    logEvent(eventType, eventData) {
-        // For development - log to console
-        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-            console.log(`[Analytics] ${eventType}:`, eventData);
+    handleEscapeKey() {
+        const allButton = document.querySelector('.filter-btn[data-filter="all"]');
+        if (allButton && !allButton.classList.contains('active')) {
+            allButton.click();
         }
-
-        // Store in localStorage for review
-        const storageKey = 'portfolio_analytics';
-        const stored = JSON.parse(localStorage.getItem(storageKey) || '[]');
-        stored.push({ type: eventType, data: eventData, timestamp: Date.now() });
-        
-        // Keep only last 100 events
-        if (stored.length > 100) {
-            stored.splice(0, stored.length - 100);
-        }
-        
-        localStorage.setItem(storageKey, JSON.stringify(stored));
-
-        // Here you could send to Google Analytics, Mixpanel, etc.
-        // Example for Google Analytics:
-        // if (typeof gtag !== 'undefined') {
-        //     gtag('event', eventType, eventData);
-        // }
     }
 
-    // Get analytics summary
-    getAnalyticsSummary() {
-        return {
-            session: {
-                duration: Date.now() - this.sessionStart,
-                pageViews: this.pageViews.length,
-                interactions: this.interactions.length
-            },
-            performance: this.performance,
-            topInteractions: this.getTopInteractions(),
-            deviceInfo: this.getDeviceInfo()
-        };
-    }
-
-    // Get top interactions
-    getTopInteractions() {
-        const counts = {};
-        this.interactions.forEach(interaction => {
-            const key = interaction.type;
-            counts[key] = (counts[key] || 0) + 1;
-        });
-        
-        return Object.entries(counts)
-            .sort(([,a], [,b]) => b - a)
-            .slice(0, 5);
-    }
-
-    // Get device information
-    getDeviceInfo() {
-        return {
-            userAgent: navigator.userAgent,
-            platform: navigator.platform,
-            language: navigator.language,
-            cookieEnabled: navigator.cookieEnabled,
-            onLine: navigator.onLine,
-            viewport: {
-                width: window.innerWidth,
-                height: window.innerHeight
-            },
-            screen: {
-                width: screen.width,
-                height: screen.height,
-                colorDepth: screen.colorDepth
+    destroy() {
+        this.observers.forEach(observer => {
+            if (observer && typeof observer.disconnect === 'function') {
+                observer.disconnect();
             }
-        };
+        });
+        this.observers.clear();
     }
 }
 
-// Initialize analytics when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    window.portfolioAnalytics = new PortfolioAnalytics();
-    
-    // Add analytics summary to console for development
-    setTimeout(() => {
-        console.log('[Portfolio Analytics] Session Summary:', window.portfolioAnalytics.getAnalyticsSummary());
-    }, 10000);
-});
-
-// Performance monitoring
-class PerformanceMonitor {
-    constructor() {
-        this.init();
-    }
-
-    init() {
-        this.monitorLargestContentfulPaint();
-        this.monitorFirstInputDelay();
-        this.monitorCumulativeLayoutShift();
-        this.monitorResourceLoading();
-    }
-
-    // Monitor Largest Contentful Paint (LCP)
-    monitorLargestContentfulPaint() {
-        new PerformanceObserver((entryList) => {
-            const entries = entryList.getEntries();
-            const lastEntry = entries[entries.length - 1];
-            
-            console.log('[Performance] LCP:', Math.round(lastEntry.startTime), 'ms');
-            
-            // Good: < 2.5s, Needs Improvement: 2.5s - 4s, Poor: > 4s
-            const score = lastEntry.startTime < 2500 ? 'good' : 
-                         lastEntry.startTime < 4000 ? 'needs-improvement' : 'poor';
-            
-            window.portfolioAnalytics?.logEvent('lcp', {
-                value: Math.round(lastEntry.startTime),
-                score: score
-            });
-        }).observe({ type: 'largest-contentful-paint', buffered: true });
-    }
-
-    // Monitor First Input Delay (FID)
-    monitorFirstInputDelay() {
-        new PerformanceObserver((entryList) => {
-            const firstEntry = entryList.getEntries()[0];
-            
-            console.log('[Performance] FID:', Math.round(firstEntry.processingStart - firstEntry.startTime), 'ms');
-            
-            const delay = firstEntry.processingStart - firstEntry.startTime;
-            const score = delay < 100 ? 'good' : delay < 300 ? 'needs-improvement' : 'poor';
-            
-            window.portfolioAnalytics?.logEvent('fid', {
-                value: Math.round(delay),
-                score: score
-            });
-        }).observe({ type: 'first-input', buffered: true });
-    }
-
-    // Monitor Cumulative Layout Shift (CLS)
-    monitorCumulativeLayoutShift() {
-        let clsValue = 0;
-        
-        new PerformanceObserver((entryList) => {
-            for (const entry of entryList.getEntries()) {
-                if (!entry.hadRecentInput) {
-                    clsValue += entry.value;
-                }
-            }
-            
-            console.log('[Performance] CLS:', clsValue.toFixed(3));
-            
-            const score = clsValue < 0.1 ? 'good' : clsValue < 0.25 ? 'needs-improvement' : 'poor';
-            
-            window.portfolioAnalytics?.logEvent('cls', {
-                value: parseFloat(clsValue.toFixed(3)),
-                score: score
-            });
-        }).observe({ type: 'layout-shift', buffered: true });
-    }
-
-    // Monitor resource loading
-    monitorResourceLoading() {
-        window.addEventListener('load', () => {
-            const resources = performance.getEntriesByType('resource');
-            const slowResources = resources.filter(resource => resource.duration > 1000);
-            
-            if (slowResources.length > 0) {
-                console.warn('[Performance] Slow resources detected:', slowResources);
-                
-                window.portfolioAnalytics?.logEvent('slow_resources', {
-                    count: slowResources.length,
-                    resources: slowResources.map(r => ({
-                        name: r.name,
-                        duration: Math.round(r.duration),
-                        size: Math.round(r.transferSize / 1024) // KB
-                    }))
-                });
-            }
-        });
-    }
-}
-
-// Initialize performance monitoring
-if ('PerformanceObserver' in window) {
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-        new PerformanceMonitor();
+        window.portfolioManager = new ProfessionalPortfolio();
     });
+} else {
+    window.portfolioManager = new ProfessionalPortfolio();
 }

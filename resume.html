@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume - Adetunji Fasiku</title>
+    <meta name="description" content="Professional resume of Adetunji Fasiku - Data Analyst with expertise in risk modeling, ML explainability, and statistical analysis.">
     <link rel="stylesheet" href="styles.css">
+    <script src="enhanced-portfolio.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <!-- jsPDF Library for PDF generation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         .resume-container {
@@ -170,29 +170,32 @@
     </style>
 </head>
 <body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <!-- Scroll Progress Indicator -->
     <div class="scroll-progress" id="scrollProgress"></div>
     
     <div class="container">
         <!-- Navigation Menu -->
-        <nav class="nav-menu">
+        <nav class="nav-menu" role="navigation" aria-label="Main navigation">
             <a href="index.html" class="nav-item">Home</a>
             <a href="projects.html" class="nav-item">Projects</a>
-            <a href="resume.html" class="nav-item active">Resume</a>
+            <a href="resume.html" class="nav-item active" aria-current="page">Resume</a>
             <a href="contact.html" class="nav-item">Contact</a>
         </nav>
 
-        <div class="resume-container fade-in">
+        <main id="main-content">
+            <div class="resume-container fade-in">
             <!-- Resume Header -->
             <div class="resume-header">
                 <h1>Adetunji Fasiku</h1>
                 <p class="subtitle">Data Analyst</p>
                 <div class="contact-info">
-                    <span>� Parkville, MD</span> | 
-                    <span>�📧 tunchiiefashh@gmail.com</span> | 
-                    <span>� (443) 522-3147</span> | 
-                    <span>� linkedin.com/in/adetunji-fasiku</span> | 
-                    <span>� github.com/Tunchiie</span>
+                    <span>Parkville, MD</span> | 
+                    <span>tunchiiefashh@gmail.com</span> | 
+                    <span>linkedin.com/in/adetunji-fasiku</span> | 
+                    <span>github.com/Tunchiie</span>
                 </div>
             </div>
 
@@ -363,14 +366,26 @@
             <!-- Download/Print Options -->
             <div class="download-resume">
                 <h3>Download Resume</h3>
-                <a href="#" class="download-btn" onclick="downloadPDF()">📄 Download PDF</a>
+                <a href="#" class="download-btn" onclick="downloadPDF()">Download PDF</a>
             </div>
 
             <div class="print-resume">
-                <button class="print-btn" onclick="window.print()">🖨️ Print Resume</button>
+                <button class="print-btn" onclick="window.print()">Print Resume</button>
             </div>
-        </div>
+            </div>
+        </main>
     </div>
+
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light theme">
+        <span class="theme-toggle-sun">☀️</span>
+        <span class="theme-toggle-moon">🌙</span>
+    </button>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+        <span>↑</span>
+    </button>
 
     <script>
         // Scroll progress indicator
@@ -420,11 +435,11 @@
             
             // Contact Information
             pdf.setFontSize(10);
-            pdf.text('Email: adetunji.fasiku@gmail.com | Phone: +1 (314) 374-4399', leftMargin, yPosition);
+            pdf.text('Email: tunchiiefashh@gmail.com', leftMargin, yPosition);
             yPosition += 5;
-            pdf.text('Location: St. Louis, MO | LinkedIn: linkedin.com/in/adesiyan-fasiku', leftMargin, yPosition);
+            pdf.text('Location: Parkville, MD | LinkedIn: linkedin.com/in/adetunji-fasiku', leftMargin, yPosition);
             yPosition += 5;
-            pdf.text('GitHub: github.com/Adesiyan14', leftMargin, yPosition);
+            pdf.text('GitHub: github.com/Tunchiie', leftMargin, yPosition);
             yPosition += 12;
             
             // Professional Summary
@@ -555,19 +570,6 @@
             // Save the PDF
             pdf.save('Adetunji_Fasiku_Resume.pdf');
         }
-
-        // Add some interactive effects
-        document.querySelectorAll('.resume-section').forEach(section => {
-            section.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-2px)';
-                this.style.boxShadow = '0 10px 30px rgba(147, 112, 219, 0.2)';
-            });
-            
-            section.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-                this.style.boxShadow = 'none';
-            });
-        });
     </script>
 </body>
 </html>
