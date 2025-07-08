@@ -118,7 +118,6 @@ html {
    ================================ */
 
 header {
-    background: var(--lavender);
     backdrop-filter: blur(15px);
     border-radius: 25px;
     padding: 50px 40px;
@@ -239,7 +238,6 @@ h1 {
    ================================ */
 
 .section {
-    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(15px);
     border-radius: 20px;
     padding: 40px;
@@ -2369,6 +2367,14 @@ body.dark-theme .method-title {
 
 body.dark-theme .method-description {
     color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Comprehensive Light Mode Override - Ensure ALL elements use purple background */
+body:not(.dark-theme) *,
+body:not(.dark-theme) *::before,
+body:not(.dark-theme) *::after {
+    background-color: #5f43b2 !important;
+    color: #ffffff !important;
 }
 
 /* Light Mode Styles (default when not in dark mode) - Purple Background with White Text */
