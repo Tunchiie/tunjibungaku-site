@@ -285,9 +285,10 @@ h1 {
 
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
     margin-top: 20px;
+    align-items: start;
 }
 
 .skill-category {
@@ -333,9 +334,10 @@ h1 {
 
 .skill-category h3 {
     color: var(--deep-purple);
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     font-size: 1.3em;
     font-weight: 600;
+    line-height: 1.2;
 }
 
 .skill-category:hover h3 {
@@ -343,17 +345,17 @@ h1 {
 }
 
 .skill-tags {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, max-content));
+    display: flex;
+    flex-wrap: wrap;
     gap: 12px;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
+    margin-top: 15px;
 }
 
-/* Responsive grid breakpoints */
+/* Responsive skill tag adjustments */
 @media (max-width: 768px) {
     .skill-tags {
-        grid-template-columns: repeat(auto-fit, minmax(100px, max-content));
         gap: 10px;
         justify-content: center;
     }
@@ -361,8 +363,8 @@ h1 {
 
 @media (max-width: 480px) {
     .skill-tags {
-        grid-template-columns: repeat(auto-fit, minmax(90px, max-content));
         gap: 8px;
+        justify-content: center;
     }
 }
 
@@ -371,7 +373,7 @@ h1 {
     color: var(--pure-white);
     padding: 10px 18px;
     border-radius: 25px;
-    font-size: 0.9em;
+    font-size: clamp(0.75rem, 0.8rem + 0.2vw, 0.9rem);
     font-weight: 500;
     transition: all 0.4s ease;
     border: 1px solid rgba(114, 92, 173, 0.2);
@@ -380,6 +382,8 @@ h1 {
     box-shadow: 0 2px 8px rgba(114, 92, 173, 0.15);
     position: relative;
     overflow: hidden;
+    min-width: fit-content;
+    display: inline-block;
 }
 
 .skill-tag::before {
@@ -515,8 +519,9 @@ body.dark-theme .project-card:hover .tech-tag {
 .project-tech {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 10px;
     margin-top: 20px;
+    align-items: center;
 }
 
 .tech-tag {
@@ -524,12 +529,15 @@ body.dark-theme .project-card:hover .tech-tag {
     color: var(--pure-white);
     padding: 5px 12px;
     border-radius: 15px;
-    font-size: 0.8em;
+    font-size: clamp(0.7rem, 0.75rem + 0.1vw, 0.8rem);
     font-weight: 500;
     border: 1px solid rgba(114, 92, 173, 0.2);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    white-space: nowrap;
+    min-width: fit-content;
+    display: inline-block;
 }
 
 .tech-tag::before {
@@ -915,6 +923,15 @@ body.dark-theme .form-progress-bar {
         flex-direction: column;
         align-items: center;
     }
+    
+    .skill-category {
+        padding: 20px;
+    }
+    
+    .skill-category h3 {
+        font-size: 1.2em;
+        margin-bottom: 15px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1238,10 +1255,10 @@ body.dark-theme .form-progress-bar {
 }
 
 .project-link.secondary:hover {
-    background: var(--royal-purple);
-    color: var(--pure-white);
+    background: #b8a9d9; /* lavender */
+    color: #ffffff;
+    box-shadow: 0 8px 20px rgba(184, 169, 217, 0.35);
     transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 8px 20px rgba(114, 92, 173, 0.35);
 }
 
 /* Submit Button Enhanced Hover Effects */
@@ -1274,7 +1291,7 @@ body.dark-theme .form-progress-bar {
 .submit-btn:hover {
     color: var(--deep-purple);
     transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 10px 24px rgba(114, 92, 173, 0.4), 0 5px 10px rgba(114, 92, 173, 0.2);
+    box-shadow: 0 10px 24px rgba(212, 175, 55, 0.45), 0 5px 10px rgba(212, 175, 55, 0.25);
     border-color: var(--gold-accent);
 }
 
@@ -1312,7 +1329,7 @@ body.dark-theme .form-progress-bar {
 .download-btn:hover {
     color: var(--deep-purple);
     transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 10px 24px rgba(114, 92, 173, 0.4), 0 5px 10px rgba(114, 92, 173, 0.2);
+    box-shadow: 0 10px 24px rgba(212, 175, 55, 0.45), 0 5px 10px rgba(212, 175, 55, 0.25);
     border-color: var(--gold-accent);
 }
 
@@ -1350,7 +1367,7 @@ body.dark-theme .form-progress-bar {
 .contact-link:hover {
     color: var(--deep-purple);
     transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 10px 24px rgba(114, 92, 173, 0.4), 0 5px 10px rgba(114, 92, 173, 0.2);
+    box-shadow: 0 10px 24px rgba(212, 175, 55, 0.45), 0 5px 10px rgba(212, 175, 55, 0.25);
     border-color: var(--gold-accent);
 }
 
@@ -2348,7 +2365,7 @@ body.dark-theme .achievement-list li::before {
 
 body.dark-theme .metric-card {
     background: rgba(114, 92, 173, 0.3) !important;
-    border-color: rgba(212, 175, 55, 0.3);
+    border-color: rgba(212, 175,  55, 0.3);
 }
 
 body.dark-theme .tech-category-card {
@@ -2436,4 +2453,20 @@ body:not(.dark-theme) .project-link.secondary:hover {
     background: #b8a9d9; /* lavender */
     color: #ffffff;
     box-shadow: 0 8px 20px rgba(184, 169, 217, 0.35);
+}
+
+body:not(.dark-theme) .skill-tag::before {
+    background: linear-gradient(135deg, #8b5a8c 0%, #9d6b9e 100%); /* plum gradient */
+}
+
+body:not(.dark-theme) .skill-tag:hover {
+    border-color: #8b5a8c; /* plum border */
+}
+
+body:not(.dark-theme) .tech-tag::before {
+    background: linear-gradient(135deg, #8b5a8c 0%, #9d6b9e 100%); /* plum gradient */
+}
+
+body:not(.dark-theme) .tech-tag:hover {
+    border-color: #8b5a8c; /* plum border */
 }
