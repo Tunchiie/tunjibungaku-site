@@ -593,6 +593,15 @@ if (document.readyState === 'loading') {
 } else {
     window.portfolioManager = new ProfessionalPortfolio();
 }
+
+// Analytics class for additional tracking
+class PortfolioAnalytics {
+    constructor() {
+        this.sessionStart = Date.now();
+        this.pageViews = [];
+        this.interactions = [];
+        this.performance = {};
+
         document.addEventListener('click', (e) => {
             if (e.target.closest('.download-btn')) {
                 this.trackInteraction('download', {
