@@ -651,6 +651,7 @@ body:not(.dark-theme) .learning-goals .goal-list li {
     text-decoration: none;
     padding: 10px 20px;
     border-radius: 25px;
+    border: 2px solid var(--royal-purple);
     transition: all 0.3s ease;
     font-weight: 600;
     position: relative;
@@ -658,9 +659,9 @@ body:not(.dark-theme) .learning-goals .goal-list li {
 
 .nav-item:hover,
 .nav-item.active {
-    background: var(--royal-purple);
-    color: var(--pure-white);
-    transform: translateY(-2px);
+    background: var(--royal-purple) !important;
+    color: var(--pure-white) !important;
+    transform: none;
     box-shadow: 0 4px 12px rgba(114, 92, 173, 0.3);
 }
 
@@ -2362,6 +2363,21 @@ body:not(.dark-theme) .section {
 body:not(.dark-theme) .nav-menu {
     background: #5f43b2 !important; /* purple background */
     color: #ffffff !important; /* white text */
+}
+
+body:not(.dark-theme) .nav-item {
+    color: #ffffff !important; /* white text */
+    border: 2px solid #ffffff !important; /* white border */
+    background: transparent !important;
+}
+
+body:not(.dark-theme) .nav-item:hover,
+body:not(.dark-theme) .nav-item.active {
+    background: #ffffff !important; /* white background on hover/active */
+    color: #5f43b2 !important; /* purple text on hover/active */
+    border: 2px solid #ffffff !important; /* maintain white border */
+    transform: none;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
 }
 
 body:not(.dark-theme) .project-card {
