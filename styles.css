@@ -357,14 +357,16 @@ h1 {
 @media (max-width: 768px) {
     .skill-tags {
         gap: 10px;
-        justify-content: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
     }
 }
 
 @media (max-width: 480px) {
     .skill-tags {
         gap: 8px;
-        justify-content: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
     }
 }
 
@@ -373,7 +375,7 @@ h1 {
     color: var(--pure-white);
     padding: 10px 18px;
     border-radius: 25px;
-    font-size: clamp(0.75rem, 0.8rem + 0.2vw, 0.9rem);
+    font-size: clamp(0.8rem, 0.85rem + 0.2vw, 0.95rem);
     font-weight: 500;
     transition: all 0.4s ease;
     border: 1px solid rgba(114, 92, 173, 0.2);
@@ -381,9 +383,10 @@ h1 {
     white-space: nowrap;
     box-shadow: 0 2px 8px rgba(114, 92, 173, 0.15);
     position: relative;
-    overflow: hidden;
     min-width: fit-content;
+    max-width: 100%;
     display: inline-block;
+    word-break: keep-all;
 }
 
 .skill-tag::before {
@@ -529,15 +532,16 @@ body.dark-theme .project-card:hover .tech-tag {
     color: var(--pure-white);
     padding: 5px 12px;
     border-radius: 15px;
-    font-size: clamp(0.7rem, 0.75rem + 0.1vw, 0.8rem);
+    font-size: clamp(0.75rem, 0.8rem + 0.1vw, 0.85rem);
     font-weight: 500;
     border: 1px solid rgba(114, 92, 173, 0.2);
     transition: all 0.3s ease;
     position: relative;
-    overflow: hidden;
     white-space: nowrap;
     min-width: fit-content;
+    max-width: 100%;
     display: inline-block;
+    word-break: keep-all;
 }
 
 .tech-tag::before {
@@ -612,10 +616,21 @@ body.dark-theme .project-card:hover .tech-tag {
     border: 2px solid rgba(114, 92, 173, 0.1);
 }
 
+/* Light mode plum background for learning goals */
+body:not(.dark-theme) .learning-goals {
+    background: linear-gradient(135deg, var(--plum), #a0829a);
+    border: 2px solid rgba(114, 92, 173, 0.2);
+}
+
 .learning-goals h3 {
     color: var(--deep-purple);
     margin-bottom: 20px;
     font-size: 1.3em;
+}
+
+/* Ensure h3 text is readable in light mode with plum background */
+body:not(.dark-theme) .learning-goals h3 {
+    color: var(--pure-white);
 }
 
 .goal-list {
@@ -628,6 +643,11 @@ body.dark-theme .project-card:hover .tech-tag {
     padding-left: 30px;
     color: var(--deep-purple);
     font-weight: 500;
+}
+
+/* Ensure goal list text is readable in light mode with plum background */
+body:not(.dark-theme) .learning-goals .goal-list li {
+    color: var(--pure-white);
 }
 
 .goal-list li::before {
@@ -745,21 +765,105 @@ body.dark-theme .project-card:hover .tech-tag {
     box-shadow: 0 4px 12px rgba(114, 92, 173, 0.3);
 }
 
-/* Dark mode navigation styles */
-.dark-theme .nav-item {
-    color: var(--pure-white);
-    background: #725CAD;
-    box-shadow: 0 2px 8px rgba(114, 92, 173, 0.2);
-    border: 1px solid rgba(114, 92, 173, 0.3);
+/* ================================
+   PROJECT FILTER BUTTONS - PROFESSIONAL DESIGN
+   ================================ */
+
+/* Project Filter Container */
+.project-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin: 40px 0;
+    padding: 0 20px;
 }
 
-.dark-theme .nav-item:hover,
-.dark-theme .nav-item.active {
-    background: #725CAD;
-    color: var(--pure-white);
-    box-shadow: 0 4px 12px rgba(114, 92, 173, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    border: 1px solid #725CAD;
+/* Base Filter Button Styles */
+.filter-btn {
+    background: var(--soft-white);
+    color: var(--charcoal);
+    border: 2px solid rgba(114, 92, 173, 0.2);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-family: Georgia, serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.5px;
+    min-width: 120px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 2px 8px rgba(114, 92, 173, 0.08),
+        0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Filter Button Hover State */
+.filter-btn:hover {
+    background: rgba(114, 92, 173, 0.08);
+    border-color: var(--lavender);
     transform: translateY(-2px);
+    box-shadow: 
+        0 8px 24px rgba(114, 92, 173, 0.15),
+        0 3px 8px rgba(0, 0, 0, 0.1);
+    color: var(--lavender);
+}
+
+/* Active Filter Button */
+.filter-btn.active {
+    background: var(--lavender);
+    color: var(--pure-white);
+    border-color: var(--lavender);
+    transform: translateY(-1px);
+    box-shadow: 
+        0 6px 20px rgba(114, 92, 173, 0.25),
+        0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Filter Button Focus State (Accessibility) */
+.filter-btn:focus {
+    outline: none;
+    border-color: var(--lavender);
+    box-shadow: 
+        0 0 0 3px rgba(114, 92, 173, 0.2),
+        0 2px 8px rgba(114, 92, 173, 0.08);
+}
+
+/* Filter Button Pressed State */
+.filter-btn:active {
+    transform: translateY(0);
+    transition: transform 0.1s ease;
+}
+
+/* Responsive Design for Filter Buttons */
+@media (max-width: 768px) {
+    .project-filter {
+        gap: 8px;
+        margin: 30px 0;
+    }
+    
+    .filter-btn {
+        font-size: 13px;
+        padding: 10px 20px;
+        min-width: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-filter {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .filter-btn {
+        width: 100%;
+        max-width: 200px;
+    }
 }
 
 /* ================================
@@ -1522,46 +1626,42 @@ body.dark-theme .form-progress-bar {
    DARK MODE ENHANCED HOVER EFFECTS
    ================================ */
 
-/* Dark Theme Filter Button Enhanced Hover Effects */
+/* Dark Theme Filter Button Professional Design */
 .dark-theme .filter-btn {
-    background: #725CAD;
+    background: rgba(114, 92, 173, 0.15);
     color: var(--pure-white);
-    border: 2px solid #725CAD;
-    box-shadow: 0 3px 10px rgba(114, 92, 173, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-    position: relative;
-    overflow: hidden;
-}
-
-.dark-theme .filter-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, var(--gold-accent), var(--warm-gold));
-    transition: left 0.3s ease;
-    z-index: -1;
+    border: 2px solid rgba(114, 92, 173, 0.3);
+    backdrop-filter: blur(15px);
+    box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.2),
+        0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .dark-theme .filter-btn:hover {
-    background: #725CAD;
+    background: rgba(114, 92, 173, 0.25);
+    border-color: var(--lavender);
     color: var(--pure-white);
-    border: 2px solid #725CAD;
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 10px 24px rgba(212, 175, 55, 0.45), 0 5px 10px rgba(212, 175, 55, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-}
-
-.dark-theme .filter-btn:hover::before {
-    left: 0;
+    transform: translateY(-2px);
+    box-shadow: 
+        0 8px 24px rgba(114, 92, 173, 0.3),
+        0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 .dark-theme .filter-btn.active {
-    background: #725CAD;
+    background: var(--lavender);
     color: var(--pure-white);
-    border: 2px solid #725CAD;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(114, 92, 173, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    border-color: var(--lavender);
+    transform: translateY(-1px);
+    box-shadow: 
+        0 6px 20px rgba(114, 92, 173, 0.4),
+        0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.dark-theme .filter-btn:focus {
+    border-color: var(--lavender);
+    box-shadow: 
+        0 0 0 3px rgba(114, 92, 173, 0.3),
+        0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Dark Theme CTA Button Enhanced Hover Effects */
@@ -2208,7 +2308,10 @@ body.dark-theme .contact-item {
     font-weight: bold;
     color: var(--royal-purple);
     display: block;
-    margin-bottom: 8px;
+}
+
+.metric-card:hover .metric-number {
+    color: var(--gold-accent);
 }
 
 .metric-label {
@@ -2217,7 +2320,6 @@ body.dark-theme .contact-item {
     font-weight: 500;
 }
 
-.metric-card:hover .metric-number,
 .metric-card:hover .metric-label {
     color: var(--pure-white);
 }
@@ -2264,12 +2366,16 @@ body.dark-theme .contact-item {
     color: var(--pure-white);
     padding: 6px 12px;
     border-radius: 20px;
-    font-size: 0.85em;
+    font-size: clamp(0.75rem, 0.85em, 0.9rem);
     font-weight: 500;
     border: 1px solid rgba(114, 92, 173, 0.2);
     transition: all 0.3s ease;
     position: relative;
-    overflow: hidden;
+    white-space: nowrap;
+    min-width: fit-content;
+    max-width: 100%;
+    display: inline-block;
+    word-break: keep-all;
 }
 
 .tech-item::before {
@@ -2279,7 +2385,7 @@ body.dark-theme .contact-item {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, var(--gold-accent), var(--warm-gold));
+    background: linear-gradient(135deg, var(--gold-accent) 0%, var(--warm-gold) 100%);
     transition: left 0.3s ease;
     z-index: -1;
 }
@@ -2397,7 +2503,7 @@ body.dark-theme .method-description {
 
 /* Light Mode Styles (default when not in dark mode) */
 body:not(.dark-theme) {
-    background: #f5f3ff; /* lavender white */
+    background: #f8f9fa; /* off-white */
     color: #2d2d2d; /* very dark grey */
 }
 
@@ -2411,23 +2517,64 @@ body:not(.dark-theme) .section h2 {
 }
 
 body:not(.dark-theme) .section {
-    background: #fefefe; /* soft white */
+    background: #f8f9fa; /* off-white */
 }
 
 body:not(.dark-theme) .nav-menu {
-    background: #fefefe; /* soft white */
+    background: #f8f9fa; /* off-white */
 }
 
 body:not(.dark-theme) .project-card {
-    background: #fefefe; /* soft white */
+    background: #f8f9fa; /* off-white */
 }
 
 body:not(.dark-theme) .skill-category {
-    background: #fefefe; /* soft white */
+    background: #f8f9fa; /* off-white */
 }
 
 body:not(.dark-theme) .featured-project {
-    background: #fefefe; /* soft white */
+    background: #f8f9fa; /* off-white */
+}
+
+/* Override all lavender backgrounds in light mode */
+body:not(.dark-theme) header {
+    background: #f8f9fa; /* off-white instead of lavender */
+}
+
+body:not(.dark-theme) .theme-toggle {
+    background: #f8f9fa; /* off-white */
+}
+
+body:not(.dark-theme) .metric-card {
+    background: #f8f9fa; /* off-white */
+}
+
+body:not(.dark-theme) .method-card {
+    background: #f8f9fa; /* off-white */
+}
+
+body:not(.dark-theme) .tech-category-card {
+    background: #f8f9fa; /* off-white */
+}
+
+body:not(.dark-theme) .experience-item {
+    background: #f8f9fa; /* off-white */
+}
+
+body:not(.dark-theme) .contact-item {
+    background: #f8f9fa; /* off-white */
+}
+
+body:not(.dark-theme) .project-timeline {
+    background: #f8f9fa; /* off-white */
+}
+
+body:not(.dark-theme) .timeline-item {
+    background: #f8f9fa; /* off-white */
+}
+
+body:not(.dark-theme) .cta-section {
+    background: #f8f9fa; /* off-white */
 }
 
 body:not(.dark-theme) .cta-button {
@@ -2453,20 +2600,63 @@ body:not(.dark-theme) .project-link.secondary:hover {
     background: #b8a9d9; /* lavender */
     color: #ffffff;
     box-shadow: 0 8px 20px rgba(184, 169, 217, 0.35);
+    transform: translateY(-3px) scale(1.03);
 }
 
-body:not(.dark-theme) .skill-tag::before {
-    background: linear-gradient(135deg, #8b5a8c 0%, #9d6b9e 100%); /* plum gradient */
+body:not(.dark-theme) .skill-tag {
+    background: #f8f9fa !important; /* off-white */
+    color: #2c3e50 !important;
+    border: 1px solid #e9ecef !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
 }
 
 body:not(.dark-theme) .skill-tag:hover {
-    border-color: #8b5a8c; /* plum border */
+    background: var(--plum) !important;
+    color: var(--pure-white) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(114, 92, 173, 0.3) !important;
 }
 
-body:not(.dark-theme) .tech-tag::before {
-    background: linear-gradient(135deg, #8b5a8c 0%, #9d6b9e 100%); /* plum gradient */
+body:not(.dark-theme) .tech-tag {
+    background: #f8f9fa !important; /* off-white */
+    color: #2c3e50 !important;
+    border: 1px solid #e9ecef !important;
 }
 
 body:not(.dark-theme) .tech-tag:hover {
-    border-color: #8b5a8c; /* plum border */
+    background: var(--plum) !important;
+    color: var(--pure-white) !important;
+}
+
+body:not(.dark-theme) .tech-item {
+    background: #f8f9fa !important; /* off-white */
+    color: #2c3e50 !important;
+    border: 1px solid #e9ecef !important;
+}
+
+body:not(.dark-theme) .tech-item:hover {
+    background: var(--plum) !important;
+    color: var(--pure-white) !important;
+}
+
+/* Light Mode Filter Button Specific Overrides */
+body:not(.dark-theme) .filter-btn {
+    background: #f8f9fa;
+    color: #2c3e50;
+    border: 2px solid rgba(114, 92, 173, 0.15);
+    box-shadow: 
+        0 2px 8px rgba(114, 92, 173, 0.05),
+        0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+body:not(.dark-theme) .filter-btn:hover {
+    background: rgba(114, 92, 173, 0.06);
+    border-color: var(--lavender);
+    color: var(--lavender);
+}
+
+body:not(.dark-theme) .filter-btn.active {
+    background: var(--lavender);
+    color: var(--pure-white);
+    border-color: var(--lavender);
 }
