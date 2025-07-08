@@ -210,27 +210,12 @@ h1 {
     overflow: hidden;
 }
 
-.contact-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, var(--gold-accent) 0%, var(--warm-gold) 100%);
-    transition: left 0.3s ease;
-    z-index: -1;
-}
-
 .contact-item:hover {
     color: var(--pure-white);
+    background: linear-gradient(135deg, var(--gold-accent) 0%, var(--warm-gold) 100%);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(114, 92, 173, 0.5);
     border: 1px solid rgba(114, 92, 173, 0.6);
-}
-
-.contact-item:hover::before {
-    left: 0;
 }
 
 /* ================================
@@ -849,11 +834,8 @@ body.dark-theme .contact-item {
     box-shadow: 0 2px 8px rgba(58, 49, 83, 0.3) !important;
 }
 
-body.dark-theme .contact-item::before {
-    background: linear-gradient(135deg, var(--gold-accent), var(--warm-gold)) !important;
-}
-
 body.dark-theme .contact-item:hover {
+    background: linear-gradient(135deg, var(--gold-accent), var(--warm-gold)) !important;
     color: var(--pure-white) !important;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(212, 175, 55, 0.5) !important;
@@ -1256,19 +1238,8 @@ body.dark-theme .form-progress-bar {
     overflow: hidden;
 }
 
-.submit-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, var(--gold-accent), var(--warm-gold));
-    transition: left 0.3s ease;
-    z-index: -1;
-}
-
 .submit-btn:hover {
+    background: linear-gradient(135deg, var(--gold-accent), var(--warm-gold));
     color: var(--deep-purple);
     transform: translateY(-3px) scale(1.03);
     box-shadow: 0 10px 24px rgba(212, 175, 55, 0.45), 0 5px 10px rgba(212, 175, 55, 0.25);
@@ -1290,19 +1261,8 @@ body.dark-theme .form-progress-bar {
     overflow: hidden;
 }
 
-.download-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, var(--gold-accent), var(--warm-gold));
-    transition: left 0.3s ease;
-    z-index: -1;
-}
-
 .download-btn:hover {
+    background: linear-gradient(135deg, var(--gold-accent), var(--warm-gold));
     color: var(--deep-purple);
     transform: translateY(-3px) scale(1.03);
     box-shadow: 0 10px 24px rgba(212, 175, 55, 0.45), 0 5px 10px rgba(212, 175, 55, 0.25);
@@ -1324,27 +1284,12 @@ body.dark-theme .form-progress-bar {
     overflow: hidden;
 }
 
-.contact-link::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, var(--gold-accent), var(--warm-gold));
-    transition: left 0.3s ease;
-    z-index: -1;
-}
-
 .contact-link:hover {
+    background: linear-gradient(135deg, var(--gold-accent), var(--warm-gold));
     color: var(--deep-purple);
     transform: translateY(-3px) scale(1.03);
     box-shadow: 0 10px 24px rgba(212, 175, 55, 0.45), 0 5px 10px rgba(212, 175, 55, 0.25);
     border-color: var(--gold-accent);
-}
-
-.contact-link:hover::before {
-    left: 0;
 }
 
 /* ================================
