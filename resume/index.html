@@ -16,7 +16,7 @@
             max-width: 900px;
             margin: 0 auto;
             padding: 2rem;
-            background: white;
+            background: var(--lavender);
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             color: #333;
@@ -32,7 +32,7 @@
         .resume-section {
             margin-bottom: 2.5rem;
             padding: 1.5rem;
-            background: white;
+            background: var(--lavender);
             border-radius: 10px;
             border-left: 3px solid var(--accent-gold);
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
@@ -50,7 +50,7 @@
         .experience-item, .education-item, .project-item {
             margin-bottom: 1.5rem;
             padding: 1rem;
-            background: white;
+            background: var(--lavender);
             border-radius: 8px;
             border-left: 2px solid var(--accent-blue);
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -88,7 +88,7 @@
         }
         
         .skill-category {
-            background: white;
+            background: var(--lavender);
             padding: 1rem;
             border-radius: 8px;
             border: 1px solid rgba(147, 112, 219, 0.2);
@@ -135,7 +135,7 @@
         }
         
         .download-btn:hover {
-            background: white;
+            background: var(--lavender);
             transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
@@ -161,7 +161,7 @@
             transform: translateY(-2px);
         }
         
-        /* Force dark text on white backgrounds */
+        /* Light theme - dark text on white backgrounds */
         .resume-container,
         .resume-container *,
         .resume-header,
@@ -184,12 +184,16 @@
             color: #333 !important;
         }
         
-        /* Override any theme-based color changes */
+        /* Dark theme - white text on dark backgrounds */
         body.dark-theme .resume-container,
-        body.dark-theme .resume-container *,
         body.dark-theme .resume-header,
+        body.dark-theme .resume-section {
+            background: #725CAD !important;
+            color: white !important;
+        }
+        
+        body.dark-theme .resume-container *,
         body.dark-theme .resume-header *,
-        body.dark-theme .resume-section,
         body.dark-theme .resume-section *,
         body.dark-theme .resume-container h1,
         body.dark-theme .resume-container h2,
@@ -204,12 +208,12 @@
         body.dark-theme .item-description,
         body.dark-theme .subtitle,
         body.dark-theme .contact-info {
-            color: #333 !important;
+            color: white !important;
         }
         
         @media print {
             body {
-                background: white !important;
+                background: var(--lavender) !important;
                 color: black !important;
             }
             .nav-menu, .download-resume, .print-resume {
@@ -217,7 +221,7 @@
             }
             .resume-container {
                 box-shadow: none !important;
-                background: white !important;
+                background: var(--lavender) !important;
             }
         }
     </style>
@@ -718,27 +722,7 @@
                 document.body.classList.remove('dark-theme');
                 if (themeIcon) themeIcon.textContent = '🌙';
             }
-            
-            // Force text color application
-            applyTextColors();
         });
-        
-        // Function to apply text colors based on theme
-        function applyTextColors() {
-            // Always use dark text since we have white containers
-            const textElements = document.querySelectorAll('.resume-container, .resume-container *, .resume-header, .resume-header *, .resume-section, .resume-section *, h1, h2, h3, p, span, div, li, .item-title, .item-company, .item-date, .item-description, .subtitle, .contact-info');
-            
-            textElements.forEach(element => {
-                element.style.color = '#333';
-            });
-        }
-        
-        // Override the theme toggle to include color application
-        const originalToggleTheme = toggleTheme;
-        toggleTheme = function() {
-            originalToggleTheme();
-            setTimeout(applyTextColors, 10);
-        };
     </script>
 </body>
 </html>
