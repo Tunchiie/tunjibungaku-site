@@ -13,7 +13,7 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 2rem;
-            background: white;
+            background: var(--lavender);
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             color: #333;
@@ -23,10 +23,33 @@
             text-align: center;
             margin-bottom: 3rem;
             padding: 2rem;
-            background: white;
+            background: var(--lavender);
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(147, 112, 219, 0.1);
             color: #333;
+        }
+        
+        /* Override for dark mode */
+        body.dark-theme .contact-container,
+        body.dark-theme .contact-hero {
+            background: #725CAD !important;
+            color: white !important;
+            border: 1px solid rgba(114, 92, 173, 0.3);
+            box-shadow: 0 8px 25px rgba(114, 92, 173, 0.4);
+        }
+        
+        body.dark-theme .contact-card {
+            background: #725CAD !important;
+            color: white !important;
+            border: 1px solid rgba(114, 92, 173, 0.3);
+            box-shadow: 0 8px 25px rgba(114, 92, 173, 0.4);
+        }
+        
+        body.dark-theme .contact-form {
+            background: #725CAD !important;
+            color: white !important;
+            border: 1px solid rgba(114, 92, 173, 0.3);
+            box-shadow: 0 8px 25px rgba(114, 92, 173, 0.4);
         }
         
         .contact-methods {
@@ -43,7 +66,7 @@
         }
         
         .contact-card {
-            background: white;
+            background: var(--lavender);
             padding: 2rem;
             border-radius: 12px;
             border-left: 3px solid var(--accent-gold);
@@ -94,7 +117,7 @@
         }
         
         .contact-form {
-            background: white;
+            background: var(--lavender);
             padding: 2rem;
             border-radius: 15px;
             border: 1px solid rgba(147, 112, 219, 0.2);
@@ -193,7 +216,7 @@
             box-shadow: 0 10px 20px rgba(147, 112, 219, 0.4);
         }
         
-        /* Force dark text on white backgrounds */
+        /* Light theme - dark text on white backgrounds */
         .contact-container,
         .contact-container *,
         .contact-hero,
@@ -215,14 +238,18 @@
             color: #333 !important;
         }
         
-        /* Override any theme-based color changes */
+        /* Dark theme - white text on dark backgrounds */
         body.dark-theme .contact-container,
-        body.dark-theme .contact-container *,
         body.dark-theme .contact-hero,
-        body.dark-theme .contact-hero *,
         body.dark-theme .contact-card,
+        body.dark-theme .contact-form {
+            background: #725CAD !important;
+            color: white !important;
+        }
+        
+        body.dark-theme .contact-container *,
+        body.dark-theme .contact-hero *,
         body.dark-theme .contact-card *,
-        body.dark-theme .contact-form,
         body.dark-theme .contact-form *,
         body.dark-theme .contact-container h1,
         body.dark-theme .contact-container h2,
@@ -234,7 +261,21 @@
         body.dark-theme .contact-title,
         body.dark-theme .contact-info,
         body.dark-theme .subtitle {
-            color: #333 !important;
+            color: white !important;
+        }
+        
+        /* Dark theme form inputs */
+        body.dark-theme .form-group input,
+        body.dark-theme .form-group textarea,
+        body.dark-theme .form-group select {
+            background: #725CAD !important;
+            color: white !important;
+            border-color: rgba(255, 255, 255, 0.3) !important;
+        }
+        
+        body.dark-theme .form-group input::placeholder,
+        body.dark-theme .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7) !important;
         }
     </style>
 </head>
@@ -596,27 +637,7 @@ Sent from Adetunji Fasiku's Portfolio Contact Form`;
                 document.body.classList.remove('dark-theme');
                 if (themeIcon) themeIcon.textContent = '🌙';
             }
-            
-            // Force text color application
-            applyTextColors();
         });
-        
-        // Function to apply text colors based on theme
-        function applyTextColors() {
-            // Always use dark text since we have white containers
-            const textElements = document.querySelectorAll('.contact-container, .contact-container *, .contact-hero, .contact-hero *, .contact-card, .contact-card *, .contact-form, .contact-form *, h1, h2, h3, p, span, div, label, .contact-title, .contact-info, .subtitle');
-            
-            textElements.forEach(element => {
-                element.style.color = '#333';
-            });
-        }
-        
-        // Override the theme toggle to include color application
-        const originalToggleTheme = toggleTheme;
-        toggleTheme = function() {
-            originalToggleTheme();
-            setTimeout(applyTextColors, 10);
-        };
     </script>
 </body>
 </html>
