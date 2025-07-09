@@ -6,7 +6,17 @@
     <title>Projects - Adetunji Fasiku | Data Science Portfolio</title>
     <meta name="description" content="Explore Adetunji Fasiku's data science projects including machine learning models, trading algorithms, and bioinformatics analyses.">
     <link rel="stylesheet" href="styles.css">
-    <script src="enhanced-portfolio.js"></script>
+    <script>
+        const theme = localStorage.getItem("theme") || "light";
+        document.documentElement.setAttribute("data-theme", theme);
+        // Apply the theme class to both html and body for styles.css compatibility
+        if (theme === "dark") {
+            document.documentElement.classList.add("dark-theme");
+            document.addEventListener('DOMContentLoaded', function() {
+                document.body.classList.add("dark-theme");
+            });
+        }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&display=swap" rel="stylesheet">
@@ -440,7 +450,7 @@
             <h2>Additional Projects</h2>
             
             <!-- Customer Purchase Predictor - Featured -->
-            <div class="featured-project" data-category="data-science machine-learning" style="margin-bottom: 40px;">
+            <div class="featured-project" data-category="data-science machine-learning data-analysis" style="margin-bottom: 40px;">
                 <div class="project-header">
                     <div class="project-icon">CommerceML</div>
                     <div class="project-title">
@@ -620,7 +630,7 @@
             </div>
 
             <!-- Breast Cancer Predictor - Educational Project -->
-            <div class="featured-project" data-category="data-science machine-learning" style="margin-top: 40px; margin-bottom: 40px;">
+            <div class="featured-project" data-category="data-science machine-learning data-analysis" style="margin-top: 40px; margin-bottom: 40px;">
                 <div class="project-header">
                     <div class="project-icon">MedicalML</div>
                     <div class="project-title">
@@ -796,7 +806,7 @@
             </div>
 
             <!-- Lending Club Loan Predictor - Risk Modeling Project -->
-            <div class="featured-project" data-category="machine-learning data-science" style="margin-top: 40px; margin-bottom: 40px;">
+            <div class="featured-project" data-category="machine-learning data-science data-analysis" style="margin-top: 40px; margin-bottom: 40px;">
                 <div class="project-header">
                     <div class="project-icon">RiskML</div>
                     <div class="project-title">
@@ -1010,6 +1020,44 @@
     <script>
         // Enhanced project filtering and interactions
         document.addEventListener('DOMContentLoaded', () => {
+            // Simple theme toggle functionality (bypassing ProfessionalPortfolio due to conflicts)
+            const themeToggle = document.getElementById('theme-toggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', function() {
+                    const currentTheme = localStorage.getItem('theme') || 'light';
+                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                    
+                    // Update localStorage
+                    localStorage.setItem('theme', newTheme);
+                    
+                    // Update data attribute
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    
+                    // Apply theme classes for styles.css compatibility
+                    if (newTheme === 'dark') {
+                        document.documentElement.classList.add('dark-theme');
+                        document.body.classList.add('dark-theme');
+                    } else {
+                        document.documentElement.classList.remove('dark-theme');
+                        document.body.classList.remove('dark-theme');
+                    }
+                    
+                    console.log('Theme toggled to:', newTheme);
+                });
+            }
+            
+            // Get DOM elements once
+            const featuredProjects = document.querySelectorAll('.featured-project');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projectSections = document.querySelectorAll('.section');
+            
+            // Initialize all projects as visible
+            featuredProjects.forEach(project => {
+                project.style.display = 'block';
+                project.style.opacity = '1';
+                project.style.transform = 'translateY(0)';
+            });
+
             // Scroll progress indicator
             const scrollProgress = document.getElementById('scrollProgress');
             
@@ -1049,9 +1097,6 @@
             }, 100);
 
             // Project filtering
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            const featuredProjects = document.querySelectorAll('.featured-project');
-
             filterBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
                     const filter = btn.getAttribute('data-filter');
@@ -1064,25 +1109,52 @@
                     btn.classList.add('active');
                     btn.setAttribute('aria-pressed', 'true');
                     
-                    // Handle all featured projects
-                    featuredProjects.forEach((featuredProject) => {
+                    // Filter projects with smooth animation
+                    featuredProjects.forEach((featuredProject, index) => {
                         const featuredCategories = featuredProject.getAttribute('data-category') || '';
-                        const parentSection = featuredProject.closest('section');
+                        const shouldShow = filter === 'all' || featuredCategories.split(' ').includes(filter);
                         
-                        if (filter === 'all' || featuredCategories.includes(filter)) {
-                            // Show the project section
+                        // Get the parent section of this project
+                        const parentSection = featuredProject.closest('.section');
+                        
+                        if (shouldShow) {
+                            // Show the project and its parent section
                             if (parentSection) {
                                 parentSection.style.display = 'block';
+                                parentSection.style.transition = 'all 0.3s ease';
                                 parentSection.style.opacity = '1';
                                 parentSection.style.transform = 'translateY(0)';
                             }
+                            
+                            featuredProject.style.transition = 'all 0.3s ease';
+                            featuredProject.style.display = 'block';
+                            setTimeout(() => {
+                                featuredProject.style.opacity = '1';
+                                featuredProject.style.transform = 'translateY(0)';
+                            }, index * 50);
                         } else {
-                            // Hide the project section
+                            // Hide the project and its parent section
+                            featuredProject.style.transition = 'all 0.3s ease';
+                            featuredProject.style.opacity = '0';
+                            featuredProject.style.transform = 'translateY(20px)';
+                            
                             if (parentSection) {
-                                parentSection.style.display = 'none';
+                                parentSection.style.transition = 'all 0.3s ease';
                                 parentSection.style.opacity = '0';
                                 parentSection.style.transform = 'translateY(20px)';
+                                
+                                setTimeout(() => {
+                                    if (parentSection.style.opacity === '0') {
+                                        parentSection.style.display = 'none';
+                                    }
+                                }, 300);
                             }
+                            
+                            setTimeout(() => {
+                                if (featuredProject.style.opacity === '0') {
+                                    featuredProject.style.display = 'none';
+                                }
+                            }, 300);
                         }
                     });
                 });
@@ -1132,7 +1204,80 @@
                     }
                 }, 50);
             });
+            
+            // Add back to top functionality
+            const backToTop = document.getElementById('back-to-top');
+            if (backToTop) {
+                backToTop.addEventListener('click', () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+
+                // Show/hide back to top button based on scroll position
+                window.addEventListener('scroll', () => {
+                    if (window.pageYOffset > 300) {
+                        backToTop.style.display = 'flex';
+                    } else {
+                        backToTop.style.display = 'none';
+                    }
+                });
+
+                // Initially hide the button
+                backToTop.style.display = 'none';
+            }
         });
     </script>
+
+    <style>
+        /* Enhanced filtering styles */
+        .featured-project {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .featured-project.filtering {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .section {
+            transition: opacity 0.3s ease;
+        }
+
+        .filter-btn {
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .filter-btn:hover::before {
+            left: 100%;
+        }
+
+        .filter-btn.active {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(95, 67, 178, 0.3);
+        }
+
+        /* Improve project card hover effects */
+        .featured-project:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </body>
 </html>

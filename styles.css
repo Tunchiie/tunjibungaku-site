@@ -60,6 +60,7 @@
     --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
     --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.18);
     --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.22);
+    --soft-shadow: 0 2px 6px rgba(114, 92, 173, 0.15);
     
     /* Typography - Professional font stacks */
     --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
@@ -158,6 +159,7 @@ body:not(.dark-theme),
 body.light-theme {
     background: var(--bg-light);
     color: var(--text-light);
+    
 }
 
 /* Smooth scrolling with reduced motion respect */
@@ -430,7 +432,7 @@ body:not(.dark-theme) .project-card,
 body.light-theme .project-card {
     background: var(--card-bg-light);
     border: 1px solid var(--border-light);
-    color: var(--text-light);
+    color: var(--text-contrast-light);
 }
 
 body:not(.dark-theme) .project-card h3,
@@ -551,7 +553,7 @@ header {
     padding: 50px 40px;
     text-align: center;
     margin-bottom: 40px;
-    box-shadow: var(--medium-shadow);
+    box-shadow: var(--shadow-md);
     border: 1px solid rgba(114, 92, 173, 0.1);
     position: relative;
     overflow: hidden;
@@ -580,7 +582,7 @@ header::before {
     font-size: 52px;
     font-weight: bold;
     font-family: var(--font-heading);
-    box-shadow: var(--medium-shadow);
+    box-shadow: var(--shadow-md);
     border: 4px solid var(--gold-accent);
     position: relative;
 }
@@ -629,7 +631,7 @@ h1 {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: var(--pure-white);
+    color: var(--text-contrast-light);
     background: var(--lavender);
     padding: 8px 16px;
     border-radius: 20px;
@@ -742,7 +744,7 @@ h1 {
 
 .skill-tag {
     background: var(--lavender);
-    color: var(--pure-white);
+    color: var(--text-contrast-light);
     padding: 10px 18px;
     border-radius: 25px;
     font-size: clamp(0.8rem, 0.85rem + 0.2vw, 0.95rem);
@@ -866,7 +868,7 @@ body.dark-theme .tech-tag {
 
 .tech-tag {
     background: rgba(114, 92, 173, 0.1);
-    color: var(--pure-white);
+    color: var(--text-contrast-light);
     padding: 5px 12px;
     border-radius: 15px;
     font-size: clamp(0.75rem, 0.8rem + 0.1vw, 0.85rem);
@@ -1402,11 +1404,11 @@ body.dark-theme .form-progress-bar {
 .data-insights,
 .tech-stack,
 .algorithm-showcase,
-
 .timeline-item{
     position: relative;
-    padding-left: 1REM 0 1rem 1.5rem;
+    padding: 1rem 0 1rem 1.5rem;
     margin-bottom: 1rem;
+}
 }
 
 .timeline-item::before{
@@ -1431,6 +1433,10 @@ body.dark-theme .form-progress-bar {
     background: #4caf50;
 }
 
+body.dark-theme .timeline-item.completed {
+    background-color: #46ab7a;
+    border-left-color: rgba(76, 175, 80, 0.8);
+}
 .highlight-list,
 .timeline-description {
     text-align: left;
@@ -1478,7 +1484,7 @@ body.dark-theme .form-progress-bar {
 /* Theme-specific overrides for project descriptions */
 body:not(.dark-theme) .project-description,
 body.light-theme .project-description {
-    color: var(--text-color);
+    color: var(--text-light);
 }
 
 /* Project Links & GitHub Icons */
@@ -1608,6 +1614,31 @@ body.dark-theme .back-to-top {
    PROJECT ICON STYLES
    ================================ */
 
+/* Theme toggle icon styles */
+.theme-toggle-sun,
+.theme-toggle-moon {
+    transition: opacity var(--transition-fast);
+    display: inline;
+}
+
+/* Default state - show moon in light mode */
+body:not(.dark-theme) .theme-toggle-sun {
+    display: none;
+}
+
+body:not(.dark-theme) .theme-toggle-moon {
+    display: inline;
+}
+
+/* Dark mode - show sun */
+body.dark-theme .theme-toggle-sun {
+    display: inline;
+}
+
+body.dark-theme .theme-toggle-moon {
+    display: none;
+}
+
 .project-icon {
     width: 80px;
     height: 60px;
@@ -1639,3 +1670,95 @@ body.dark-theme .back-to-top {
     flex: 1;
     min-width: 200px;
 }
+
+/* ================================
+   LIGHT THEME SPECIFIC STYLES
+   ================================ */
+
+/* Light theme specific fixes for text contrast */
+body:not(.dark-theme) .skill-tag,
+body.light-theme .skill-tag {
+    color: var(--text-contrast-light) !important;
+    background: rgba(114, 92, 173, 0.15) !important;
+}
+
+body:not(.dark-theme) .tech-tag,
+body.light-theme .tech-tag {
+    color: var(--text-contrast-light) !important;
+    background: rgba(114, 92, 173, 0.15) !important;
+}
+
+body:not(.dark-theme) .contact-item,
+body.light-theme .contact-item {
+    color: var(--text-contrast-light) !important;
+    background: rgba(114, 92, 173, 0.2) !important;
+}
+
+body:not(.dark-theme) .skill-category,
+body.light-theme .skill-category {
+    background: rgba(114, 92, 173, 0.08) !important;
+}
+
+body:not(.dark-theme) .skill-category h3,
+body.light-theme .skill-category h3 {
+    color: var(--text-contrast-light) !important;
+}
+
+body:not(.dark-theme) .project-card,
+body.light-theme .project-card {
+    background: var(--card-bg-light) !important;
+    color: var(--text-contrast-light) !important;
+}
+
+body:not(.dark-theme) .project-card h3,
+body.light-theme .project-card h3 {
+    color: var(--text-contrast-light) !important;
+}
+
+body:not(.dark-theme) .project-card p,
+body.light-theme .project-card p {
+    color: var(--text-light) !important;
+}
+
+body:not(.dark-theme) .tech-item,
+body.light-theme .tech-item {
+    color: var(--text-contrast-light) !important;
+    background: rgba(114, 92, 173, 0.15) !important;
+}
+
+body:not(.dark-theme) .tech-category-card,
+body.light-theme .tech-category-card {
+    background: var(--surface-elevated-light) !important;
+    color: var(--text-light) !important;
+}
+
+body:not(.dark-theme) .tech-category-card h5,
+body.light-theme .tech-category-card h5 {
+    color: var(--text-contrast-light) !important;
+}
+
+body:not(.dark-theme) .method-card,
+body.light-theme .method-card {
+    background: var(--surface-elevated-light) !important;
+    color: var(--text-light) !important;
+}
+
+body:not(.dark-theme) .method-title,
+body.light-theme .method-title {
+    color: var(--text-contrast-light) !important;
+}
+
+body:not(.dark-theme) .metric-card,
+body.light-theme .metric-card {
+    background: var(--surface-elevated-light) !important;
+    color: var(--text-light) !important;
+}
+
+body:not(.dark-theme) .metric-number,
+body.light-theme .metric-number {
+    color: var(--royal-purple) !important;
+}
+
+/* ================================
+   DARK MODE CORE STYLES
+   ================================ */

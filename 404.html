@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page Not Found - Adetunji Fasiku</title>
     <meta name="description" content="Page not found on Adetunji Fasiku's data science portfolio website.">
-    <link rel="stylesheet" href="styles.css">
-    <script src="enhanced-portfolio.js"></script>
+    <link rel="stylesheet" href="404.css">
     <style>
         .error-container {
             display: flex;
@@ -67,6 +66,18 @@
         .error-animation {
             animation: float 3s ease-in-out infinite;
         }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>
@@ -110,15 +121,18 @@
     <script>
         // Add some interactivity
         document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function() {
             const errorCode = document.querySelector('.error-code');
             
-            errorCode.addEventListener('click', function() {
-                this.style.transform = 'scale(1.1) rotate(5deg)';
-                setTimeout(() => {
-                    this.style.transform = 'scale(1) rotate(0deg)';
-                }, 300);
-            });
+            if (errorCode) {
+                errorCode.addEventListener('click', function() {
+                    this.style.transform = 'scale(1.1) rotate(5deg)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1) rotate(0deg)';
+                    }, 300);
+                });
+            }
         });
-    </script>
+    <script src="enhanced_portfolio.js"></script>
 </body>
 </html>

@@ -198,7 +198,7 @@ class ProfessionalPortfolio {
         this.setupScrollProgress();
         this.setupBackToTop();
         this.setupSmoothScrolling();
-        this.setupScrollSpy();
+        // this.setupScrollSpy(); // Removed because the method is not defined
     }
 
     setupScrollProgress() {
@@ -594,181 +594,134 @@ if (document.readyState === 'loading') {
     window.portfolioManager = new ProfessionalPortfolio();
 }
 
-// Analytics class for additional tracking
-class PortfolioAnalytics {
-    constructor() {
-        this.sessionStart = Date.now();
-        this.pageViews = [];
-        this.interactions = [];
-        this.performance = {};
+// Merge analytics responsibilities into ProfessionalPortfolio
 
-        document.addEventListener('click', (e) => {
-            if (e.target.closest('.download-btn')) {
-                this.trackInteraction('download', {
-                    type: 'resume_pdf',
+// Add additional analytics tracking to ProfessionalPortfolio
+ProfessionalPortfolio.prototype.trackScrollDepth = function() {
+    let maxScroll = 0;
+    const milestones = [25, 50, 75, 90, 100];
+    const reached = new Set();
+
+    window.addEventListener('scroll', () => {
+        const scrollPercent = Math.round(
+            (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+        );
+        
+        maxScroll = Math.max(maxScroll, scrollPercent);
+        
+        milestones.forEach(milestone => {
+            if (scrollPercent >= milestone && !reached.has(milestone)) {
+                reached.add(milestone);
+                this.trackInteraction('scroll_depth', {
+                    percentage: milestone,
                     timestamp: Date.now()
                 });
             }
         });
-    }
+    });
+};
 
-    // Track scroll depth
-    trackScrollDepth() {
-        let maxScroll = 0;
-        const milestones = [25, 50, 75, 90, 100];
-        const reached = new Set();
+ProfessionalPortfolio.prototype.trackTimeOnPage = function() {
+    let isActive = true;
+    let timeSpent = 0;
+    let lastActiveTime = Date.now();
 
-        window.addEventListener('scroll', () => {
-            const scrollPercent = Math.round(
-                (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
-            );
-            
-            maxScroll = Math.max(maxScroll, scrollPercent);
-            
-            milestones.forEach(milestone => {
-                if (scrollPercent >= milestone && !reached.has(milestone)) {
-                    reached.add(milestone);
-                    this.trackInteraction('scroll_depth', {
-                        percentage: milestone,
-                        timestamp: Date.now()
-                    });
-                }
-            });
-        });
-    }
-
-    // Track time on page
-    trackTimeOnPage() {
-        let isActive = true;
-        let timeSpent = 0;
-        let lastActiveTime = Date.now();
-
-        // Track when user becomes inactive
-        const events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'];
-        events.forEach(event => {
-            document.addEventListener(event, () => {
-                if (!isActive) {
-                    lastActiveTime = Date.now();
-                    isActive = true;
-                }
-            });
-        });
-
-        // Check for inactivity
-        setInterval(() => {
-            if (isActive && Date.now() - lastActiveTime > 30000) { // 30 seconds
-                isActive = false;
-                timeSpent += 30;
-            } else if (isActive) {
-                timeSpent += 5;
+    // Track when user becomes inactive
+    const events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'];
+    events.forEach(event => {
+        document.addEventListener(event, () => {
+            if (!isActive) {
+                lastActiveTime = Date.now();
+                isActive = true;
             }
-        }, 5000);
-
-        // Send time data before leaving
-        window.addEventListener('beforeunload', () => {
-            this.trackInteraction('time_on_page', {
-                totalSeconds: Math.round((Date.now() - this.sessionStart) / 1000),
-                activeSeconds: timeSpent,
-                timestamp: Date.now()
-            });
         });
-    }
+    });
 
-    // Track specific interactions
-    trackInteraction(type, data) {
-        const interaction = {
-            type,
-            data,
-            timestamp: Date.now(),
-            page: window.location.pathname
-        };
-        
-        this.interactions.push(interaction);
-        this.logEvent('interaction', interaction);
-    }
-
-    // Log events (can be extended to send to analytics service)
-    logEvent(eventType, eventData) {
-        // For development - log to console
-        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-            console.log(`[Analytics] ${eventType}:`, eventData);
+    // Check for inactivity
+    setInterval(() => {
+        if (isActive && Date.now() - lastActiveTime > 30000) { // 30 seconds
+            isActive = false;
+            timeSpent += 30;
+        } else if (isActive) {
+            timeSpent += 5;
         }
+    }, 5000);
 
-        // Store in localStorage for review
-        const storageKey = 'portfolio_analytics';
-        const stored = JSON.parse(localStorage.getItem(storageKey) || '[]');
-        stored.push({ type: eventType, data: eventData, timestamp: Date.now() });
-        
-        // Keep only last 100 events
-        if (stored.length > 100) {
-            stored.splice(0, stored.length - 100);
-        }
-        
-        localStorage.setItem(storageKey, JSON.stringify(stored));
-
-        // Here you could send to Google Analytics, Mixpanel, etc.
-        // Example for Google Analytics:
-        // if (typeof gtag !== 'undefined') {
-        //     gtag('event', eventType, eventData);
-        // }
-    }
-
-    // Get analytics summary
-    getAnalyticsSummary() {
-        return {
-            session: {
-                duration: Date.now() - this.sessionStart,
-                pageViews: this.pageViews.length,
-                interactions: this.interactions.length
-            },
-            performance: this.performance,
-            topInteractions: this.getTopInteractions(),
-            deviceInfo: this.getDeviceInfo()
-        };
-    }
-
-    // Get top interactions
-    getTopInteractions() {
-        const counts = {};
-        this.interactions.forEach(interaction => {
-            const key = interaction.type;
-            counts[key] = (counts[key] || 0) + 1;
+    // Send time data before leaving
+    window.addEventListener('beforeunload', () => {
+        this.trackInteraction('time_on_page', {
+            totalSeconds: Math.round((Date.now() - this.sessionStart) / 1000),
+            activeSeconds: timeSpent,
+            timestamp: Date.now()
         });
-        
-        return Object.entries(counts)
-            .sort(([,a], [,b]) => b - a)
-            .slice(0, 5);
-    }
+    });
+};
 
-    // Get device information
-    getDeviceInfo() {
-        return {
-            userAgent: navigator.userAgent,
-            platform: navigator.platform,
-            language: navigator.language,
-            cookieEnabled: navigator.cookieEnabled,
-            onLine: navigator.onLine,
-            viewport: {
-                width: window.innerWidth,
-                height: window.innerHeight
-            },
-            screen: {
-                width: screen.width,
-                height: screen.height,
-                colorDepth: screen.colorDepth
-            }
-        };
-    }
-}
+ProfessionalPortfolio.prototype.getAnalyticsSummary = function() {
+    return {
+        session: {
+            duration: Date.now() - this.sessionStart,
+            pageViews: this.pageViews.length,
+            interactions: this.interactions.length
+        },
+        performance: this.performance,
+        topInteractions: this.getTopInteractions ? this.getTopInteractions() : [],
+        deviceInfo: this.getDeviceInfo ? this.getDeviceInfo() : {}
+    };
+};
 
-// Initialize analytics when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    window.portfolioAnalytics = new PortfolioAnalytics();
+ProfessionalPortfolio.prototype.getTopInteractions = function() {
+    const counts = {};
+    this.interactions.forEach(interaction => {
+        const key = interaction.type;
+        counts[key] = (counts[key] || 0) + 1;
+    });
     
-    // Add analytics summary to console for development
-    setTimeout(() => {
-        console.log('[Portfolio Analytics] Session Summary:', window.portfolioAnalytics.getAnalyticsSummary());
-    }, 10000);
+    return Object.entries(counts)
+        .sort(([,a], [,b]) => b - a)
+        .slice(0, 5);
+};
+
+ProfessionalPortfolio.prototype.getDeviceInfo = function() {
+    return {
+        userAgent: navigator.userAgent,
+        platform: navigator.platform,
+        language: navigator.language,
+        cookieEnabled: navigator.cookieEnabled,
+        onLine: navigator.onLine,
+        viewport: {
+            width: window.innerWidth,
+            height: window.innerHeight
+        },
+        screen: {
+            width: screen.width,
+            height: screen.height,
+            colorDepth: screen.colorDepth
+        }
+    };
+};
+
+// Add download tracking to ProfessionalPortfolio
+document.addEventListener('click', (e) => {
+    if (window.portfolioManager && e.target.closest('.download-btn')) {
+        window.portfolioManager.trackInteraction('download', {
+            type: 'resume_pdf',
+            timestamp: Date.now()
+        });
+    }
+});
+
+// Initialize additional analytics when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.portfolioManager) {
+        window.portfolioManager.trackScrollDepth();
+        window.portfolioManager.trackTimeOnPage();
+
+        // Add analytics summary to console for development
+        setTimeout(() => {
+            console.log('[Portfolio Analytics] Session Summary:', window.portfolioManager.getAnalyticsSummary());
+        }, 10000);
+    }
 });
 
 // Performance monitoring
@@ -819,7 +772,13 @@ class PerformanceMonitor {
             });
         }).observe({ type: 'first-input', buffered: true });
     }
-
+/**
+ * PerformanceMonitor class provides real-time monitoring of key web performance metrics
+ * such as Largest Contentful Paint (LCP), First Input Delay (FID), Cumulative Layout Shift (CLS),
+ * and resource loading times. It logs these metrics to the console and optionally sends them
+ * to the PortfolioAnalytics instance for further analysis.
+ */
+class PerformanceMonitor {
     // Monitor Cumulative Layout Shift (CLS)
     monitorCumulativeLayoutShift() {
         let clsValue = 0;
@@ -858,12 +817,12 @@ class PerformanceMonitor {
                         duration: Math.round(r.duration),
                         size: Math.round(r.transferSize / 1024) // KB
                     }))
-                });
-            }
-        });
-    }
+// Initialize performance monitoring
+if ('PerformanceObserver' in window && 'performance' in window) {
+    document.addEventListener('DOMContentLoaded', () => {
+        new PerformanceMonitor();
+    });
 }
-
 // Initialize performance monitoring
 if ('PerformanceObserver' in window) {
     document.addEventListener('DOMContentLoaded', () => {

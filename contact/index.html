@@ -6,7 +6,6 @@
     <title>Contact - Adetunji Fasiku</title>
     <meta name="description" content="Get in touch with Adetunji Fasiku for data science collaboration, consulting, or career opportunities.">
     <link rel="stylesheet" href="../styles.css">
-    <script src="../enhanced-portfolio.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&display=swap" rel="stylesheet">
@@ -298,6 +297,29 @@
         body.dark-theme .form-group textarea::placeholder {
             color: rgba(255, 255, 255, 0.7) !important;
         }
+
+        /* Ripple effect */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+            background-color: rgba(147, 112, 219, 0.4);
+            pointer-events: none;
+            z-index: 2;
+        }
+        @keyframes ripple-animation {
+            to {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+        }
+
+        /* Ensure parent is positioned for ripple */
+        .contact-link, .submit-btn {
+            position: relative;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
@@ -306,12 +328,9 @@
     
     <div class="container">
         <!-- Theme Toggle -->
-        <button class="theme-toggle emoji-fallback" onclick="toggleTheme()" 
-                tabindex="0" 
-                role="button" 
-                aria-label="Toggle dark/light theme"
-                title="Toggle dark/light theme">
-            <span class="theme-icon">🌙</span>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light theme">
+            <span class="theme-toggle-sun">☀️</span>
+            <span class="theme-toggle-moon">🌙</span>
         </button>
         
         <!-- Navigation Menu -->
@@ -359,7 +378,7 @@
             <!-- Contact Form -->
             <div class="contact-form">
                 <h2 style="color: var(--primary-purple); margin-bottom: 1.5rem; text-align: center;">Send Me a Message</h2>
-                <form id="contactForm" netlify>
+                <form id="contactForm" data-netlify="true">
                     <div class="form-group">
                         <label for="name">Your Name *</label>
                         <input type="text" id="name" name="name" required>
@@ -393,7 +412,7 @@
                     
                     <div class="form-group">
                         <label for="message">Message *</label>
-                        <textarea id="message" name="message" placeholder="Tell me about your project, opportunity, or just say hello! Please include relevant details like timeline, budget range (for freelance), or specific requirements." required minlength="10"></textarea>
+                        <textarea id="message" name="message" placeholder="Tell me about your project, opportunity, or just say hello! Please include relevant details like timeline, budget range (for freelance), or specific requirements." required minlength="10" maxlength="500"></textarea>
                         <span class="form-error" id="messageError"></span>
                         <div class="character-count">
                             <span id="charCount">0</span>/500 characters
@@ -439,22 +458,60 @@
             scrollProgress.style.width = progress + '%';
         });
 
-        // Fade in animation
+        // DOMContentLoaded: wrap all DOM-dependent code here
         document.addEventListener('DOMContentLoaded', function() {
+            // Fade in animation
             const fadeElements = document.querySelectorAll('.fade-in');
             fadeElements.forEach(element => {
                 element.style.opacity = '1';
                 element.style.transform = 'translateY(0)';
             });
-        });
 
-        // Contact form handling with validation
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            if (validateForm()) {
-                submitForm();
-            }
+            // Contact form handling with validation
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (validateForm()) {
+                    submitForm();
+                }
+            });
+
+            // Character count for message
+            document.getElementById('message').addEventListener('input', updateCharCount);
+
+            // Initialize character count
+            updateCharCount();
+
+            // Add hover effects
+            document.querySelectorAll('.contact-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.borderLeftColor = 'var(--primary-purple)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.borderLeftColor = 'var(--accent-gold)';
+                });
+            });
+
+            // Add ripple effect to buttons
+            document.querySelectorAll('.contact-link, .submit-btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+
+                    ripple.style.width = ripple.style.height = size + 'px';
+                    ripple.style.left = x + 'px';
+                    ripple.style.top = y + 'px';
+                    ripple.classList.add('ripple');
+
+                    this.appendChild(ripple);
+
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
         });
 
         // Form validation
@@ -565,7 +622,7 @@ Sent from Adetunji Fasiku's Portfolio Contact Form`;
                 `;
 
                 // Open email client
-                window.location.href = mailtoLink;
+                window.open(mailtoLink);
 
                 // Reset form after short delay
                 setTimeout(() => {
@@ -579,91 +636,35 @@ Sent from Adetunji Fasiku's Portfolio Contact Form`;
 
         // Character count for message
         function updateCharCount() {
-            const message = document.getElementById('message');
-            const charCount = document.getElementById('charCount');
-            
-            if (message && charCount) {
-                const count = message.value.length;
-                charCount.textContent = count;
-                
-                // Change color based on length
-                if (count > 450) {
-                    charCount.style.color = '#e74c3c';
-                } else if (count > 300) {
-                    charCount.style.color = '#f39c12';
-                } else {
-                    charCount.style.color = '#27ae60';
-                }
-            }
-        }
-
-        // Add character count listener
-        document.getElementById('message').addEventListener('input', updateCharCount);
-
-        // Initialize character count
-        document.addEventListener('DOMContentLoaded', updateCharCount);
-
-        // Add hover effects
-        document.querySelectorAll('.contact-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.borderLeftColor = 'var(--primary-purple)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.borderLeftColor = 'var(--accent-gold)';
-            });
-        });
-
-        // Add ripple effect to buttons
-        document.querySelectorAll('.contact-link, .submit-btn').forEach(button => {
-            button.addEventListener('click', function(e) {
+        // Add ripple effect to buttons using event delegation
+        document.addEventListener('click', function(e) {
+            const target = e.target.closest('.contact-link, .submit-btn');
+            if (target) {
                 const ripple = document.createElement('span');
-                const rect = this.getBoundingClientRect();
+                const rect = target.getBoundingClientRect();
                 const size = Math.max(rect.width, rect.height);
                 const x = e.clientX - rect.left - size / 2;
                 const y = e.clientY - rect.top - size / 2;
-                
+
                 ripple.style.width = ripple.style.height = size + 'px';
                 ripple.style.left = x + 'px';
                 ripple.style.top = y + 'px';
                 ripple.classList.add('ripple');
-                
-                this.appendChild(ripple);
-                
+
+                target.appendChild(ripple);
+
                 setTimeout(() => {
                     ripple.remove();
                 }, 600);
-            });
+            }
         });
-
-        // Theme toggle functionality with persistence
-        function toggleTheme() {
-            const body = document.body;
-            const themeIcon = document.querySelector('.theme-icon');
-            
-            body.classList.toggle('dark-theme');
-            
-            if (body.classList.contains('dark-theme')) {
-                themeIcon.textContent = '☀️';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                themeIcon.textContent = '🌙';
-                localStorage.setItem('theme', 'light');
-            }
-        }
-
-        // Load saved theme on page load
+    
+    <!-- Enhanced Portfolio JavaScript -->
+    <script src="../enhanced_portfolio.js"></script>
+    <script>
+        // Initialize the portfolio when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            const themeIcon = document.querySelector('.theme-icon');
-            
-            if (savedTheme === 'dark') {
-                document.body.classList.add('dark-theme');
-                if (themeIcon) themeIcon.textContent = '☀️';
-            } else {
-                document.body.classList.remove('dark-theme');
-                if (themeIcon) themeIcon.textContent = '🌙';
-            }
+            new ProfessionalPortfolio();
         });
     </script>
 </body>

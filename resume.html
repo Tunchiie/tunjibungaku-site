@@ -6,19 +6,61 @@
     <title>Resume - Adetunji Fasiku</title>
     <meta name="description" content="Professional resume of Adetunji Fasiku - Data Analyst with expertise in risk modeling, ML explainability, and statistical analysis.">
     <link rel="stylesheet" href="styles.css">
-    <script src="enhanced-portfolio.js"></script>
+    <script>
+        const theme = localStorage.getItem("theme") || "light";
+        document.documentElement.setAttribute("data-theme", theme);
+        // Apply the theme class to both html and body for styles.css compatibility
+        if (theme === "dark") {
+            document.documentElement.classList.add("dark-theme");
+            document.addEventListener('DOMContentLoaded', function() {
+                document.body.classList.add("dark-theme");
+            });
+        }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
+        :root {
+            --accent-blue: #3498db;
+            --primary-purple: #581C87;
+            --accent-gold: #F4D03F;
+            --lavender: #F5F3FF;
+            --text-muted: #888;
+            --text-color: #2c3e50;
+        }
+
+        /* Dark theme support */
+        html.dark-theme {
+            --text-color: #ffffff;
+            --text-muted: #cccccc;
+        }
+
         .resume-container {
             max-width: 900px;
             margin: 0 auto;
             padding: 2rem;
-            background: linear-gradient(135deg, rgba(147, 112, 219, 0.03), rgba(238, 130, 238, 0.02));
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(147, 112, 219, 0.1);
+        }
+        
+        /* Center the main content sections */
+        .resume-section {
+            text-align: center;
+        }
+        
+        /* Keep certain elements left-aligned for better readability */
+        .resume-section p,
+        .resume-section ul,
+        .resume-section li,
+        .item-description,
+        .skills-grid {
+            text-align: left;
+        }
+        
+        /* Keep headers centered */
+        .resume-section h2,
+        .resume-section h4 {
+            text-align: center;
         }
         
         .resume-header {
@@ -65,7 +107,7 @@
         }
         
         .item-date {
-            color: var(--text-light);
+            color: var(--text-muted);
             font-style: italic;
             margin-bottom: 0.5rem;
         }
@@ -133,40 +175,7 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
         
-        .print-resume {
-            text-align: center;
-            margin-top: 1rem;
-        }
         
-        .print-btn {
-            padding: 0.8rem 1.5rem;
-            background: var(--accent-blue);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-        
-        .print-btn:hover {
-            background: var(--primary-purple);
-            transform: translateY(-2px);
-        }
-        
-        @media print {
-            body {
-                background: var(--lavender) !important;
-                color: black !important;
-            }
-            .nav-menu, .download-resume, .print-resume {
-                display: none !important;
-            }
-            .resume-container {
-                box-shadow: none !important;
-                background: var(--lavender) !important;
-            }
-        }
     </style>
 </head>
 <body>
@@ -258,6 +267,18 @@
                         • Uncovered seasonal and decade-based feature shifts: e.g., winter tracks trend quieter; modern hits skew louder and less acoustic<br>
                         • Built data visualizations (heatmaps, violin plots, pairplots) to present insights for music producers and playlist engineers<br>
                         • <strong>Technologies:</strong> Python, Seaborn, SciPy, Exportify API, Pandas, ANOVA, T-Test
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="item-title">CandleThrob – Stock Market Analysis Dashboard</div>
+                    <div class="item-date">March 2025</div>
+                    <div class="item-description">
+                        • Built interactive stock market analysis dashboard with real-time data visualization and technical indicators<br>
+                        • Implemented candlestick charts, moving averages, RSI, and MACD indicators for comprehensive market analysis<br>
+                        • Integrated multiple data sources including Yahoo Finance API for live market data and historical analysis<br>
+                        • Created responsive web interface with real-time updates and customizable watchlists for portfolio tracking<br>
+                        • <strong>Technologies:</strong> Python, Streamlit, Yahoo Finance API, Plotly, Pandas, NumPy, Technical Analysis
                     </div>
                 </div>
 
@@ -368,10 +389,6 @@
                 <h3>Download Resume</h3>
                 <a href="#" class="download-btn" onclick="downloadPDF()">Download PDF</a>
             </div>
-
-            <div class="print-resume">
-                <button class="print-btn" onclick="window.print()">Print Resume</button>
-            </div>
             </div>
         </main>
     </div>
@@ -399,177 +416,467 @@
 
         // Fade in animation
         document.addEventListener('DOMContentLoaded', function() {
+            // Add fade-in animation functionality
             const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            fadeElements.forEach(element => {
+                fadeObserver.observe(element);
+            });
+            
+            // Also make immediately visible elements show up
             fadeElements.forEach(element => {
                 element.style.opacity = '1';
                 element.style.transform = 'translateY(0)';
             });
         });
 
-        // Download PDF function with jsPDF
+        // Download PDF function with jsPDF - Full Page Optimized Resume
         function downloadPDF() {
             const { jsPDF } = window.jspdf;
             const pdf = new jsPDF();
             
             // Set up fonts and colors
-            pdf.setFont('Times', 'normal');
-            const primaryColor = [88, 28, 135]; // Purple color
-            const textColor = [51, 51, 51]; // Dark gray
+            pdf.setFont('Arial', 'normal');
+            const primaryColor = [88, 28, 135]; // Purple
+            const accentColor = [52, 152, 219]; // Blue
+            const goldColor = [244, 208, 63]; // Gold
+            const textColor = [44, 62, 80]; // Dark gray
+            const lightGray = [108, 117, 125]; // Light gray
             
-            let yPosition = 20;
-            const leftMargin = 20;
-            const rightMargin = 190;
-            const lineHeight = 6;
+            // Page dimensions and layout setup
+            const pageWidth = 210; // A4 width in mm
+            const pageHeight = 297; // A4 height in mm
+            const margin = 10; // Increase margin for better spacing
+            const contentWidth = pageWidth - (2 * margin);
+            const colWidth = contentWidth * 0.45; // Adjust column width for balance
             
-            // Header - Name
+            let leftY = 20; // Start content lower for better header spacing
+            let rightY = 20;
+            const lineHeight = 4; // Increase line height for readability
+            const sectionSpacing = 6; // Add more spacing between sections
+            
+            // Header Background with Premium Design
+            pdf.setFillColor(88, 28, 135); // Primary purple
+            pdf.rect(0, 0, pageWidth, 35, 'F');
+            
+            // Gold accent line
+            pdf.setLineWidth(0.8);
+            pdf.setDrawColor(244, 208, 63); // Gold
+            pdf.line(margin, 33, pageWidth - margin, 33);
+            
+            // Header Content
+            const leftCol = margin;
+            const rightCol = margin + (contentWidth * 0.52);
+            
             pdf.setFontSize(24);
-            pdf.setTextColor(...primaryColor);
-            pdf.text('Adetunji Fasiku', leftMargin, yPosition);
-            yPosition += 8;
-            
-            // Title
-            pdf.setFontSize(14);
-            pdf.setTextColor(...textColor);
-            pdf.text('Data Analyst | Bioinformatics Specialist', leftMargin, yPosition);
-            yPosition += 15;
-            
-            // Contact Information
-            pdf.setFontSize(10);
-            pdf.text('Email: tunchiiefashh@gmail.com', leftMargin, yPosition);
-            yPosition += 5;
-            pdf.text('Location: Parkville, MD | LinkedIn: linkedin.com/in/adetunji-fasiku', leftMargin, yPosition);
-            yPosition += 5;
-            pdf.text('GitHub: github.com/Tunchiie', leftMargin, yPosition);
-            yPosition += 12;
-            
-            // Professional Summary
-            pdf.setFontSize(12);
-            pdf.setTextColor(...primaryColor);
-            pdf.text('PROFESSIONAL SUMMARY', leftMargin, yPosition);
-            yPosition += 8;
+            pdf.setFont('Arial', 'bold');
+            pdf.setTextColor(255, 255, 255);
+            pdf.text('ADETUNJI FASIKU', leftCol, 18);
             
             pdf.setFontSize(10);
-            pdf.setTextColor(...textColor);
-            const summaryText = 'Data Analyst with a strong background in bioinformatics, machine learning, and statistical analysis. Experienced in developing predictive models, data visualization, and automated trading systems. Proficient in Python, R, SQL, and various data science libraries. Proven track record of delivering actionable insights through data-driven approaches.';
-            const summaryLines = pdf.splitTextToSize(summaryText, rightMargin - leftMargin);
-            pdf.text(summaryLines, leftMargin, yPosition);
-            yPosition += summaryLines.length * lineHeight + 8;
+            pdf.setFont('Arial', 'normal');
+            pdf.setTextColor(244, 208, 63); // Gold
+            pdf.text('DATA ANALYST | MACHINE LEARNING SPECIALIST', leftCol, 26);
             
-            // Technical Skills
-            pdf.setFontSize(12);
+            // Contact info in header - no emojis
+            pdf.setFontSize(8);
+            pdf.setTextColor(255, 255, 255);
+            pdf.text('Parkville, MD | tunchiiefashh@gmail.com | linkedin.com/in/adetunji-fasiku | github.com/Tunchiie', leftCol, 29);
+            
+            // Reset Y positions for main content
+            leftY = 48;
+            rightY = 48;
+            
+            // LEFT COLUMN - Professional Summary
+            pdf.setFontSize(11);
+            pdf.setFont('Arial', 'bold');
             pdf.setTextColor(...primaryColor);
-            pdf.text('TECHNICAL SKILLS', leftMargin, yPosition);
-            yPosition += 8;
+            pdf.text('PROFESSIONAL SUMMARY', leftCol, leftY);
             
-            pdf.setFontSize(10);
+            // Section underline
+            pdf.setLineWidth(0.5);
+            pdf.setDrawColor(...goldColor);
+            pdf.line(leftCol, leftY + 1.5, leftCol + 55, leftY + 1.5);
+            leftY += 6;
+            
+            pdf.setFontSize(9);
+            pdf.setFont('Arial', 'normal');
             pdf.setTextColor(...textColor);
-            const skills = [
-                'Programming Languages: Python, R, SQL, JavaScript, HTML/CSS',
-                'Data Science & ML: Pandas, NumPy, Scikit-learn, TensorFlow, Keras',
-                'Visualization: Matplotlib, Seaborn, Plotly, Tableau, Power BI',
-                'Bioinformatics: Biopython, BLAST, Gene Ontology, Pathway Analysis',
-                'Databases: MySQL, PostgreSQL, MongoDB',
-                'Tools: Git, Docker, Jupyter, VS Code, Excel'
+            const summaryText = 'Results-driven Data Analyst with bioinformatics background and proven expertise in machine learning, risk modeling, and statistical analysis. Track record of processing 6M+ records, building predictive models with 95%+ accuracy, and delivering actionable insights through Python, SQL, SHAP, and advanced analytics. Currently completing Data Analytics certification at Correlation One with demonstrated leadership experience managing 25+ team members at Amazon.';
+            const summaryLines = pdf.splitTextToSize(summaryText, colWidth);
+            pdf.text(summaryLines, leftCol, leftY);
+            leftY += summaryLines.length * lineHeight + sectionSpacing;
+            
+            // Technical Skills Section
+            pdf.setFontSize(11);
+            pdf.setFont('Arial', 'bold');
+            pdf.setTextColor(...primaryColor);
+            pdf.text('TECHNICAL EXPERTISE', leftCol, leftY);
+            pdf.setLineWidth(0.5);
+            pdf.setDrawColor(...goldColor);
+            pdf.line(leftCol, leftY + 1.5, leftCol + 50, leftY + 1.5);
+            leftY += 6;
+            
+            // Skills with better formatting
+            const skillCategories = [
+                { title: 'Programming', skills: 'Python • SQL • R • JavaScript' },
+                { title: 'Machine Learning', skills: 'XGBoost • Scikit-learn • SHAP • TensorFlow' },
+                { title: 'Analytics & BI', skills: 'Tableau • Streamlit • Power BI • Looker' },
+                { title: 'Statistical Methods', skills: 'ANOVA • T-Tests • Regression • Hypothesis Testing' },
+                { title: 'Platforms & Tools', skills: 'AWS • MySQL • Git • Excel • Pandas • NumPy' }
             ];
             
-            skills.forEach(skill => {
-                pdf.text('• ' + skill, leftMargin, yPosition);
-                yPosition += lineHeight;
+            pdf.setFontSize(9);
+            skillCategories.forEach(category => {
+                pdf.setFont('Arial', 'bold');
+                pdf.setTextColor(...accentColor);
+                pdf.text(category.title, leftCol, leftY);
+                leftY += 4;
+                
+                pdf.setFont('Arial', 'normal');
+                pdf.setTextColor(...textColor);
+                const skillLines = pdf.splitTextToSize(category.skills, colWidth);
+                pdf.text(skillLines, leftCol + 2, leftY);
+                leftY += skillLines.length * lineHeight + 2;
             });
-            yPosition += 8;
+            leftY += sectionSpacing;
             
-            // Education
-            pdf.setFontSize(12);
+            // Education & Certifications
+            pdf.setFontSize(11);
+            pdf.setFont('Arial', 'bold');
             pdf.setTextColor(...primaryColor);
-            pdf.text('EDUCATION', leftMargin, yPosition);
-            yPosition += 8;
+            pdf.text('EDUCATION & CERTIFICATIONS', leftCol, leftY);
+            pdf.setLineWidth(0.5);
+            pdf.setDrawColor(...goldColor);
+            pdf.line(leftCol, leftY + 1.5, leftCol + 60, leftY + 1.5);
+            leftY += 6;
+            
+            pdf.setFontSize(8.5);
+            pdf.setFont('Arial', 'bold');
+            pdf.setTextColor(...textColor);
+            pdf.text('Bachelor of Science', leftCol, leftY);
+            leftY += 3.5;
+            pdf.setFont('Arial', 'normal');
+            pdf.setTextColor(...lightGray);
+            pdf.text('University of Maryland Baltimore County', leftCol + 2, leftY);
+            leftY += 3;
+            pdf.text('2019 - 2022', leftCol + 2, leftY);
+            leftY += 5;
+            
+            pdf.setFont('Arial', 'bold');
+            pdf.setTextColor(...textColor);
+            pdf.text('Machine Learning Specialization', leftCol, leftY);
+            leftY += 3.5;
+            pdf.setFont('Arial', 'normal');
+            pdf.setTextColor(...lightGray);
+            pdf.text('Andrew Ng - Stanford University (Coursera)', leftCol + 2, leftY);
+            leftY += 3;
+            pdf.text('2024 - Completed', leftCol + 2, leftY);
+            leftY += 5;
+            
+            pdf.setFont('Arial', 'bold');
+            pdf.setTextColor(...textColor);
+            pdf.text('Data Analytics Program', leftCol, leftY);
+            leftY += 3.5;
+            pdf.setFont('Arial', 'normal');
+            pdf.setTextColor(...lightGray);
+            pdf.text('Correlation One', leftCol + 2, leftY);
+            leftY += 3;
+            pdf.text('Jan 2025 - Jul 2025 (Current)', leftCol + 2, leftY);
+            leftY += sectionSpacing;
+            
+            // Key Achievements Box
+            pdf.setFillColor(245, 243, 255); // Light purple background
+            pdf.rect(leftCol - 2, leftY - 2, colWidth + 4, 30, 'F');
+            pdf.setDrawColor(...primaryColor);
+            pdf.setLineWidth(0.8);
+            pdf.rect(leftCol - 2, leftY - 2, colWidth + 4, 30, 'S');
             
             pdf.setFontSize(10);
-            pdf.setTextColor(...textColor);
-            pdf.setFont('Times', 'bold');
-            pdf.text('Bachelor of Science in Biochemistry', leftMargin, yPosition);
-            yPosition += 6;
-            pdf.setFont('Times', 'normal');
-            pdf.text('University of Ilorin, Nigeria (2013-2018)', leftMargin, yPosition);
-            yPosition += 6;
-            pdf.text('Relevant Coursework: Biostatistics, Research Methods, Data Analysis', leftMargin, yPosition);
-            yPosition += 12;
-            
-            // Experience
-            pdf.setFontSize(12);
+            pdf.setFont('Arial', 'bold');
             pdf.setTextColor(...primaryColor);
-            pdf.text('PROFESSIONAL EXPERIENCE', leftMargin, yPosition);
-            yPosition += 8;
+            pdf.text('KEY ACHIEVEMENTS', leftCol, leftY + 3);
+            leftY += 7;
             
-            pdf.setFontSize(10);
+            pdf.setFontSize(7.5);
+            pdf.setFont('Arial', 'normal');
             pdf.setTextColor(...textColor);
-            pdf.setFont('Times', 'bold');
-            pdf.text('Data Analyst & ML Engineer', leftMargin, yPosition);
-            pdf.text('2021 - Present', rightMargin - 30, yPosition);
-            yPosition += 6;
-            pdf.setFont('Times', 'normal');
-            pdf.text('Freelance & Personal Projects', leftMargin, yPosition);
-            yPosition += 6;
             
-            const expPoints = [
-                'Developed machine learning models for financial prediction and medical diagnosis',
-                'Created automated trading systems with risk management protocols',
-                'Built interactive dashboards and data visualizations for stakeholder reporting',
-                'Implemented data pipelines for real-time market data processing'
+            const achievements = [
+                '• Processed 6M+ records with 95%+ accuracy',
+                '• ML explainability expert (SHAP) for decisions',
+                '• Led 25+ person operations team at Amazon',
+                '• Cross-domain insights: Finance, HR, Supply Chain'
             ];
             
-            expPoints.forEach(point => {
-                pdf.text('• ' + point, leftMargin + 5, yPosition);
-                yPosition += lineHeight;
+            achievements.forEach(achievement => {
+                pdf.text(achievement, leftCol, leftY);
+                leftY += 3.5;
             });
-            yPosition += 8;
             
-            // Add new page if needed
-            if (yPosition > 250) {
-                pdf.addPage();
-                yPosition = 20;
-            }
-            
-            // Key Projects
-            pdf.setFontSize(12);
+            // RIGHT COLUMN - Professional Experience
+            pdf.setFontSize(11);
+            pdf.setFont('Arial', 'bold');
             pdf.setTextColor(...primaryColor);
-            pdf.text('KEY PROJECTS', leftMargin, yPosition);
-            yPosition += 8;
+            pdf.text('PROFESSIONAL EXPERIENCE', rightCol, rightY);
+            pdf.setLineWidth(0.5);
+            pdf.setDrawColor(...goldColor);
+            pdf.line(rightCol, rightY + 1.5, rightCol + 65, rightY + 1.5);
+            rightY += 6;
             
+            // Experience 1
+            pdf.setFontSize(9.5);
+            pdf.setFont('Arial', 'bold');
+            pdf.setTextColor(...textColor);
+            pdf.text('Data Analytics Trainee', rightCol, rightY);
+            rightY += 4;
+            
+            pdf.setFontSize(8.5);
+            pdf.setFont('Arial', 'bold');
+            pdf.setTextColor(...accentColor);
+            pdf.text('Correlation One', rightCol, rightY);
+            pdf.setFont('Arial', 'normal');
+            pdf.setTextColor(...lightGray);
+            pdf.text('Jan 2025 - Jul 2025', rightCol + 32, rightY);
+            rightY += 4;
+            
+            pdf.setFontSize(8);
+            pdf.setTextColor(...textColor);
+            const exp1Bullets = [
+                '• Built SQL queries, Python models, Tableau dashboards for supply chain, HR, finance',
+                '• Applied statistical testing and visual storytelling for actionable business insights',
+                '• Final project: Analyzed 130K+ Billboard tracks to identify hit song patterns'
+            ];
+            
+            exp1Bullets.forEach(bullet => {
+                const bulletLines = pdf.splitTextToSize(bullet, colWidth);
+                pdf.text(bulletLines, rightCol, rightY);
+                rightY += bulletLines.length * lineHeight;
+            });
+            rightY += sectionSpacing;
+            
+            // Experience 2
+            pdf.setFontSize(9.5);
+            pdf.setFont('Arial', 'bold');
+            pdf.setTextColor(...textColor);
+            pdf.text('Process Guide (Team Lead)', rightCol, rightY);
+            rightY += 4;
+            
+            pdf.setFontSize(8.5);
+            pdf.setFont('Arial', 'bold');
+            pdf.setTextColor(...accentColor);
+            pdf.text('Amazon', rightCol, rightY);
+            pdf.setFont('Arial', 'normal');
+            pdf.setTextColor(...lightGray);
+            pdf.text('May 2023 - Feb 2025', rightCol + 22, rightY);
+            rightY += 4;
+            
+            pdf.setFontSize(8);
+            pdf.setTextColor(...textColor);
+            const exp2Bullets = [
+                '• Led operations for 25+ associates, analyzing performance metrics daily',
+                '• Reduced operational downtime through data-driven bottleneck identification',
+                '• Collaborated across IT, Facilities teams to resolve critical workflow issues'
+            ];
+            
+            exp2Bullets.forEach(bullet => {
+                const bulletLines = pdf.splitTextToSize(bullet, colWidth);
+                pdf.text(bulletLines, rightCol, rightY);
+                rightY += bulletLines.length * lineHeight;
+            });
+            rightY += sectionSpacing;
+            
+            // Key Projects Section (Right Column)
+            pdf.setFontSize(11);
+            pdf.setFont('Arial', 'bold');
+            pdf.setTextColor(...primaryColor);
+            pdf.text('FEATURED PROJECTS', rightCol, rightY);
+            pdf.setLineWidth(0.5);
+            pdf.setDrawColor(...goldColor);
+            pdf.line(rightCol, rightY + 1.5, rightCol + 50, rightY + 1.5);
+            rightY += 6;
+            
+            // Projects with compact format
             const projects = [
                 {
-                    name: 'CandleThrob Trading Bot',
-                    desc: 'Python-based automated trading system with technical analysis and risk management'
+                    name: 'Bungaku - Billboard Music Analysis',
+                    date: 'Jun 2025',
+                    desc: 'Analyzed 130K+ Billboard tracks using ANOVA, Tukey HSD, t-tests. Discovered seasonal patterns and decade-based shifts.',
+                    tech: 'Python, SciPy, Seaborn, Statistical Testing'
                 },
                 {
-                    name: 'Lending Club Loan Predictor',
-                    desc: 'Machine learning model to predict loan default risk using ensemble methods'
-                },
-                {
-                    name: 'Breast Cancer Classifier',
-                    desc: 'Deep learning model for medical diagnosis with 95%+ accuracy'
+                    name: 'CandleThrob - Stock Market Dashboard',
+                    date: 'Mar 2025',
+                    desc: 'Built interactive stock analysis dashboard with real-time data, candlestick charts, RSI, MACD indicators.',
+                    tech: 'Python, Streamlit, Yahoo Finance API, Plotly'
                 },
                 {
                     name: 'Customer Purchase Predictor',
-                    desc: 'Predictive analytics model for e-commerce customer behavior'
+                    date: 'Jan 2025',
+                    desc: 'Built logistic classifier on 3.9M+ behavioral events. Optimized threshold (0.67) for business decisions.',
+                    tech: 'Python, SHAP, Streamlit, Feature Engineering'
+                },
+                {
+                    name: 'Lending Club Risk Model',
+                    date: 'Sep 2024',
+                    desc: 'Processed 2.2M+ loan records. XGBoost model: 77% accuracy, 0.76 F1-score. SHAP explainability.',
+                    tech: 'XGBoost, SHAP, Risk Modeling'
                 }
             ];
-            
-            pdf.setFontSize(10);
-            pdf.setTextColor(...textColor);
-            
+
             projects.forEach(project => {
-                pdf.setFont('Times', 'bold');
-                pdf.text('• ' + project.name, leftMargin, yPosition);
-                yPosition += 6;
-                pdf.setFont('Times', 'normal');
-                pdf.text('  ' + project.desc, leftMargin, yPosition);
-                yPosition += lineHeight + 2;
+                pdf.setFontSize(9);
+                pdf.setFont('Arial', 'bold');
+                pdf.setTextColor(...accentColor);
+                pdf.text(project.name, rightCol, rightY);
+                pdf.setFont('Arial', 'normal');
+                pdf.setTextColor(...lightGray);
+                pdf.text(project.date, rightCol + 62, rightY);
+                rightY += 4;
+
+                pdf.setFontSize(8);
+                pdf.setTextColor(...textColor);
+                const descLines = pdf.splitTextToSize(project.desc, colWidth);
+                pdf.text(descLines, rightCol, rightY);
+                rightY += descLines.length * lineHeight;
+
+                pdf.setTextColor(...primaryColor);
+                pdf.setFont('Arial', 'italic');
+                const techLines = pdf.splitTextToSize('Tech: ' + project.tech, colWidth);
+                pdf.text(techLines, rightCol, rightY);
+                rightY += techLines.length * lineHeight + 4;
+
+                pdf.setFont('Arial', 'normal');
             });
             
+            // Cross-domain expertise highlight (Full width at bottom)
+            const maxY = Math.max(leftY, rightY) + 10;
+            
+            pdf.setFillColor(240, 248, 255); // Light blue background
+            pdf.rect(margin, maxY - 3, contentWidth, 18, 'F');
+            pdf.setDrawColor(...accentColor);
+            pdf.setLineWidth(0.5);
+            pdf.rect(margin, maxY - 3, contentWidth, 18, 'S');
+            
+            pdf.setFontSize(10);
+            pdf.setFont('Arial', 'bold');
+            pdf.setTextColor(...primaryColor);
+            pdf.text('CROSS-DOMAIN IMPACT & DIFFERENTIATORS', margin + 2, maxY + 2);
+            
+            pdf.setFontSize(7.5);
+            pdf.setFont('Arial', 'normal');
+            pdf.setTextColor(...textColor);
+            
+            const highlights = [
+                'Finance: Risk modeling with regulatory compliance (SHAP explainability)',
+                'E-commerce: Behavioral prediction and customer segmentation strategies',
+                'Entertainment: Statistical analysis for music industry pattern discovery',
+                'Operations: Led 25+ team, data-driven process optimization at Amazon scale'
+            ];
+            
+            // Two-column layout for highlights
+            const leftHighlights = highlights.slice(0, 2);
+            const rightHighlights = highlights.slice(2);
+            
+            let highlightY = maxY + 6;
+            leftHighlights.forEach(highlight => {
+                const highlightLines = pdf.splitTextToSize('• ' + highlight, (contentWidth / 2) - 5);
+                pdf.text(highlightLines, margin + 2, highlightY);
+                highlightY += highlightLines.length * 3.5;
+            });
+            
+            highlightY = maxY + 6;
+            rightHighlights.forEach(highlight => {
+                const highlightLines = pdf.splitTextToSize('• ' + highlight, (contentWidth / 2) - 5);
+                pdf.text(highlightLines, rightCol + 2, highlightY);
+                highlightY += highlightLines.length * 3.5;
+            });
+            
+            // Footer with portfolio link
+            pdf.setFontSize(7.5);
+            pdf.setTextColor(...lightGray);
+            pdf.text('Portfolio: tunjibungaku.me | References available upon request', margin, pageHeight - 20);
+            
+            // Add subtle footer line
+            pdf.setLineWidth(0.3);
+            pdf.setDrawColor(...goldColor);
+            pdf.line(margin, pageHeight - 16, pageWidth - margin, pageHeight - 16);
+            
             // Save the PDF
-            pdf.save('Adetunji_Fasiku_Resume.pdf');
+            pdf.save('Adetunji_Fasiku_Data_Analyst_Resume.pdf');
         }
+    </script>
+    
+    <!-- Enhanced Portfolio JavaScript -->
+    <script src="enhanced_portfolio.js"></script>
+    <script>
+        // Initialize the portfolio when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof ProfessionalPortfolio !== 'undefined') {
+                new ProfessionalPortfolio();
+            }
+            
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            const html = document.documentElement;
+            const body = document.body;
+            
+            if (themeToggle) {
+                themeToggle.addEventListener('click', function() {
+                    const currentTheme = localStorage.getItem('theme') || 'light';
+                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                    
+                    // Update localStorage
+                    localStorage.setItem('theme', newTheme);
+                    
+                    // Update data attribute
+                    html.setAttribute('data-theme', newTheme);
+                    
+                    // Update classes
+                    if (newTheme === 'dark') {
+                        html.classList.add('dark-theme');
+                        body.classList.add('dark-theme');
+                    } else {
+                        html.classList.remove('dark-theme');
+                        body.classList.remove('dark-theme');
+                    }
+                });
+            }
+
+            // Add back to top functionality
+            const backToTop = document.getElementById('back-to-top');
+            if (backToTop) {
+                backToTop.addEventListener('click', () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+
+                // Show/hide back to top button based on scroll position
+                window.addEventListener('scroll', () => {
+                    if (window.pageYOffset > 300) {
+                        backToTop.style.display = 'flex';
+                    } else {
+                        backToTop.style.display = 'none';
+                    }
+                });
+
+                // Initially hide the button
+                backToTop.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>

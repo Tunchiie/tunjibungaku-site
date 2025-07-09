@@ -6,12 +6,18 @@
     <title>Resume - Adetunji Fasiku</title>
     <meta name="description" content="Professional resume of Adetunji Fasiku - Data Analyst with expertise in risk modeling, ML explainability, and statistical analysis.">
     <link rel="stylesheet" href="../styles.css">
-    <script src="../enhanced-portfolio.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Georgia is a system font and does not need to be loaded from Google Fonts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
+        :root {
+            --lavender: #f5f3ff;
+            --primary-purple: #581c87;
+            --accent-gold: #f4d03f;
+            --accent-blue: #5dade2;
+            --text-light: #888;
+        }
         .resume-container {
             max-width: 900px;
             margin: 0 auto;
@@ -232,12 +238,9 @@
     
     <div class="container">
         <!-- Theme Toggle -->
-        <button class="theme-toggle emoji-fallback" onclick="toggleTheme()" 
-                tabindex="0" 
-                role="button" 
-                aria-label="Toggle dark/light theme"
-                title="Toggle dark/light theme">
-            <span class="theme-icon">🌙</span>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light theme">
+            <span class="theme-toggle-sun">☀️</span>
+            <span class="theme-toggle-moon">🌙</span>
         </button>
         
         <!-- Navigation Menu -->
@@ -247,10 +250,10 @@
             <a href="./" class="nav-item active">Resume</a>
             <a href="../contact/" class="nav-item">Contact</a>
         </nav>
-
-        <div class="resume-container fade-in">
-            <!-- Resume Header -->
-            <div class="resume-header">
+                    <span>📍 Parkville, MD</span> | 
+                    <span>📧 tunchiiefashh@gmail.com</span> | 
+                    <a href="https://linkedin.com/in/adetunji-fasiku" target="_blank" rel="noopener noreferrer">LinkedIn</a> | 
+                    <a href="https://github.com/Tunchiie" target="_blank" rel="noopener noreferrer">GitHub</a>
                 <h1>Adetunji Fasiku</h1>
                 <p class="subtitle">Data Analyst</p>
                 <div class="contact-info">
@@ -276,6 +279,8 @@
                         <ul class="skill-list">
                             <li>Python</li>
                             <li>SQL</li>
+                            <li>R (Intermediate)</li>
+                            <li>JavaScript (Basic)</li>
                             <li>Tableau</li>
                             <li>Streamlit</li>
                             <li>Excel</li>
@@ -458,7 +463,11 @@
 
         // Download PDF function with jsPDF - Optimized for single page
         function downloadPDF() {
-            const { jsPDF } = window.jspdf;
+            if (!window.jspdf || !window.jspdf.jsPDF) {
+                alert('PDF generation is unavailable. Please check your internet connection and try again.');
+                return;
+            }
+            pdf.setFont('times', 'normal');
             const pdf = new jsPDF();
             
             // Set up fonts and colors
@@ -532,7 +541,7 @@
             pdf.setFontSize(11);
             pdf.setTextColor(...primaryColor);
             pdf.text('EDUCATION', leftMargin, yPosition);
-            const educationStartY = yPosition + 5;
+            pdf.setFont('times', 'bold');
             
             pdf.setFontSize(9);
             pdf.setTextColor(...textColor);
@@ -647,7 +656,7 @@
             projects.forEach(project => {
                 pdf.setFont('Times', 'bold');
                 pdf.text('• ' + project.name, leftMargin, yPosition);
-                yPosition += lineHeight;
+                pdf.setFont('times', 'italic');
                 pdf.setFont('Times', 'normal');
                 pdf.text('  ' + project.desc, leftMargin, yPosition);
                 yPosition += lineHeight;
@@ -693,36 +702,17 @@
                 this.style.boxShadow = 'none';
             });
         });
-
-        // Theme toggle functionality with persistence
-        function toggleTheme() {
-            const body = document.body;
-            const themeIcon = document.querySelector('.theme-icon');
-            
-            body.classList.toggle('dark-theme');
-            
-            if (body.classList.contains('dark-theme')) {
-                themeIcon.textContent = '☀️';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                themeIcon.textContent = '🌙';
-                localStorage.setItem('theme', 'light');
-            }
-        }
-
-        // Load saved theme on page load
+    </script>
+    
+    <script>
+        // Initialize the portfolio when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            const themeIcon = document.querySelector('.theme-icon');
-            
-            if (savedTheme === 'dark') {
-                document.body.classList.add('dark-theme');
-                if (themeIcon) themeIcon.textContent = '☀️';
-            } else {
-                document.body.classList.remove('dark-theme');
-                if (themeIcon) themeIcon.textContent = '🌙';
+            if (typeof ProfessionalPortfolio === 'function') {
+                new ProfessionalPortfolio();
             }
         });
     </script>
+</body>
+</html>
 </body>
 </html>

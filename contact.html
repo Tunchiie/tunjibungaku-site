@@ -5,17 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - Adetunji Fasiku</title>
     <meta name="description" content="Get in touch with Adetunji Fasiku for data science collaboration, consulting, or career opportunities.">
+    <link rel="stylesheet" href="styles.css">
     <script>
         const theme = localStorage.getItem("theme") || "light";
         document.documentElement.setAttribute("data-theme", theme);
+        // Apply the theme class to both html and body for styles.css compatibility
+        if (theme === "dark") {
+            document.documentElement.classList.add("dark-theme");
+            document.addEventListener('DOMContentLoaded', function() {
+                document.body.classList.add("dark-theme");
+            });
+        }
     </script>
 
-    <link rel="stylesheet" href="styles.css">
-    <script src="enhanced-portfolio.js"></script>
+    <script src="enhanced_portfolio.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --accent-blue: #3498db;
+            --primary-purple: #581C87;
+            --accent-gold: #F4D03F;
+            --lavender: #F5F3FF;
+            --text-muted: #888;
+            --text-color: #2c3e50;
+        }
+
+        /* Dark theme support */
+        html.dark-theme {
+            --text-color: #ffffff;
+            --text-muted: #cccccc;
+        }
+
         .contact-container {
             max-width: 800px;
             margin: 0 auto;
@@ -45,12 +67,19 @@
         }
         
         .contact-card {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255, 255, 255, 0.8);
             padding: 2rem;
             border-radius: 12px;
             border-left: 3px solid var(--accent-gold);
             text-align: center;
             transition: all 0.3s ease;
+            border: 1px solid rgba(147, 112, 219, 0.1);
+        }
+        
+        /* Dark theme adjustments for contact cards */
+        html.dark-theme .contact-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(147, 112, 219, 0.3);
         }
         
         .contact-icon {
@@ -75,26 +104,51 @@
         }
         
         .contact-info {
-            color: var(--text-light);
+            color: var(--text-muted);
             margin-bottom: 1rem;
         }
         
         .contact-link {
             display: inline-block;
             padding: 0.8rem 1.5rem;
-            background: linear-gradient(135deg, var(--primary-purple), var(--accent-gold));
+            background: var(--primary-purple);
             color: white;
             text-decoration: none;
             border-radius: 8px;
             font-weight: bold;
             transition: all 0.3s ease;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Light mode adjustments for contact links */
+        html:not(.dark-theme) .contact-link {
+            color: white;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Light mode hover effects for contact buttons */
+        html:not(.dark-theme) .contact-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 25px rgba(147, 112, 219, 0.4);
+        }
+        
+        /* Gold hover effect for contact buttons in dark mode */
+        html.dark-theme .contact-link:hover {
+            background: var(--accent-gold);
+            box-shadow: 0 15px 25px rgba(238, 130, 238, 0.4);
         }
         
         .contact-form {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255, 255, 255, 0.8);
             padding: 2rem;
             border-radius: 15px;
             border: 1px solid rgba(147, 112, 219, 0.2);
+        }
+        
+        /* Dark theme adjustments for contact form */
+        html.dark-theme .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(147, 112, 219, 0.3);
         }
         
         .form-group {
@@ -109,20 +163,30 @@
         }
         
         .form-group input,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 100%;
             padding: 1rem;
             border: 2px solid rgba(147, 112, 219, 0.3);
             border-radius: 8px;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.9);
             color: var(--text-color);
             font-family: inherit;
             font-size: 1rem;
             transition: all 0.3s ease;
         }
         
+        /* Dark theme adjustments for form inputs */
+        html.dark-theme .form-group input,
+        html.dark-theme .form-group textarea,
+        html.dark-theme .form-group select {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(147, 112, 219, 0.4);
+        }
+        
         .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group textarea:focus,
+        .form-group select:focus {
             outline: none;
             border-color: var(--primary-purple);
             box-shadow: 0 0 10px rgba(147, 112, 219, 0.3);
@@ -136,7 +200,7 @@
         .submit-btn {
             width: 100%;
             padding: 1rem 2rem;
-            background: linear-gradient(135deg, var(--primary-purple), var(--accent-gold));
+            background: var(--primary-purple);
             color: white;
             border: none;
             border-radius: 8px;
@@ -144,6 +208,13 @@
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Light mode adjustments for submit button */
+        html:not(.dark-theme) .submit-btn {
+            color: white;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
         }
         
         .submit-btn:hover {
@@ -151,13 +222,35 @@
             box-shadow: 0 15px 25px rgba(147, 112, 219, 0.4);
         }
         
+        /* Gold hover effect for Send Message button in dark mode */
+        html.dark-theme .submit-btn:hover {
+            background: var(--accent-gold);
+            box-shadow: 0 15px 25px rgba(238, 130, 238, 0.4);
+        }
+        
         .availability {
-            background: linear-gradient(135deg, var(--accent-blue), var(--primary-purple));
+            background: var(--primary-purple);
             padding: 1.5rem;
             border-radius: 10px;
             text-align: center;
             margin-top: 2rem;
             color: white;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Light mode adjustments for availability section */
+        html:not(.dark-theme) .availability {
+            color: white;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Ensure availability h3 is white in all modes - override global styles */
+        body:not(.dark-theme) .availability h3,
+        body.light-theme .availability h3,
+        body.dark-theme .availability h3,
+        .availability h3 {
+            color: white !important;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4) !important;
         }
         
         .social-links {
@@ -186,6 +279,80 @@
             background: var(--accent-gold);
             transform: translateY(-3px) rotate(5deg);
             box-shadow: 0 10px 20px rgba(147, 112, 219, 0.4);
+        }
+
+        /* Checkbox styling for better visibility */
+        .checkbox-group {
+            margin: 1.5rem 0;
+        }
+        
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 0.75rem;
+            width: auto;
+            transform: scale(1.2);
+        }
+        
+        html.dark-theme .checkbox-group input[type="checkbox"] {
+            accent-color: var(--primary-purple);
+        }
+
+        /* Ripple effect for buttons */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+            pointer-events: none;
+        }
+        
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        
+        .contact-link,
+        .submit-btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Form error styling */
+        .form-error {
+            display: none;
+            color: #e74c3c;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        .character-count {
+            text-align: right;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+        
+        .success-message {
+            background: rgba(39, 174, 96, 0.1);
+            border: 1px solid rgba(39, 174, 96, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            color: #27ae60;
+        }
+        
+        .success-message h4 {
+            margin: 0 0 0.5rem 0;
+            color: #27ae60;
         }
     </style>
 </head>
@@ -247,7 +414,7 @@
             <!-- Contact Form -->
             <div class="contact-form">
                 <h2 style="color: var(--primary-purple); margin-bottom: 1.5rem; text-align: center;">Send Me a Message</h2>
-                <form id="contactForm" netlify>
+                <form id="contactForm" data-netlify="true">
                     <div class="form-group">
                         <label for="name">Your Name *</label>
                         <input type="text" id="name" name="name" required>
@@ -281,7 +448,7 @@
                     
                     <div class="form-group">
                         <label for="message">Message *</label>
-                        <textarea id="message" name="message" placeholder="Tell me about your project, opportunity, or just say hello! Please include relevant details like timeline, budget range (for freelance), or specific requirements." required minlength="10"></textarea>
+                        <textarea id="message" name="message" placeholder="Tell me about your project, opportunity, or just say hello! Please include relevant details like timeline, budget range (for freelance), or specific requirements." required minlength="10" maxlength="500"></textarea>
                         <span class="form-error" id="messageError"></span>
                         <div class="character-count">
                             <span id="charCount">0</span>/500 characters
@@ -483,7 +650,7 @@ Sent from Adetunji Fasiku's Portfolio Contact Form`;
                 `;
 
                 // Open email client
-                window.location.href = mailtoLink;
+                window.open(mailtoLink);
 
                 // Reset form after short delay
                 setTimeout(() => {
@@ -552,6 +719,63 @@ Sent from Adetunji Fasiku's Portfolio Contact Form`;
                     ripple.remove();
                 }, 600);
             });
+        });
+
+        // Initialize the portfolio when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof ProfessionalPortfolio === 'function') {
+                new ProfessionalPortfolio();
+            }
+            
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            const html = document.documentElement;
+            const body = document.body;
+            
+            if (themeToggle) {
+                themeToggle.addEventListener('click', function() {
+                    const currentTheme = localStorage.getItem('theme') || 'light';
+                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                    
+                    // Update localStorage
+                    localStorage.setItem('theme', newTheme);
+                    
+                    // Update data attribute
+                    html.setAttribute('data-theme', newTheme);
+                    
+                    // Update classes
+                    if (newTheme === 'dark') {
+                        html.classList.add('dark-theme');
+                        body.classList.add('dark-theme');
+                    } else {
+                        html.classList.remove('dark-theme');
+                        body.classList.remove('dark-theme');
+                    }
+                });
+            }
+
+            // Add back to top functionality
+            const backToTop = document.getElementById('back-to-top');
+            if (backToTop) {
+                backToTop.addEventListener('click', () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+
+                // Show/hide back to top button based on scroll position
+                window.addEventListener('scroll', () => {
+                    if (window.pageYOffset > 300) {
+                        backToTop.style.display = 'flex';
+                    } else {
+                        backToTop.style.display = 'none';
+                    }
+                });
+
+                // Initially hide the button
+                backToTop.style.display = 'none';
+            }
         });
     </script>
 </body>

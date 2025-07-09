@@ -22,8 +22,6 @@ highlighter: rouge
 # Include/Exclude files
 include:
   - _pages
-  - .htaccess
-
 exclude:
   - README.md
   - LICENSE
@@ -44,12 +42,14 @@ defaults:
       layout: "default"
 
 # SEO settings
-lang: en
+# SEO settings
+lang: en_US
 locale: en_US
-
 # Social media
 social:
   name: Adetunji Fasiku
   links:
-    - https://github.com/Tunchiie
-    - https://linkedin.com/in/adetunji-fasiku
+    - name: GitHub
+      url: https://github.com/Tunchiie
+    - name: LinkedIn
+      url: https://linkedin.com/in/adetunji-fasiku

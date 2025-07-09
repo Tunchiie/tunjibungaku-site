@@ -102,42 +102,73 @@ class ProfessionalPortfolio {
     // Professional theme management
     setupThemeManagement() {
         this.loadSavedTheme();
+        // Store the bound handler for proper add/remove
+        this._boundToggleTheme = this.toggleTheme.bind(this);
         this.setupThemeToggle();
     }
 
     loadSavedTheme() {
-        const savedTheme = localStorage.getItem('portfolio-theme');
+        // Check both old and new localStorage keys for backward compatibility
+        const savedTheme = localStorage.getItem('portfolio-theme') || localStorage.getItem('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         const theme = savedTheme || (prefersDark ? 'dark' : 'light');
         this.applyTheme(theme);
+        console.log('Enhanced Portfolio - Loaded theme:', theme);
     }
 
     setupThemeToggle() {
-        const themeToggle = document.querySelector('.theme-toggle');
-        if (themeToggle) {
-            themeToggle.addEventListener('click', () => this.toggleTheme());
-            themeToggle.setAttribute('aria-label', 'Toggle theme');
-        }
+        // Guard to prevent multiple initializations
+        if (this._themeToggleInitialized) return;
+        this._themeToggleInitialized = true;
+
+        // Use event delegation for robustness
+        document.body.addEventListener('click', (e) => {
+            const themeToggle = e.target.closest('.theme-toggle');
+            if (themeToggle) {
+                this.toggleTheme();
+            }
+        });
+
+        // Set ARIA label if button exists at init
+        setTimeout(() => {
+            const themeToggle = document.querySelector('.theme-toggle');
+            if (themeToggle) {
+                themeToggle.setAttribute('aria-label', 'Toggle theme');
+                console.log('Enhanced Portfolio - Theme toggle ARIA label set');
+            }
+        }, 100);
     }
 
     toggleTheme() {
         const currentTheme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
         this.applyTheme(newTheme);
+        // Save to both keys for compatibility
         localStorage.setItem('portfolio-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
         this.announceToScreenReader(`Switched to ${newTheme} theme`);
+        console.log('Enhanced Portfolio - Toggled to:', newTheme);
     }
 
     applyTheme(theme) {
         const body = document.body;
-        const themeIcon = document.querySelector('.theme-icon');
+        const sunIcon = document.querySelector('.theme-toggle-sun');
+        const moonIcon = document.querySelector('.theme-toggle-moon');
+        
+        console.log('Enhanced Portfolio - Applying theme:', theme);
+        console.log('Enhanced Portfolio - Sun icon found:', !!sunIcon);
+        console.log('Enhanced Portfolio - Moon icon found:', !!moonIcon);
         
         if (theme === 'dark') {
             body.classList.add('dark-theme');
-            if (themeIcon) themeIcon.textContent = '☀️';
+            // Show sun icon in dark mode (to switch to light)
+            if (sunIcon) sunIcon.style.display = 'inline';
+            if (moonIcon) moonIcon.style.display = 'none';
         } else {
             body.classList.remove('dark-theme');
-            if (themeIcon) themeIcon.textContent = '🌙';
+            // Show moon icon in light mode (to switch to dark)
+            if (sunIcon) sunIcon.style.display = 'none';
+            if (moonIcon) moonIcon.style.display = 'inline';
         }
     }
 
@@ -256,71 +287,15 @@ class ProfessionalPortfolio {
         this.currentFilter = filter;
     }
 
-    // Project filtering functionality
     initializeProjectFilters() {
         const filterBtns = document.querySelectorAll('.filter-btn');
-        const projectCards = document.querySelectorAll('.project-card');
-        const featuredProjects = document.querySelectorAll('.featured-project');
-
         if (filterBtns.length === 0) return; // No filters on this page
 
         filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
+        const projectCards = document.querySelectorAll('.project-card, .featured-project');
+        const featuredProjects = document.querySelectorAll('.featured-project');
                 const filter = btn.getAttribute('data-filter');
-                
-                // Update active button and ARIA states
-                filterBtns.forEach(b => {
-                    b.classList.remove('active');
-                    b.setAttribute('aria-pressed', 'false');
-                });
-                btn.classList.add('active');
-                btn.setAttribute('aria-pressed', 'true');
-                
-                // Filter project cards
-                projectCards.forEach(card => {
-                    const categories = card.getAttribute('data-category') || '';
-                    
-                    if (filter === 'all' || categories.includes(filter)) {
-                        card.style.display = 'block';
-                        card.style.opacity = '0';
-                        card.style.transform = 'translateY(20px)';
-                        
-                        setTimeout(() => {
-                            card.style.opacity = '1';
-                            card.style.transform = 'translateY(0)';
-                        }, 100);
-                    } else {
-                        card.style.opacity = '0';
-                        card.style.transform = 'translateY(20px)';
-                        
-                        setTimeout(() => {
-                            card.style.display = 'none';
-                        }, 300);
-                    }
-                });
-
-                // Handle featured projects
-                featuredProjects.forEach(featuredProject => {
-                    const featuredCategories = featuredProject.getAttribute('data-category') || '';
-                    
-                    if (filter === 'all' || featuredCategories.includes(filter)) {
-                        featuredProject.style.display = 'block';
-                        featuredProject.style.opacity = '0';
-                        featuredProject.style.transform = 'translateY(20px)';
-                        
-                        setTimeout(() => {
-                            featuredProject.style.opacity = '1';
-                            featuredProject.style.transform = 'translateY(0)';
-                        }, 100);
-                    } else {
-                        featuredProject.style.opacity = '0';
-                        featuredProject.style.transform = 'translateY(20px)';
-                        
-                        setTimeout(() => {
-                            featuredProject.style.display = 'none';
-                        }, 300);
-                    }
-                });
+                this.applyFilter(filter, btn);
 
                 // Analytics tracking
                 if (typeof trackEvent === 'function') {
@@ -334,6 +309,9 @@ class ProfessionalPortfolio {
                     e.preventDefault();
                     btn.click();
                 }
+            });
+        });
+    }
             });
         });
     }
@@ -408,7 +386,7 @@ class ProfessionalPortfolio {
             if (target) {
                 console.log('Interaction:', {
                     element: target.tagName.toLowerCase(),
-                    text: target.textContent?.trim().substring(0, 50),
+                    text: target.textContent ? target.textContent.trim().substring(0, 50) : '',
                     className: target.className
                 });
             }
