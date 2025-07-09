@@ -491,7 +491,6 @@
                 body.classList.remove('dark-theme');
                 if (sunIcon) sunIcon.style.display = 'none';
                 if (moonIcon) moonIcon.style.display = 'inline';
-                localStorage.setItem('portfolio-theme', 'light');
                 localStorage.setItem('theme', 'light');
                 console.log('Switched to light theme');
             } else {
@@ -499,7 +498,6 @@
                 body.classList.add('dark-theme');
                 if (sunIcon) sunIcon.style.display = 'inline';
                 if (moonIcon) moonIcon.style.display = 'none';
-                localStorage.setItem('portfolio-theme', 'dark');
                 localStorage.setItem('theme', 'dark');
                 console.log('Switched to dark theme');
             }
@@ -507,7 +505,14 @@
         
         // Load saved theme on page load
         function loadTheme() {
-            const savedTheme = localStorage.getItem('portfolio-theme') || localStorage.getItem('theme');
+            // Clean up old localStorage key for consistency
+            const oldTheme = localStorage.getItem('portfolio-theme');
+            if (oldTheme) {
+                localStorage.setItem('theme', oldTheme);
+                localStorage.removeItem('portfolio-theme');
+            }
+            
+            const savedTheme = localStorage.getItem('theme');
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
             const theme = savedTheme || (prefersDark ? 'dark' : 'light');
             
@@ -527,6 +532,14 @@
             
             console.log('Loaded theme:', theme);
         }
+        
+        // Listen for theme changes from other pages
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'theme') {
+                console.log('Theme changed on another page:', e.newValue);
+                loadTheme();
+            }
+        });
         
         // Initialize everything when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {

@@ -1046,6 +1046,25 @@
                 });
             }
             
+            // Listen for theme changes from other pages
+            window.addEventListener('storage', function(e) {
+                if (e.key === 'theme') {
+                    console.log('Theme changed on another page:', e.newValue);
+                    
+                    // Update data attribute
+                    document.documentElement.setAttribute('data-theme', e.newValue);
+                    
+                    // Apply theme classes for styles.css compatibility
+                    if (e.newValue === 'dark') {
+                        document.documentElement.classList.add('dark-theme');
+                        document.body.classList.add('dark-theme');
+                    } else {
+                        document.documentElement.classList.remove('dark-theme');
+                        document.body.classList.remove('dark-theme');
+                    }
+                }
+            });
+            
             // Get DOM elements once
             const featuredProjects = document.querySelectorAll('.featured-project');
             const filterBtns = document.querySelectorAll('.filter-btn');
