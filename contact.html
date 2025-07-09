@@ -236,12 +236,13 @@
             margin-top: 2rem;
             color: white;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 15px rgba(88, 28, 135, 0.2);
         }
         
-        /* Light mode adjustments for availability section */
-        html:not(.dark-theme) .availability {
-            color: white;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+        html.dark-theme .availability {
+            border-color: rgba(244, 208, 63, 0.2);
+            box-shadow: 0 4px 15px rgba(88, 28, 135, 0.3);
         }
         
         /* Ensure availability h3 is white in all modes - override global styles */
@@ -324,8 +325,14 @@
         .submit-btn {
             position: relative;
             overflow: hidden;
+            border: 2px solid transparent;
         }
 
+        .contact-link:hover,
+        .submit-btn:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        
         /* Form error styling */
         .form-error {
             display: none;
@@ -354,6 +361,40 @@
             margin: 0 0 0.5rem 0;
             color: #27ae60;
         }
+
+        /* Theme Status Indicator */
+        .theme-indicator {
+            position: fixed;
+            top: var(--space-xl);
+            left: var(--space-xl);
+            background: var(--surface-elevated-light);
+            border: 2px solid var(--royal-purple);
+            border-radius: var(--radius-lg);
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--royal-purple);
+            z-index: 999;
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-normal);
+            user-select: none;
+        }
+        
+        html.dark-theme .theme-indicator {
+            background: var(--surface-elevated-dark);
+            border-color: var(--gold-accent);
+            color: var(--gold-accent);
+            box-shadow: var(--shadow-md), 0 0 10px rgba(244, 208, 63, 0.1);
+        }
+        
+        .theme-indicator-text::before {
+            content: '🌙 ';
+        }
+        
+        html.dark-theme .theme-indicator-text::before {
+            content: '☀️ ';
+        }
     </style>
 </head>
 <body>
@@ -366,10 +407,10 @@
     <div class="container">
         <!-- Navigation Menu -->
         <nav class="nav-menu" role="navigation" aria-label="Main navigation">
-            <a href="index.html" class="nav-item">Home</a>
-            <a href="projects.html" class="nav-item">Projects</a>
-            <a href="resume.html" class="nav-item">Resume</a>
-            <a href="contact.html" class="nav-item active" aria-current="page">Contact</a>
+            <a href="/" class="nav-item">Home</a>
+            <a href="/projects" class="nav-item">Projects</a>
+            <a href="/resume" class="nav-item">Resume</a>
+            <a href="/contact" class="nav-item active" aria-current="page">Contact</a>
         </nav>
 
         <main id="main-content">
@@ -501,11 +542,16 @@
         </main>
     </div>
 
-    <!-- Theme Toggle Button -->
-    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light theme">
+    <!-- Enhanced Theme Toggle Button with better definition -->
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
         <span class="theme-toggle-sun">☀️</span>
         <span class="theme-toggle-moon">🌙</span>
     </button>
+    
+    <!-- Theme Status Indicator -->
+    <div id="theme-indicator" class="theme-indicator">
+        <span class="theme-indicator-text">Light Mode</span>
+    </div>
 
     <!-- Back to Top Button -->
     <button id="back-to-top" class="back-to-top" aria-label="Back to top">
@@ -727,10 +773,23 @@ Sent from Adetunji Fasiku's Portfolio Contact Form`;
                 new ProfessionalPortfolio();
             }
             
-            // Theme toggle functionality
+            // Enhanced theme toggle functionality with indicator
             const themeToggle = document.getElementById('theme-toggle');
+            const themeIndicator = document.getElementById('theme-indicator');
+            const themeIndicatorText = themeIndicator?.querySelector('.theme-indicator-text');
             const html = document.documentElement;
             const body = document.body;
+            
+            // Function to update theme indicator
+            function updateThemeIndicator(theme) {
+                if (themeIndicatorText) {
+                    themeIndicatorText.textContent = theme === 'dark' ? 'Dark Mode' : 'Light Mode';
+                }
+            }
+            
+            // Initialize theme indicator
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            updateThemeIndicator(currentTheme);
             
             if (themeToggle) {
                 themeToggle.addEventListener('click', function() {
@@ -751,6 +810,9 @@ Sent from Adetunji Fasiku's Portfolio Contact Form`;
                         html.classList.remove('dark-theme');
                         body.classList.remove('dark-theme');
                     }
+                    
+                    // Update theme indicator
+                    updateThemeIndicator(newTheme);
                 });
             }
 
