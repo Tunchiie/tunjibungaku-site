@@ -399,11 +399,6 @@
         <span class="theme-toggle-moon">🌙</span>
     </button>
 
-    <!-- Theme Status Indicator -->
-    <div id="theme-indicator" class="theme-indicator">
-        <span class="theme-indicator-text">Light Mode</span>
-    </div>
-
     <!-- Back to Top Button -->
     <button id="back-to-top" class="back-to-top" aria-label="Back to top">
         <span>↑</span>
@@ -858,27 +853,6 @@
                     }
                 });
             }
-
-            // Listen for theme changes from other pages
-            window.addEventListener('storage', function(e) {
-                if (e.key === 'theme') {
-                    console.log('Theme changed on another page:', e.newValue);
-                    const html = document.documentElement;
-                    const body = document.body;
-                    
-                    // Update data attribute
-                    html.setAttribute('data-theme', e.newValue);
-                    
-                    // Update classes
-                    if (e.newValue === 'dark') {
-                        html.classList.add('dark-theme');
-                        body.classList.add('dark-theme');
-                    } else {
-                        html.classList.remove('dark-theme');
-                        body.classList.remove('dark-theme');
-                    }
-                }
-            });
 
             // Add back to top functionality
             const backToTop = document.getElementById('back-to-top');
