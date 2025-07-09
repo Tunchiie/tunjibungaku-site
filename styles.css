@@ -836,6 +836,7 @@ body.dark-theme .tech-tag {
 }
 
 
+
 /* Ensure project cards are visible by default */
 .project-card,
 .featured-project {
@@ -843,6 +844,8 @@ body.dark-theme .tech-tag {
     opacity: 1 !important;
     transform: translateY(0) !important;
     transition: all 0.3s ease;
+    padding: 2rem;
+    border-radius: 1rem;
 }
 
 /* Only hide cards when explicitly filtered out */
