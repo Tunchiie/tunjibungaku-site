@@ -323,14 +323,14 @@
         }
         
         .contact-link,
-        .submit-btn {
+        .pageclip-form__submit {
             position: relative;
             overflow: hidden;
             border: 2px solid transparent;
         }
 
         .contact-link:hover,
-        .submit-btn:hover {
+        .pageclip-form__submit:hover {
             border-color: rgba(255, 255, 255, 0.3);
         }
         
@@ -505,7 +505,7 @@
                         </label>
                     </div>
                     
-                    <button type="submit" class="submit-btn" id="submitBtn">
+                    <button type="submit" class="button pageclip-form__submit" id="submitBtn">
                         <span class="btn-text">Send Message</span>
                         <span class="btn-loader" style="display: none;">Sending...</span>
                     </button>
@@ -639,7 +639,7 @@
         }
 
         // Submit form
-        function submitForm() {
+        /*function submitForm() {
             const submitBtn = document.getElementById('submitBtn');
             const btnText = submitBtn.querySelector('.btn-text');
             const btnLoader = submitBtn.querySelector('.btn-loader');
@@ -676,7 +676,7 @@ ${message}
 Sent from Adetunji Fasiku's Portfolio Contact Form`;
 
                 const mailtoLink = `mailto:tunchiiefashh@gmail.com?subject=${encodeURIComponent(subjectLine)}&body=${encodeURIComponent(emailBody)}`;
-                
+                */
                 // Reset button state
                 btnText.style.display = 'inline';
                 btnLoader.style.display = 'none';
