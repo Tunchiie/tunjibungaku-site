@@ -459,7 +459,8 @@
 
                 <form id="contactForm" name="contact-form" method="POST" data-netlify="true" netlify-honeypot="bot-field">
 
-                    <input type="hidden" name="contact-form" value="contact">
+                    <input type="hidden" name="form-name" value="contact-form">
+
 
                     <div class="form-group">
                         <label for="name">Your Name *</label>
@@ -577,17 +578,6 @@
             });
         });
 
-        /*
-        // Contact form handling with validation
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            if (validateForm()) {
-                submitForm();
-            }
-        });
-        */
-
         // Form validation
         function validateForm() {
             let isValid = true;
@@ -643,77 +633,6 @@
 
             return isValid;
         }
-
-        /*
-        // Submit form
-        function submitForm() {
-            const submitBtn = document.getElementById('submitBtn');
-            const btnText = submitBtn.querySelector('.btn-text');
-            const btnLoader = submitBtn.querySelector('.btn-loader');
-            const formStatus = document.getElementById('formStatus');
-
-            // Show loading state
-            btnText.style.display = 'none';
-            btnLoader.style.display = 'inline';
-            submitBtn.disabled = true;
-
-            // Get form data
-            const formData = new FormData(document.getElementById('contactForm'));
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const company = formData.get('company') || 'Not specified';
-            const subject = formData.get('subject');
-            const message = formData.get('message');
-            const newsletter = formData.get('newsletter') ? 'Yes' : 'No';
-
-            // Simulate form submission (replace with actual endpoint)
-            setTimeout(() => {
-                // Create mailto link as fallback
-                const subjectLine = `${subject.charAt(0).toUpperCase() + subject.slice(1).replace('-', ' ')}: ${name}`;
-                const emailBody = `Name: ${name}
-Email: ${email}
-Company: ${company}
-Subject: ${subject}
-Newsletter Subscription: ${newsletter}
-
-Message:
-${message}
-
----
-Sent from Adetunji Fasiku's Portfolio Contact Form`;
-
-                const mailtoLink = `mailto:tunchiiefashh@gmail.com?subject=${encodeURIComponent(subjectLine)}&body=${encodeURIComponent(emailBody)}`;
-                
-                
-                // Reset button state
-                btnText.style.display = 'inline';
-                btnLoader.style.display = 'none';
-                submitBtn.disabled = false;
-
-                // Show success message
-                formStatus.innerHTML = `
-                    <div class="success-message">
-                        <h4>✅ Message Ready!</h4>
-                        <p>Your email client should open with the message pre-filled. If it doesn't open automatically, please copy the details and email me directly at <strong>tunchiiefashh@gmail.com</strong></p>
-                        <p>I typically respond within 24-48 hours!</p>
-                    </div>
-                `;
-
-        
-                // Open email client
-                window.open(mailtoLink);
-            
-
-                // Reset form after short delay
-                setTimeout(() => {
-                    document.getElementById('contactForm').reset();
-                    updateCharCount();
-                    formStatus.innerHTML = '';
-                }, 3000);
-
-            }, 1500);
-        }
-        */
 
         // Character count for message
         function updateCharCount() {
