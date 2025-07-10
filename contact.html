@@ -6,7 +6,6 @@
     <title>Contact - Adetunji Fasiku</title>
     <meta name="description" content="Get in touch with Adetunji Fasiku for data science collaboration, consulting, or career opportunities.">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://s.pageclip.co/v1/pageclip.css" media="screen">
     <script>
         const theme = localStorage.getItem("theme") || "light";
         document.documentElement.setAttribute("data-theme", theme);
@@ -213,18 +212,18 @@
         }
         
         /* Light mode adjustments for submit button */
-        html:not(.dark-theme) .pageclip-form__submit {
+        html:not(.dark-theme) .submit-btn {
             color: white;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
         }
         
-        .pageclip-form__submit:hover {
+        .submit-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 15px 25px rgba(147, 112, 219, 0.4);
         }
         
         /* Gold hover effect for Send Message button in dark mode */
-        html.dark-theme .pageclip-form__submit:hover {
+        html.dark-theme .submit-btn:hover {
             background: var(--accent-gold);
             box-shadow: 0 15px 25px rgba(238, 130, 238, 0.4);
         }
@@ -323,14 +322,14 @@
         }
         
         .contact-link,
-        .pageclip-form__submit {
+        .submit-btn {
             position: relative;
             overflow: hidden;
             border: 2px solid transparent;
         }
 
         .contact-link:hover,
-        .pageclip-form__submit:hover {
+        .submit-btn:hover {
             border-color: rgba(255, 255, 255, 0.3);
         }
         
@@ -456,7 +455,7 @@
             <!-- Contact Form -->
             <div class="contact-form">
                 <h2 style="color: var(--primary-purple); margin-bottom: 1.5rem; text-align: center;">Send Me a Message</h2>
-                <form action="https://send.pageclip.co/OJo6N571IhUJUNgY5vD22xvhHzG9wlLj" class="pageclip-form" method="post">
+                <form id="contactForm" data-netlify="true">
                     <div class="form-group">
                         <label for="name">Your Name *</label>
                         <input type="text" id="name" name="name" required>
@@ -505,7 +504,7 @@
                         </label>
                     </div>
                     
-                    <button type="submit" class="button pageclip-form__submit" id="submitBtn">
+                    <button type="submit" class="submit-btn" id="submitBtn">
                         <span class="btn-text">Send Message</span>
                         <span class="btn-loader" style="display: none;">Sending...</span>
                     </button>
@@ -639,7 +638,7 @@
         }
 
         // Submit form
-        /*function submitForm() {
+        function submitForm() {
             const submitBtn = document.getElementById('submitBtn');
             const btnText = submitBtn.querySelector('.btn-text');
             const btnLoader = submitBtn.querySelector('.btn-loader');
@@ -676,7 +675,7 @@ ${message}
 Sent from Adetunji Fasiku's Portfolio Contact Form`;
 
                 const mailtoLink = `mailto:tunchiiefashh@gmail.com?subject=${encodeURIComponent(subjectLine)}&body=${encodeURIComponent(emailBody)}`;
-                */
+                
                 // Reset button state
                 btnText.style.display = 'inline';
                 btnLoader.style.display = 'none';
@@ -742,7 +741,7 @@ Sent from Adetunji Fasiku's Portfolio Contact Form`;
         });
 
         // Add ripple effect to buttons
-        document.querySelectorAll('.contact-link, .pageclip-form__submit').forEach(button => {
+        document.querySelectorAll('.contact-link, .submit-btn').forEach(button => {
             button.addEventListener('click', function(e) {
                 const ripple = document.createElement('span');
                 const rect = this.getBoundingClientRect();
@@ -855,6 +854,5 @@ Sent from Adetunji Fasiku's Portfolio Contact Form`;
             }
         });
     </script>
-    <script src="https://s.pageclip.co/v1/pageclip.js" charset="utf-8"></script>
 </body>
 </html>
