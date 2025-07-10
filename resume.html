@@ -494,6 +494,31 @@
             pdf.setTextColor(255, 255, 255);
             pdf.text('Parkville, MD | tunchiiefashh@gmail.com | linkedin.com/in/adetunji-fasiku | github.com/Tunchiie', leftCol, 29);
             
+            // Coordinates
+            const y = 29;
+            const x = leftCol;
+
+            // Text widths
+            const cityWidth = pdf.getTextWidth('Parkville, MD | ');
+            const emailWidth = pdf.getTextWidth('tunchiiefashh@gmail.com');
+            const separatorWidth = pdf.getTextWidth(' | ');
+            const linkedinWidth = pdf.getTextWidth('linkedin.com/in/adetunji-fasiku');
+            const githubWidth = pdf.getTextWidth('github.com/Tunchiie');
+
+            // Add links
+            pdf.link(x + cityWidth, y - 2, emailWidth, 6, {
+            url: 'mailto:tunchiiefashh@gmail.com'
+            });
+
+            pdf.link(x + cityWidth + emailWidth + separatorWidth, y - 2, linkedinWidth, 6, {
+            url: 'https://linkedin.com/in/adetunji-fasiku'
+            });
+
+            pdf.link(x + cityWidth + emailWidth + separatorWidth + linkedinWidth + separatorWidth, y - 2, githubWidth, 6, {
+            url: 'https://github.com/Tunchiie'
+            });
+
+        
             // Reset Y positions for main content
             leftY = 48;
             rightY = 48;
