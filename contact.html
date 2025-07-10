@@ -519,6 +519,12 @@
                 </form>
             </div>
 
+            <div class="success-message" id="formSuccess" style="display: none;">
+                <h4>Message Sent!</h4>
+                <p>Thank you for reaching out. I'll get back to you within 48 hours.</p>
+            </div>
+
+
             <!-- Availability Status -->
             <div class="availability">
                 <h3>Current Availability</h3>
@@ -784,6 +790,36 @@
                 backToTop.style.display = 'none';
             }
         });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("contactForm");
+            const successDiv = document.getElementById("formSuccess");
+            const formStatus = document.getElementById("formStatus");
+
+            form.addEventListener("submit", function (e) {
+                e.preventDefault(); // Prevent default browser behavior
+
+                const formData = new FormData(form);
+
+                fetch("/", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams(formData).toString(),
+                })
+                .then(() => {
+                    form.reset(); // Clear the form
+                    successDiv.style.display = "block"; // Show thank you message
+                    form.style.display = "none"; // Hide the form
+                    window.scrollTo({ top: form.offsetTop, behavior: "smooth" });
+                })
+                .catch((error) => {
+                    console.error("Form submission error:", error);
+                    formStatus.innerText = "Oops! Something went wrong. Please try again.";
+                    formStatus.style.color = "#e74c3c";
+                });
+            });
+        });
+
     </script>
 </body>
 </html>
