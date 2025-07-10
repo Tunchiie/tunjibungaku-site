@@ -493,7 +493,7 @@
             pdf.setFontSize(8);
             pdf.setTextColor(255, 255, 255);
             pdf.text('Parkville, MD | tunchiiefashh@gmail.com | linkedin.com/in/adetunji-fasiku | github.com/Tunchiie', leftCol, 29);
-            
+
             // Coordinates
             const y = 29;
             const x = leftCol;
@@ -831,7 +831,10 @@
             // Footer with portfolio link
             pdf.setFontSize(7.5);
             pdf.setTextColor(...lightGray);
-            pdf.text('Portfolio: tunjibungaku.me | References available upon request', margin, pageHeight - 20);
+            pdf.textWithLink('Portfolio: tunjibungaku.me', margin, pageHeight - 20, {
+            url: 'https://tunjibungaku.me'
+            });
+            pdf.text('| References available upon request', margin + 95, pageHeight - 20);
             
             // Add subtle footer line
             pdf.setLineWidth(0.3);
