@@ -679,7 +679,7 @@ Sent from Adetunji Fasiku's Portfolio Contact Form`;
 
                 const mailtoLink = `mailto:tunchiiefashh@gmail.com?subject=${encodeURIComponent(subjectLine)}&body=${encodeURIComponent(emailBody)}`;
                 
-                */
+                
                 // Reset button state
                 btnText.style.display = 'inline';
                 btnLoader.style.display = 'none';
@@ -694,8 +694,10 @@ Sent from Adetunji Fasiku's Portfolio Contact Form`;
                     </div>
                 `;
 
+        
                 // Open email client
                 window.open(mailtoLink);
+            
 
                 // Reset form after short delay
                 setTimeout(() => {
@@ -706,6 +708,7 @@ Sent from Adetunji Fasiku's Portfolio Contact Form`;
 
             }, 1500);
         }
+        */
 
         // Character count for message
         function updateCharCount() {
