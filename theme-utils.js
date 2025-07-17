@@ -27,7 +27,7 @@ class ThemeManager {
 
         // Update document attributes and classes
         document.documentElement.setAttribute('data-theme', theme);
-        
+
         if (theme === 'dark') {
             document.documentElement.classList.add('dark-theme');
             document.body.classList.add('dark-theme');
@@ -36,21 +36,41 @@ class ThemeManager {
             document.body.classList.remove('dark-theme');
         }
 
-        // Update theme icon
-        this.updateThemeIcon();
+        // Update theme icon with animation
+        this.updateThemeIcon(true);
     }
 
     toggleTheme() {
         const currentTheme = localStorage.getItem('theme') || 'light';
         const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+        // Add visual feedback
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            themeToggle.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                themeToggle.style.transform = '';
+            }, 150);
+        }
+
         this.setTheme(newTheme);
     }
 
-    updateThemeIcon() {
+    updateThemeIcon(animate = false) {
         const themeIcon = document.querySelector('.theme-icon');
         const currentTheme = localStorage.getItem('theme') || 'light';
 
         if (themeIcon) {
+            // Add spinning animation if changing themes
+            if (animate) {
+                themeIcon.classList.add('spinning');
+
+                // Remove animation class after animation completes
+                setTimeout(() => {
+                    themeIcon.classList.remove('spinning');
+                }, 600);
+            }
+
             themeIcon.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
         }
 
@@ -59,6 +79,17 @@ class ThemeManager {
         const moonIcon = document.querySelector('.theme-toggle-moon');
 
         if (sunIcon && moonIcon) {
+            if (animate) {
+                const visibleIcon = currentTheme === 'dark' ? sunIcon : moonIcon;
+                if (visibleIcon) {
+                    visibleIcon.classList.add('spinning');
+
+                    setTimeout(() => {
+                        visibleIcon.classList.remove('spinning');
+                    }, 600);
+                }
+            }
+
             if (currentTheme === 'dark') {
                 sunIcon.style.display = 'inline';
                 moonIcon.style.display = 'none';
@@ -72,8 +103,20 @@ class ThemeManager {
     setupThemeToggle() {
         const themeToggle = document.getElementById('theme-toggle');
         if (themeToggle) {
-            themeToggle.addEventListener('click', () => {
+            // Remove any existing event listeners to prevent duplicates
+            themeToggle.replaceWith(themeToggle.cloneNode(true));
+            const newThemeToggle = document.getElementById('theme-toggle');
+
+            newThemeToggle.addEventListener('click', () => {
                 this.toggleTheme();
+            });
+
+            // Add keyboard support
+            newThemeToggle.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.toggleTheme();
+                }
             });
         }
     }

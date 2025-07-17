@@ -2477,5 +2477,104 @@ body.light-theme .metric-number {
 }
 
 /* ================================
+   THEME TOGGLE BUTTON STYLES
+   ================================ */
+
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: var(--card-bg-light);
+    border: 2px solid var(--border-light);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-color: var(--royal-purple);
+}
+
+.theme-toggle:active {
+    transform: translateY(0);
+}
+
+.theme-icon {
+    font-size: 1.5rem;
+    transition: transform 0.6s ease-in-out;
+    display: inline-block;
+    transform-origin: center;
+}
+
+/* Spinning animation class */
+.theme-icon.spinning {
+    animation: spin 0.6s ease-in-out;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Subtle pulse animation for theme toggle */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    50% {
+        box-shadow: 0 2px 15px rgba(95, 67, 178, 0.3);
+    }
+    100% {
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.theme-toggle:focus {
+    outline: none;
+    animation: pulse 1s ease-in-out;
+}
+
+/* Dark theme toggle styles */
+[data-theme="dark"] .theme-toggle,
+.dark-theme .theme-toggle {
+    background: var(--card-bg-dark);
+    border-color: var(--border-dark);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .theme-toggle:hover,
+.dark-theme .theme-toggle:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Legacy support for sun/moon icons */
+.theme-toggle-sun,
+.theme-toggle-moon {
+    font-size: 1.5rem;
+    transition: transform 0.6s ease-in-out;
+    display: inline-block;
+    transform-origin: center;
+}
+
+/* Spinning animation for legacy icons */
+.theme-toggle-sun.spinning,
+.theme-toggle-moon.spinning {
+    animation: spin 0.6s ease-in-out;
+}
+
+/* ================================
    DARK MODE CORE STYLES
    ================================ */

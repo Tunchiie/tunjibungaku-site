@@ -850,32 +850,7 @@
                 new ProfessionalPortfolio();
             }
             
-            // Theme toggle functionality
-            const themeToggle = document.getElementById('theme-toggle');
-            const html = document.documentElement;
-            const body = document.body;
-            
-            if (themeToggle) {
-                themeToggle.addEventListener('click', function() {
-                    const currentTheme = localStorage.getItem('theme') || 'light';
-                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-                    
-                    // Update localStorage
-                    localStorage.setItem('theme', newTheme);
-                    
-                    // Update data attribute
-                    html.setAttribute('data-theme', newTheme);
-                    
-                    // Update classes
-                    if (newTheme === 'dark') {
-                        html.classList.add('dark-theme');
-                        body.classList.add('dark-theme');
-                    } else {
-                        html.classList.remove('dark-theme');
-                        body.classList.remove('dark-theme');
-                    }
-                });
-            }
+
 
             // Add back to top functionality
             const backToTop = document.getElementById('back-to-top');
