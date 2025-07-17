@@ -6,14 +6,7 @@
     <title>Customer Purchase Predictor - ML Analytics | Adetunji Fasiku</title>
     <meta name="description" content="Logistic classifier analyzing 3.9M+ behavioral events to predict purchase triggers with 95% accuracy. Features SHAP explainability and optimized business decision thresholds.">
     <link rel="stylesheet" href="../styles.css">
-    <script>
-        const theme = localStorage.getItem("theme") || "light";
-        document.documentElement.setAttribute("data-theme", theme);
-        if (theme === "dark") {
-            document.documentElement.classList.add("dark-theme");
-            document.body.classList.add("dark-theme");
-        }
-    </script>
+    <script src="../theme-utils.js"></script>
 </head>
 <body>
     <!-- Skip Link for Accessibility -->
@@ -41,7 +34,7 @@
     <main id="main-content">
         <!-- Project Header -->
         <header class="fade-in">
-            <div class="project-icon">🎯</div>
+            <div class="project-icon">CPP</div>
             <h1>Customer Purchase Predictor</h1>
             <p class="subtitle">ML-Powered Customer Analytics</p>
             <p>Logistic classifier analyzing 3.9M+ behavioral events to predict purchase triggers with optimized business decision thresholds. Features SHAP explainability for transparent decision-making.</p>
@@ -184,27 +177,8 @@
     </button>
 
     <script>
-        // Theme toggle and other interactions
+        // Page interactions
         document.addEventListener('DOMContentLoaded', () => {
-            // Theme toggle functionality
-            const themeToggle = document.getElementById('theme-toggle');
-            if (themeToggle) {
-                themeToggle.addEventListener('click', function() {
-                    const currentTheme = localStorage.getItem('theme') || 'light';
-                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-                    
-                    localStorage.setItem('theme', newTheme);
-                    document.documentElement.setAttribute('data-theme', newTheme);
-                    
-                    if (newTheme === 'dark') {
-                        document.documentElement.classList.add('dark-theme');
-                        document.body.classList.add('dark-theme');
-                    } else {
-                        document.documentElement.classList.remove('dark-theme');
-                        document.body.classList.remove('dark-theme');
-                    }
-                });
-            }
 
             // Scroll progress indicator
             const scrollProgress = document.getElementById('scrollProgress');

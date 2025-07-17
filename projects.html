@@ -6,14 +6,7 @@
     <title>Projects - Adetunji Fasiku | Data Analyst | 50M+ Data Points | 95% Model Accuracy</title>
     <meta name="description" content="Explore Adetunji Fasiku's data science projects: 50M+ data points processed, 510+ securities tracked, 95% model accuracy. Machine learning models, trading algorithms, and statistical analyses with proven business impact.">
     <link rel="stylesheet" href="styles.css">
-    <script>
-        const theme = localStorage.getItem("theme") || "light";
-        document.documentElement.setAttribute("data-theme", theme);
-        if (theme === "dark") {
-            document.documentElement.classList.add("dark-theme");
-            document.body.classList.add("dark-theme");
-        }
-    </script>
+    <script src="theme-utils.js"></script>
 </head>
 <body>
     <!-- Skip Link for Accessibility -->
@@ -43,7 +36,7 @@
         <header class="fade-in">
             <h1>My Data Science Projects</h1>
             <p class="subtitle">50M+ Data Points | 510+ Securities | 95% Model Accuracy</p>
-            <p>Projects I've worked on - from loan default prediction to algorithmic trading systems. Each one solves real problems with real data.</p>
+            <p style="text-align: center; max-width: 600px; margin: 0 auto;">Projects I've worked on - from loan default prediction to algorithmic trading systems. Each one solves real problems with real data.</p>
         </header>
 
         <!-- Professional Impact Metrics -->
@@ -96,7 +89,7 @@
                 <!-- Bungaku Project Card -->
                 <div class="project-card" data-categories="data-science,data-analysis" data-href="projects/bungaku.html">
                     <div class="project-header">
-                        <div class="project-icon">🎵</div>
+                        <div class="project-icon">文学</div>
                         <div class="project-status status-active">Active</div>
                     </div>
                     <h3>Bungaku</h3>
@@ -118,7 +111,7 @@
                 <!-- CandleThrob Project Card -->
                 <div class="project-card" data-categories="trading,data-science" data-href="projects/candlethrob.html">
                     <div class="project-header">
-                        <div class="project-icon">📈</div>
+                        <div class="project-icon">CT</div>
                         <div class="project-status status-active">Active</div>
                     </div>
                     <h3>CandleThrob</h3>
@@ -140,7 +133,7 @@
                 <!-- Customer Purchase Predictor Card -->
                 <div class="project-card" data-categories="machine-learning,data-science" data-href="projects/customer-predictor.html">
                     <div class="project-header">
-                        <div class="project-icon">🎯</div>
+                        <div class="project-icon">CPP</div>
                         <div class="project-status status-completed">Completed</div>
                     </div>
                     <h3>Customer Purchase Predictor</h3>
@@ -162,7 +155,7 @@
                 <!-- Lending Club Risk Model Card -->
                 <div class="project-card" data-categories="machine-learning,data-science" data-href="projects/lending-club.html">
                     <div class="project-header">
-                        <div class="project-icon">🏦</div>
+                        <div class="project-icon">LC</div>
                         <div class="project-status status-completed">Completed</div>
                     </div>
                     <h3>Lending Club Risk Model</h3>
@@ -202,25 +195,6 @@
     <script>
         // Enhanced project filtering and interactions
         document.addEventListener('DOMContentLoaded', () => {
-            // Simple theme toggle functionality
-            const themeToggle = document.getElementById('theme-toggle');
-            if (themeToggle) {
-                themeToggle.addEventListener('click', function() {
-                    const currentTheme = localStorage.getItem('theme') || 'light';
-                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-                    
-                    localStorage.setItem('theme', newTheme);
-                    document.documentElement.setAttribute('data-theme', newTheme);
-                    
-                    if (newTheme === 'dark') {
-                        document.documentElement.classList.add('dark-theme');
-                        document.body.classList.add('dark-theme');
-                    } else {
-                        document.documentElement.classList.remove('dark-theme');
-                        document.body.classList.remove('dark-theme');
-                    }
-                });
-            }
 
             // Scroll progress indicator
             const scrollProgress = document.getElementById('scrollProgress');

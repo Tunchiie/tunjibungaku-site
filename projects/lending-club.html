@@ -6,14 +6,7 @@
     <title>Lending Club Risk Model - Credit Assessment | Adetunji Fasiku</title>
     <meta name="description" content="XGBoost model processing 2.2M+ loan records with SHAP explainability for transparent risk assessment. Achieved 77% accuracy with 0.76 F1-score in credit default prediction.">
     <link rel="stylesheet" href="../styles.css">
-    <script>
-        const theme = localStorage.getItem("theme") || "light";
-        document.documentElement.setAttribute("data-theme", theme);
-        if (theme === "dark") {
-            document.documentElement.classList.add("dark-theme");
-            document.body.classList.add("dark-theme");
-        }
-    </script>
+    <script src="../theme-utils.js"></script>
 </head>
 <body>
     <!-- Skip Link for Accessibility -->
@@ -41,7 +34,7 @@
     <main id="main-content">
         <!-- Project Header -->
         <header class="fade-in">
-            <div class="project-icon">🏦</div>
+            <div class="project-icon">LC</div>
             <h1>Lending Club Risk Model</h1>
             <p class="subtitle">Credit Risk Assessment System</p>
             <p>XGBoost model processing 2.2M+ loan records with SHAP explainability for transparent risk assessment decisions. Predicts loan default probability with 77% accuracy and 0.76 F1-score.</p>
@@ -192,27 +185,8 @@
     </button>
 
     <script>
-        // Theme toggle and other interactions
+        // Page interactions
         document.addEventListener('DOMContentLoaded', () => {
-            // Theme toggle functionality
-            const themeToggle = document.getElementById('theme-toggle');
-            if (themeToggle) {
-                themeToggle.addEventListener('click', function() {
-                    const currentTheme = localStorage.getItem('theme') || 'light';
-                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-                    
-                    localStorage.setItem('theme', newTheme);
-                    document.documentElement.setAttribute('data-theme', newTheme);
-                    
-                    if (newTheme === 'dark') {
-                        document.documentElement.classList.add('dark-theme');
-                        document.body.classList.add('dark-theme');
-                    } else {
-                        document.documentElement.classList.remove('dark-theme');
-                        document.body.classList.remove('dark-theme');
-                    }
-                });
-            }
 
             // Scroll progress indicator
             const scrollProgress = document.getElementById('scrollProgress');

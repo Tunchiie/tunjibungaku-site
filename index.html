@@ -31,6 +31,7 @@
     <title>Adetunji Fasiku - Data Analyst | 50M+ Data Points | 95% Model Accuracy</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preload" href="styles.css" as="style">
+    <script src="theme-utils.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&display=swap" rel="stylesheet">
@@ -427,7 +428,7 @@
             
             <div class="featured-project">
                 <div class="project-header">
-                    <div class="project-icon">Music+Lit</div>
+                    <div class="project-icon">文学</div>
                     <div class="project-title">
                         <h3>Bungaku</h3>
                         <p class="project-subtitle">Music-Literary Correlation Analysis Platform</p>
@@ -721,72 +722,8 @@
     </button>
 
     <script>
-        // Simple, reliable theme toggle functionality
-        function toggleTheme() {
-            console.log('Theme toggle clicked');
-            const body = document.body;
-            const sunIcon = document.querySelector('.theme-toggle-sun');
-            const moonIcon = document.querySelector('.theme-toggle-moon');
-            
-            if (body.classList.contains('dark-theme')) {
-                // Switch to light theme
-                body.classList.remove('dark-theme');
-                if (sunIcon) sunIcon.style.display = 'none';
-                if (moonIcon) moonIcon.style.display = 'inline';
-                localStorage.setItem('theme', 'light');
-                console.log('Switched to light theme');
-            } else {
-                // Switch to dark theme
-                body.classList.add('dark-theme');
-                if (sunIcon) sunIcon.style.display = 'inline';
-                if (moonIcon) moonIcon.style.display = 'none';
-                localStorage.setItem('theme', 'dark');
-                console.log('Switched to dark theme');
-            }
-        }
-        
-        // Load saved theme on page load
-        function loadTheme() {
-            // Clean up old localStorage key for consistency
-            const oldTheme = localStorage.getItem('portfolio-theme');
-            if (oldTheme) {
-                localStorage.setItem('theme', oldTheme);
-                localStorage.removeItem('portfolio-theme');
-            }
-            
-            const savedTheme = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const theme = savedTheme || (prefersDark ? 'dark' : 'light');
-            
-            const body = document.body;
-            const sunIcon = document.querySelector('.theme-toggle-sun');
-            const moonIcon = document.querySelector('.theme-toggle-moon');
-            
-            if (theme === 'dark') {
-                body.classList.add('dark-theme');
-                if (sunIcon) sunIcon.style.display = 'inline';
-                if (moonIcon) moonIcon.style.display = 'none';
-            } else {
-                body.classList.remove('dark-theme');
-                if (sunIcon) sunIcon.style.display = 'none';
-                if (moonIcon) moonIcon.style.display = 'inline';
-            }
-            
-            console.log('Loaded theme:', theme);
-        }
-        
-        // Listen for theme changes from other pages
-        window.addEventListener('storage', function(e) {
-            if (e.key === 'theme') {
-                console.log('Theme changed on another page:', e.newValue);
-                loadTheme();
-            }
-        });
-        
         // Initialize everything when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
-            // Load the saved theme first
-            loadTheme();
             
             // Add fade-in animation functionality
             const fadeElements = document.querySelectorAll('.fade-in');
@@ -806,14 +743,7 @@
                 fadeObserver.observe(element);
             });
             
-            // Add click listener to theme toggle
-            const themeToggle = document.getElementById('theme-toggle');
-            if (themeToggle) {
-                themeToggle.addEventListener('click', toggleTheme);
-                console.log('Theme toggle listener added');
-            } else {
-                console.error('Theme toggle button not found');
-            }
+
             
             // Page-specific enhancements
             // Enhanced project card interactions

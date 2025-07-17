@@ -2365,7 +2365,9 @@ body.light-theme .metric-number {
 }
 
 .project-card .project-icon {
-    font-size: 1.75rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
     width: 3rem;
     height: 3rem;
     display: flex;
@@ -2375,6 +2377,7 @@ body.light-theme .metric-number {
     color: white;
     border-radius: var(--radius-md);
     box-shadow: 0 2px 8px rgba(95, 67, 178, 0.3);
+    text-transform: uppercase;
 }
 
 .project-card .project-status {
