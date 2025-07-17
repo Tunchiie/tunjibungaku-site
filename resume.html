@@ -178,10 +178,10 @@
     <div class="container">
         <!-- Navigation Menu -->
         <nav class="nav-menu" role="navigation" aria-label="Main navigation">
-            <a href="index.html" class="nav-item">Home</a>
-            <a href="projects.html" class="nav-item">Projects</a>
-            <a href="resume.html" class="nav-item active" aria-current="page">Resume</a>
-            <a href="contact.html" class="nav-item">Contact</a>
+            <a href="/" class="nav-item">Home</a>
+            <a href="/projects" class="nav-item">Projects</a>
+            <a href="/resume" class="nav-item active" aria-current="page">Resume</a>
+            <a href="/contact" class="nav-item">Contact</a>
         </nav>
 
         <main id="main-content">
@@ -390,9 +390,8 @@
     </div>
 
     <!-- Theme Toggle Button -->
-    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light theme">
-        <span class="theme-toggle-sun">☀️</span>
-        <span class="theme-toggle-moon">🌙</span>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <span class="theme-icon">🌙</span>
     </button>
 
     <!-- Back to Top Button -->
@@ -827,8 +826,8 @@
             // Footer with portfolio link
             pdf.setFontSize(7.5);
             pdf.setTextColor(...lightGray);
-            pdf.textWithLink('Portfolio: tunjibungaku.me', margin, pageHeight - 20, {
-            url: 'https://tunjibungaku.me'
+            pdf.textWithLink('Portfolio: tunchiie.github.io', margin, pageHeight - 20, {
+            url: 'https://tunchiie.github.io'
             });
             pdf.text('| References available upon request', margin + 95, pageHeight - 20);
             

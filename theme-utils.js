@@ -49,9 +49,23 @@ class ThemeManager {
     updateThemeIcon() {
         const themeIcon = document.querySelector('.theme-icon');
         const currentTheme = localStorage.getItem('theme') || 'light';
-        
+
         if (themeIcon) {
             themeIcon.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Also handle legacy sun/moon icons if they exist
+        const sunIcon = document.querySelector('.theme-toggle-sun');
+        const moonIcon = document.querySelector('.theme-toggle-moon');
+
+        if (sunIcon && moonIcon) {
+            if (currentTheme === 'dark') {
+                sunIcon.style.display = 'inline';
+                moonIcon.style.display = 'none';
+            } else {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'inline';
+            }
         }
     }
 
