@@ -3,68 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects - Adetunji Fasiku | Data Science Portfolio</title>
-    <meta name="description" content="Explore Adetunji Fasiku's data science projects including machine learning models, trading algorithms, and bioinformatics analyses.">
+    <title>Projects - Adetunji Fasiku | Data Analyst | 50M+ Data Points | 95% Model Accuracy</title>
+    <meta name="description" content="Explore Adetunji Fasiku's data science projects: 50M+ data points processed, 510+ securities tracked, 95% model accuracy. Machine learning models, trading algorithms, and statistical analyses with proven business impact.">
     <link rel="stylesheet" href="styles.css">
     <script>
         const theme = localStorage.getItem("theme") || "light";
         document.documentElement.setAttribute("data-theme", theme);
-        // Apply the theme class to both html and body for styles.css compatibility
         if (theme === "dark") {
             document.documentElement.classList.add("dark-theme");
-            document.addEventListener('DOMContentLoaded', function() {
-                document.body.classList.add("dark-theme");
-            });
+            document.body.classList.add("dark-theme");
         }
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body class="projects-page">
+<body>
     <!-- Skip Link for Accessibility -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
     
     <!-- Scroll Progress Indicator -->
     <div class="scroll-progress" id="scrollProgress"></div>
-    
-    <div class="container">
-        <!-- Navigation Menu -->
-        <nav class="nav-menu" role="navigation" aria-label="Main navigation">
-            <a href="/" class="nav-item">Home</a>
-            <a href="/projects" class="nav-item active" aria-current="page">Projects</a>
-            <a href="/resume" class="nav-item">Resume</a>
-            <a href="/contact" class="nav-item">Contact</a>
-        </nav>
 
-        <!-- Main Content -->
-        <main id="main-content">
-            <!-- Page Header -->
-            <header class="fade-in">
-                <h1>My Data Science Journey</h1>
-                <p class="subtitle">From Bioinformatics to Data Analysis: Statistical Testing, Risk Modeling & ML Explainability</p>
-                <p>A comprehensive collection showcasing my progression from foundational projects to advanced statistical analysis and business impact</p>
-            </header>
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav-content">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-text">AF</span>
+            </a>
+            
+            <div class="nav-menu">
+                <a href="index.html" class="nav-item">Home</a>
+                <a href="projects.html" class="nav-item active" aria-current="page">Projects</a>
+                <a href="resume.html" class="nav-item">Resume</a>
+                <a href="contact.html" class="nav-item">Contact</a>
+            </div>
+        </div>
+    </nav>
 
-        <!-- GitHub Stats Section -->
+    <main id="main-content">
+        <!-- Page Header -->
+        <header class="fade-in">
+            <h1>My Data Science Projects</h1>
+            <p class="subtitle">50M+ Data Points | 510+ Securities | 95% Model Accuracy</p>
+            <p>Projects I've worked on - from loan default prediction to algorithmic trading systems. Each one solves real problems with real data.</p>
+        </header>
+
+        <!-- Professional Impact Metrics -->
         <section class="section fade-in">
-            <h2>GitHub Statistics</h2>
+            <h2>By the Numbers</h2>
             <div class="github-stats">
                 <div class="github-stat-card">
-                    <span class="github-stat-number">15+</span>
-                    <span class="github-stat-label">Active Projects</span>
+                    <span class="github-stat-number">50M+</span>
+                    <span class="github-stat-label">Data Points Processed</span>
                 </div>
                 <div class="github-stat-card">
-                    <span class="github-stat-number">8K+</span>
-                    <span class="github-stat-label">Lines of Code</span>
+                    <span class="github-stat-number">510+</span>
+                    <span class="github-stat-label">Securities Tracked</span>
+                </div>
+                <div class="github-stat-card">
+                    <span class="github-stat-number">95%</span>
+                    <span class="github-stat-label">Peak Model Accuracy</span>
+                </div>
+                <div class="github-stat-card">
+                    <span class="github-stat-number">5+</span>
+                    <span class="github-stat-label">Database Platforms</span>
+                </div>
+                <div class="github-stat-card">
+                    <span class="github-stat-number">24+</span>
+                    <span class="github-stat-label">Years Historical Data</span>
                 </div>
                 <div class="github-stat-card">
                     <span class="github-stat-number">6M+</span>
-                    <span class="github-stat-label">Records Processed</span>
-                </div>
-                <div class="github-stat-card">
-                    <span class="github-stat-number">25+</span>
-                    <span class="github-stat-label">Technologies</span>
+                    <span class="github-stat-label">Monthly Throughput</span>
                 </div>
             </div>
         </section>
@@ -80,937 +88,111 @@
             </div>
         </section>
 
-        <!-- Featured Project: CandleThrob -->
+        <!-- Projects Grid -->
         <section class="section fade-in">
-            <h2>Current Project</h2>
-            
-            <div class="featured-project" data-category="trading data-science machine-learning">
-                <div class="project-header">
-                    <div class="project-icon">TradingBot</div>
-                    <div class="project-title">
-                        <h3>CandleThrob</h3>
-                        <p class="project-subtitle">Advanced Algorithmic Trading System</p>
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                
+                <!-- Bungaku Project Card -->
+                <div class="project-card" data-categories="data-science,data-analysis" data-href="projects/bungaku.html">
+                    <div class="project-header">
+                        <div class="project-icon">🎵</div>
+                        <div class="project-status status-active">Active</div>
                     </div>
-                    <div class="project-status status-active">
-                        <span class="status-dot"></span>
-                        Active Development
+                    <h3>Bungaku</h3>
+                    <p class="project-subtitle">Billboard Music Analysis Platform</p>
+                    <p class="project-description">Statistical analysis of 130K+ Billboard tracks using ANOVA, Tukey HSD, and t-tests to discover seasonal patterns and decade-based shifts in music trends.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">SciPy</span>
+                        <span class="tech-tag">Seaborn</span>
+                        <span class="tech-tag">Statistical Testing</span>
                     </div>
-                </div>
-
-                <div class="project-description">
-                    A sophisticated algorithmic trading system featuring a comprehensive financial data pipeline that processes real-time market data from Polygon.io and macroeconomic indicators from FRED. The system calculates 113+ technical indicators using TA-Lib, implements advanced pattern recognition, and maintains enterprise-grade Oracle database integration with incremental loading and bulk operations for high-performance financial analysis.
-                </div>
-
-                <div class="project-highlights">
-                    <h4>Technical Achievements</h4>
-                    <ul class="highlight-list">
-                        <li>Built comprehensive data ingestion pipeline with Polygon.io and FRED API integration</li>
-                        <li>Implemented 113+ technical indicators including momentum, volatility, and pattern recognition</li>
-                        <li>Designed Oracle database architecture with incremental loading and bulk operations</li>
-                        <li>Created robust transformation pipeline with TA-Lib integration and fallback mechanisms</li>
-                        <li>Developed complete test suite with database validation and API integration testing</li>
-                        <li>Engineered 54 candlestick pattern recognition algorithms for signal generation</li>
-                    </ul>
-                </div>
-
-                <div class="data-insights">
-                    <h4>System Scale & Performance</h4>
-                    <div class="insight-grid">
-                        <div class="insight-card">
-                            <span class="insight-number">113+</span>
-                            <span class="insight-label">Technical Indicators</span>
-                        </div>
-                        <div class="insight-card">
-                            <span class="insight-number">500+</span>
-                            <span class="insight-label">S&P 500 Stocks</span>
-                        </div>
-                        <div class="insight-card">
-                            <span class="insight-number">54</span>
-                            <span class="insight-label">Pattern Algorithms</span>
-                        </div>
-                        <div class="insight-card">
-                            <span class="insight-number">Oracle</span>
-                            <span class="insight-label">Enterprise DB</span>
-                        </div>
-                        <div class="insight-card">
-                            <span class="insight-number">Real-time</span>
-                            <span class="insight-label">Data Processing</span>
-                        </div>
-                        <div class="insight-card">
-                            <span class="insight-number">118+</span>
-                            <span class="insight-label">Git Commits</span>
-                        </div>
+                    <div class="project-metrics">
+                        <span class="metric">130K+ tracks</span>
+                        <span class="metric">4 statistical tests</span>
+                        <span class="metric">95% accuracy</span>
                     </div>
                 </div>
 
-                <div class="tech-stack">
-                    <h4>Technology Architecture</h4>
-                    <div class="tech-categories">
-                        <div class="tech-category">
-                            <h5>Core Development</h5>
-                            <div class="tech-items">
-                                <span class="tech-item">Python 3.8+</span>
-                                <span class="tech-item">Pandas</span>
-                                <span class="tech-item">NumPy</span>
-                                <span class="tech-item">SQLAlchemy ORM</span>
-                                <span class="tech-item">Jupyter Notebooks</span>
-                            </div>
-                        </div>
-                        <div class="tech-category">
-                            <h5>Financial Analysis</h5>
-                            <div class="tech-items">
-                                <span class="tech-item">TA-Lib</span>
-                                <span class="tech-item">Technical Indicators</span>
-                                <span class="tech-item">Pattern Recognition</span>
-                                <span class="tech-item">Statistical Analysis</span>
-                                <span class="tech-item">Risk Modeling</span>
-                            </div>
-                        </div>
-                        <div class="tech-category">
-                            <h5>Data Infrastructure</h5>
-                            <div class="tech-items">
-                                <span class="tech-item">Oracle Database</span>
-                                <span class="tech-item">Polygon.io API</span>
-                                <span class="tech-item">FRED API</span>
-                                <span class="tech-item">Google Cloud Storage</span>
-                                <span class="tech-item">Incremental Loading</span>
-                            </div>
-                        </div>
-                        <div class="tech-category">
-                            <h5>Development Operations</h5>
-                            <div class="tech-items">
-                                <span class="tech-item">GitHub Actions</span>
-                                <span class="tech-item">pytest</span>
-                                <span class="tech-item">Logging</span>
-                                <span class="tech-item">Error Handling</span>
-                                <span class="tech-item">CI/CD Pipeline</span>
-                            </div>
-                        </div>
+                <!-- CandleThrob Project Card -->
+                <div class="project-card" data-categories="trading,data-science" data-href="projects/candlethrob.html">
+                    <div class="project-header">
+                        <div class="project-icon">📈</div>
+                        <div class="project-status status-active">Active</div>
+                    </div>
+                    <h3>CandleThrob</h3>
+                    <p class="project-subtitle">Algorithmic Trading System</p>
+                    <p class="project-description">Advanced trading system tracking 510+ securities with 24+ years of historical data. Calculates 113+ technical indicators and stores everything in Oracle.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Oracle</span>
+                        <span class="tech-tag">TA-Lib</span>
+                        <span class="tech-tag">Polygon.io</span>
+                    </div>
+                    <div class="project-metrics">
+                        <span class="metric">510+ securities</span>
+                        <span class="metric">113+ indicators</span>
+                        <span class="metric">24+ years data</span>
                     </div>
                 </div>
 
-                <div class="algorithm-showcase">
-                    <div class="algorithm-card">
-                        <div class="algorithm-name">Data Ingestion Engine</div>
-                        <div class="algorithm-purpose">Multi-source data pipeline fetching OHLCV from Polygon.io and macro indicators from FRED with rate limiting</div>
+                <!-- Customer Purchase Predictor Card -->
+                <div class="project-card" data-categories="machine-learning,data-science" data-href="projects/customer-predictor.html">
+                    <div class="project-header">
+                        <div class="project-icon">🎯</div>
+                        <div class="project-status status-completed">Completed</div>
                     </div>
-                    <div class="algorithm-card">
-                        <div class="algorithm-name">Technical Indicators Suite</div>
-                        <div class="algorithm-purpose">Comprehensive calculation of 113+ indicators including RSI, MACD, Bollinger Bands, and advanced TA-Lib functions</div>
+                    <h3>Customer Purchase Predictor</h3>
+                    <p class="project-subtitle">ML-Powered Customer Analytics</p>
+                    <p class="project-description">Logistic classifier analyzing 3.9M+ behavioral events to predict purchase triggers with optimized business decision thresholds.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">SHAP</span>
+                        <span class="tech-tag">Streamlit</span>
+                        <span class="tech-tag">Feature Engineering</span>
                     </div>
-                    <div class="algorithm-card">
-                        <div class="algorithm-name">Candlestick Pattern Recognition</div>
-                        <div class="algorithm-purpose">54 pattern detection algorithms including Doji, Hammer, Engulfing patterns for trading signal generation</div>
-                    </div>
-                    <div class="algorithm-card">
-                        <div class="algorithm-name">Oracle Database Integration</div>
-                        <div class="algorithm-purpose">Enterprise-grade database with incremental loading, bulk operations, and transaction management</div>
-                    </div>
-                    <div class="algorithm-card">
-                        <div class="algorithm-name">Transformation Pipeline</div>
-                        <div class="algorithm-purpose">Cloud-native processing with TA-Lib integration and fallback mechanisms for robust operation</div>
-                    </div>
-                    <div class="algorithm-card">
-                        <div class="algorithm-name">Testing Framework</div>
-                        <div class="algorithm-purpose">Comprehensive test suite with database validation, API integration testing, and mock data strategies</div>
+                    <div class="project-metrics">
+                        <span class="metric">3.9M+ events</span>
+                        <span class="metric">95% accuracy</span>
+                        <span class="metric">0.67 threshold</span>
                     </div>
                 </div>
 
-                <div class="project-timeline">
-                    <h4>Development Progress</h4>
-                    <div class="timeline-item completed">
-                        <div class="timeline-phase">Milestone 1</div>
-                        <div class="timeline-description">Data ingestion pipeline with Polygon.io and FRED API integration</div>
+                <!-- Lending Club Risk Model Card -->
+                <div class="project-card" data-categories="machine-learning,data-science" data-href="projects/lending-club.html">
+                    <div class="project-header">
+                        <div class="project-icon">🏦</div>
+                        <div class="project-status status-completed">Completed</div>
                     </div>
-                    <div class="timeline-item completed">
-                        <div class="timeline-phase">Milestone 2</div>
-                        <div class="timeline-description">Oracle database schema design and SQLAlchemy ORM implementation</div>
+                    <h3>Lending Club Risk Model</h3>
+                    <p class="project-subtitle">Credit Risk Assessment System</p>
+                    <p class="project-description">XGBoost model processing 2.2M+ loan records with SHAP explainability for transparent risk assessment decisions.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">XGBoost</span>
+                        <span class="tech-tag">SHAP</span>
+                        <span class="tech-tag">Risk Modeling</span>
+                        <span class="tech-tag">Python</span>
                     </div>
-                    <div class="timeline-item completed">
-                        <div class="timeline-phase">Milestone 3</div>
-                        <div class="timeline-description">Technical indicators calculation engine with 113+ TA-Lib indicators</div>
-                    </div>
-                    <div class="timeline-item completed">
-                        <div class="timeline-phase">Milestone 4</div>
-                        <div class="timeline-description">Data transformation pipeline with cloud storage integration</div>
-                    </div>
-                    <div class="timeline-item current">
-                        <div class="timeline-phase">Milestone 5</div>
-                        <div class="timeline-description">Machine learning modeling and trading strategy development (In Progress)</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-phase">Milestone 6</div>
-                        <div class="timeline-description">Backtesting framework and risk management system (Planned)</div>
+                    <div class="project-metrics">
+                        <span class="metric">2.2M+ loans</span>
+                        <span class="metric">77% accuracy</span>
+                        <span class="metric">0.76 F1-score</span>
                     </div>
                 </div>
 
-                <div class="project-links">
-                    <a href="https://github.com/Tunchiie/CandleThrob" class="project-link" target="_blank">
-                        <svg class="github-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
-                        </svg>
-                        View on GitHub
-                    </a>
-                    <a href="#" class="project-link secondary">
-                        Technical Analysis
-                    </a>
-                    <a href="#" class="project-link secondary">
-                        System Architecture
-                    </a>
-                    <a href="#" class="project-link secondary">
-                        Trading Documentation
-                    </a>
-                </div>
             </div>
         </section>
 
-        <!-- Featured Project: Bungaku -->
-        <section class="section fade-in">
-            <h2>Featured Project</h2>
-            
-            <div class="featured-project" data-category="data-science machine-learning data-analysis">
-                <div class="project-header">
-                    <div class="project-icon">Music+Lit</div>
-                    <div class="project-title">
-                        <h3>Bungaku</h3>
-                        <p class="project-subtitle">Music-Literary Correlation Analysis Platform</p>
-                    </div>
-                    <div class="project-status status-active">
-                        <span class="status-dot"></span>
-                        Active Development
-                    </div>
-                </div>
-
-                <div class="project-description">
-                    A groundbreaking data science project that explores the fascinating correlation between Spotify audio features and Billboard chart performance. The project's ultimate vision is to discover how musical genres relate to literary genres, enabling sophisticated recommendation algorithms using clustering, NLP, and advanced machine learning techniques.
-                </div>
-
-                <div class="project-highlights">
-                    <h4>Research Objectives</h4>
-                    <ul class="highlight-list">
-                        <li>Analyze correlation between Spotify audio features and Billboard chart success</li>
-                        <li>Develop cross-domain pattern recognition between music and literature</li>
-                        <li>Implement advanced clustering algorithms for genre classification</li>
-                        <li>Create NLP-powered recommendation systems</li>
-                        <li>Build multi-modal data integration and visualization tools</li>
-                        <li>Establish genre similarity metrics across different media types</li>
-                    </ul>
-                </div>
-
-                <div class="data-insights">
-                    <h4>Project Scope & Impact</h4>
-                    <div class="insight-grid">
-                        <div class="insight-card">
-                            <span class="insight-number">10K+</span>
-                            <span class="insight-label">Songs Analyzed</span>
-                        </div>
-                        <div class="insight-card">
-                            <span class="insight-number">13</span>
-                            <span class="insight-label">Audio Features</span>
-                        </div>
-                        <div class="insight-card">
-                            <span class="insight-number">50+</span>
-                            <span class="insight-label">Music Genres</span>
-                        </div>
-                        <div class="insight-card">
-                            <span class="insight-number">25+</span>
-                            <span class="insight-label">Literary Genres</span>
-                        </div>
-                        <div class="insight-card">
-                            <span class="insight-number">100+</span>
-                            <span class="insight-label">Chart Weeks</span>
-                        </div>
-                        <div class="insight-card">
-                            <span class="insight-number">∞</span>
-                            <span class="insight-label">Possibilities</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tech-stack">
-                    <h4>Technology Stack</h4>
-                    <div class="tech-categories">
-                        <div class="tech-category">
-                            <h5>Data Science</h5>
-                            <div class="tech-items">
-                                <span class="tech-item">Python</span>
-                                <span class="tech-item">Pandas</span>
-                                <span class="tech-item">NumPy</span>
-                                <span class="tech-item">SciPy</span>
-                                <span class="tech-item">Jupyter</span>
-                            </div>
-                        </div>
-                        <div class="tech-category">
-                            <h5>Machine Learning</h5>
-                            <div class="tech-items">
-                                <span class="tech-item">Scikit-learn</span>
-                                <span class="tech-item">TensorFlow</span>
-                                <span class="tech-item">Clustering</span>
-                                <span class="tech-item">NLP</span>
-                                <span class="tech-item">NLTK</span>
-                            </div>
-                        </div>
-                        <div class="tech-category">
-                            <h5>Visualization</h5>
-                            <div class="tech-items">
-                                <span class="tech-item">Matplotlib</span>
-                                <span class="tech-item">Seaborn</span>
-                                <span class="tech-item">Plotly</span>
-                                <span class="tech-item">D3.js</span>
-                                <span class="tech-item">Bokeh</span>
-                            </div>
-                        </div>
-                        <div class="tech-category">
-                            <h5>APIs & Data Sources</h5>
-                            <div class="tech-items">
-                                <span class="tech-item">Spotify API</span>
-                                <span class="tech-item">Billboard API</span>
-                                <span class="tech-item">REST APIs</span>
-                                <span class="tech-item">Web Scraping</span>
-                                <span class="tech-item">JSON/CSV</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="algorithm-showcase">
-                    <div class="algorithm-card">
-                        <div class="algorithm-name">K-Means Clustering</div>
-                        <div class="algorithm-purpose">Grouping songs by audio feature similarity to identify musical patterns and discover hidden genre boundaries</div>
-                    </div>
-                    <div class="algorithm-card">
-                        <div class="algorithm-name">Natural Language Processing</div>
-                        <div class="algorithm-purpose">Analyzing lyrical content and literary themes to bridge the gap between music and literature</div>
-                    </div>
-                    <div class="algorithm-card">
-                        <div class="algorithm-name">Collaborative Filtering</div>
-                        <div class="algorithm-purpose">Building sophisticated recommendation systems based on cross-domain user preferences</div>
-                    </div>
-                    <div class="algorithm-card">
-                        <div class="algorithm-name">Statistical Analysis</div>
-                        <div class="algorithm-purpose">Comprehensive correlation analysis between audio features and Billboard chart performance</div>
-                    </div>
-                    <div class="algorithm-card">
-                        <div class="algorithm-name">Neural Networks</div>
-                        <div class="algorithm-purpose">Deep learning models for complex pattern recognition and genre prediction</div>
-                    </div>
-                    <div class="algorithm-card">
-                        <div class="algorithm-name">Dimensionality Reduction</div>
-                        <div class="algorithm-purpose">PCA and t-SNE for visualizing high-dimensional audio feature spaces</div>
-                    </div>
-                </div>
-
-                <div class="project-timeline">
-                    <h4>Development Roadmap</h4>
-                    <div class="timeline-item completed">
-                        <div class="timeline-phase">Milestone 1</div>
-                        <div class="timeline-description">Data collection setup and API integration with Spotify and Billboard</div>
-                    </div>
-                    <div class="timeline-item completed">
-                        <div class="timeline-phase">Milestone 2</div>
-                        <div class="timeline-description">Audio feature extraction and initial correlation analysis</div>
-                    </div>
-                    <div class="timeline-item current">
-                        <div class="timeline-phase">Milestone 3</div>
-                        <div class="timeline-description">Advanced clustering algorithms and genre pattern recognition</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-phase">Milestone 4</div>
-                        <div class="timeline-description">Literary correlation analysis and NLP integration</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-phase">Milestone 5</div>
-                        <div class="timeline-description">Cross-domain recommendation algorithm development</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-phase">Milestone 6</div>
-                        <div class="timeline-description">Web application deployment and user interface</div>
-                    </div>
-                </div>
-
-                <div class="project-links">
-                    <a href="https://github.com/Tunchiie/Bungaku" class="project-link" target="_blank">
-                        <svg class="github-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                        </svg>
-                        View on GitHub
-                    </a>
-                    <a href="#" class="project-link secondary">
-                        Live Demo (Coming Soon)
-                    </a>
-                    <a href="images/bungaku_infographic.png" target="_blank" class="project-link secondary">
-                        Project Insights
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Other Projects Grid -->
-        <section class="section fade-in">
-            <h2>Additional Projects</h2>
-            
-            <!-- Customer Purchase Predictor - Featured -->
-            <div class="featured-project" data-category="data-science machine-learning data-analysis" style="margin-bottom: 40px;">
-                <div class="project-header">
-                    <div class="project-icon">CommerceML</div>
-                    <div class="project-title">
-                        <h3>Customer Purchase Predictor</h3>
-                        <p class="project-subtitle">Large-Scale Predictive Analytics for E-commerce</p>
-                    </div>
-                    <div class="project-status status-completed">
-                        <span class="status-dot"></span>
-                        Completed
-                    </div>
-                </div>
-
-                <div class="project-description">
-                    A comprehensive machine learning project that processes and analyzes over 4 million rows of customer data to build a robust predictive model. The system accurately predicts customer purchase behavior, enabling businesses to optimize marketing strategies, improve customer targeting, and increase conversion rates through data-driven insights.
-                </div>
-
-                <div class="project-highlights">
-                    <h4>Key Achievements</h4>
-                    <ul class="highlight-list">
-                        <li>Successfully cleaned and processed 4+ million customer records</li>
-                        <li>Implemented advanced data preprocessing and feature engineering</li>
-                        <li>Built predictive models with high accuracy for purchase prediction</li>
-                        <li>Designed scalable data pipeline for real-time predictions</li>
-                        <li>Created comprehensive model evaluation and validation framework</li>
-                        <li>Developed business insights and actionable recommendations</li>
-                    </ul>
-                </div>
-
-                <div class="data-insights">
-                    <h4>Project Scale & Performance</h4>
-                    <div class="insight-grid">
-                        <div class="insight-card">
-                            <span class="insight-number">4M+</span>
-                            <span class="insight-label">Records Processed</span>
-                        </div>
-                        <div class="insight-card">
-                            <span class="insight-number">50+</span>
-                            <span class="insight-label">Features Engineered</span>
-                        </div>
-                        <div class="insight-card">
-                            <span class="insight-number">85%+</span>
-                            <span class="insight-label">Model Accuracy</span>
-                        </div>
-                        <div class="insight-card">
-                            <span class="insight-number">99.9%</span>
-                            <span class="insight-label">Data Quality</span>
-                        </div>
-                        <div class="insight-card">
-                            <span class="insight-number">10x</span>
-                            <span class="insight-label">Processing Speed</span>
-                        </div>
-                        <div class="insight-card">
-                            <span class="insight-number">ROI</span>
-                            <span class="insight-label">Business Impact</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tech-stack">
-                    <h4>Technology Stack</h4>
-                    <div class="tech-categories">
-                        <div class="tech-category">
-                            <h5>Data Processing</h5>
-                            <div class="tech-items">
-                                <span class="tech-item">Python</span>
-                                <span class="tech-item">Pandas</span>
-                                <span class="tech-item">NumPy</span>
-                                <span class="tech-item">Dask</span>
-                                <span class="tech-item">Apache Spark</span>
-                            </div>
-                        </div>
-                        <div class="tech-category">
-                            <h5>Machine Learning</h5>
-                            <div class="tech-items">
-                                <span class="tech-item">Scikit-learn</span>
-                                <span class="tech-item">XGBoost</span>
-                                <span class="tech-item">Random Forest</span>
-                                <span class="tech-item">Logistic Regression</span>
-                                <span class="tech-item">Feature Engineering</span>
-                            </div>
-                        </div>
-                        <div class="tech-category">
-                            <h5>Data Cleaning</h5>
-                            <div class="tech-items">
-                                <span class="tech-item">Data Validation</span>
-                                <span class="tech-item">Outlier Detection</span>
-                                <span class="tech-item">Missing Value Imputation</span>
-                                <span class="tech-item">Data Normalization</span>
-                                <span class="tech-item">ETL Pipelines</span>
-                            </div>
-                        </div>
-                        <div class="tech-category">
-                            <h5>Visualization & Analysis</h5>
-                            <div class="tech-items">
-                                <span class="tech-item">Matplotlib</span>
-                                <span class="tech-item">Seaborn</span>
-                                <span class="tech-item">Plotly</span>
-                                <span class="tech-item">Statistical Analysis</span>
-                                <span class="tech-item">Model Interpretation</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="algorithm-showcase">
-                    <div class="algorithm-card">
-                        <div class="algorithm-name">Data Cleaning Pipeline</div>
-                        <div class="algorithm-purpose">Comprehensive data preprocessing including duplicate removal, outlier detection, and missing value imputation for 4M+ records</div>
-                    </div>
-                    <div class="algorithm-card">
-                        <div class="algorithm-name">Feature Engineering</div>
-                        <div class="algorithm-purpose">Advanced feature creation including behavioral indicators, temporal patterns, and customer segmentation variables</div>
-                    </div>
-                    <div class="algorithm-card">
-                        <div class="algorithm-name">Random Forest Classifier</div>
-                        <div class="algorithm-purpose">Ensemble learning method for robust purchase prediction with excellent performance on large datasets</div>
-                    </div>
-                    <div class="algorithm-card">
-                        <div class="algorithm-name">XGBoost</div>
-                        <div class="algorithm-purpose">Gradient boosting algorithm optimized for high performance and accuracy in customer behavior prediction</div>
-                    </div>
-                    <div class="algorithm-card">
-                        <div class="algorithm-name">Cross-Validation</div>
-                        <div class="algorithm-purpose">Rigorous model validation using stratified k-fold cross-validation to ensure generalization</div>
-                    </div>
-                    <div class="algorithm-card">
-                        <div class="algorithm-name">Performance Optimization</div>
-                        <div class="algorithm-purpose">Memory-efficient processing and parallel computing for handling massive datasets</div>
-                    </div>
-                </div>
-
-                <div class="project-timeline">
-                    <h4>Development Process</h4>
-                    <div class="timeline-item completed">
-                        <div class="timeline-phase">Milestone 1</div>
-                        <div class="timeline-description">Data exploration and initial assessment of 4M+ customer records</div>
-                    </div>
-                    <div class="timeline-item completed">
-                        <div class="timeline-phase">Milestone 2</div>
-                        <div class="timeline-description">Comprehensive data cleaning and quality assurance pipeline</div>
-                    </div>
-                    <div class="timeline-item completed">
-                        <div class="timeline-phase">Milestone 3</div>
-                        <div class="timeline-description">Feature engineering and selection for optimal model performance</div>
-                    </div>
-                    <div class="timeline-item completed">
-                        <div class="timeline-phase">Milestone 4</div>
-                        <div class="timeline-description">Model development, training, and hyperparameter optimization</div>
-                    </div>
-                    <div class="timeline-item completed">
-                        <div class="timeline-phase">Milestone 5</div>
-                        <div class="timeline-description">Model evaluation, validation, and performance analysis</div>
-                    </div>
-                    <div class="timeline-item completed">
-                        <div class="timeline-phase">Milestone 6</div>
-                        <div class="timeline-description">Business insights generation and deployment recommendations</div>
-                    </div>
-                </div>
-
-                <div class="project-links">
-                    <a href="https://github.com/Tunchiie/Customer-Purchase-Predictor" class="project-link" target="_blank">
-                        <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                        </svg>
-                        View on GitHub
-                    </a>
-                    <a href="#" class="project-link secondary">
-                        Model Performance
-                    </a>
-                    <a href="#" class="project-link secondary">
-                        Technical Report
-                    </a>
-                    <a href="#" class="project-link secondary">
-                        Business Impact Study
-                    </a>
-                </div>
-            </div>
-
-            <!-- Breast Cancer Predictor - Educational Project -->
-            <div class="featured-project" data-category="data-science machine-learning data-analysis" style="margin-top: 40px; margin-bottom: 40px;">
-                <div class="project-header">
-                    <div class="project-icon">MedicalML</div>
-                    <div class="project-title">
-                        <h3>Breast Cancer Predictor</h3>
-                        <p class="project-subtitle">From-Scratch Logistic Regression Implementation</p>
-                    </div>
-                    <div class="project-status status-completed">
-                        <span class="status-dot"></span>
-                        Educational Project
-                    </div>
-                </div>
-
-                <div class="project-description">
-                    A comprehensive machine learning project developed after completing Andrew Ng's foundational ML course. This project demonstrates deep understanding of machine learning mathematics by implementing logistic regression entirely from scratch, without using pre-built libraries. The model predicts breast cancer diagnosis with manually coded evaluation metrics, showcasing both theoretical knowledge and practical programming skills.
-                </div>
-
-                <div class="project-highlights">
-                    <h4>Learning Achievements</h4>
-                    <ul class="highlight-list">
-                        <li>Implemented logistic regression algorithm from mathematical foundations</li>
-                        <li>Manually coded gradient descent optimization algorithm</li>
-                        <li>Built custom evaluation metrics (accuracy, precision, recall, F1-score)</li>
-                        <li>Applied theoretical knowledge from Andrew Ng's ML course to real problem</li>
-                        <li>Demonstrated understanding of sigmoid function and cost function</li>
-                        <li>Implemented feature scaling and data preprocessing from scratch</li>
-                    </ul>
-                </div>
-
-                <div class="data-insights">
-                    <h4>Project Metrics & Learning</h4>
-                    <div class="insight-grid">
-                        <div class="insight-card">
-                            <span class="insight-number">100%</span>
-                            <span class="insight-label">From Scratch</span>
-                        </div>
-                        <div class="insight-card">
-                            <span class="insight-number">569</span>
-                            <span class="insight-label">Patient Records</span>
-                        </div>
-                        <div class="insight-card">
-                            <span class="insight-number">30+</span>
-                            <span class="insight-label">Features</span>
-                        </div>
-                        <div class="insight-card">
-                            <span class="insight-number">90%+</span>
-                            <span class="insight-label">Model Accuracy</span>
-                        </div>
-                        <div class="insight-card">
-                            <span class="insight-number">0</span>
-                            <span class="insight-label">ML Libraries Used</span>
-                        </div>
-                        <div class="insight-card">
-                            <span class="insight-number">∞</span>
-                            <span class="insight-label">Knowledge Gained</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tech-stack">
-                    <h4>Implementation Stack</h4>
-                    <div class="tech-categories">
-                        <div class="tech-category">
-                            <h5>Core Programming</h5>
-                            <div class="tech-items">
-                                <span class="tech-item">Python</span>
-                                <span class="tech-item">NumPy</span>
-                                <span class="tech-item">Pure Mathematics</span>
-                                <span class="tech-item">Object-Oriented Programming</span>
-                            </div>
-                        </div>
-                        <div class="tech-category">
-                            <h5>Mathematical Implementation</h5>
-                            <div class="tech-items">
-                                <span class="tech-item">Logistic Regression</span>
-                                <span class="tech-item">Gradient Descent</span>
-                                <span class="tech-item">Sigmoid Function</span>
-                                <span class="tech-item">Cost Function</span>
-                            </div>
-                        </div>
-                        <div class="tech-category">
-                            <h5>Data Processing</h5>
-                            <div class="tech-items">
-                                <span class="tech-item">Feature Scaling</span>
-                                <span class="tech-item">Data Normalization</span>
-                                <span class="tech-item">Train/Test Split</span>
-                                <span class="tech-item">Wisconsin Dataset</span>
-                            </div>
-                        </div>
-                        <div class="tech-category">
-                            <h5>Evaluation Metrics</h5>
-                            <div class="tech-items">
-                                <span class="tech-item">Custom Accuracy</span>
-                                <span class="tech-item">Precision/Recall</span>
-                                <span class="tech-item">F1-Score</span>
-                                <span class="tech-item">Confusion Matrix</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="algorithm-showcase">
-                    <div class="algorithm-card">
-                        <div class="algorithm-name">Sigmoid Function</div>
-                        <div class="algorithm-purpose">Hand-coded sigmoid activation function for binary classification, transforming linear outputs to probabilities</div>
-                    </div>
-                    <div class="algorithm-card">
-                        <div class="algorithm-name">Gradient Descent</div>
-                        <div class="algorithm-purpose">Custom optimization algorithm implementing mathematical gradients for parameter learning</div>
-                    </div>
-                    <div class="algorithm-card">
-                        <div class="algorithm-name">Cost Function</div>
-                        <div class="algorithm-purpose">Logistic regression cost function implementation using maximum likelihood estimation principles</div>
-                    </div>
-                    <div class="algorithm-card">
-                        <div class="algorithm-name">Evaluation Suite</div>
-                        <div class="algorithm-purpose">Complete set of manually implemented metrics for comprehensive model performance assessment</div>
-                    </div>
-                    <div class="algorithm-card">
-                        <div class="algorithm-name">Feature Scaling</div>
-                        <div class="algorithm-purpose">Manual normalization and standardization techniques for optimal algorithm convergence</div>
-                    </div>
-                    <div class="algorithm-card">
-                        <div class="algorithm-name">Binary Classification</div>
-                        <div class="algorithm-purpose">Complete pipeline for medical diagnosis prediction with interpretable probability outputs</div>
-                    </div>
-                </div>
-
-                <div class="project-timeline">
-                    <h4>Learning Journey</h4>
-                    <div class="timeline-item completed">
-                        <div class="timeline-phase">Milestone 1</div>
-                        <div class="timeline-description">Completed Andrew Ng's Machine Learning Course foundations</div>
-                    </div>
-                    <div class="timeline-item completed">
-                        <div class="timeline-phase">Milestone 2</div>
-                        <div class="timeline-description">Mathematical understanding of logistic regression theory</div>
-                    </div>
-                    <div class="timeline-item completed">
-                        <div class="timeline-phase">Milestone 3</div>
-                        <div class="timeline-description">From-scratch implementation of sigmoid and cost functions</div>
-                    </div>
-                    <div class="timeline-item completed">
-                        <div class="timeline-phase">Milestone 4</div>
-                        <div class="timeline-description">Manual gradient descent optimization coding</div>
-                    </div>
-                    <div class="timeline-item completed">
-                        <div class="timeline-phase">Milestone 5</div>
-                        <div class="timeline-description">Custom evaluation metrics implementation and testing</div>
-                    </div>
-                    <div class="timeline-item completed">
-                        <div class="timeline-phase">Milestone 6</div>
-                        <div class="timeline-description">Model validation and performance analysis on medical data</div>
-                    </div>
-                </div>
-
-                <div class="project-links">
-                    <a href="https://github.com/Tunchiie/Breast-Cancer-Predictor" class="project-link" target="_blank">
-                        <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                        </svg>
-                        View on GitHub
-                    </a>
-                    <a href="#" class="project-link secondary">
-                        Learning Notes
-                    </a>
-                    <a href="#" class="project-link secondary">
-                        Mathematical Derivations
-                    </a>
-                    <a href="#" class="project-link secondary">
-                        Performance Analysis
-                    </a>
-                </div>
-            </div>
-
-            <!-- Lending Club Loan Predictor - Risk Modeling Project -->
-            <div class="featured-project" data-category="machine-learning data-science data-analysis" style="margin-top: 40px; margin-bottom: 40px;">
-                <div class="project-header">
-                    <div class="project-icon">RiskML</div>
-                    <div class="project-title">
-                        <h3>Lending Club Loan Predictor</h3>
-                        <p class="project-subtitle">Large-Scale Loan Default Risk Assessment</p>
-                    </div>
-                    <div class="project-status status-completed">
-                        <span class="status-dot"></span>
-                        Completed
-                    </div>
-                </div>
-
-                <div class="project-description">
-                    A comprehensive risk modeling project that predicts loan default probability using 2.26 million historical loan records from Lending Club (2007-2018). The project implements both baseline and benchmark models with extensive feature engineering, model evaluation, and explainability analysis to assess borrower creditworthiness and default risk.
-                </div>
-
-                <div class="project-highlights">
-                    <h4>Key Achievements</h4>
-                    <ul class="highlight-list">
-                        <li>Processed and analyzed 2.26 million loan records with 151 features</li>
-                        <li>Implemented baseline (Logistic Regression) and benchmark (XGBoost) models</li>
-                        <li>Applied advanced feature engineering and selection techniques</li>
-                        <li>Utilized SHAP for model explainability and risk factor interpretation</li>
-                        <li>Optimized classification thresholds for business risk tolerance</li>
-                        <li>Handled severe class imbalance with appropriate sampling techniques</li>
-                    </ul>
-                </div>
-
-                <div class="data-insights">
-                    <h4>Project Scale & Performance</h4>
-                    <div class="insight-grid">
-                        <div class="insight-card">
-                            <span class="insight-number">2.26M</span>
-                            <span class="insight-label">Loan Records</span>
-                        </div>
-                        <div class="insight-card">
-                            <span class="insight-number">151</span>
-                            <span class="insight-label">Initial Features</span>
-                        </div>
-                        <div class="insight-card">
-                            <span class="insight-number">77%</span>
-                            <span class="insight-label">Model Accuracy</span>
-                        </div>
-                        <div class="insight-card">
-                            <span class="insight-number">85%</span>
-                            <span class="insight-label">Precision (Paid)</span>
-                        </div>
-                        <div class="insight-card">
-                            <span class="insight-number">2007-2018</span>
-                            <span class="insight-label">Historical Period</span>
-                        </div>
-                        <div class="insight-card">
-                            <span class="insight-number">SHAP</span>
-                            <span class="insight-label">Explainability</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tech-stack">
-                    <h4>Technology Stack</h4>
-                    <div class="tech-categories">
-                        <div class="tech-category">
-                            <h5>Data Processing</h5>
-                            <div class="tech-items">
-                                <span class="tech-item">Python</span>
-                                <span class="tech-item">Pandas</span>
-                                <span class="tech-item">NumPy</span>
-                                <span class="tech-item">Jupyter Notebooks</span>
-                                <span class="tech-item">Data Cleaning</span>
-                            </div>
-                        </div>
-                        <div class="tech-category">
-                            <h5>Machine Learning</h5>
-                            <div class="tech-items">
-                                <span class="tech-item">Scikit-learn</span>
-                                <span class="tech-item">XGBoost</span>
-                                <span class="tech-item">Logistic Regression</span>
-                                <span class="tech-item">Cross-Validation</span>
-                                <span class="tech-item">Hyperparameter Tuning</span>
-                            </div>
-                        </div>
-                        <div class="tech-category">
-                            <h5>Model Interpretation</h5>
-                            <div class="tech-items">
-                                <span class="tech-item">SHAP</span>
-                                <span class="tech-item">Feature Importance</span>
-                                <span class="tech-item">Model Explainability</span>
-                                <span class="tech-item">Risk Analysis</span>
-                                <span class="tech-item">Business Insights</span>
-                            </div>
-                        </div>
-                        <div class="tech-category">
-                            <h5>Evaluation & Validation</h5>
-                            <div class="tech-items">
-                                <span class="tech-item">Classification Reports</span>
-                                <span class="tech-item">Confusion Matrix</span>
-                                <span class="tech-item">ROC-AUC</span>
-                                <span class="tech-item">Threshold Optimization</span>
-                                <span class="tech-item">Model Comparison</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="algorithm-showcase">
-                    <div class="algorithm-card">
-                        <div class="algorithm-name">Logistic Regression (Baseline)</div>
-                        <div class="algorithm-purpose">Baseline model with L2 regularization and balanced class weights for initial risk assessment</div>
-                    </div>
-                    <div class="algorithm-card">
-                        <div class="algorithm-name">XGBoost (Benchmark)</div>
-                        <div class="algorithm-purpose">Advanced gradient boosting model optimized for loan default prediction with superior performance</div>
-                    </div>
-                    <div class="algorithm-card">
-                        <div class="algorithm-name">SHAP Explainer</div>
-                        <div class="algorithm-purpose">Model-agnostic explanation tool for understanding feature contributions to default predictions</div>
-                    </div>
-                    <div class="algorithm-card">
-                        <div class="algorithm-name">Class Imbalance Handling</div>
-                        <div class="algorithm-purpose">Scale-pos-weight optimization and balanced sampling for handling skewed loan default rates</div>
-                    </div>
-                    <div class="algorithm-card">
-                        <div class="algorithm-name">Threshold Optimization</div>
-                        <div class="algorithm-purpose">Custom threshold selection (0.87) for optimizing precision-recall trade-off in business context</div>
-                    </div>
-                    <div class="algorithm-card">
-                        <div class="algorithm-name">Feature Engineering</div>
-                        <div class="algorithm-purpose">Advanced preprocessing including categorical encoding, missing value imputation, and feature selection</div>
-                    </div>
-                </div>
-
-                <div class="project-timeline">
-                    <h4>Development Process</h4>
-                    <div class="timeline-item completed">
-                        <div class="timeline-phase">Phase 1</div>
-                        <div class="timeline-description">Data exploration and analysis of 2.26M loan records with 151 features</div>
-                    </div>
-                    <div class="timeline-item completed">
-                        <div class="timeline-phase">Phase 2</div>
-                        <div class="timeline-description">Comprehensive data cleaning, missing value handling, and feature preprocessing</div>
-                    </div>
-                    <div class="timeline-item completed">
-                        <div class="timeline-phase">Phase 3</div>
-                        <div class="timeline-description">Feature engineering, selection, and categorical variable encoding</div>
-                    </div>
-                    <div class="timeline-item completed">
-                        <div class="timeline-phase">Phase 4</div>
-                        <div class="timeline-description">Baseline model development with Logistic Regression and evaluation</div>
-                    </div>
-                    <div class="timeline-item completed">
-                        <div class="timeline-phase">Phase 5</div>
-                        <div class="timeline-description">Benchmark model implementation with XGBoost and performance optimization</div>
-                    </div>
-                    <div class="timeline-item completed">
-                        <div class="timeline-phase">Phase 6</div>
-                        <div class="timeline-description">Model explainability analysis using SHAP and business insights generation</div>
-                    </div>
-                </div>
-
-                <div class="project-links">
-                    <a href="https://github.com/Tunchiie/Lending-Club-Loan-Predictor" class="project-link" target="_blank">
-                        <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                        </svg>
-                        View on GitHub
-                    </a>
-                    <a href="#" class="project-link secondary">
-                        Model Performance
-                    </a>
-                    <a href="#" class="project-link secondary">
-                        Risk Analysis Report
-                    </a>
-                    <a href="#" class="project-link secondary">
-                        Business Impact Study
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- GitHub Integration -->
-        <section class="section fade-in">
-            <h2><svg class="github-icon" viewBox="0 0 24 24" fill="currentColor" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 0.5rem;">
-                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                </svg>
-                GitHub Activity</h2>
-            <p class="text-center">Explore my complete development journey on GitHub</p>
-            
-            <div class="cta-section" style="margin-top: 30px;">
-                <h3>Ready to Collaborate?</h3>
-                <p>I'm always interested in exciting data science projects and learning opportunities!</p>
-                <div>
-                    <a href="https://github.com/Tunchiie" class="cta-button" target="_blank" rel="noopener noreferrer">View All Repositories</a>
-                    <a href="mailto:tunchiiefashh@gmail.com" class="cta-button">Get In Touch</a>
-                </div>
-            </div>
-        </section>
-        </main>
-    </div>
+    </main>
 
     <!-- Theme Toggle Button -->
-    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light theme">
-        <span class="theme-toggle-sun">☀️</span>
-        <span class="theme-toggle-moon">🌙</span>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <span class="theme-icon">🌙</span>
     </button>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scrollProgress"></div>
 
     <!-- Back to Top Button -->
     <button id="back-to-top" class="back-to-top" aria-label="Back to top">
@@ -1020,20 +202,16 @@
     <script>
         // Enhanced project filtering and interactions
         document.addEventListener('DOMContentLoaded', () => {
-            // Simple theme toggle functionality (bypassing ProfessionalPortfolio due to conflicts)
+            // Simple theme toggle functionality
             const themeToggle = document.getElementById('theme-toggle');
             if (themeToggle) {
                 themeToggle.addEventListener('click', function() {
                     const currentTheme = localStorage.getItem('theme') || 'light';
                     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
                     
-                    // Update localStorage
                     localStorage.setItem('theme', newTheme);
-                    
-                    // Update data attribute
                     document.documentElement.setAttribute('data-theme', newTheme);
                     
-                    // Apply theme classes for styles.css compatibility
                     if (newTheme === 'dark') {
                         document.documentElement.classList.add('dark-theme');
                         document.body.classList.add('dark-theme');
@@ -1041,45 +219,11 @@
                         document.documentElement.classList.remove('dark-theme');
                         document.body.classList.remove('dark-theme');
                     }
-                    
-                    console.log('Theme toggled to:', newTheme);
                 });
             }
-            
-            // Listen for theme changes from other pages
-            window.addEventListener('storage', function(e) {
-                if (e.key === 'theme') {
-                    console.log('Theme changed on another page:', e.newValue);
-                    
-                    // Update data attribute
-                    document.documentElement.setAttribute('data-theme', e.newValue);
-                    
-                    // Apply theme classes for styles.css compatibility
-                    if (e.newValue === 'dark') {
-                        document.documentElement.classList.add('dark-theme');
-                        document.body.classList.add('dark-theme');
-                    } else {
-                        document.documentElement.classList.remove('dark-theme');
-                        document.body.classList.remove('dark-theme');
-                    }
-                }
-            });
-            
-            // Get DOM elements once
-            const featuredProjects = document.querySelectorAll('.featured-project');
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            const projectSections = document.querySelectorAll('.section');
-            
-            // Initialize all projects as visible
-            featuredProjects.forEach(project => {
-                project.style.display = 'block';
-                project.style.opacity = '1';
-                project.style.transform = 'translateY(0)';
-            });
 
             // Scroll progress indicator
             const scrollProgress = document.getElementById('scrollProgress');
-            
             window.addEventListener('scroll', () => {
                 const scrollTop = window.pageYOffset;
                 const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -1087,216 +231,92 @@
                 scrollProgress.style.width = scrollPercent + '%';
             });
 
-            // Fade-in animations
-            const observerOptions = {
-                threshold: 0.05,
-                rootMargin: '0px 0px 100px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.fade-in').forEach(section => {
-                observer.observe(section);
+            // Back to top button
+            const backToTop = document.getElementById('back-to-top');
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTop.style.display = 'block';
+                } else {
+                    backToTop.style.display = 'none';
+                }
             });
 
-            // Force visibility for sections that might be immediately in view
-            setTimeout(() => {
-                document.querySelectorAll('.fade-in').forEach(section => {
-                    const rect = section.getBoundingClientRect();
-                    if (rect.top < window.innerHeight && rect.bottom > 0) {
-                        section.classList.add('visible');
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Project filtering functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            // Add click handlers to project cards for navigation
+            projectCards.forEach(card => {
+                card.addEventListener('click', (e) => {
+                    // Don't navigate if clicking on filter buttons
+                    if (e.target.closest('.filter-btn')) return;
+
+                    const href = card.getAttribute('data-href');
+                    if (href) {
+                        window.location.href = href;
                     }
                 });
-            }, 100);
 
-            // Project filtering
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const filter = btn.getAttribute('data-filter');
-                    
-                    // Update active button and ARIA states
-                    filterBtns.forEach(b => {
-                        b.classList.remove('active');
-                        b.setAttribute('aria-pressed', 'false');
+                // Add cursor pointer style
+                card.style.cursor = 'pointer';
+            });
+
+            // Filter button functionality
+            filterButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                        btn.setAttribute('aria-pressed', 'false');
                     });
-                    btn.classList.add('active');
-                    btn.setAttribute('aria-pressed', 'true');
-                    
-                    // Filter projects with smooth animation
-                    featuredProjects.forEach((featuredProject, index) => {
-                        const featuredCategories = featuredProject.getAttribute('data-category') || '';
-                        const shouldShow = filter === 'all' || featuredCategories.split(' ').includes(filter);
-                        
-                        // Get the parent section of this project
-                        const parentSection = featuredProject.closest('.section');
-                        
-                        if (shouldShow) {
-                            // Show the project and its parent section
-                            if (parentSection) {
-                                parentSection.style.display = 'block';
-                                parentSection.style.transition = 'all 0.3s ease';
-                                parentSection.style.opacity = '1';
-                                parentSection.style.transform = 'translateY(0)';
-                            }
-                            
-                            featuredProject.style.transition = 'all 0.3s ease';
-                            featuredProject.style.display = 'block';
-                            setTimeout(() => {
-                                featuredProject.style.opacity = '1';
-                                featuredProject.style.transform = 'translateY(0)';
-                            }, index * 50);
+
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    button.setAttribute('aria-pressed', 'true');
+
+                    // Get filter value
+                    const filterValue = button.getAttribute('data-filter');
+
+                    // Filter projects
+                    projectCards.forEach(card => {
+                        const cardCategories = card.getAttribute('data-categories');
+
+                        if (filterValue === 'all' || (cardCategories && cardCategories.includes(filterValue))) {
+                            // Show card
+                            card.style.setProperty('display', 'block', 'important');
+                            card.style.setProperty('opacity', '1', 'important');
+                            card.style.setProperty('transform', 'translateY(0)', 'important');
                         } else {
-                            // Hide the project and its parent section
-                            featuredProject.style.transition = 'all 0.3s ease';
-                            featuredProject.style.opacity = '0';
-                            featuredProject.style.transform = 'translateY(20px)';
-                            
-                            if (parentSection) {
-                                parentSection.style.transition = 'all 0.3s ease';
-                                parentSection.style.opacity = '0';
-                                parentSection.style.transform = 'translateY(20px)';
-                                
-                                setTimeout(() => {
-                                    if (parentSection.style.opacity === '0') {
-                                        parentSection.style.display = 'none';
-                                    }
-                                }, 300);
-                            }
-                            
-                            setTimeout(() => {
-                                if (featuredProject.style.opacity === '0') {
-                                    featuredProject.style.display = 'none';
-                                }
-                            }, 300);
+                            // Hide card
+                            card.style.setProperty('display', 'none', 'important');
+                            card.style.setProperty('opacity', '0', 'important');
+                            card.style.setProperty('transform', 'translateY(20px)', 'important');
                         }
                     });
                 });
             });
 
-            // Animate timeline items
-            document.querySelectorAll('.timeline-item').forEach((item, index) => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateX(-20px)';
-                
-                setTimeout(() => {
-                    item.style.transition = 'all 0.5s ease';
-                    item.style.opacity = '1';
-                    item.style.transform = 'translateX(0)';
-                }, index * 200);
-            });
-
-            // Animate algorithm cards
-            document.querySelectorAll('.algorithm-card').forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                
-                setTimeout(() => {
-                    card.style.transition = 'all 0.5s ease';
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, index * 150);
-            });
-
-            // GitHub stats animation
-            document.querySelectorAll('.github-stat-number').forEach(stat => {
-                const finalValue = stat.textContent;
-                if (finalValue !== '∞' && !finalValue.includes('+')) return;
-                
-                stat.textContent = '0';
-                let current = 0;
-                const increment = finalValue.includes('K') ? 50 : 1;
-                const target = parseInt(finalValue.replace(/[^\d]/g, ''));
-                
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        stat.textContent = finalValue;
-                        clearInterval(timer);
-                    } else {
-                        stat.textContent = current + (finalValue.includes('K') ? '' : '');
-                    }
-                }, 50);
-            });
-            
-            // Add back to top functionality
-            const backToTop = document.getElementById('back-to-top');
-            if (backToTop) {
-                backToTop.addEventListener('click', () => {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                });
-
-                // Show/hide back to top button based on scroll position
-                window.addEventListener('scroll', () => {
-                    if (window.pageYOffset > 300) {
-                        backToTop.style.display = 'flex';
-                    } else {
-                        backToTop.style.display = 'none';
+            // Fade-in animations
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const fadeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
                     }
                 });
+            }, { threshold: 0.1 });
 
-                // Initially hide the button
-                backToTop.style.display = 'none';
-            }
+            fadeElements.forEach(element => {
+                fadeObserver.observe(element);
+            });
         });
     </script>
-
-    <style>
-        /* Enhanced filtering styles */
-        .featured-project {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .featured-project.filtering {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .section {
-            transition: opacity 0.3s ease;
-        }
-
-        .filter-btn {
-            transition: all 0.2s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .filter-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .filter-btn:hover::before {
-            left: 100%;
-        }
-
-        .filter-btn.active {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(95, 67, 178, 0.3);
-        }
-
-        /* Improve project card hover effects */
-        .featured-project:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-    </style>
 </body>
 </html>
