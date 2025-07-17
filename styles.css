@@ -1055,27 +1055,98 @@ body:not(.dark-theme) .learning-goals .goal-list li {
    PROFESSIONAL NAVIGATION
    ================================ */
 
-.nav-menu {
-    background: var(--surface-elevated-light);
+.nav-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--nav-bg-light);
     backdrop-filter: blur(20px);
-    border-radius: var(--radius-full);
-    padding: var(--space-md) var(--space-xl);
-    margin-bottom: var(--space-2xl);
-    box-shadow: var(--shadow-lg);
+    border-bottom: 1px solid var(--border-light);
+    transition: all var(--transition-normal);
+}
+
+.nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+    padding-right: 80px; /* Extra space for theme toggle */
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: var(--space-sm);
-    flex-wrap: wrap;
-    border: 1px solid var(--border-light);
-    position: sticky;
-    top: var(--space-md);
-    z-index: 100;
+    justify-content: space-between;
+    height: 60px;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--royal-purple);
+    transition: all var(--transition-normal);
+}
+
+.nav-logo:hover {
+    transform: scale(1.05);
+    color: var(--deep-purple);
+}
+
+.logo-text {
+    background: var(--purple-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    margin-right: var(--space-md); /* Extra margin to avoid theme toggle */
+}
+
+/* Dark theme navigation */
+[data-theme="dark"] .nav-container,
+.dark-theme .nav-container {
+    background: var(--nav-bg-dark);
+    border-bottom-color: var(--border-dark);
+}
+
+[data-theme="dark"] .nav-logo,
+.dark-theme .nav-logo {
+    color: var(--gold-accent);
 }
 
 body.dark-theme .nav-menu {
-    background: var(--surface-elevated-dark);
-    border-color: var(--border-dark);
+    background: transparent;
+}
+
+/* Add top padding to body content to account for fixed nav */
+body {
+    padding-top: 60px;
+}
+
+.container {
+    padding-top: var(--space-lg);
+}
+
+/* Responsive navigation adjustments */
+@media (max-width: 768px) {
+    .nav-content {
+        padding-right: 60px; /* Less space on mobile */
+    }
+
+    .nav-menu {
+        gap: var(--space-md); /* Smaller gaps on mobile */
+        margin-right: var(--space-sm);
+    }
+
+    .nav-item {
+        font-size: 0.9rem; /* Slightly smaller text on mobile */
+    }
 }
 
 .nav-item {
@@ -1756,22 +1827,24 @@ body.dark-theme .theme-toggle-moon {
 }
 
 .project-icon {
-    width: 80px;
-    height: 60px;
+    width: 85px;
+    height: 65px;
     background: var(--purple-gradient);
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     font-weight: 700;
     color: var(--pure-white);
     text-align: center;
     line-height: 1.1;
     flex-shrink: 0;
     margin-right: 15px;
-    padding: 8px;
+    padding: 12px;
     box-sizing: border-box;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
 .project-header {
@@ -2365,11 +2438,11 @@ body.light-theme .metric-number {
 }
 
 .project-card .project-icon {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     font-weight: 700;
     letter-spacing: 0.5px;
-    width: 3rem;
-    height: 3rem;
+    width: 3.5rem;
+    height: 3.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2378,6 +2451,8 @@ body.light-theme .metric-number {
     border-radius: var(--radius-md);
     box-shadow: 0 2px 8px rgba(95, 67, 178, 0.3);
     text-transform: uppercase;
+    padding: 0.5rem;
+    line-height: 1;
 }
 
 .project-card .project-status {

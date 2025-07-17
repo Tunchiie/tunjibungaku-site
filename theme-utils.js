@@ -28,12 +28,18 @@ class ThemeManager {
         // Update document attributes and classes
         document.documentElement.setAttribute('data-theme', theme);
 
+        // Force update both html and body classes
+        const html = document.documentElement;
+        const body = document.body;
+
         if (theme === 'dark') {
-            document.documentElement.classList.add('dark-theme');
-            document.body.classList.add('dark-theme');
+            html.classList.add('dark-theme');
+            body.classList.add('dark-theme');
+            html.setAttribute('data-theme', 'dark');
         } else {
-            document.documentElement.classList.remove('dark-theme');
-            document.body.classList.remove('dark-theme');
+            html.classList.remove('dark-theme');
+            body.classList.remove('dark-theme');
+            html.setAttribute('data-theme', 'light');
         }
 
         // Update theme icon with animation
@@ -102,12 +108,15 @@ class ThemeManager {
 
     setupThemeToggle() {
         const themeToggle = document.getElementById('theme-toggle');
+
         if (themeToggle) {
             // Remove any existing event listeners to prevent duplicates
             themeToggle.replaceWith(themeToggle.cloneNode(true));
             const newThemeToggle = document.getElementById('theme-toggle');
 
-            newThemeToggle.addEventListener('click', () => {
+            newThemeToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 this.toggleTheme();
             });
 
