@@ -379,8 +379,9 @@
     </div>
 
     <script>
-        // Password protection
-        const CORRECT_PASSWORD = "Sukidakara18!"; // Change this to your desired password
+        // Password protection - Netlify Environment Variable
+        // Set RESUME_GENERATOR_PASSWORD in Netlify dashboard
+        const CORRECT_PASSWORD = "%%RESUME_GENERATOR_PASSWORD%%" || "CHANGE_ME_IN_NETLIFY";
         
         function checkPassword() {
             const enteredPassword = document.getElementById('passwordInput').value;
