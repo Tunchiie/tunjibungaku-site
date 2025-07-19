@@ -1,8 +1,8 @@
 # Netlify configuration for clean URLs and optimization
 [build]
-  # Build command (not needed for static sites, but useful for future enhancements)
-  # command = "npm run build"
-  
+  # Build command to replace environment variables in HTML files
+  command = "node build-script.js"
+
   # Publish directory
   publish = "."
 

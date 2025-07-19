@@ -1,14 +1,19 @@
 # Enable URL rewriting
 RewriteEngine On
 
+# Redirect .html URLs to clean URLs (must come first)
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+RewriteRule ^(.+)\.html$ /$1 [R=301,L,QSA]
+
 # Remove .html extension from URLs
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^([^\.]+)$ $1.html [NC,L]
 
-# Redirect .html URLs to clean URLs
-RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
-RewriteRule ^(.+)\.html$ /$1 [R=301,L,QSA]
+# Handle projects subdirectory specifically
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^projects/([^\.]+)$ projects/$1.html [NC,L]
 
 # Force HTTPS (optional - uncomment if you want to force HTTPS)
 # RewriteCond %{HTTPS} off
