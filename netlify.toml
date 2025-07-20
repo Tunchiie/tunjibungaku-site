@@ -1,10 +1,13 @@
 # Netlify configuration for clean URLs and optimization
 [build]
-  # Build command to replace environment variables in HTML files
-  command = "node build-script.js"
+  # Build command (not needed since we're using serverless functions)
+  # command = "node build-script.js"
 
   # Publish directory
   publish = "."
+
+  # Functions directory
+  functions = "netlify/functions"
 
 # Redirect rules for clean URLs
 [[redirects]]

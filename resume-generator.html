@@ -381,21 +381,50 @@
     <script>
         async function checkPassword() {
             const enteredPassword = document.getElementById('passwordInput').value;
-            const res = await fetch('/.netlify/functions/verify-password', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ password: enteredPassword }),
-            });
+            const passwordBtn = document.querySelector('.password-btn');
+            const errorMessage = document.getElementById('errorMessage');
 
-            const data = await res.json();
+            // Validate input
+            if (!enteredPassword.trim()) {
+                errorMessage.textContent = 'Please enter a password';
+                errorMessage.style.display = 'block';
+                return;
+            }
 
-            if (res.ok && data.success) {
-            document.getElementById('passwordScreen').style.display = 'none';
-            document.getElementById('generatorContainer').style.display = 'block';
-            sessionStorage.setItem('resumeGeneratorAccess', 'granted');
-            } else {
-            document.getElementById('errorMessage').style.display = 'block';
-            document.getElementById('passwordInput').value = '';
+            // Show loading state
+            passwordBtn.textContent = 'Verifying...';
+            passwordBtn.disabled = true;
+            errorMessage.style.display = 'none';
+
+            try {
+                const res = await fetch('/.netlify/functions/verify-password', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password: enteredPassword }),
+                });
+
+                const data = await res.json();
+
+                if (res.ok && data.success) {
+                    // Success - grant access
+                    document.getElementById('passwordScreen').style.display = 'none';
+                    document.getElementById('generatorContainer').style.display = 'block';
+                    sessionStorage.setItem('resumeGeneratorAccess', 'granted');
+                } else {
+                    // Failed authentication
+                    errorMessage.textContent = data.message || 'Incorrect password. Please try again.';
+                    errorMessage.style.display = 'block';
+                    document.getElementById('passwordInput').value = '';
+                    document.getElementById('passwordInput').focus();
+                }
+            } catch (error) {
+                console.error('Password verification error:', error);
+                errorMessage.textContent = 'Connection error. Please check your internet connection and try again.';
+                errorMessage.style.display = 'block';
+            } finally {
+                // Reset button state
+                passwordBtn.textContent = 'Access Generator';
+                passwordBtn.disabled = false;
             }
         }
 
