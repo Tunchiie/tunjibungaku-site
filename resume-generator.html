@@ -379,7 +379,6 @@
     </div>
 
     <script>
-        // Password protection - Netlify Environment Variable
         async function checkPassword() {
             const enteredPassword = document.getElementById('passwordInput').value;
             const res = await fetch('/.netlify/functions/verify-password', {
