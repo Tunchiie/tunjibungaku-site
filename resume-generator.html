@@ -380,25 +380,29 @@
 
     <script>
         // Password protection - Netlify Environment Variable
-        // Set RESUME_GENERATOR_PASSWORD in Netlify dashboard
-        const CORRECT_PASSWORD = "%%RESUME_GENERATOR_PASSWORD%%" || "CHANGE_ME_IN_NETLIFY";
-        
-        function checkPassword() {
+        async function checkPassword() {
             const enteredPassword = document.getElementById('passwordInput').value;
-            if (enteredPassword === CORRECT_PASSWORD) {
-                document.getElementById('passwordScreen').style.display = 'none';
-                document.getElementById('generatorContainer').style.display = 'block';
-                // Store session
-                sessionStorage.setItem('resumeGeneratorAccess', 'granted');
+            const res = await fetch('/.netlify/functions/verify-password', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ password: enteredPassword }),
+            });
+
+            const data = await res.json();
+
+            if (res.ok && data.success) {
+            document.getElementById('passwordScreen').style.display = 'none';
+            document.getElementById('generatorContainer').style.display = 'block';
+            sessionStorage.setItem('resumeGeneratorAccess', 'granted');
             } else {
-                document.getElementById('errorMessage').style.display = 'block';
-                document.getElementById('passwordInput').value = '';
+            document.getElementById('errorMessage').style.display = 'block';
+            document.getElementById('passwordInput').value = '';
             }
         }
 
         function handlePasswordKeypress(event) {
             if (event.key === 'Enter') {
-                checkPassword();
+            checkPassword();
             }
         }
 
