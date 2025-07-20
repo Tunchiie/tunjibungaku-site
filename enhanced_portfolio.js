@@ -17,6 +17,8 @@ class ProfessionalPortfolio {
         this.setupScrollManagement();
         this.setupProjectFiltering();
         this.setupAnimations();
+        this.setupMetricsCounter();
+        this.setupSkillsAnimation();
         this.setupPerformanceTracking();
         this.setupErrorHandling();
         this.trackAnalytics();
@@ -373,6 +375,114 @@ class ProfessionalPortfolio {
         this.observers.forEach(observer => observer.disconnect());
         window.removeEventListener('scroll', this.setupScrollProgress);
         document.removeEventListener('click', this._boundToggleTheme);
+    }
+
+    // Professional Metrics Counter Animation
+    setupMetricsCounter() {
+        const metricCards = document.querySelectorAll('.metrics-dashboard .metric-card');
+        if (metricCards.length === 0) {
+            console.log('No metrics dashboard cards found');
+            return;
+        }
+        console.log(`Found ${metricCards.length} metric cards to animate`);
+
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const metricsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const numberElement = entry.target.querySelector('.metric-number[data-target]');
+                    if (numberElement && !numberElement.classList.contains('counted')) {
+                        this.animateCounter(numberElement);
+                        numberElement.classList.add('counted');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        metricCards.forEach(card => {
+            metricsObserver.observe(card);
+        });
+
+        this.observers.set('metrics', metricsObserver);
+    }
+
+    animateCounter(element) {
+        const targetValue = element.getAttribute('data-target');
+        const target = parseInt(targetValue);
+
+        // Check for invalid data-target values
+        if (isNaN(target) || target < 0) {
+            console.error('Invalid data-target value:', targetValue, 'for element:', element);
+            element.textContent = '0';
+            return;
+        }
+
+        const duration = 2000; // 2 seconds
+        const increment = target / (duration / 16); // 60fps
+        let current = 0;
+
+        element.classList.add('counting');
+
+        const updateCounter = () => {
+            current += increment;
+
+            if (current >= target) {
+                element.textContent = target;
+                element.classList.remove('counting');
+                return;
+            }
+
+            element.textContent = Math.floor(current);
+            requestAnimationFrame(updateCounter);
+        };
+
+        requestAnimationFrame(updateCounter);
+    }
+
+    formatNumber(num) {
+        if (num >= 1000000) {
+            return (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+        }
+        if (num >= 1000) {
+            return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+        }
+        return num.toString();
+    }
+
+    // Interactive Skills Animation
+    setupSkillsAnimation() {
+        const skillItems = document.querySelectorAll('.skill-item');
+        if (skillItems.length === 0) return;
+
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const skillsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressBar = entry.target.querySelector('.skill-progress');
+                    if (progressBar && !progressBar.classList.contains('animated')) {
+                        const level = progressBar.getAttribute('data-level');
+                        progressBar.style.setProperty('--progress-width', level + '%');
+                        progressBar.style.width = level + '%';
+                        progressBar.classList.add('animated');
+                        entry.target.classList.add('animate');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        skillItems.forEach(item => {
+            skillsObserver.observe(item);
+        });
+
+        this.observers.set('skills', skillsObserver);
     }
 }
 

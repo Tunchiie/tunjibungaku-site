@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lending Club Risk Model - Credit Assessment | Adetunji Fasiku</title>
+    <meta name="description" content="XGBoost model processing 2.2M+ loan records with SHAP explainability for transparent risk assessment. Achieved 77% accuracy with 0.76 F1-score in credit default prediction.">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../theme-utils.js"></script>
+</head>
+<body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav-content">
+            <a href="/" class="nav-logo">
+                <span class="logo-text">AF</span>
+            </a>
+
+            <div class="nav-menu">
+                <a href="/" class="nav-item">Home</a>
+                <a href="/projects" class="nav-item">Projects</a>
+                <a href="/resume" class="nav-item">Resume</a>
+                <a href="/contact" class="nav-item">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        <!-- Project Header -->
+        <header class="fade-in">
+            <div class="project-icon">LC</div>
+            <h1>Lending Club Risk Model</h1>
+            <p class="subtitle">Credit Risk Assessment System</p>
+            <p>XGBoost model processing 2.2M+ loan records with SHAP explainability for transparent risk assessment decisions. Predicts loan default probability with 77% accuracy and 0.76 F1-score.</p>
+            
+            <div class="project-links">
+                <a href="https://github.com/Tunchiie/lending-club-risk-model" class="project-link" target="_blank" rel="noopener noreferrer">
+                    <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    View on GitHub
+                </a>
+            </div>
+        </header>
+
+        <!-- Project Overview -->
+        <section class="section fade-in">
+            <h2>Project Overview</h2>
+            <div class="project-highlights">
+                <h4>Technical Achievements & Business Impact</h4>
+                <ul class="highlight-list">
+                    <li>Processed 2.2M+ loan records from Lending Club to build comprehensive credit risk assessment model</li>
+                    <li>Achieved 77% accuracy in predicting loan defaults using XGBoost with advanced feature engineering</li>
+                    <li>Implemented SHAP explainability framework for transparent and auditable risk decisions</li>
+                    <li>Optimized model performance with 0.76 F1-score balancing precision and recall for business needs</li>
+                    <li>Developed robust data preprocessing pipeline handling missing values, outliers, and categorical encoding</li>
+                    <li>Created comprehensive risk scoring system with interpretable feature importance rankings</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Technical Implementation -->
+        <section class="section fade-in">
+            <h2>Technical Implementation</h2>
+            
+            <div class="tech-stack">
+                <h4>Technology Stack</h4>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">XGBoost</span>
+                    <span class="tech-tag">SHAP</span>
+                    <span class="tech-tag">Scikit-learn</span>
+                    <span class="tech-tag">Pandas</span>
+                    <span class="tech-tag">NumPy</span>
+                    <span class="tech-tag">Risk Modeling</span>
+                    <span class="tech-tag">Feature Engineering</span>
+                </div>
+            </div>
+
+            <div class="algorithm-showcase">
+                <h4>Model Development Pipeline</h4>
+                <ul class="highlight-list">
+                    <li><strong>Data Preprocessing:</strong> Comprehensive cleaning of 2.2M+ loan records with missing value imputation</li>
+                    <li><strong>Feature Engineering:</strong> Created debt-to-income ratios, credit utilization metrics, and temporal features</li>
+                    <li><strong>XGBoost Implementation:</strong> Gradient boosting with hyperparameter optimization for maximum performance</li>
+                    <li><strong>Model Validation:</strong> Stratified cross-validation and temporal validation for robust performance estimation</li>
+                    <li><strong>SHAP Integration:</strong> Model explainability for individual predictions and global feature importance</li>
+                    <li><strong>Risk Calibration:</strong> Probability calibration for accurate risk score interpretation</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Model Performance & Risk Factors -->
+        <section class="section fade-in">
+            <h2>Model Performance & Risk Factors</h2>
+            
+            <div class="data-insights">
+                <h4>Performance Metrics</h4>
+                <ul class="highlight-list">
+                    <li>77% overall accuracy in default prediction across diverse loan portfolios</li>
+                    <li>0.76 F1-score demonstrating balanced precision and recall performance</li>
+                    <li>AUC-ROC of 0.82 indicating strong discriminative ability between good and bad loans</li>
+                    <li>Precision of 0.74 minimizing false positive risk assessments</li>
+                </ul>
+
+                <h4>Key Risk Indicators</h4>
+                <ul class="highlight-list">
+                    <li>Debt-to-income ratio emerges as strongest predictor of default risk</li>
+                    <li>Credit score and credit history length show significant negative correlation with default</li>
+                    <li>Loan purpose and employment length provide additional predictive power</li>
+                    <li>Geographic and temporal factors reveal regional and seasonal risk patterns</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Business Applications -->
+        <section class="section fade-in">
+            <h2>Business Applications</h2>
+            
+            <div class="data-insights">
+                <h4>Risk Management Applications</h4>
+                <ul class="highlight-list">
+                    <li>Automated loan approval/rejection decisions with confidence scoring</li>
+                    <li>Dynamic interest rate pricing based on individual risk profiles</li>
+                    <li>Portfolio risk assessment and diversification strategies</li>
+                    <li>Early warning system for potential defaults in existing loan portfolio</li>
+                </ul>
+
+                <h4>Regulatory Compliance</h4>
+                <ul class="highlight-list">
+                    <li>SHAP explanations provide audit trail for regulatory compliance</li>
+                    <li>Transparent feature importance rankings support fair lending practices</li>
+                    <li>Model interpretability enables regulatory review and validation</li>
+                    <li>Bias detection and mitigation through explainable AI techniques</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Project Metrics -->
+        <section class="section fade-in">
+            <h2>Project Metrics</h2>
+            <div class="github-stats">
+                <div class="github-stat-card">
+                    <span class="github-stat-number">2.2M+</span>
+                    <span class="github-stat-label">Loan Records</span>
+                </div>
+                <div class="github-stat-card">
+                    <span class="github-stat-number">77%</span>
+                    <span class="github-stat-label">Model Accuracy</span>
+                </div>
+                <div class="github-stat-card">
+                    <span class="github-stat-number">0.76</span>
+                    <span class="github-stat-label">F1-Score</span>
+                </div>
+                <div class="github-stat-card">
+                    <span class="github-stat-number">0.82</span>
+                    <span class="github-stat-label">AUC-ROC</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Back to Projects -->
+        <section class="section fade-in">
+            <div style="text-align: center;">
+                <a href="../projects.html" class="project-link">← Back to Projects</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <span class="theme-icon">🌙</span>
+    </button>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+        <span>↑</span>
+    </button>
+
+    <script>
+        // Page interactions
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Scroll progress indicator
+            const scrollProgress = document.getElementById('scrollProgress');
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollPercent = (scrollTop / docHeight) * 100;
+                scrollProgress.style.width = scrollPercent + '%';
+            });
+
+            // Back to top button
+            const backToTop = document.getElementById('back-to-top');
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTop.style.display = 'block';
+                } else {
+                    backToTop.style.display = 'none';
+                }
+            });
+
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Fade-in animations
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const fadeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            fadeElements.forEach(element => {
+                fadeObserver.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>

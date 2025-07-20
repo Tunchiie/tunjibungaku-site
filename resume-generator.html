@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Generator - Adetunji Fasiku</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        .password-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: var(--purple-gradient);
+        }
+        .password-container {
+            background: var(--card-bg-light);
+            padding: 40px;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        .password-container h1 {
+            color: var(--royal-purple);
+            margin-bottom: 20px;
+        }
+        .password-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--border-light);
+            border-radius: var(--radius-md);
+            font-size: 16px;
+            margin: 20px 0;
+            box-sizing: border-box;
+        }
+        .password-btn {
+            background: var(--royal-purple);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .password-btn:hover {
+            background: var(--deep-purple);
+        }
+        .error-message {
+            color: #dc3545;
+            margin-top: 10px;
+            display: none;
+        }
+        .generator-container {
+            display: none;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-section {
+            background: var(--card-bg-light);
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-light);
+        }
+        .section-title {
+            color: var(--royal-purple);
+            font-size: var(--text-xl);
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--gold-accent);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border-light);
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        .textarea-large {
+            height: 150px;
+        }
+        .help-text {
+            font-size: 12px;
+            color: var(--medium-gray);
+            margin-top: 5px;
+        }
+        .btn {
+            background: var(--royal-purple);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            cursor: pointer;
+            margin: 5px;
+            transition: all var(--transition-normal);
+        }
+        .btn:hover {
+            background: var(--deep-purple);
+            transform: translateY(-1px);
+        }
+        .btn-success {
+            background: #28a745;
+        }
+        .btn-success:hover {
+            background: #218838;
+        }
+        .btn-danger {
+            background: #dc3545;
+        }
+        .btn-danger:hover {
+            background: #c82333;
+        }
+        .btn-secondary {
+            background: #6c757d;
+        }
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        .analysis-results {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: var(--radius-md);
+            padding: 20px;
+            margin: 20px 0;
+            display: none;
+        }
+        .analysis-results.show {
+            display: block;
+        }
+        .button-group {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .readonly-field {
+            background: #f8f9fa !important;
+            color: #6c757d;
+        }
+        .header-nav {
+            background: var(--card-bg-light);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: var(--radius-lg);
+            text-align: center;
+        }
+        .header-nav h1 {
+            color: var(--royal-purple);
+            margin-bottom: 10px;
+        }
+        .header-nav p {
+            color: var(--medium-gray);
+            margin: 0;
+        }
+        .logout-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #dc3545;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            z-index: 1000;
+        }
+        .logout-btn:hover {
+            background: #c82333;
+        }
+
+        /* Dark theme support */
+        [data-theme="dark"] .password-container,
+        [data-theme="dark"] .form-section,
+        [data-theme="dark"] .header-nav {
+            background: var(--card-bg-dark);
+            border-color: var(--border-dark);
+        }
+        [data-theme="dark"] .form-group label {
+            color: var(--text-dark);
+        }
+        [data-theme="dark"] .form-group input,
+        [data-theme="dark"] .form-group textarea,
+        [data-theme="dark"] .form-group select {
+            background: var(--card-bg-dark);
+            border-color: var(--border-dark);
+            color: var(--text-dark);
+        }
+    </style>
+</head>
+<body>
+    <!-- Password Protection Screen -->
+    <div id="passwordScreen" class="password-screen">
+        <div class="password-container">
+            <h1>🔒 Resume Generator</h1>
+            <p>This tool is password protected</p>
+            <input type="password" id="passwordInput" class="password-input" placeholder="Enter password" onkeypress="handlePasswordKeypress(event)">
+            <button onclick="checkPassword()" class="password-btn">Access Generator</button>
+            <div id="errorMessage" class="error-message">Incorrect password. Please try again.</div>
+        </div>
+    </div>
+
+    <!-- Resume Generator (Hidden initially) -->
+    <div id="generatorContainer" class="generator-container">
+        <button onclick="logout()" class="logout-btn">Logout</button>
+        
+        <div class="header-nav">
+            <h1>Custom Resume Generator</h1>
+            <p>Create tailored resumes by analyzing job descriptions</p>
+        </div>
+
+        <form id="resumeForm">
+            <!-- Basic Information -->
+            <div class="form-section">
+                <h2 class="section-title">Basic Information</h2>
+                
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" value="Adetunji Fasiku" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="title">Professional Title</label>
+                    <input type="text" id="title" value="Data Analyst" required>
+                    <div class="help-text">e.g., "Data Scientist", "Business Analyst", "ML Engineer"</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="subtitle">Subtitle/Tagline</label>
+                    <input type="text" id="subtitle" value="50M+ Data Points | 95% Model Accuracy | Team Leader">
+                    <div class="help-text">Your key metrics or value proposition</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" value="tunchiiefashh@gmail.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" value="Parkville, MD">
+                </div>
+
+                <div class="form-group">
+                    <label for="linkedin">LinkedIn URL</label>
+                    <input type="url" id="linkedin" value="linkedin.com/in/adetunji-fasiku">
+                </div>
+
+                <div class="form-group">
+                    <label for="github">GitHub URL</label>
+                    <input type="url" id="github" value="github.com/Tunchiie">
+                </div>
+            </div>
+
+            <!-- Professional Summary -->
+            <div class="form-section">
+                <h2 class="section-title">Professional Summary</h2>
+                
+                <div class="form-group">
+                    <label for="summary">Summary</label>
+                    <textarea id="summary" class="textarea-large" required>Data analyst with experience in machine learning, statistical analysis, and team leadership. Built models with 95% accuracy, processed 50M+ data points, led 25+ team members. Completed Data Analytics certification at Correlation One while working on algorithmic trading systems. Expert in Python, SQL (5+ database platforms), and enterprise-grade data pipeline development.</textarea>
+                    <div class="help-text">2-3 sentences highlighting your key strengths and achievements</div>
+                </div>
+            </div>
+
+            <!-- Job Description Analysis -->
+            <div class="form-section">
+                <h2 class="section-title">🔍 Job Description Analysis</h2>
+                
+                <div class="form-group">
+                    <label for="jobDescription">Paste Job Description Here</label>
+                    <textarea id="jobDescription" class="textarea-large" placeholder="Paste the full job description here and click 'Analyze Job Description' to automatically extract key requirements..."></textarea>
+                    <div class="help-text">Paste the complete job posting - the tool will analyze it and suggest customizations</div>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" onclick="analyzeJobDescription()" class="btn btn-success">🔍 Analyze Job Description</button>
+                    <button type="button" onclick="clearAnalysis()" class="btn btn-danger">Clear Analysis</button>
+                </div>
+
+                <!-- Analysis Results -->
+                <div id="analysisResults" class="analysis-results">
+                    <h3>📊 Analysis Results</h3>
+                    
+                    <div class="form-group">
+                        <label for="detectedRole">Detected Role Type</label>
+                        <input type="text" id="detectedRole" class="readonly-field" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="extractedSkills">Key Skills Found</label>
+                        <textarea id="extractedSkills" class="readonly-field" readonly></textarea>
+                        <div class="help-text">Skills mentioned in the job description that match your background</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="suggestedEmphasis">Suggested Experience Emphasis</label>
+                        <input type="text" id="suggestedEmphasis" class="readonly-field" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="keyRequirements">Key Requirements</label>
+                        <textarea id="keyRequirements" class="readonly-field" readonly></textarea>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" onclick="applyAnalysis()" class="btn btn-success">✅ Apply Analysis to Resume</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Manual Customization -->
+            <div class="form-section">
+                <h2 class="section-title">Manual Customization</h2>
+                
+                <div class="form-group">
+                    <label for="targetRole">Target Role Type</label>
+                    <select id="targetRole" required>
+                        <option value="data-analyst">Data Analyst</option>
+                        <option value="business-analyst">Business Analyst</option>
+                        <option value="data-scientist">Data Scientist</option>
+                        <option value="ml-engineer">ML Engineer</option>
+                        <option value="product-analyst">Product Analyst</option>
+                        <option value="research-analyst">Research Analyst</option>
+                        <option value="custom">Custom</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="keySkills">Key Skills to Emphasize</label>
+                    <textarea id="keySkills">Python, SQL, Machine Learning, Statistical Analysis, Data Visualization, Team Leadership</textarea>
+                    <div class="help-text">Comma-separated list of skills most relevant to the target role</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="experienceEmphasis">Experience to Emphasize</label>
+                    <select id="experienceEmphasis" required>
+                        <option value="technical">Technical Projects & Analysis</option>
+                        <option value="leadership">Leadership & Team Management</option>
+                        <option value="business">Business Impact & Strategy</option>
+                        <option value="balanced">Balanced Technical & Leadership</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="additionalProjects">Additional Projects/Experience</label>
+                    <textarea id="additionalProjects" class="textarea-large">Add any specific projects or experiences you want to highlight for this role...</textarea>
+                    <div class="help-text">Optional: Add role-specific projects or achievements</div>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="btn btn-secondary" onclick="previewResume()">👁️ Preview Resume</button>
+                <button type="button" class="btn" onclick="generatePDF()">📄 Generate PDF</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Password protection - Netlify Environment Variable
+        async function checkPassword() {
+            const enteredPassword = document.getElementById('passwordInput').value;
+            const res = await fetch('/.netlify/functions/verify-password', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ password: enteredPassword }),
+            });
+
+            const data = await res.json();
+
+            if (res.ok && data.success) {
+            document.getElementById('passwordScreen').style.display = 'none';
+            document.getElementById('generatorContainer').style.display = 'block';
+            sessionStorage.setItem('resumeGeneratorAccess', 'granted');
+            } else {
+            document.getElementById('errorMessage').style.display = 'block';
+            document.getElementById('passwordInput').value = '';
+            }
+        }
+
+        function handlePasswordKeypress(event) {
+            if (event.key === 'Enter') {
+            checkPassword();
+            }
+        }
+
+        function logout() {
+            sessionStorage.removeItem('resumeGeneratorAccess');
+            document.getElementById('passwordScreen').style.display = 'flex';
+            document.getElementById('generatorContainer').style.display = 'none';
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('errorMessage').style.display = 'none';
+        }
+
+        // Check if already authenticated
+        window.onload = function() {
+            if (sessionStorage.getItem('resumeGeneratorAccess') === 'granted') {
+                document.getElementById('passwordScreen').style.display = 'none';
+                document.getElementById('generatorContainer').style.display = 'block';
+            }
+        };
+
+        // Resume generation functions (same as before)
+        function previewResume() {
+            const formData = getFormData();
+            alert(`Resume Preview:\n\nName: ${formData.name}\nTitle: ${formData.title}\nTarget: ${formData.targetRole}\nSummary: ${formData.summary.substring(0, 100)}...`);
+        }
+
+        function getFormData() {
+            return {
+                name: document.getElementById('name').value,
+                title: document.getElementById('title').value,
+                subtitle: document.getElementById('subtitle').value,
+                email: document.getElementById('email').value,
+                location: document.getElementById('location').value,
+                linkedin: document.getElementById('linkedin').value,
+                github: document.getElementById('github').value,
+                summary: document.getElementById('summary').value,
+                targetRole: document.getElementById('targetRole').value,
+                keySkills: document.getElementById('keySkills').value,
+                experienceEmphasis: document.getElementById('experienceEmphasis').value,
+                additionalProjects: document.getElementById('additionalProjects').value,
+                jobDescription: document.getElementById('jobDescription').value
+            };
+        }
+
+        function analyzeJobDescription() {
+            const jobDesc = document.getElementById('jobDescription').value.toLowerCase();
+            if (!jobDesc.trim()) {
+                alert('Please paste a job description first!');
+                return;
+            }
+
+            // Analyze the job description
+            const analysis = performJobAnalysis(jobDesc);
+
+            // Show results
+            document.getElementById('analysisResults').classList.add('show');
+            document.getElementById('detectedRole').value = analysis.role;
+            document.getElementById('extractedSkills').value = analysis.skills.join(', ');
+            document.getElementById('suggestedEmphasis').value = analysis.emphasis;
+            document.getElementById('keyRequirements').value = analysis.requirements.join('\n• ');
+
+            // Scroll to results
+            document.getElementById('analysisResults').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function performJobAnalysis(jobDesc) {
+            // Your skills and experience keywords
+            const yourSkills = {
+                'python': 'Python',
+                'sql': 'SQL',
+                'machine learning': 'Machine Learning',
+                'statistical analysis': 'Statistical Analysis',
+                'data visualization': 'Data Visualization',
+                'tableau': 'Tableau',
+                'pandas': 'Pandas',
+                'numpy': 'NumPy',
+                'oracle': 'Oracle',
+                'postgresql': 'PostgreSQL',
+                'mysql': 'MySQL',
+                'excel': 'Excel',
+                'streamlit': 'Streamlit',
+                'plotly': 'Plotly',
+                'seaborn': 'Seaborn',
+                'matplotlib': 'Matplotlib',
+                'xgboost': 'XGBoost',
+                'scikit-learn': 'Scikit-learn',
+                'shap': 'SHAP',
+                'anova': 'ANOVA',
+                'hypothesis testing': 'Hypothesis Testing',
+                'a/b testing': 'A/B Testing',
+                'etl': 'ETL',
+                'data pipeline': 'Data Pipeline',
+                'team leadership': 'Team Leadership',
+                'project management': 'Project Management',
+                'stakeholder': 'Stakeholder Communication',
+                'cross-functional': 'Cross-functional Collaboration'
+            };
+
+            // Role detection patterns
+            const rolePatterns = {
+                'data-scientist': ['data scientist', 'machine learning', 'ml engineer', 'research', 'algorithm', 'model development', 'deep learning', 'ai'],
+                'business-analyst': ['business analyst', 'business intelligence', 'stakeholder', 'requirements', 'process improvement', 'kpi', 'metrics'],
+                'data-analyst': ['data analyst', 'analytics', 'reporting', 'dashboard', 'sql', 'data visualization', 'insights'],
+                'ml-engineer': ['ml engineer', 'machine learning engineer', 'model deployment', 'production', 'mlops', 'kubernetes', 'docker'],
+                'product-analyst': ['product analyst', 'product', 'user behavior', 'funnel', 'conversion', 'growth', 'experimentation'],
+                'research-analyst': ['research analyst', 'research', 'market research', 'quantitative', 'statistical modeling']
+            };
+
+            // Experience emphasis patterns
+            const emphasisPatterns = {
+                'technical': ['programming', 'coding', 'algorithm', 'model', 'technical', 'engineering', 'development', 'implementation'],
+                'leadership': ['lead', 'manage', 'team', 'mentor', 'coordinate', 'collaborate', 'stakeholder', 'cross-functional'],
+                'business': ['business', 'strategy', 'impact', 'roi', 'revenue', 'growth', 'kpi', 'metrics', 'insights', 'recommendations']
+            };
+
+            // Find matching skills
+            const foundSkills = [];
+            Object.keys(yourSkills).forEach(skill => {
+                if (jobDesc.includes(skill)) {
+                    foundSkills.push(yourSkills[skill]);
+                }
+            });
+
+            // Detect role type
+            let detectedRole = 'data-analyst'; // default
+            let maxMatches = 0;
+            Object.keys(rolePatterns).forEach(role => {
+                const matches = rolePatterns[role].filter(pattern => jobDesc.includes(pattern)).length;
+                if (matches > maxMatches) {
+                    maxMatches = matches;
+                    detectedRole = role;
+                }
+            });
+
+            // Suggest emphasis
+            let suggestedEmphasis = 'balanced'; // default
+            let maxEmphasisMatches = 0;
+            Object.keys(emphasisPatterns).forEach(emphasis => {
+                const matches = emphasisPatterns[emphasis].filter(pattern => jobDesc.includes(pattern)).length;
+                if (matches > maxEmphasisMatches) {
+                    maxEmphasisMatches = matches;
+                    suggestedEmphasis = emphasis;
+                }
+            });
+
+            // Extract key requirements
+            const requirements = [];
+            if (jobDesc.includes('bachelor') || jobDesc.includes('degree')) requirements.push('Education requirement mentioned');
+            if (jobDesc.includes('year') && jobDesc.includes('experience')) requirements.push('Experience requirement found');
+            if (jobDesc.includes('remote') || jobDesc.includes('hybrid')) requirements.push('Remote/hybrid work option');
+            if (jobDesc.includes('startup') || jobDesc.includes('fast-paced')) requirements.push('Fast-paced environment');
+            if (jobDesc.includes('healthcare') || jobDesc.includes('medical')) requirements.push('Healthcare domain');
+            if (jobDesc.includes('finance') || jobDesc.includes('fintech')) requirements.push('Finance domain');
+            if (jobDesc.includes('saas') || jobDesc.includes('software')) requirements.push('SaaS/Software industry');
+
+            return {
+                role: detectedRole.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase()),
+                skills: foundSkills.slice(0, 10), // Top 10 matches
+                emphasis: suggestedEmphasis,
+                requirements: requirements
+            };
+        }
+
+        function applyAnalysis() {
+            const detectedRole = document.getElementById('detectedRole').value.toLowerCase().replace(' ', '-');
+            const extractedSkills = document.getElementById('extractedSkills').value;
+            const suggestedEmphasis = document.getElementById('suggestedEmphasis').value;
+
+            // Apply to form
+            document.getElementById('targetRole').value = detectedRole;
+            document.getElementById('keySkills').value = extractedSkills;
+            document.getElementById('experienceEmphasis').value = suggestedEmphasis;
+
+            // Update title and subtitle based on analysis
+            const roleTitle = document.getElementById('detectedRole').value;
+            document.getElementById('title').value = roleTitle;
+
+            // Update summary to emphasize relevant skills
+            const currentSummary = document.getElementById('summary').value;
+            const skillsArray = extractedSkills.split(', ').slice(0, 5); // Top 5 skills
+            const enhancedSummary = currentSummary.replace(
+                'machine learning, statistical analysis, and team leadership',
+                skillsArray.slice(0, 3).join(', ')
+            );
+            document.getElementById('summary').value = enhancedSummary;
+
+            alert('✅ Analysis applied! Review the updated fields and generate your tailored resume.');
+        }
+
+        function clearAnalysis() {
+            document.getElementById('jobDescription').value = '';
+            document.getElementById('analysisResults').classList.remove('show');
+        }
+
+        function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF();
+            const formData = getFormData();
+
+            // Set up fonts and colors (matching main resume)
+            pdf.setFont('Arial', 'normal');
+            const primaryColor = [88, 28, 135]; // Purple
+            const accentColor = [52, 152, 219]; // Blue
+            const goldColor = [244, 208, 63]; // Gold
+            const textColor = [44, 62, 80]; // Dark gray
+            const lightGray = [108, 117, 125]; // Light gray
+
+            // Page dimensions and layout setup
+            const pageWidth = 210; // A4 width in mm
+            const pageHeight = 297; // A4 height in mm
+            const margin = 10;
+            const contentWidth = pageWidth - (2 * margin);
+            const colWidth = contentWidth * 0.45;
+
+            let leftY = 20;
+            let rightY = 20;
+            const lineHeight = 4;
+            const sectionSpacing = 6;
+
+            // Header Background with Premium Design
+            pdf.setFillColor(88, 28, 135); // Primary purple
+            pdf.rect(0, 0, pageWidth, 35, 'F');
+
+            // Gold accent line
+            pdf.setLineWidth(0.8);
+            pdf.setDrawColor(244, 208, 63); // Gold
+            pdf.line(margin, 33, pageWidth - margin, 33);
+
+            // Header Content
+            const leftCol = margin;
+            const rightCol = margin + (contentWidth * 0.52);
+
+            pdf.setFontSize(24);
+            pdf.setFont('Arial', 'bold');
+            pdf.setTextColor(255, 255, 255);
+            pdf.text(formData.name.toUpperCase(), leftCol, 18);
+
+            pdf.setFontSize(10);
+            pdf.setFont('Arial', 'normal');
+            pdf.setTextColor(244, 208, 63); // Gold
+            pdf.text((formData.title + ' | ' + formData.subtitle).toUpperCase(), leftCol, 26);
+
+            // Contact info in header
+            pdf.setFontSize(8);
+            pdf.setTextColor(255, 255, 255);
+            const contactInfo = `${formData.location} | ${formData.email} | ${formData.linkedin} | ${formData.github}`;
+            pdf.text(contactInfo, leftCol, 29);
+
+            // Add clickable links
+            const y = 29;
+            const x = leftCol;
+            const cityWidth = pdf.getTextWidth(formData.location + ' | ');
+            const emailWidth = pdf.getTextWidth(formData.email);
+            const separatorWidth = pdf.getTextWidth(' | ');
+            const linkedinWidth = pdf.getTextWidth(formData.linkedin);
+
+            pdf.link(x + cityWidth, y - 2, emailWidth, 6, {
+                url: 'mailto:' + formData.email
+            });
+
+            pdf.link(x + cityWidth + emailWidth + separatorWidth, y - 2, linkedinWidth, 6, {
+                url: 'https://' + formData.linkedin
+            });
+
+            pdf.link(x + cityWidth + emailWidth + separatorWidth + linkedinWidth + separatorWidth, y - 2, pdf.getTextWidth(formData.github), 6, {
+                url: 'https://' + formData.github
+            });
+
+            // Reset Y positions for main content
+            leftY = 48;
+            rightY = 48;
+
+            // LEFT COLUMN - Professional Summary
+            pdf.setFontSize(11);
+            pdf.setFont('Arial', 'bold');
+            pdf.setTextColor(...primaryColor);
+            pdf.text('PROFESSIONAL SUMMARY', leftCol, leftY);
+
+            // Section underline
+            pdf.setLineWidth(0.5);
+            pdf.setDrawColor(...goldColor);
+            pdf.line(leftCol, leftY + 1.5, leftCol + 55, leftY + 1.5);
+            leftY += 6;
+
+            pdf.setFontSize(9);
+            pdf.setFont('Arial', 'normal');
+            pdf.setTextColor(...textColor);
+            const summaryLines = pdf.splitTextToSize(formData.summary, colWidth);
+            pdf.text(summaryLines, leftCol, leftY);
+            leftY += summaryLines.length * lineHeight + sectionSpacing;
+
+            // Technical Skills Section (Adaptive)
+            pdf.setFontSize(11);
+            pdf.setFont('Arial', 'bold');
+            pdf.setTextColor(...primaryColor);
+            pdf.text('TECHNICAL EXPERTISE', leftCol, leftY);
+            pdf.setLineWidth(0.5);
+            pdf.setDrawColor(...goldColor);
+            pdf.line(leftCol, leftY + 1.5, leftCol + 50, leftY + 1.5);
+            leftY += 6;
+
+            // Adaptive skills based on role and job analysis
+            const adaptiveSkills = getAdaptiveSkills(formData.targetRole, formData.keySkills);
+
+            pdf.setFontSize(9);
+            adaptiveSkills.forEach(category => {
+                pdf.setFont('Arial', 'bold');
+                pdf.setTextColor(...accentColor);
+                pdf.text(category.title, leftCol, leftY);
+                leftY += 4;
+
+                pdf.setFont('Arial', 'normal');
+                pdf.setTextColor(...textColor);
+                const skillLines = pdf.splitTextToSize(category.skills, colWidth);
+                pdf.text(skillLines, leftCol + 2, leftY);
+                leftY += skillLines.length * lineHeight + 2;
+            });
+            leftY += sectionSpacing;
+
+            // Education & Certifications
+            pdf.setFontSize(11);
+            pdf.setFont('Arial', 'bold');
+            pdf.setTextColor(...primaryColor);
+            pdf.text('EDUCATION & CERTIFICATIONS', leftCol, leftY);
+            pdf.setLineWidth(0.5);
+            pdf.setDrawColor(...goldColor);
+            pdf.line(leftCol, leftY + 1.5, leftCol + 60, leftY + 1.5);
+            leftY += 6;
+
+            pdf.setFontSize(8.5);
+            pdf.setFont('Arial', 'bold');
+            pdf.setTextColor(...textColor);
+            pdf.text('Bachelor of Science', leftCol, leftY);
+            leftY += 3.5;
+            pdf.setFont('Arial', 'normal');
+            pdf.setTextColor(...lightGray);
+            pdf.text('University of Maryland Baltimore County', leftCol + 2, leftY);
+            leftY += 3;
+            pdf.text('2019 - 2022', leftCol + 2, leftY);
+            leftY += 5;
+
+            pdf.setFont('Arial', 'bold');
+            pdf.setTextColor(...textColor);
+            pdf.text('Machine Learning Specialization', leftCol, leftY);
+            leftY += 3.5;
+            pdf.setFont('Arial', 'normal');
+            pdf.setTextColor(...lightGray);
+            pdf.text('Andrew Ng - Stanford University (Coursera)', leftCol + 2, leftY);
+            leftY += 3;
+            pdf.text('2024 - Completed', leftCol + 2, leftY);
+            leftY += 5;
+
+            pdf.setFont('Arial', 'bold');
+            pdf.setTextColor(...textColor);
+            pdf.text('Data Analytics Program', leftCol, leftY);
+            leftY += 3.5;
+            pdf.setFont('Arial', 'normal');
+            pdf.setTextColor(...lightGray);
+            pdf.text('Correlation One', leftCol + 2, leftY);
+            leftY += 3;
+            pdf.text('Jan 2025 - Jul 2025 (Completed)', leftCol + 2, leftY);
+            leftY += sectionSpacing;
+
+            // Key Achievements Box (Adaptive)
+            pdf.setFillColor(245, 243, 255); // Light purple background
+            pdf.rect(leftCol - 2, leftY - 2, colWidth + 4, 30, 'F');
+            pdf.setDrawColor(...primaryColor);
+            pdf.setLineWidth(0.8);
+            pdf.rect(leftCol - 2, leftY - 2, colWidth + 4, 30, 'S');
+
+            pdf.setFontSize(10);
+            pdf.setFont('Arial', 'bold');
+            pdf.setTextColor(...primaryColor);
+            pdf.text('KEY ACHIEVEMENTS', leftCol, leftY + 3);
+            leftY += 7;
+
+            pdf.setFontSize(7.5);
+            pdf.setFont('Arial', 'normal');
+            pdf.setTextColor(...textColor);
+
+            const adaptiveAchievements = getAdaptiveAchievements(formData.targetRole, formData.experienceEmphasis);
+            adaptiveAchievements.forEach(achievement => {
+                pdf.text(achievement, leftCol, leftY);
+                leftY += 3.5;
+            });
+
+            // RIGHT COLUMN - Professional Experience
+            pdf.setFontSize(11);
+            pdf.setFont('Arial', 'bold');
+            pdf.setTextColor(...primaryColor);
+            pdf.text('PROFESSIONAL EXPERIENCE', rightCol, rightY);
+            pdf.setLineWidth(0.5);
+            pdf.setDrawColor(...goldColor);
+            pdf.line(rightCol, rightY + 1.5, rightCol + 65, rightY + 1.5);
+            rightY += 6;
+
+            // Experience 1 - Correlation One
+            pdf.setFontSize(9.5);
+            pdf.setFont('Arial', 'bold');
+            pdf.setTextColor(...textColor);
+            pdf.text('Data Analytics Trainee', rightCol, rightY);
+            rightY += 4;
+
+            pdf.setFontSize(8.5);
+            pdf.setFont('Arial', 'bold');
+            pdf.setTextColor(...accentColor);
+            pdf.text('Correlation One', rightCol, rightY);
+            pdf.setFont('Arial', 'normal');
+            pdf.setTextColor(...lightGray);
+            pdf.text('Jan 2025 - Jul 2025', rightCol + 32, rightY);
+            rightY += 4;
+
+            pdf.setFontSize(8);
+            pdf.setTextColor(...textColor);
+            const exp1Bullets = getCustomizedExperience(formData.experienceEmphasis, 'correlation');
+
+            exp1Bullets.forEach(bullet => {
+                const bulletLines = pdf.splitTextToSize(bullet, colWidth);
+                pdf.text(bulletLines, rightCol, rightY);
+                rightY += bulletLines.length * lineHeight;
+            });
+            rightY += sectionSpacing;
+
+            // Experience 2 - Amazon
+            pdf.setFontSize(9.5);
+            pdf.setFont('Arial', 'bold');
+            pdf.setTextColor(...textColor);
+            pdf.text('Process Guide (Team Lead)', rightCol, rightY);
+            rightY += 4;
+
+            pdf.setFontSize(8.5);
+            pdf.setFont('Arial', 'bold');
+            pdf.setTextColor(...accentColor);
+            pdf.text('Amazon', rightCol, rightY);
+            pdf.setFont('Arial', 'normal');
+            pdf.setTextColor(...lightGray);
+            pdf.text('May 2023 - Feb 2025', rightCol + 22, rightY);
+            rightY += 4;
+
+            pdf.setFontSize(8);
+            pdf.setTextColor(...textColor);
+            const exp2Bullets = getCustomizedExperience(formData.experienceEmphasis, 'amazon');
+
+            exp2Bullets.forEach(bullet => {
+                const bulletLines = pdf.splitTextToSize(bullet, colWidth);
+                pdf.text(bulletLines, rightCol, rightY);
+                rightY += bulletLines.length * lineHeight;
+            });
+            rightY += sectionSpacing;
+
+            // Projects Section (Adaptive)
+            pdf.setFontSize(11);
+            pdf.setFont('Arial', 'bold');
+            pdf.setTextColor(...primaryColor);
+            pdf.text('PROJECTS', rightCol, rightY);
+            pdf.setLineWidth(0.5);
+            pdf.setDrawColor(...goldColor);
+            pdf.line(rightCol, rightY + 1.5, rightCol + 40, rightY + 1.5);
+            rightY += 6;
+
+            // Get adaptive projects based on role
+            const adaptiveProjects = getAdaptiveProjects(formData.targetRole, formData.experienceEmphasis);
+
+            adaptiveProjects.forEach(project => {
+                pdf.setFontSize(8.5);
+                pdf.setFont('Arial', 'bold');
+                pdf.setTextColor(...textColor);
+                pdf.text(project.name, rightCol, rightY);
+                pdf.setFont('Arial', 'normal');
+                pdf.setTextColor(...lightGray);
+                pdf.text(project.date, rightCol + 50, rightY);
+                rightY += 3.5;
+
+                pdf.setFontSize(7.5);
+                pdf.setTextColor(...textColor);
+                const descLines = pdf.splitTextToSize(project.desc, colWidth);
+                pdf.text(descLines, rightCol, rightY);
+                rightY += descLines.length * 3;
+
+                pdf.setFont('Arial', 'italic');
+                pdf.setTextColor(...accentColor);
+                pdf.text('Tech: ' + project.tech, rightCol, rightY);
+                rightY += 5;
+            });
+
+            // Additional Projects if provided
+            if (formData.additionalProjects.trim() && formData.additionalProjects !== 'Add any specific projects or experiences you want to highlight for this role...') {
+                rightY += 3;
+                pdf.setFontSize(10);
+                pdf.setFont('Arial', 'bold');
+                pdf.setTextColor(...primaryColor);
+                pdf.text('ADDITIONAL HIGHLIGHTS', rightCol, rightY);
+                rightY += 5;
+
+                pdf.setFontSize(7.5);
+                pdf.setFont('Arial', 'normal');
+                pdf.setTextColor(...textColor);
+                const projectLines = pdf.splitTextToSize(formData.additionalProjects, colWidth);
+                pdf.text(projectLines, rightCol, rightY);
+            }
+
+            // Add job-specific footer if job description was analyzed
+            if (formData.jobDescription.trim()) {
+                pdf.setFontSize(8);
+                pdf.setFont('Arial', 'italic');
+                pdf.setTextColor(...lightGray);
+                pdf.text('Resume tailored for specific job requirements', leftCol, pageHeight - 15);
+            }
+
+            // Save the PDF with descriptive filename
+            const roleForFile = formData.targetRole.replace('-', '_');
+            const timestamp = new Date().toISOString().slice(0, 10);
+            const fileName = `${formData.name.replace(/\s+/g, '_')}_${roleForFile}_${timestamp}.pdf`;
+            pdf.save(fileName);
+        }
+
+        function getCustomizedExperience(emphasis, role) {
+            const experiences = {
+                correlation: {
+                    technical: [
+                        '• Built SQL queries, Python models, Tableau dashboards for supply chain, HR, finance',
+                        '• Applied statistical testing and visual storytelling for actionable business insights',
+                        '• Final project: Analyzed 130K+ Billboard entries to identify hit song patterns'
+                    ],
+                    leadership: [
+                        '• Completed capstone project analyzing 130K+ Billboard entries for music industry insights',
+                        '• Collaborated across multiple business domains (supply chain, HR, finance) to deliver solutions',
+                        '• Presented analytical findings to stakeholders using clear data visualization and storytelling'
+                    ],
+                    business: [
+                        '• Delivered actionable business insights across supply chain, HR, and finance domains',
+                        '• Applied statistical testing to identify patterns that drive business decision-making',
+                        '• Final project: Analyzed 130K+ Billboard entries to identify hit song patterns'
+                    ],
+                    balanced: [
+                        '• Built SQL queries, Python models, Tableau dashboards for supply chain, HR, finance',
+                        '• Applied statistical testing and visual storytelling for actionable business insights',
+                        '• Final project: Analyzed 130K+ Billboard entries to identify hit song patterns'
+                    ]
+                },
+                amazon: {
+                    technical: [
+                        '• Analyzed performance metrics for 25+ team members processing 240K+ items daily',
+                        '• Implemented data-driven process optimization resulting in 20% productivity improvement',
+                        '• Developed systematic bottleneck identification methods reducing operational downtime by 30%',
+                        '• Created performance tracking systems for high-volume logistics operations'
+                    ],
+                    leadership: [
+                        '• Led a team of 25+ people moving 240K+ items daily - boosted productivity 20% through data analysis',
+                        '• Managed cross-functional collaboration with IT and Facilities teams to resolve workflow issues',
+                        '• Maintained consistent team performance metrics in fast-paced, high-pressure environment',
+                        '• Developed and implemented training programs that improved operational efficiency by 30%'
+                    ],
+                    business: [
+                        '• Delivered 20% productivity improvement through strategic process optimization and data analysis',
+                        '• Reduced operational downtime by 30% resulting in measurable cost savings and efficiency gains',
+                        '• Collaborated with IT and Facilities teams to implement solutions increasing operational efficiency by 30%',
+                        '• Managed 6M+ monthly item throughput while maintaining quality and performance standards'
+                    ],
+                    balanced: [
+                        '• Led a team of 25+ people moving 240K+ items daily - boosted productivity 20% through data analysis',
+                        '• Reduced downtime by 30% by identifying and systematically addressing operational bottlenecks',
+                        '• Worked with IT and Facilities to solve workflow problems that were slowing everyone down',
+                        '• Kept a high-pressure operation running smoothly while keeping everyone motivated and focused'
+                    ]
+                }
+            };
+
+            return experiences[role][emphasis] || experiences[role]['balanced'];
+        }
+
+        function getAdaptiveSkills(targetRole, keySkills) {
+            const baseSkills = {
+                'data-analyst': [
+                    { title: 'Programming', skills: 'Python • SQL • R • JavaScript' },
+                    { title: 'Analytics & BI', skills: 'Tableau • Streamlit • Power BI • Looker' },
+                    { title: 'Statistical Methods', skills: 'ANOVA • T-Tests • Regression • Hypothesis Testing' },
+                    { title: 'Platforms & Tools', skills: 'AWS • MySQL • Git • Excel • Pandas • NumPy' }
+                ],
+                'data-scientist': [
+                    { title: 'Machine Learning', skills: 'XGBoost • Scikit-learn • SHAP • TensorFlow' },
+                    { title: 'Programming', skills: 'Python • SQL • R • JavaScript' },
+                    { title: 'Statistical Methods', skills: 'ANOVA • T-Tests • Regression • Hypothesis Testing' },
+                    { title: 'Platforms & Tools', skills: 'AWS • MySQL • Git • Jupyter • Pandas • NumPy' }
+                ],
+                'business-analyst': [
+                    { title: 'Analytics & BI', skills: 'Tableau • Power BI • Excel • Looker' },
+                    { title: 'Programming', skills: 'SQL • Python • R • VBA' },
+                    { title: 'Business Intelligence', skills: 'KPI Development • Process Improvement • Stakeholder Management' },
+                    { title: 'Statistical Methods', skills: 'A/B Testing • Regression • Hypothesis Testing' }
+                ],
+                'ml-engineer': [
+                    { title: 'Machine Learning', skills: 'XGBoost • Scikit-learn • SHAP • TensorFlow • PyTorch' },
+                    { title: 'Programming', skills: 'Python • SQL • JavaScript • Git' },
+                    { title: 'MLOps & Deployment', skills: 'AWS • Docker • Model Deployment • Pipeline Development' },
+                    { title: 'Statistical Methods', skills: 'Model Validation • Feature Engineering • Hyperparameter Tuning' }
+                ],
+                'product-analyst': [
+                    { title: 'Analytics & BI', skills: 'Tableau • Streamlit • A/B Testing • Funnel Analysis' },
+                    { title: 'Programming', skills: 'Python • SQL • R • JavaScript' },
+                    { title: 'Product Analytics', skills: 'User Behavior • Conversion Optimization • Growth Metrics' },
+                    { title: 'Statistical Methods', skills: 'Experimentation • Cohort Analysis • Statistical Testing' }
+                ]
+            };
+
+            // If we have extracted skills from job description, prioritize those
+            if (keySkills && keySkills.trim()) {
+                const extractedSkills = keySkills.split(',').map(s => s.trim());
+                const customSkills = baseSkills[targetRole] || baseSkills['data-analyst'];
+
+                // Modify skills to emphasize job-specific ones
+                customSkills.forEach(category => {
+                    const categorySkills = category.skills.split(' • ');
+                    const prioritizedSkills = [];
+                    const otherSkills = [];
+
+                    categorySkills.forEach(skill => {
+                        if (extractedSkills.some(extracted => skill.toLowerCase().includes(extracted.toLowerCase()) || extracted.toLowerCase().includes(skill.toLowerCase()))) {
+                            prioritizedSkills.push(skill);
+                        } else {
+                            otherSkills.push(skill);
+                        }
+                    });
+
+                    category.skills = [...prioritizedSkills, ...otherSkills].join(' • ');
+                });
+
+                return customSkills;
+            }
+
+            return baseSkills[targetRole] || baseSkills['data-analyst'];
+        }
+
+        function getAdaptiveAchievements(targetRole, emphasis) {
+            const achievements = {
+                'data-analyst': [
+                    '• Processed 50M+ data points with 95%+ accuracy',
+                    '• Led statistical analysis across multiple domains',
+                    '• Built production-ready dashboards and reports',
+                    '• Led 25+ person operations team at Amazon'
+                ],
+                'data-scientist': [
+                    '• Built ML models with 95%+ accuracy',
+                    '• ML explainability expert (SHAP) for decisions',
+                    '• Processed 50M+ data points across domains',
+                    '• Research: 130K+ Billboard charting tracks analysis'
+                ],
+                'business-analyst': [
+                    '• 20% productivity improvement through analysis',
+                    '• Led 25+ person operations team at Amazon',
+                    '• Cross-domain insights: Finance, HR, Supply Chain',
+                    '• Stakeholder communication and process improvement'
+                ],
+                'ml-engineer': [
+                    '• Built production ML models with 95%+ accuracy',
+                    '• ML explainability expert (SHAP) for decisions',
+                    '• Processed 50M+ data points with robust pipelines',
+                    '• Model deployment and performance optimization'
+                ],
+                'product-analyst': [
+                    '• User behavior analysis across 50M+ data points',
+                    '• A/B testing and experimentation expertise',
+                    '• Growth metrics and conversion optimization',
+                    '• Cross-functional collaboration and insights'
+                ]
+            };
+
+            return achievements[targetRole] || achievements['data-analyst'];
+        }
+
+        function getAdaptiveProjects(targetRole, emphasis) {
+            const allProjects = {
+                'bungaku': {
+                    name: 'Bungaku - Billboard Music Analysis',
+                    date: 'Jun 2025',
+                    desc: 'Analyzed 130K+ Billboard entries using ANOVA, Tukey HSD, t-tests. Discovered seasonal patterns and decade-based shifts.',
+                    tech: 'Python, SciPy, Seaborn, Statistical Testing',
+                    relevance: {
+                        'data-analyst': 10,
+                        'data-scientist': 9,
+                        'business-analyst': 6,
+                        'ml-engineer': 7,
+                        'product-analyst': 8
+                    }
+                },
+                'candlethrob': {
+                    name: 'CandleThrob - Stock Market Dashboard',
+                    date: 'Mar 2025',
+                    desc: 'Built interactive stock analysis dashboard with real-time data, candlestick charts, RSI, MACD indicators.',
+                    tech: 'Python, Streamlit, Yahoo Finance API, Plotly',
+                    relevance: {
+                        'data-analyst': 9,
+                        'data-scientist': 8,
+                        'business-analyst': 7,
+                        'ml-engineer': 9,
+                        'product-analyst': 6
+                    }
+                },
+                'customer-predictor': {
+                    name: 'Customer Purchase Predictor',
+                    date: 'Jan 2025',
+                    desc: 'Built logistic classifier on 3.9M+ behavioral events. Optimized threshold (0.67) for business decisions.',
+                    tech: 'Python, SHAP, Streamlit, Feature Engineering',
+                    relevance: {
+                        'data-analyst': 8,
+                        'data-scientist': 10,
+                        'business-analyst': 9,
+                        'ml-engineer': 10,
+                        'product-analyst': 9
+                    }
+                },
+                'lending-club': {
+                    name: 'Lending Club Risk Model',
+                    date: 'Sep 2024',
+                    desc: 'Processed 2.2M+ loan records. XGBoost model: 77% accuracy, 0.76 F1-score. SHAP explainability.',
+                    tech: 'XGBoost, SHAP, Risk Modeling',
+                    relevance: {
+                        'data-analyst': 7,
+                        'data-scientist': 9,
+                        'business-analyst': 8,
+                        'ml-engineer': 9,
+                        'product-analyst': 6
+                    }
+                }
+            };
+
+            // Sort projects by relevance to target role
+            const sortedProjects = Object.values(allProjects)
+                .sort((a, b) => (b.relevance[targetRole] || 0) - (a.relevance[targetRole] || 0))
+                .slice(0, 3); // Top 3 most relevant projects
+
+            // Adapt descriptions based on emphasis
+            return sortedProjects.map(project => {
+                let adaptedDesc = project.desc;
+
+                if (emphasis === 'technical') {
+                    // Emphasize technical aspects
+                    if (project.name.includes('Bungaku')) {
+                        adaptedDesc = 'Analyzed 130K+ Billboard entries using ANOVA, Tukey HSD, t-tests. Discovered seasonal patterns and decade-based shifts.';
+                    } else if (project.name.includes('CandleThrob')) {
+                        adaptedDesc = 'Built interactive stock analysis dashboard with real-time data, candlestick charts, RSI, MACD indicators.';
+                    } else if (project.name.includes('Customer')) {
+                        adaptedDesc = 'Built logistic classifier on 3.9M+ behavioral events. Optimized threshold (0.67) for business decisions.';
+                    } else if (project.name.includes('Lending')) {
+                        adaptedDesc = 'Processed 2.2M+ loan records. XGBoost model: 77% accuracy, 0.76 F1-score. SHAP explainability.';
+                    }
+                } else if (emphasis === 'business') {
+                    // Emphasize business impact
+                    if (project.name.includes('Bungaku')) {
+                        adaptedDesc = 'Delivered actionable insights for music industry from 130K+ entries. Identified market patterns and seasonal trends for strategic decision-making.';
+                    } else if (project.name.includes('CandleThrob')) {
+                        adaptedDesc = 'Built comprehensive financial analytics platform for real-time market analysis and investment decision support.';
+                    } else if (project.name.includes('Customer')) {
+                        adaptedDesc = 'Created customer analytics solution analyzing 3.9M+ behaviors to optimize marketing strategies and reduce business risk.';
+                    } else if (project.name.includes('Lending')) {
+                        adaptedDesc = 'Developed risk assessment model for lending decisions. Achieved 77% accuracy to minimize loan default risk.';
+                    }
+                } else if (emphasis === 'leadership') {
+                    // Emphasize initiative and project management skills
+                    if (project.name.includes('Bungaku')) {
+                        adaptedDesc = 'Capstone project analyzing 130K+ Billboard entries. End-to-end research identifying seasonal patterns and decade-based shifts.';
+                    } else if (project.name.includes('CandleThrob')) {
+                        adaptedDesc = 'Financial data platform project. Architected and developed comprehensive market analysis solution from concept to deployment.';
+                    } else if (project.name.includes('Customer')) {
+                        adaptedDesc = 'Customer analytics project processing 3.9M+ records. Full-stack ML implementation with business optimization focus.';
+                    } else if (project.name.includes('Lending')) {
+                        adaptedDesc = 'Risk modeling project processing 2.2M+ loan records. End-to-end development and validation of production-ready model.';
+                    }
+                }
+
+                return {
+                    ...project,
+                    desc: adaptedDesc
+                };
+            });
+        }
+    </script>
+</body>
+</html>
+    </script>
+</body>
+</html>
